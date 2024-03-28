@@ -87,6 +87,13 @@
     packages = with pkgs; [];
   };
 
+  users.users.a4blue_backup = {
+    isNormalUser = true;
+    description = "Alexander Ratajczak";
+    extraGroups = [ "networkmanager" "wheel" ];
+    packages = with pkgs; [];
+  };
+
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
@@ -99,6 +106,7 @@
     #pkgs.docker-client
     htop
     git
+    home-manager
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -114,11 +122,12 @@
   # Enable the OpenSSH daemon.
   services.openssh = {
     enable = true;
-    settings.PasswordAuthentication = false;
+    settings.PasswordAuthentication = true;
     settings.KbdInteractiveAuthentication = false;
   };
 
   users.users.a4blue.openssh.authorizedKeys.keys = [ "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOb2erO3CjSDZdQNfU720I4vxt1K5XzECQ/ncROZmA2X a4blue" ];
+  users.users.a4blue_backup.openssh.authorizedKeys.keys = [ "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOb2erO3CjSDZdQNfU720I4vxt1K5XzECQ/ncROZmA2X a4blue" ];
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];

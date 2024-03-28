@@ -16,9 +16,9 @@
     # ./nvim.nix
   ];
 
-  nixpkgs = {
+#  nixpkgs = {
     # You can add overlays here
-    overlays = [
+#    overlays = [
       # If you want to use overlays exported from other flakes:
       # neovim-nightly-overlay.overlays.default
 
@@ -28,15 +28,15 @@
       #     patches = [ ./change-hello-to-hi.patch ];
       #   });
       # })
-    ];
+#    ];
     # Configure your nixpkgs instance
-    config = {
+#    config = {
       # Disable if you don't want unfree packages
-      allowUnfree = true;
+#      allowUnfree = true;
       # Workaround for https://github.com/nix-community/home-manager/issues/2942
-      allowUnfreePredicate = _: true;
-    };
-  };
+#      allowUnfreePredicate = _: true;
+#    };
+#  };
 
   # TODO: Set your username
   home = {
@@ -46,7 +46,7 @@
 
   # Add stuff for your user as you see fit:
   # programs.neovim.enable = true;
-  # home.packages = with pkgs; [ steam ];
+  home.packages = with pkgs; [ ngrep ];
 
   # Enable home-manager and git
   programs.home-manager.enable = true;

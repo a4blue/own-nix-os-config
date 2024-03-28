@@ -28,11 +28,19 @@
     # NixOS configuration entrypoint
     # Available through 'nixos-rebuild --flake .#your-hostname'
     nixosConfigurations = {
-      # FIXME replace with your hostname
       homelab = nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs outputs;};
+        system = "x86_64-linux";
         # > Our main nixos configuration file <
-        modules = [./nixos/configuration.nix];
+        modules = [
+          ./nixos/configuration.nix
+          home-manager.nixosModules.home-manager
+          {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.users.a4blue = import ./home-manager/home.nix;
+          }
+        ];
       };
     };
 

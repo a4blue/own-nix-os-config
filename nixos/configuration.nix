@@ -8,6 +8,8 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      #./homepage-container.nix
+      #./whats-up-docker-container.nix
     ];
 
   # Bootloader.
@@ -40,6 +42,7 @@
   virtualisation.podman.dockerSocket.enable = true;
   virtualisation.podman.dockerCompat = true;
   virtualisation.podman.defaultNetwork.settings.dns_enabled = true;
+  #virtualisation.podman.networkSocket.enable = true;
   users.extraUsers.a4blue.extraGroups = [ "podman" ];
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
@@ -101,6 +104,7 @@
     htop
     git
     home-manager
+    podman-compose
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -127,7 +131,7 @@
   # networking.firewall.allowedTCPPorts = [ ... ];
   # networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.
-  networking.firewall.enable = true;
+  networking.firewall.enable = false;
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions

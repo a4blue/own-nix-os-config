@@ -74,7 +74,7 @@
   #zramSwap.enable = true;
 
   #environment.persistence."/nix/persist" = {
-    # Hide these mounts from the sidebar of file managers
+  # Hide these mounts from the sidebar of file managers
   #  hideMounts = true;
 
   #  directories = [

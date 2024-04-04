@@ -9,23 +9,35 @@
   ...
 }: {
   imports = [
-    # Include the results of the hardware scan.
-    ./hardware-configuration.nix
-    #./homepage-container.nix
-    #./whats-up-docker-container.nix
     inputs.home-manager.nixosModules.home-manager
+
+    ./hardware-configuration.nix
   ];
 
-  home-manager.useGlobalPkgs = true;
-  home-manager.useUserPackages = true;
-  home-manager.users.a4blue = import ../../home-manager/home.nix;
+  home-manager = {
+    extraSpecialArgs = {inherit inputs outputs;};
+    useGlobalPkgs = true;
+    useUserPackages = true;
+    users = {
+      a4blue = {
+        imports = [
+          ./../../modules/home-manager/base.nix
+        ];
+      };
+    };
+  };
+
+  networking.hostName = "homelab";
+
+  #home-manager.useGlobalPkgs = true;
+  #home-manager.useUserPackages = true;
+  #home-manager.users.a4blue = import ../../home-manager/home.nix;
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
   boot.initrd.luks.devices."luks-3c556ca9-52c9-4c86-bb66-e9d71dc27621".device = "/dev/disk/by-uuid/3c556ca9-52c9-4c86-bb66-e9d71dc27621";
-  networking.hostName = "nixos";
 
   # Remote disk Unlocking
   boot.kernelParams = ["ip=dhcp"];

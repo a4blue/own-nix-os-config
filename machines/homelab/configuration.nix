@@ -11,14 +11,14 @@
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
-    ./homepage-container.nix
-    ./whats-up-docker-container.nix
+    #./homepage-container.nix
+    #./whats-up-docker-container.nix
     inputs.home-manager.nixosModules.home-manager
   ];
 
   home-manager.useGlobalPkgs = true;
   home-manager.useUserPackages = true;
-  home-manager.users.a4blue = import ../home-manager/home.nix;
+  home-manager.users.a4blue = import ../../home-manager/home.nix;
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;

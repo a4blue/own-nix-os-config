@@ -36,6 +36,8 @@
   networking.hostName = "homelab";
 
   boot.initrd.luks.devices."luks-3c556ca9-52c9-4c86-bb66-e9d71dc27621".device = "/dev/disk/by-uuid/3c556ca9-52c9-4c86-bb66-e9d71dc27621";
+  boot.supportedFilesystems = [ "bcachefs" ];
+  boot.kernelPackages = pkgs.linuxPackages_latest;
 
   # Driver needed for Remote disk Unlocking
   boot.initrd.availableKernelModules = ["r8169"];

@@ -21,7 +21,7 @@
     extraSpecialArgs = {inherit inputs outputs;};
     useGlobalPkgs = true;
     useUserPackages = true;
-    sharedModules  = [
+    sharedModules = [
       inputs.sops-nix.homeManagerModules.sops
     ];
     users = {

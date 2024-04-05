@@ -34,7 +34,7 @@
     ranger
     tmux
     sops
-    ];
+  ];
 
   # Enable home-manager and git
   programs.home-manager.enable = true;
@@ -45,10 +45,10 @@
   };
 
   #sops = {
-    # Example Generation:
-    # age-keygen -o ~/.config/sops/age/keys.txt
-    #age.keyFile = "~/.config/sops/age/keys.txt"; # must have no password!
-    #defaultSopsFile = ./secrets.yaml;
+  # Example Generation:
+  # age-keygen -o ~/.config/sops/age/keys.txt
+  #age.keyFile = "~/.config/sops/age/keys.txt"; # must have no password!
+  #defaultSopsFile = ./secrets.yaml;
   #};
 
   # Nicely reload system units when changing configs

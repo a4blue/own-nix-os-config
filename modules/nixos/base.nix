@@ -6,7 +6,7 @@
 }: {
   imports = [
     inputs.sops-nix.nixosModules.sops
-
+    ./system-packages.nix
     #./_packages.nix
   ];
 

@@ -12,6 +12,8 @@
     inputs.home-manager.nixosModules.home-manager
 
     ./hardware-configuration.nix
+
+    ../../modules/nixos/base.nix
   ];
 
   home-manager = {

@@ -32,23 +32,22 @@
     };
   };
 
-  #sops = {
-  #  defaultSopsFile = ./../../secrets/secrets.yaml;
-  #  age.sshKeyPaths = ["/nix/secret/initrd/ssh_host_ed25519_key"];
-  #  secrets.user-password.neededForUsers = true;
-  #  secrets.user-password = {};
-  #};
+  sops = {
+    defaultSopsFile = ./../../secrets/secrets.yaml;
+    age.sshKeyPaths = ["/etc/ssh/ssh_host_ed25519_key"];
+    secrets.a4blue_hashed_password.neededForUsers = true;
+  };
 
   #users.mutableUsers = false;
   users.users.a4blue = {
     isNormalUser = true;
-    description = "a4blue";
+    description = "Alexander Ratajczak";
     extraGroups = ["networkmanager" "wheel"];
     openssh.authorizedKeys.keys = [
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOb2erO3CjSDZdQNfU720I4vxt1K5XzECQ/ncROZmA2X a4blue"
     ];
     #shell = pkgs.zsh;
-    #hashedPasswordFile = config.sops.secrets.user-password.path;
+    #hashedPasswordFile = config.sops.secrets.a4blue_hashed_password.path;
   };
 
   services = {
@@ -60,7 +59,7 @@
       };
       openFirewall = true;
     };
-    fstrim.enable = true;
+    #fstrim.enable = true;
   };
 
   networking = {

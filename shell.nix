@@ -11,7 +11,6 @@ in
     ];
     # Also single files can be imported.
     sopsPGPKeys = [
-      #"${toString ./.}/keys/users/a4blue.asc"
       #  "${toString ./.}/keys/hosts/server01.asc"
     ];
 

@@ -41,7 +41,7 @@
   # TODO: Set your username
   home = {
     username = "a4blue";
-    homeDirectory = "/home/a4blue";
+    homeDirectory = lib.mkForce "/home/a4blue";
     stateVersion = "23.11";
   };
 

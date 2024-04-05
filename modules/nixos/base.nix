@@ -44,11 +44,10 @@
     description = "Alexander Ratajczak";
     extraGroups = ["networkmanager" "wheel"];
     openssh.authorizedKeys.keys = [
-      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOb2erO3CjSDZdQNfU720I4vxt1K5XzECQ/ncROZmA2X a4blue"
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOb2erO3CjSDZdQNfU720I4vxt1K5XzECQ/ncROZmA2X"
     ];
-    #home = /home/a4blue;
     #shell = pkgs.zsh;
-    #hashedPasswordFile = config.sops.secrets.a4blue_hashed_password.path;
+    hashedPasswordFile = config.sops.secrets.a4blue_hashed_password.path;
   };
 
   services = {

@@ -14,12 +14,16 @@
     ./hardware-configuration.nix
 
     ../../modules/nixos/base.nix
+    ../../modules/nixos/remote-disk-unlocking.nix
   ];
 
   home-manager = {
     extraSpecialArgs = {inherit inputs outputs;};
     useGlobalPkgs = true;
     useUserPackages = true;
+    sharedModules  = [
+      inputs.sops-nix.homeManagerModules.sops
+    ];
     users = {
       a4blue = {
         imports = [
@@ -31,37 +35,13 @@
 
   networking.hostName = "homelab";
 
-  # Bootloader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-
   boot.initrd.luks.devices."luks-3c556ca9-52c9-4c86-bb66-e9d71dc27621".device = "/dev/disk/by-uuid/3c556ca9-52c9-4c86-bb66-e9d71dc27621";
 
-  # Remote disk Unlocking
-  boot.kernelParams = ["ip=dhcp"];
-  boot.initrd = {
-    availableKernelModules = ["r8169"];
-    systemd.users.root.shell = "/bin/cryptsetup-askpass";
-    network = {
-      enable = true;
-      ssh = {
-        enable = true;
-        port = 22;
-        authorizedKeys = ["ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOb2erO3CjSDZdQNfU720I4vxt1K5XzECQ/ncROZmA2X a4blue"];
-        hostKeys = ["/etc/secrets/initrd/ssh_host_rsa_key"];
-      };
-    };
-  };
+  # Driver needed for Remote disk Unlocking
+  boot.initrd.availableKernelModules = ["r8169"];
+
   # Network DNS Fallback
   networking.nameservers = ["8.8.8.8"];
-
-  virtualisation.docker.enable = false;
-  virtualisation.podman.enable = true;
-  virtualisation.podman.dockerSocket.enable = true;
-  virtualisation.podman.dockerCompat = true;
-  virtualisation.podman.defaultNetwork.settings.dns_enabled = true;
-  #virtualisation.podman.networkSocket.enable = true;
-  users.extraUsers.a4blue.extraGroups = ["podman"];
 
   # Set your time zone.
   time.timeZone = "Europe/Berlin";
@@ -90,24 +70,13 @@
   # Configure console keymap
   console.keyMap = "de";
 
+  # backup user, will be removed later
   users.users.a4blue_backup = {
     isNormalUser = true;
     description = "Alexander Ratajczak";
     extraGroups = ["networkmanager" "wheel"];
     packages = with pkgs; [];
   };
-
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
-  environment.systemPackages = with pkgs; [
-    vim
-    wget
-    arion
-    htop
-    git
-    home-manager
-    podman-compose
-  ];
 
   users.users.a4blue_backup.openssh.authorizedKeys.keys = ["ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOb2erO3CjSDZdQNfU720I4vxt1K5XzECQ/ncROZmA2X a4blue"];
 

@@ -33,7 +33,7 @@
       homelab = nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs outputs;};
         modules = [
-          ./machines/homelab/configuration.nix
+          ./systems/homelab/configuration.nix
         ];
       };
     };

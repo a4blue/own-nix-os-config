@@ -39,6 +39,13 @@
           ./systems/homelab/configuration.nix
         ];
       };
+      iso = nixpkgs.lib.nixosSystem {
+        specialArgs = {inherit inputs outputs;};
+        modules = [
+          (nixpkgs + "/nixos/modules/installer/cd-dvd/installation-cd-minimal.nix")
+          ./systems/iso/configuration.nix
+        ];
+      };
     };
   };
 }

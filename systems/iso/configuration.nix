@@ -1,4 +1,4 @@
-{pkgs, ...} : {
+{pkgs, ...}: {
   imports = [
     ./../../modules/nixos/system-packages.nix
   ];
@@ -13,7 +13,7 @@
     ];
   };
 
-  boot.supportedFilesystems = [ "bcachefs" ];
+  boot.supportedFilesystems = ["bcachefs"];
   boot.kernelPackages = pkgs.linuxPackages_6_7;
 
   security.sudo.wheelNeedsPassword = false;

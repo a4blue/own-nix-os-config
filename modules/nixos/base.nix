@@ -8,7 +8,6 @@
     inputs.sops-nix.nixosModules.sops
     ./system-packages.nix
     ./homepage-dashboard.nix
-    #./_packages.nix
   ];
 
   boot.loader = {
@@ -35,11 +34,12 @@
 
   sops = {
     defaultSopsFile = ./../../secrets/secrets.yaml;
-    age.sshKeyPaths = ["/etc/ssh/ssh_host_ed25519_key"];
+    age.sshKeyPaths = ["/nix/secret/initrd/ssh_host_ed25519_key"];
     secrets.a4blue_hashed_password.neededForUsers = true;
+    secrets.a4blue_easy_hashed_password.neededForUsers = true;
   };
 
-  #users.mutableUsers = false;
+  users.mutableUsers = false;
   users.users.a4blue = {
     isNormalUser = true;
     description = "Alexander Ratajczak";
@@ -48,7 +48,8 @@
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOb2erO3CjSDZdQNfU720I4vxt1K5XzECQ/ncROZmA2X"
     ];
     #shell = pkgs.zsh;
-    hashedPasswordFile = config.sops.secrets.a4blue_hashed_password.path;
+    #hashedPasswordFile = config.sops.secrets.a4blue_hashed_password.path;
+    hashedPasswordFile = config.sops.secrets.a4blue_easy_hashed_password.path;
   };
 
   services = {
@@ -60,7 +61,7 @@
       };
       openFirewall = true;
     };
-    #fstrim.enable = true;
+    fstrim.enable = true;
   };
 
   networking = {
@@ -69,26 +70,27 @@
   };
 
   #programs.zsh.enable = true;
-  #security.sudo.wheelNeedsPassword = false;
-  #time.timeZone = "America/New_York";
+  security.sudo.wheelNeedsPassword = false;
+  # TODO: Decide
+  # Enable in-memory compressed devices and swap space provided by the zram kernel module
   #zramSwap.enable = true;
 
-  #environment.persistence."/nix/persist" = {
-  # Hide these mounts from the sidebar of file managers
-  #  hideMounts = true;
+  environment.persistence."/nix/persist" = {
+    # Hide these mounts from the sidebar of file managers
+    hideMounts = true;
 
-  #  directories = [
-  #    "/var/log"
-  #  ];
+    directories = [
+      "/var/log"
+    ];
 
-  #  files = [
-  #    "/etc/machine-id"
-  #    "/etc/ssh/ssh_host_ed25519_key.pub"
-  #    "/etc/ssh/ssh_host_ed25519_key"
-  #    "/etc/ssh/ssh_host_rsa_key.pub"
-  #    "/etc/ssh/ssh_host_rsa_key"
-  #  ];
-  #};
+    files = [
+      "/etc/machine-id"
+      "/etc/ssh/ssh_host_ed25519_key.pub"
+      "/etc/ssh/ssh_host_ed25519_key"
+      "/etc/ssh/ssh_host_rsa_key.pub"
+      "/etc/ssh/ssh_host_rsa_key"
+    ];
+  };
 
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
   system.stateVersion = "23.11";

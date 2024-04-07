@@ -39,6 +39,7 @@
         specialArgs = {inherit inputs outputs;};
         modules = [
           ./systems/homelab/configuration.nix
+          (import ./overlays)
         ];
       };
       iso = nixpkgs.lib.nixosSystem {

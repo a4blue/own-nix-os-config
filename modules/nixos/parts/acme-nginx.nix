@@ -6,7 +6,7 @@
     virtualHosts = {
       "home.a4blue.me" = {
         forceSSL = true;
-        #enableACME = true;
+        enableACME = true;
         # All serverAliases will be added as extra domain names on the certificate.
         #serverAliases = [ "bar.example.com" ];
         locations."/" = {

@@ -50,7 +50,7 @@
           }: {
             # override bcachefs-tools version
             nixpkgs.overlays = [inputs.bcachefs-tools.overlays.default];
-            })
+          })
           ./systems/homelab/configuration.nix
         ];
       };

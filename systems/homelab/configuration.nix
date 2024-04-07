@@ -16,6 +16,7 @@
 
     ../../modules/nixos/base.nix
     ../../modules/nixos/remote-disk-unlocking.nix
+    ../../modules/nixos/parts/acme-nginx.nix
   ];
 
   environment.systemPackages = with pkgs; [

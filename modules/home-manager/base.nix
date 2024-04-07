@@ -12,7 +12,8 @@
     # inputs.nix-colors.homeManagerModule
 
     # You can also split up your configuration and import pieces of it here:
-    #inputs.sops-nix.homeManagerModules.sops
+    #inputs.sops-nix.homeManagerModules.
+    inputs.impermanence.homeManagerModules.impermanence
   ];
 
   home = {
@@ -42,6 +43,13 @@
     enable = true;
     userName = "Alexander Ratajczak";
     userEmail = "a4blue@hotmail.de";
+  };
+
+  home.persistence."/nix/persist" = {
+    directories = [
+      ".ssh"
+      "nixos-git"
+    ];
   };
 
   #sops = {

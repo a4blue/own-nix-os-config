@@ -11,6 +11,7 @@
   imports = [
     inputs.impermanence.nixosModules.impermanence
     inputs.home-manager.nixosModules.home-manager
+    #inputs.bcachefs-tools.packages.x86_64-linux
 
     ./hardware-configuration.nix
 

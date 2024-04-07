@@ -18,6 +18,10 @@
       url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    flake-utils.url = "github:numtide/flake-utils/main";
+
+    bcachefs-tools.url = "github:koverstreet/bcachefs-tools/refs/tags/v1.6.4";
   };
 
   outputs = {
@@ -34,12 +38,17 @@
 
     # NixOS configuration entrypoint
     # Available through 'nixos-rebuild --flake .#your-hostname'
+    # or nix build ./#nixosConfigurations.homelab.config.system.build.toplevel
     nixosConfigurations = {
       homelab = nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs outputs;};
         modules = [
+          ({
+            config,
+            pkgs,
+            ...
+          }: {nixpkgs.overlays = [inputs.bcachefs-tools.overlays.default];})
           ./systems/homelab/configuration.nix
-          (import ./overlays)
         ];
       };
       iso = nixpkgs.lib.nixosSystem {

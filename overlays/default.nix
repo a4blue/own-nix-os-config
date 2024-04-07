@@ -15,12 +15,9 @@
           rev = "v1.6.4";
           hash = "sha256-yyOjqiDiBXKcfIY58SuoZApjIdAeMbRSPxYDh76+XHE=";
         };
-        cargoDeps = rustPlatform.importCargoLock {
+        cargoDeps = old.cargoDeps.overrideAttrs (older: {
           lockFile = ./Cargo.lock;
-          outputHashes = {
-            "bindgen-0.64.0" = "sha256-GNG8as33HLRYJGYe0nw6qBzq86aHiGonyynEM7gaEE4=";
-          };
-        };
+        });
       });
     })
   ];

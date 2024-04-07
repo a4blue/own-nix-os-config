@@ -28,6 +28,12 @@
     options = ["defaults" "size=4G" "mode=0755"];
   };
 
+  fileSystems."/home/a4blue" = {
+    device = "none";
+    fsType = "tmpfs";
+    options = ["defaults" "size=4G" "mode=0755"];
+  };
+
   fileSystems."/boot" = {
     device = "/dev/disk/by-label/boot";
     fsType = "vfat";

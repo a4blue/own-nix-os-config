@@ -46,6 +46,7 @@
   };
 
   home.persistence."/nix/persist/home/a4blue" = {
+    allowOther = true;
     directories = [
       ".ssh"
       "nixos-git"

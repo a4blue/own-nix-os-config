@@ -36,8 +36,26 @@
 
   networking.hostName = "homelab";
 
+  # Bcache support
   boot.supportedFilesystems = ["bcachefs"];
   boot.kernelPackages = pkgs.linuxPackages_latest;
+
+  # Bcache remote unlock
+  boot.initrd.systemd = let
+    askPass = pkgs.writeShellScriptBin "bcachefs-askpass" ''
+      keyctl link @u @s
+      mkdir /sysroot
+      until bcachefs mount /dev/nvme0n1p2 /nix
+      do
+        sleep  1
+      done
+    '';
+  in {
+    enable = true;
+    initrdBin = with pkgs; [keyutils];
+    storePaths = ["${askPass}/bin/bcachefs-askpass"];
+    users.root.shell = "${askPass}/bin/bcachefs-askpass";
+  };
 
   # Driver needed for Remote disk Unlocking
   boot.initrd.availableKernelModules = ["r8169"];

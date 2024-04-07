@@ -18,7 +18,7 @@
   boot.extraModulePackages = [];
 
   fileSystems."/nix" = {
-    device = "/dev/disk/by-label/nixos";
+    device = "/dev/nvme0n1p2";
     fsType = "bcachefs";
   };
 

@@ -2,6 +2,7 @@
   config,
   pkgs,
   lib,
+  rustPlatform,
   ...
 }: {
   nixpkgs.overlays = [
@@ -14,7 +15,7 @@
           rev = "v1.6.4";
           hash = "sha256-yyOjqiDiBXKcfIY58SuoZApjIdAeMbRSPxYDh76+XHE=";
         };
-        cargoDeps = super.bcachefs-tools.rustPlatform.importCargoLock {
+        cargoDeps = rustPlatform.importCargoLock {
           lockFile = ./Cargo.lock;
           outputHashes = {
             "bindgen-0.64.0" = "sha256-GNG8as33HLRYJGYe0nw6qBzq86aHiGonyynEM7gaEE4=";

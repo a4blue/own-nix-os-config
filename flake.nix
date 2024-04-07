@@ -57,7 +57,15 @@
       iso = nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs outputs;};
         modules = [
-          (nixpkgs + "/nixos/modules/installer/cd-dvd/installation-cd-minimal.nix")
+          ({
+            config,
+            pkgs,
+            ...
+          }: {
+            # override bcachefs-tools version
+            nixpkgs.overlays = [inputs.bcachefs-tools.overlays.default];
+          })
+          (nixpkgs + "/nixos/modules/installer/cd-dvd/installation-cd-minimal-new-kernel-no-zfs.nix")
           ./systems/iso/configuration.nix
         ];
       };

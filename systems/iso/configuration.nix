@@ -14,7 +14,7 @@
   };
 
   boot.supportedFilesystems = ["bcachefs"];
-  boot.kernelPackages = pkgs.linuxPackages_6_7;
+  #boot.kernelPackages = pkgs.linuxPackages_latest;
 
   security.sudo.wheelNeedsPassword = false;
 
@@ -30,6 +30,7 @@
     parted
     ventoy
     gptfdisk
+    bcachefs
   ];
 
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion

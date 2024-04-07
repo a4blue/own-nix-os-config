@@ -36,4 +36,10 @@
     80
     443
   ];
+
+  environment.persistence."/nix/persist" = {
+    directories = [
+      "/var/lib/acme"
+    ];
+  };
 }

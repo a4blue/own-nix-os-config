@@ -19,6 +19,10 @@
     ../../modules/nixos/remote-disk-unlocking.nix
   ];
 
+  environment.systemPackages = with pkgs; [
+    bcachefs
+  ];
+
   home-manager = {
     extraSpecialArgs = {inherit inputs outputs;};
     useGlobalPkgs = true;

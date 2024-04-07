@@ -45,7 +45,7 @@
     userEmail = "a4blue@hotmail.de";
   };
 
-  home.persistence."/nix/persist" = {
+  home.persistence."/nix/persist/home/a4blue" = {
     directories = [
       ".ssh"
       "nixos-git"

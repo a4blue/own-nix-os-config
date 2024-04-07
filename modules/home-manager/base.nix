@@ -13,7 +13,7 @@
 
     # You can also split up your configuration and import pieces of it here:
     #inputs.sops-nix.homeManagerModules.
-    inputs.impermanence.homeManagerModules.impermanence
+    inputs.impermanence.nixosModules.home-manager.impermanence
   ];
 
   home = {

@@ -6,6 +6,7 @@
   pkgs,
   inputs,
   outputs,
+  lib,
   ...
 }: {
   imports = [
@@ -52,18 +53,41 @@
   boot.initrd.systemd = let
     askPass = pkgs.writeShellScriptBin "bcachefs-askpass" ''
       keyctl link @u @s
-      mkdir /sysroot
-      until bcachefs mount /dev/nvme0n1p2 /nix
+      until bcachefs unlock -c /dev/nvme0n1p2
       do
         sleep  1
       done
     '';
+    name = "nix";
+    device = "/dev/nvme0n1p2";
+    bcacheUnlock = pkgs.writeShellScriptBin "bcache-unlock" ''
+      keyctl link @u @s
+         until ${pkgs.bcachefs-tools}/bin/bcachefs unlock -c "${device}"
+         do
+         ${config.boot.initrd.systemd.package}/bin/systemd-ask-password --timeout=20 "enter passphrase for ${name}" | exec ${pkgs.bcachefs-tools}/bin/bcachefs unlock "${device}"
+         done
+    '';
   in {
     enable = true;
     initrdBin = with pkgs; [keyutils];
-    storePaths = ["${askPass}/bin/bcachefs-askpass"];
+    storePaths = [
+      "${askPass}/bin/bcachefs-askpass"
+      "${bcacheUnlock}/bin/bcache-unlock"
+    ];
+    services."unlock-bcachefs-${name}" = {
+      script = lib.mkForce ''
+        ${bcacheUnlock}/bin/bcache-unlock
+      '';
+      enable = false;
+    };
+    #services."unlock-bcachefs-${name}".script.override = ''
+    #  ${config.boot.initrd.systemd.package}/bin/systemd-ask-password --timeout=0 "enter passphrase for ${name}" | exec ${pkgs.bcachefs-tools}/bin/bcachefs unlock "${device}"
+    #'';
     #users.root.shell = "${askPass}/bin/bcachefs-askpass";
   };
+
+  system.fsPackages = [pkgs.bcachefs];
+  services.udev.packages = [pkgs.bcachefs];
 
   # Driver needed for Remote disk Unlocking
   boot.initrd.availableKernelModules = ["r8169"];

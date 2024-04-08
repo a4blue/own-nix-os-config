@@ -17,12 +17,7 @@
 
     ../../modules/nixos/base.nix
     ../../modules/nixos/remote-disk-unlocking.nix
-    ../../modules/nixos/parts/acme-nginx.nix
-  ];
-
-  environment.systemPackages = with pkgs; [
-    # install overridden version
-    bcachefs
+    #../../modules/nixos/parts/acme-nginx.nix
   ];
 
   programs.fuse.userAllowOther = true;
@@ -45,49 +40,7 @@
 
   networking.hostName = "homelab";
 
-  # Bcache support
-  boot.supportedFilesystems = ["bcachefs"];
   boot.kernelPackages = pkgs.linuxPackages_latest;
-
-  # Bcache remote unlock
-  boot.initrd.systemd = let
-    askPass = pkgs.writeShellScriptBin "bcachefs-askpass" ''
-      keyctl link @u @s
-      until bcachefs unlock -c /dev/nvme0n1p2
-      do
-        sleep  1
-      done
-    '';
-    name = "nix";
-    device = "/dev/nvme0n1p2";
-    bcacheUnlock = pkgs.writeShellScriptBin "bcache-unlock" ''
-      keyctl link @u @s
-         until ${pkgs.bcachefs-tools}/bin/bcachefs unlock -c "${device}"
-         do
-         ${config.boot.initrd.systemd.package}/bin/systemd-ask-password --timeout=20 "enter passphrase for ${name}" | exec ${pkgs.bcachefs-tools}/bin/bcachefs unlock "${device}"
-         done
-    '';
-  in {
-    enable = true;
-    initrdBin = with pkgs; [keyutils];
-    storePaths = [
-      "${askPass}/bin/bcachefs-askpass"
-      "${bcacheUnlock}/bin/bcache-unlock"
-    ];
-    services."unlock-bcachefs-${name}" = {
-      #script = lib.mkForce ''
-      #  ${bcacheUnlock}/bin/bcache-unlock
-      #'';
-      enable = false;
-    };
-    #services."unlock-bcachefs-${name}".script.override = ''
-    #  ${config.boot.initrd.systemd.package}/bin/systemd-ask-password --timeout=0 "enter passphrase for ${name}" | exec ${pkgs.bcachefs-tools}/bin/bcachefs unlock "${device}"
-    #'';
-    #users.root.shell = "${askPass}/bin/bcachefs-askpass";
-  };
-
-  system.fsPackages = [pkgs.bcachefs];
-  services.udev.packages = [pkgs.bcachefs];
 
   # Driver needed for Remote disk Unlocking
   boot.initrd.availableKernelModules = ["r8169"];
@@ -129,8 +82,6 @@
     extraGroups = ["networkmanager" "wheel"];
     packages = with pkgs; [];
   };
-
-  users.users.a4blue_backup.openssh.authorizedKeys.keys = ["ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOb2erO3CjSDZdQNfU720I4vxt1K5XzECQ/ncROZmA2X a4blue"];
 
   system.stateVersion = "23.11";
 }

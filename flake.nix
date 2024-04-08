@@ -20,8 +20,6 @@
     };
 
     flake-utils.url = "github:numtide/flake-utils/main";
-
-    bcachefs-tools.url = "github:koverstreet/bcachefs-tools/refs/tags/v1.6.4";
   };
 
   outputs = {
@@ -41,30 +39,14 @@
     # or nix build ./#nixosConfigurations.homelab.config.system.build.toplevel
     nixosConfigurations = {
       homelab = nixpkgs.lib.nixosSystem {
-        specialArgs = {inherit inputs outputs;};
+        specialArgs = {inherit inputs outputs system;};
         modules = [
-          ({
-            config,
-            pkgs,
-            ...
-          }: {
-            # override bcachefs-tools version
-            nixpkgs.overlays = [inputs.bcachefs-tools.overlays.default];
-          })
           ./systems/homelab/configuration.nix
         ];
       };
       iso = nixpkgs.lib.nixosSystem {
-        specialArgs = {inherit inputs outputs;};
+        specialArgs = {inherit inputs outputs system;};
         modules = [
-          ({
-            config,
-            pkgs,
-            ...
-          }: {
-            # override bcachefs-tools version
-            nixpkgs.overlays = [inputs.bcachefs-tools.overlays.default];
-          })
           (nixpkgs + "/nixos/modules/installer/cd-dvd/installation-cd-minimal-new-kernel-no-zfs.nix")
           ./systems/iso/configuration.nix
         ];

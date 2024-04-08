@@ -13,9 +13,6 @@
     ];
   };
 
-  boot.supportedFilesystems = ["bcachefs"];
-  #boot.kernelPackages = pkgs.linuxPackages_latest;
-
   security.sudo.wheelNeedsPassword = false;
 
   nix.settings.experimental-features = ["nix-command" "flakes"];
@@ -30,8 +27,9 @@
     parted
     ventoy
     gptfdisk
-    bcachefs
   ];
+
+  isoImage.squashfsCompression = "gzip -Xcompression-level 1";
 
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
   system.stateVersion = "23.11";

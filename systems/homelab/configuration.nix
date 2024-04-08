@@ -75,9 +75,9 @@
       "${bcacheUnlock}/bin/bcache-unlock"
     ];
     services."unlock-bcachefs-${name}" = {
-      script = lib.mkForce ''
-        ${bcacheUnlock}/bin/bcache-unlock
-      '';
+      #script = lib.mkForce ''
+      #  ${bcacheUnlock}/bin/bcache-unlock
+      #'';
       enable = false;
     };
     #services."unlock-bcachefs-${name}".script.override = ''

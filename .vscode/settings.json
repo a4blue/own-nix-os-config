@@ -10,5 +10,6 @@
               "command": ["nixpkgs-fmt"]
             }
           }
-    }
+    },
+    "files.eol": "\n"
 }

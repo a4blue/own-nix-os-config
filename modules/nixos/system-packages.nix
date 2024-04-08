@@ -12,5 +12,6 @@
     ranger
     tmux
     sops
+    parted
   ];
 }

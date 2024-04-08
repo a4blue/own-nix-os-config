@@ -62,7 +62,7 @@
     enable = true;
     initrdBin = with pkgs; [keyutils];
     storePaths = ["${askPass}/bin/bcachefs-askpass"];
-    users.root.shell = "${askPass}/bin/bcachefs-askpass";
+    #users.root.shell = "${askPass}/bin/bcachefs-askpass";
   };
 
   # Driver needed for Remote disk Unlocking

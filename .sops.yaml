@@ -6,6 +6,7 @@ keys:
   - &a4blue 0949AD16A796430A17DA745B935AE16BC6A4D9B9
   - &server_homelab age122rs00073sw6d8sdfup9mc4kcumtezjxz2qahtu2apf63xumhvqsv9cwfj
   - &homelab_iteration_01 age1wcwrwmf5ucewxd02ksaneswlvtd3qhh9du4j6skzxyyl9gwa3vsseakzcu
+  - &homelab_iteration_02 age19c8frv2dyppssh6d9p0rj2v3ndng5rq6rjvqvhqdc3yg6fp74a4qmlvcqq
   - &diy_pc_wsl2 age19aq3kpwursrz4tydp8jjhdzy7ud4kvw5shq4n7kr8hzrgdkp35gqtv48u7
   - &main_nix_shell age1tm04akh6sdqs4hl2srqmd4x8s0sjjsj78nkm75x8gce32j6y6quqpgvhl7
 creation_rules:
@@ -18,3 +19,4 @@ creation_rules:
       - *diy_pc_wsl2
       - *main_nix_shell
       - *homelab_iteration_01
+      - *homelab_iteration_02

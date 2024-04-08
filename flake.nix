@@ -44,6 +44,7 @@
           ./systems/homelab/configuration.nix
         ];
       };
+      # nix build .#nixosConfigurations.iso.config.system.build.isoImage
       iso = nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs outputs system;};
         modules = [

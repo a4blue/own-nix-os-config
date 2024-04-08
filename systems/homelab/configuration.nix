@@ -24,6 +24,8 @@
     bcachefs
   ];
 
+  programs.fuse.userAllowOther = true;
+
   home-manager = {
     extraSpecialArgs = {inherit inputs outputs;};
     useGlobalPkgs = true;

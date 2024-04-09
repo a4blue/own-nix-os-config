@@ -17,11 +17,17 @@
   boot.kernelModules = ["kvm-intel"];
   boot.extraModulePackages = [];
 
+  #fileSystems."/" = {
+  #  device = "/dev/HomelabNvmeGroup/nix";
+  #  fsType = "btrfs";
+  #  options = ["subvol=root"];
+  #  neededForBoot = true;
+  #};
+
   fileSystems."/" = {
-    device = "/dev/HomelabNvmeGroup/nix";
-    fsType = "btrfs";
-    options = ["subvol=root"];
-    neededForBoot = true;
+    device = "none";
+    fsType = "tmpfs";
+    options = ["size=4G"];
   };
 
   fileSystems."/persistent" = {

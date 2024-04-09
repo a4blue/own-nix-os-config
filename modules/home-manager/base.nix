@@ -8,11 +8,6 @@
 }: {
   # You can import other home-manager modules here
   imports = [
-    # If you want to use home-manager modules from other flakes (such as nix-colors):
-    # inputs.nix-colors.homeManagerModule
-
-    # You can also split up your configuration and import pieces of it here:
-    #inputs.sops-nix.homeManagerModules.
     inputs.impermanence.nixosModules.home-manager.impermanence
   ];
 
@@ -20,10 +15,9 @@
     username = "a4blue";
     homeDirectory = "/home/a4blue";
     stateVersion = "23.11";
+    keyboard = null;
   };
 
-  # Add stuff for your user as you see fit:
-  # programs.neovim.enable = true;
   home.packages = with pkgs; [
     vim
     wget

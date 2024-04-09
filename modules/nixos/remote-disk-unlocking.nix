@@ -17,6 +17,7 @@
     };
   };
 
+  # needs rework to use systemd unit
   #boot.initrd.luks.devices.cryptroot.postOpenCommands = lib.mkAfter ''
   #  mkdir /btrfs_tmp
   #  mount /dev/HomelabNvmeGroup/nix /btrfs_tmp

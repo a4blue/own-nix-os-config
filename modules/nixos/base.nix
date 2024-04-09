@@ -7,7 +7,7 @@
   imports = [
     inputs.sops-nix.nixosModules.sops
     ./system-packages.nix
-    ./homepage-dashboard.nix
+    #./homepage-dashboard.nix
   ];
 
   boot.loader = {

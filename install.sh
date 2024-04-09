@@ -25,6 +25,8 @@ mount -o subvol=nix /dev/HomelabNvmeGroup/nix /mnt/nix/
 mount -o subvol=persistent /dev/HomelabNvmeGroup/nix /mnt/persistent/
 mkdir -pv /mnt/{nix/secret/initrd,persistent/{etc/ssh,var/{lib,log}}}
 chmod 0700 /mnt/nix/secret
+mkdir -pv /mnt/persistent/home/
+chmod 0777 /mnt/persistent/home
 mount -o bind /mnt/persistent/var/log /mnt/var/log
 ssh-keygen -t ed25519 -N "" -C "" -f /mnt/nix/secret/initrd/ssh_host_ed25519_key
 nix-shell --extra-experimental-features flakes -p ssh-to-age --run 'cat /mnt/nix/secret/initrd/ssh_host_ed25519_key.pub | ssh-to-age'

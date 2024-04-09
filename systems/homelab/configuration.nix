@@ -45,6 +45,10 @@
   # Driver needed for Remote disk Unlocking
   boot.initrd.availableKernelModules = ["r8169"];
 
+  boot.initrd.systemd.emergencyAccess = true;
+
+  boot.initrd.luks.devices.cryptroot.device = "/dev/disk/by-uuid/c7f43a84-ac8d-4e1c-b2f8-0b6b71bc189b";
+
   # Network DNS Fallback
   networking.nameservers = ["8.8.8.8"];
 

@@ -75,7 +75,7 @@
   # Enable in-memory compressed devices and swap space provided by the zram kernel module
   #zramSwap.enable = true;
 
-  environment.persistence."/nix/persist" = {
+  environment.persistence."/persistent" = {
     # Hide these mounts from the sidebar of file managers
     hideMounts = true;
 

@@ -45,7 +45,7 @@
     userEmail = "a4blue@hotmail.de";
   };
 
-  home.persistence."/nix/persist/home/a4blue" = {
+  home.persistence."/persistent/home/a4blue" = {
     allowOther = true;
     directories = [
       ".ssh"

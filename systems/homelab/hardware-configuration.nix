@@ -21,6 +21,7 @@
     device = "/dev/HomelabNvmeGroup/nix";
     fsType = "btrfs";
     options = ["subvol=root"];
+    neededForBoot = true;
   };
 
   fileSystems."/persistent" = {
@@ -34,6 +35,7 @@
     device = "/dev/HomelabNvmeGroup/nix";
     fsType = "btrfs";
     options = ["subvol=nix"];
+    neededForBoot = true;
   };
 
   fileSystems."/boot" = {

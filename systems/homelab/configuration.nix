@@ -79,13 +79,5 @@
   # Configure console keymap
   console.keyMap = "de";
 
-  # backup user, will be removed later
-  users.users.a4blue_backup = {
-    isNormalUser = true;
-    description = "Alexander Ratajczak";
-    extraGroups = ["networkmanager" "wheel"];
-    packages = with pkgs; [];
-  };
-
   system.stateVersion = "23.11";
 }

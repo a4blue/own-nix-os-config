@@ -35,7 +35,7 @@
   sops = {
     defaultSopsFile = ./../../secrets/secrets.yaml;
     age.sshKeyPaths = ["/nix/secret/initrd/ssh_host_ed25519_key"];
-    secrets.a4blue_hashed_password.neededForUsers = true;
+    #secrets.a4blue_hashed_password.neededForUsers = true;
     secrets.a4blue_easy_hashed_password.neededForUsers = true;
   };
 
@@ -47,7 +47,6 @@
     openssh.authorizedKeys.keys = [
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOb2erO3CjSDZdQNfU720I4vxt1K5XzECQ/ncROZmA2X"
     ];
-    #shell = pkgs.zsh;
     #hashedPasswordFile = config.sops.secrets.a4blue_hashed_password.path;
     hashedPasswordFile = config.sops.secrets.a4blue_easy_hashed_password.path;
   };
@@ -69,11 +68,8 @@
     networkmanager.enable = true;
   };
 
-  #programs.zsh.enable = true;
   security.sudo.wheelNeedsPassword = false;
-  # TODO: Decide
-  # Enable in-memory compressed devices and swap space provided by the zram kernel module
-  #zramSwap.enable = true;
+  zramSwap.enable = true;
 
   environment.persistence."/persistent" = {
     # Hide these mounts from the sidebar of file managers

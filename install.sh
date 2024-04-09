@@ -35,3 +35,15 @@ ssh-keygen -t ed25519 -N "" -C "" -f /mnt/persistent/etc/ssh/ssh_host_ed25519_ke
 ssh-keygen -t rsa -b 4096 -N "" -C "" -f /mnt/persistent/etc/ssh/ssh_host_rsa_key
 
 nixos-install --no-root-passwd --root /mnt --flake /home/nixos/own-nix-os-config#homelab
+
+nix --experimental-features "nix-command flakes" run github:nix-community/disko -- --mode disko /home/nixos/own-nix-os-config/disko/simple-impermanence.nix
+mkdir -pv /mnt/{boot,nix,persistent,etc/ssh,var/{lib,log}}
+mkdir -pv /mnt/{nix/secret/initrd,persistent/{etc/ssh,var/{lib,log}}}
+chmod 0700 /mnt/nix/secret
+mkdir -pv /mnt/persistent/home/
+chmod 0777 /mnt/persistent/home
+ssh-keygen -t ed25519 -N "" -C "" -f /mnt/nix/secret/initrd/ssh_host_ed25519_key
+nix-shell --extra-experimental-features flakes -p ssh-to-age --run 'cat /mnt/nix/secret/initrd/ssh_host_ed25519_key.pub | ssh-to-age'
+chmod 0700 /mnt/persistent/etc/ssh
+ssh-keygen -t ed25519 -N "" -C "" -f /mnt/persistent/etc/ssh/ssh_host_ed25519_key
+ssh-keygen -t rsa -b 4096 -N "" -C "" -f /mnt/persistent/etc/ssh/ssh_host_rsa_key

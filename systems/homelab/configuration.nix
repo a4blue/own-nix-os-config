@@ -50,7 +50,7 @@
 
   boot.initrd.systemd.emergencyAccess = true;
 
-  boot.initrd.luks.devices.cryptroot.device = "/dev/nvme0n1p2";
+  #boot.initrd.luks.devices.cryptroot.device = "/dev/nvme0n1p2";
 
   # Network DNS Fallback
   networking.nameservers = ["8.8.8.8"];

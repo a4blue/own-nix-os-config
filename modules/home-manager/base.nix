@@ -8,7 +8,7 @@
 }: {
   # You can import other home-manager modules here
   imports = [
-    #inputs.impermanence.nixosModules.home-manager.impermanence
+    inputs.impermanence.nixosModules.home-manager.impermanence
   ];
 
   home = {

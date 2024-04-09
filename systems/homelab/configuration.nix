@@ -14,9 +14,10 @@
     inputs.home-manager.nixosModules.home-manager
 
     ./hardware-configuration.nix
+    ../../disko/simple-impermanence.nix
 
     ../../modules/nixos/base.nix
-    ../../modules/nixos/remote-disk-unlocking.nix
+    #../../modules/nixos/remote-disk-unlocking.nix
     #../../modules/nixos/parts/acme-nginx.nix
   ];
 
@@ -38,16 +39,18 @@
     };
   };
 
+  fileSystems."/persistent".neededForBoot = true;
+
   networking.hostName = "homelab";
 
-  #boot.kernelPackages = pkgs.linuxPackages_latest;
+  boot.kernelPackages = pkgs.linuxPackages_latest;
 
   # Driver needed for Remote disk Unlocking
   boot.initrd.availableKernelModules = ["r8169"];
 
   boot.initrd.systemd.emergencyAccess = true;
 
-  boot.initrd.luks.devices.cryptroot.device = "/dev/disk/by-uuid/c7f43a84-ac8d-4e1c-b2f8-0b6b71bc189b";
+  boot.initrd.luks.devices.cryptroot.device = "/dev/nvme0n1p2";
 
   # Network DNS Fallback
   networking.nameservers = ["8.8.8.8"];

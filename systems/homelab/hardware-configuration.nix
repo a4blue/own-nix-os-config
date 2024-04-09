@@ -13,7 +13,7 @@
   ];
 
   boot.initrd.availableKernelModules = ["xhci_pci" "ahci" "nvme" "usbhid" "usb_storage" "ums_realtek" "sd_mod"];
-  boot.initrd.kernelModules = ["dm-snapshot"];
+  boot.initrd.kernelModules = [];
   boot.kernelModules = ["kvm-intel"];
   boot.extraModulePackages = [];
 
@@ -24,34 +24,34 @@
   #  neededForBoot = true;
   #};
 
-  fileSystems."/" = {
-    device = "none";
-    fsType = "tmpfs";
-    options = ["defaults" "size=4G" "mode=755"];
-  };
+  #fileSystems."/" = {
+  #  device = "none";
+  #  fsType = "tmpfs";
+  #  options = ["defaults" "size=4G" "mode=755"];
+  #};
 
-  fileSystems."/persistent" = {
-    device = "/dev/HomelabNvmeGroup/nix";
-    neededForBoot = true;
-    fsType = "btrfs";
-    options = ["subvol=persistent"];
-  };
+  #fileSystems."/persistent" = {
+  #  device = "/dev/HomelabNvmeGroup/nix";
+  #  neededForBoot = true;
+  #  fsType = "btrfs";
+  #  options = ["subvol=persistent"];
+  #};
 
-  fileSystems."/nix" = {
-    device = "/dev/HomelabNvmeGroup/nix";
-    fsType = "btrfs";
-    options = ["subvol=nix"];
-    neededForBoot = true;
-  };
+  #fileSystems."/nix" = {
+  #  device = "/dev/HomelabNvmeGroup/nix";
+  #  fsType = "btrfs";
+  #  options = ["subvol=nix"];
+  #  neededForBoot = true;
+  #};
 
-  fileSystems."/boot" = {
-    device = "/dev/disk/by-label/boot";
-    fsType = "vfat";
-  };
+  #fileSystems."/boot" = {
+  #  device = "/dev/disk/by-label/boot";
+  #  fsType = "vfat";
+  #};
 
-  swapDevices = [
-    {device = "/dev/disk/by-uuid/9cdca311-83a7-4b0d-bcda-ecfb3d77adcf";}
-  ];
+  #swapDevices = [
+  #  {device = "/dev/dm-1";}
+  #];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
   # (the default) this is the recommended approach. When using systemd-networkd it's

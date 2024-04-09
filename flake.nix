@@ -3,19 +3,24 @@
 
   inputs = {
     # Nixpkgs
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-23.11";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
     impermanence.url = "github:nix-community/impermanence";
 
     # Home manager
     home-manager = {
-      url = "github:nix-community/home-manager/release-23.11";
+      url = "github:nix-community/home-manager/master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
     # Sops (secrets management)
     sops-nix = {
       url = "github:Mic92/sops-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    disko = {
+      url = "github:nix-community/disko";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -42,6 +47,7 @@
         specialArgs = {inherit inputs outputs system;};
         modules = [
           ./systems/homelab/configuration.nix
+          inputs.disko.nixosModules.disko
         ];
       };
       # nix build .#nixosConfigurations.iso.config.system.build.isoImage

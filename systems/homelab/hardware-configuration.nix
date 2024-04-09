@@ -27,7 +27,7 @@
   fileSystems."/" = {
     device = "none";
     fsType = "tmpfs";
-    options = ["size=4G" "mode=755"];
+    options = ["defaults" "size=4G" "mode=755"];
   };
 
   fileSystems."/persistent" = {

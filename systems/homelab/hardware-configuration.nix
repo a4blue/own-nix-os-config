@@ -42,6 +42,13 @@
     neededForBoot = true;
   };
 
+  fileSystems."/temp_root" = {
+    device = "/dev/nvme0n1p3";
+    fsType = "bcachefs";
+    options = ["subvol=root"];
+    neededForBoot = true;
+  };
+
   swapDevices = [
     {
       device = "/dev/nvme0n1p2";

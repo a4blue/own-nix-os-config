@@ -11,10 +11,11 @@
 }: {
   imports = [
     inputs.impermanence.nixosModules.impermanence
-    #inputs.home-manager.nixosModules.home-manager
+    inputs.home-manager.nixosModules.home-manager
 
     ./hardware-configuration.nix
-    ../../disko/simple-impermanence.nix
+    # disko has no subvolume support yet :´(
+    #../../disko/bcachefs-tmpfs-root.nix
 
     ../../modules/nixos/base.nix
     #../../modules/nixos/remote-disk-unlocking.nix
@@ -23,34 +24,33 @@
 
   programs.fuse.userAllowOther = true;
 
-  #home-manager = {
-  #  extraSpecialArgs = {inherit inputs outputs;};
-  #  useGlobalPkgs = true;
-  #  useUserPackages = true;
-  #  sharedModules = [
-  #    inputs.sops-nix.homeManagerModules.sops
-  #  ];
-  #  users = {
-  #    a4blue = {
-  #      imports = [
-  #        ./../../modules/home-manager/base.nix
-  #      ];
-  #    };
-  #  };
-  #};
+  home-manager = {
+    extraSpecialArgs = {inherit inputs outputs;};
+    useGlobalPkgs = true;
+    useUserPackages = true;
+    sharedModules = [
+      inputs.sops-nix.homeManagerModules.sops
+    ];
+    users = {
+      a4blue = {
+        imports = [
+          ./../../modules/home-manager/base.nix
+        ];
+      };
+    };
+  };
 
   fileSystems."/persistent".neededForBoot = true;
 
   networking.hostName = "homelab";
 
   boot.kernelPackages = pkgs.linuxPackages_latest;
+  boot.supportedFilesystems = ["bcachefs"];
 
   # Driver needed for Remote disk Unlocking
   boot.initrd.availableKernelModules = ["r8169"];
 
   boot.initrd.systemd.emergencyAccess = true;
-
-  #boot.initrd.luks.devices.cryptroot.device = "/dev/nvme0n1p2";
 
   # Network DNS Fallback
   networking.nameservers = ["8.8.8.8"];

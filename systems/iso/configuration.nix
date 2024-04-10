@@ -5,6 +5,8 @@
 
   nixpkgs.hostPlatform = "x86_64-linux";
 
+  boot.supportedFilesystems = ["bcachefs"];
+
   users.users.nixos = {
     isNormalUser = true;
     extraGroups = ["wheel"];

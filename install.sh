@@ -44,6 +44,8 @@ mkdir -pv /mnt/persistent/home/
 chmod 0777 /mnt/persistent/home
 ssh-keygen -t ed25519 -N "" -C "" -f /mnt/nix/secret/initrd/ssh_host_ed25519_key
 nix-shell --extra-experimental-features flakes -p ssh-to-age --run 'cat /mnt/nix/secret/initrd/ssh_host_ed25519_key.pub | ssh-to-age'
-chmod 0700 /mnt/persistent/etc/ssh
+chmod 0755 /mnt/persistent/etc/ssh
 ssh-keygen -t ed25519 -N "" -C "" -f /mnt/persistent/etc/ssh/ssh_host_ed25519_key
 ssh-keygen -t rsa -b 4096 -N "" -C "" -f /mnt/persistent/etc/ssh/ssh_host_rsa_key
+
+# dd if=<path-to-image> of=/dev/sdX bs=4M conv=fsync

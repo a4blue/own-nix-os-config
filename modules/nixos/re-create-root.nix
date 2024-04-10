@@ -9,7 +9,7 @@
     "recreate-root" = {
       description = "";
       requiredBy = ["sysroot.mount"];
-      after = ["unlock-bcachefs--"];
+      after = ["unlock-bcachefs--.service"];
       before = [
         "sysroot.mount"
         "shutdown.target"

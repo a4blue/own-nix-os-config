@@ -9,9 +9,10 @@
   boot.initrd.systemd.services = {
     "recreate-root" = {
       description = "";
-      #requiredBy = ["sysroot.mount"];
+      requiredBy = ["initrd-nixos-activation.service"];
       after = ["sysroot.mount"];
       before = [
+        "initrd-nixos-activation.service"
         "initrd-switch-root.target"
         "shutdown.target"
       ];

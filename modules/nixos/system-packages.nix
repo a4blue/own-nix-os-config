@@ -13,5 +13,6 @@
     tmux
     sops
     parted
+    util-linux
   ];
 }

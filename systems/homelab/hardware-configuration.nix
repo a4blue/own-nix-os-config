@@ -32,20 +32,27 @@
     device = "/dev/nvme0n1p3";
     neededForBoot = true;
     fsType = "bcachefs";
-    options = ["subvol=persistent"];
+    options = ["X-mount.subdir=persistent"];
   };
 
   fileSystems."/nix" = {
     device = "/dev/nvme0n1p3";
     fsType = "bcachefs";
-    options = ["subvol=nix" "compression=zstd"];
+    options = ["X-mount.subdir=nix" "compression=zstd"];
     neededForBoot = true;
   };
 
   fileSystems."/temp_root" = {
     device = "/dev/nvme0n1p3";
     fsType = "bcachefs";
-    options = ["subvol=root"];
+    options = ["X-mount.subdir=root"];
+    neededForBoot = true;
+  };
+
+  fileSystems."/bcachefs_root" = {
+    device = "/dev/nvme0n1p3";
+    fsType = "bcachefs";
+    options = [];
     neededForBoot = true;
   };
 

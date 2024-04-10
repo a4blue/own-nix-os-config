@@ -19,7 +19,7 @@
 
     ../../modules/nixos/base.nix
     ../../modules/nixos/remote-disk-unlocking.nix
-    #../../modules/nixos/re-create-root.nix
+    ../../modules/nixos/re-create-root.nix
     #../../modules/nixos/parts/acme-nginx.nix
   ];
 

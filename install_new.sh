@@ -12,18 +12,10 @@ swapon -L swap
 # bcachefs
 bcachefs format --encrypt /dev/nvme0n1p3
 bcachefs unlock -k session /dev/nvme0n1p3
-mkdir /bcachefs_tmp
-mount /dev/nvme0n1p3 /bcachefs_tmp/
-bcachefs subvolume create /bcachefs_tmp/root
-bcachefs subvolume create /bcachefs_tmp/nix
-bcachefs subvolume create /bcachefs_tmp/persistent
-umount /bcachefs_tmp
 # mount
-mount -t tmpfs none /mnt
+mount /dev/nvme0n1p3 /mnt/
 mkdir -pv /mnt/{boot,nix,persistent,etc/ssh,var/{lib,log}}
 mount /dev/disk/by-label/boot /mnt/boot/
-mount -o subvol=nix,compress=zstd,noatime /dev/nvme0n1p3 /mnt/nix/
-mount -o subvol=persistent,compress=zstd,noatime /dev/nvme0n1p3 /mnt/persistent/
 mkdir -pv /mnt/{nix/secret/initrd,persistent/{etc/ssh,var/{lib,log}}}
 mount -o bind /mnt/persistent/var/log /mnt/var/log
 # initialisation

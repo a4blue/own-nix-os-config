@@ -29,10 +29,7 @@
       script = ''
         mkdir /bcachefs_recreate_root
         mount /dev/nvme0n1p3 /bcachefs_recreate_root
-        if [[ -e /bcachefs_recreate_root/root ]]; then
-          ${pkgs.bcachefs-tools}/bin/bcachefs subvolume delete /bcachefs_recreate_root/root
-        fi
-        ${pkgs.bcachefs-tools}/bin/bcachefs subvolume create /bcachefs_recreate_root/root
+        find /bcachefs_recreate_root -maxdepth 1 | grep -v "/bcachefs_recreate_root/nix\|/bcachefs_recreate_root/persistent\|^/bcachefs_recreate_root$" | xargs rm -rf
         umount /bcachefs_recreate_root
         rm -R /bcachefs_recreate_root
       '';

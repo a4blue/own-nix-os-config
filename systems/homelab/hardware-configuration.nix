@@ -17,10 +17,17 @@
   boot.kernelModules = ["kvm-intel"];
   boot.extraModulePackages = [];
 
+  #fileSystems."/" = {
+  #  device = "none";
+  #  fsType = "tmpfs";
+  #  options = ["defaults" "size=4G" "mode=0755"];
+  #};
+
   fileSystems."/" = {
-    device = "none";
-    fsType = "tmpfs";
-    options = ["defaults" "size=4G" "mode=0755"];
+    device = "/dev/nvme0n1p3";
+    fsType = "bcachefs";
+    options = ["compression=zstd"];
+    neededForBoot = true;
   };
 
   fileSystems."/boot" = {
@@ -28,33 +35,19 @@
     fsType = "vfat";
   };
 
-  fileSystems."/persistent" = {
-    device = "/dev/nvme0n1p3";
-    neededForBoot = true;
-    fsType = "bcachefs";
-    options = ["X-mount.subdir=persistent"];
-  };
+  #fileSystems."/persistent" = {
+  #  device = "/dev/nvme0n1p3";
+  #  neededForBoot = true;
+  #  fsType = "bcachefs";
+  #  options = ["X-mount.subdir=persistent"];
+  #};
 
-  fileSystems."/nix" = {
-    device = "/dev/nvme0n1p3";
-    fsType = "bcachefs";
-    options = ["X-mount.subdir=nix" "compression=zstd"];
-    neededForBoot = true;
-  };
-
-  fileSystems."/temp_root" = {
-    device = "/dev/nvme0n1p3";
-    fsType = "bcachefs";
-    options = ["X-mount.subdir=root"];
-    neededForBoot = true;
-  };
-
-  fileSystems."/bcachefs_root" = {
-    device = "/dev/nvme0n1p3";
-    fsType = "bcachefs";
-    #options = [];
-    neededForBoot = true;
-  };
+  #fileSystems."/nix" = {
+  #  device = "/dev/nvme0n1p3";
+  #  fsType = "bcachefs";
+  #  options = ["X-mount.subdir=nix" "compression=zstd"];
+  #  neededForBoot = true;
+  #};
 
   swapDevices = [
     {

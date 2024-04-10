@@ -24,6 +24,13 @@
 
   programs.fuse.userAllowOther = true;
 
+  boot.kernelParams = [
+    #"quiet"
+    "debug"
+    "systemd.debug-shell=1"
+    "systemd.log_level=debug"
+  ];
+
   home-manager = {
     extraSpecialArgs = {inherit inputs outputs;};
     useGlobalPkgs = true;

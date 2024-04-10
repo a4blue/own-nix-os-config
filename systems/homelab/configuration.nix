@@ -25,10 +25,7 @@
   programs.fuse.userAllowOther = true;
 
   boot.kernelParams = [
-    #"quiet"
-    "debug"
-    "systemd.debug-shell=1"
-    "systemd.log_level=debug"
+    "quiet"
   ];
 
   home-manager = {

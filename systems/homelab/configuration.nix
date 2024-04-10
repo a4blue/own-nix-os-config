@@ -11,7 +11,7 @@
 }: {
   imports = [
     inputs.impermanence.nixosModules.impermanence
-    inputs.home-manager.nixosModules.home-manager
+    #inputs.home-manager.nixosModules.home-manager
 
     ./hardware-configuration.nix
     ../../disko/simple-impermanence.nix
@@ -23,21 +23,21 @@
 
   programs.fuse.userAllowOther = true;
 
-  home-manager = {
-    extraSpecialArgs = {inherit inputs outputs;};
-    useGlobalPkgs = true;
-    useUserPackages = true;
-    sharedModules = [
-      inputs.sops-nix.homeManagerModules.sops
-    ];
-    users = {
-      a4blue = {
-        imports = [
-          ./../../modules/home-manager/base.nix
-        ];
-      };
-    };
-  };
+  #home-manager = {
+  #  extraSpecialArgs = {inherit inputs outputs;};
+  #  useGlobalPkgs = true;
+  #  useUserPackages = true;
+  #  sharedModules = [
+  #    inputs.sops-nix.homeManagerModules.sops
+  #  ];
+  #  users = {
+  #    a4blue = {
+  #      imports = [
+  #        ./../../modules/home-manager/base.nix
+  #      ];
+  #    };
+  #  };
+  #};
 
   fileSystems."/persistent".neededForBoot = true;
 

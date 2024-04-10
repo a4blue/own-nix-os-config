@@ -5,7 +5,7 @@
 }: {
   boot.kernelParams = ["ip=dhcp"];
   boot.initrd.systemd.enable = true;
-  boot.initrd.systemd.users.root.shell = "systemd-tty-ask-password-agent --query";
+  #boot.initrd.systemd.users.root.shell = "systemd-tty-ask-password-agent --query";
   boot.initrd.network = {
     enable = true;
     ssh = {

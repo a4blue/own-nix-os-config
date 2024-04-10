@@ -52,7 +52,7 @@
   fileSystems."/bcachefs_root" = {
     device = "/dev/nvme0n1p3";
     fsType = "bcachefs";
-    options = [];
+    #options = [];
     neededForBoot = true;
   };
 

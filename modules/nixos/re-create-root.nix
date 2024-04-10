@@ -8,10 +8,10 @@
   boot.initrd.systemd.services = {
     "recreate-root" = {
       description = "";
-      requiredBy = ["sysroot-temp_root.mount"];
-      after = ["unlock-bcachefs-temp_root.service"];
+      requiredBy = ["sysroot.mount"];
+      after = ["unlock-bcachefs--"];
       before = [
-        "sysroot-temp_root.mount"
+        "sysroot.mount"
         "shutdown.target"
       ];
       bindsTo = ["dev-nvme0n1p3.device"];
@@ -19,7 +19,7 @@
       unitConfig.DefaultDependencies = false;
       serviceConfig = {
         Type = "oneshot";
-        #ExecCondition = "${pkgs.bcachefs-tools}/bin/bcachefs unlock -c \"/dev/nvme0n1p3\"";
+        ExecCondition = "${pkgs.bcachefs-tools}/bin/bcachefs unlock -c \"/dev/nvme0n1p3\"";
         Restart = "on-failure";
         RestartMode = "direct";
         # Ideally, this service would lock the key on stop.

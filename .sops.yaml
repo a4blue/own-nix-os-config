@@ -6,6 +6,7 @@ keys:
   - &a4blue 0949AD16A796430A17DA745B935AE16BC6A4D9B9
   - &homelab_iteration_07 age1mwaq2fj47h88h7qg3x0xhp2eg6yhy9dj72jflkk3ayvk9yfgjs4sjlxcyf
   - &homelab_iteration_08 age1n0yrhgna3n94d0z8t6x7ay2zruk0hq5reqlhnltvwkfrqgnlaazq4y8c8w
+  - &homelab_iteration_09 age1tp09kacwyhjkl3zr4l32mj0qwtv3lu4djp383gn8uhcc6z8j7g2st799w3
   - &diy_pc_wsl2 age19aq3kpwursrz4tydp8jjhdzy7ud4kvw5shq4n7kr8hzrgdkp35gqtv48u7
   - &main_nix_shell age1tm04akh6sdqs4hl2srqmd4x8s0sjjsj78nkm75x8gce32j6y6quqpgvhl7
 creation_rules:
@@ -18,3 +19,4 @@ creation_rules:
       - *main_nix_shell
       - *homelab_iteration_07
       - *homelab_iteration_08
+      - *homelab_iteration_09

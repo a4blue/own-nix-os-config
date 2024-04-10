@@ -5,7 +5,7 @@
   utils,
   ...
 }: {
-  systemd.services = {
+  boot.initrd.systemd.services = {
     "recreate-root" = {
       description = "";
       requiredBy = ["sysroot-temp_root.mount"];

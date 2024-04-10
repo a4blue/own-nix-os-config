@@ -39,3 +39,4 @@ ssh-keygen -t rsa -b 4096 -N "" -C "" -f /mnt/persistent/etc/ssh/ssh_host_rsa_ke
 #nixos-generate-config --root /mnt
 #git clone https://github.com/a4blue/own-nix-os-config.git /home/nixos/own-nix-os-config
 #nixos-install --no-root-passwd --root /mnt --flake /home/nixos/own-nix-os-config#homelab
+#dd if=<path-to-image> of=/dev/sdX bs=4M conv=fsync

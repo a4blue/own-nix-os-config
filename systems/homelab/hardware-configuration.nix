@@ -38,12 +38,15 @@
   fileSystems."/nix" = {
     device = "/dev/nvme0n1p3";
     fsType = "bcachefs";
-    options = ["subvol=nix"];
+    options = ["subvol=nix" "compression=zstd"];
     neededForBoot = true;
   };
 
   swapDevices = [
-    {device = "/dev/nvme0n1p2";}
+    {
+      device = "/dev/nvme0n1p2";
+      randomEncryption.enable = true;
+    }
   ];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking

@@ -18,7 +18,7 @@
     #../../disko/bcachefs-tmpfs-root.nix
 
     ../../modules/nixos/base.nix
-    #../../modules/nixos/remote-disk-unlocking.nix
+    ../../modules/nixos/remote-disk-unlocking.nix
     #../../modules/nixos/parts/acme-nginx.nix
   ];
 
@@ -40,8 +40,6 @@
     };
   };
 
-  fileSystems."/persistent".neededForBoot = true;
-
   networking.hostName = "homelab";
 
   boot.kernelPackages = pkgs.linuxPackages_latest;
@@ -49,6 +47,7 @@
 
   # Driver needed for Remote disk Unlocking
   boot.initrd.availableKernelModules = ["r8169"];
+  boot.initrd.systemd.enable = true;
 
   boot.initrd.systemd.emergencyAccess = true;
 

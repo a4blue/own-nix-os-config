@@ -5,6 +5,7 @@
   utils,
   ...
 }: {
+  boot.initrd.systemd.packages = with pkgs; [gnugrep findutils];
   boot.initrd.systemd.services = {
     "recreate-root" = {
       description = "";
@@ -27,6 +28,7 @@
         RemainAfterExit = true;
       };
       script = ''
+        bcachefs unlock -k session -c /dev/nvme0n1p3
         mkdir /bcachefs_recreate_root
         mount /dev/nvme0n1p3 /bcachefs_recreate_root
         find /bcachefs_recreate_root -maxdepth 1 | grep -v "/bcachefs_recreate_root/nix\|/bcachefs_recreate_root/persistent\|^/bcachefs_recreate_root$" | xargs rm -rf

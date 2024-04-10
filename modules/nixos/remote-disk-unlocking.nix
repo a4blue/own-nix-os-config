@@ -14,6 +14,9 @@
       hostKeys = [
         "/etc/ssh/ssh_host_ed25519_key"
       ];
+      extraConfig = ''PrintMotd yes'';
+      #shell = "";
     };
   };
+  boot.initrd.systemd.contents."/etc/motd".text = "Use systemd-tty-ask-password-agent";
 }

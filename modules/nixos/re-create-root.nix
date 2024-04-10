@@ -10,7 +10,7 @@
     "recreate-root" = {
       description = "";
       requiredBy = ["sysroot.mount"];
-      after = ["unlock-bcachefs--.service"];
+      after = ["dev-nvme0n1p3.device"];
       before = [
         "sysroot.mount"
         "shutdown.target"
@@ -28,7 +28,7 @@
         RemainAfterExit = true;
       };
       script = ''
-        bcachefs unlock -k session -c /dev/nvme0n1p3
+        ${config.boot.initrd.systemd.package}/bin/systemd-ask-password --timeout=0 "enter passphrase for / (poor man's impermanence)" | exec ${pkgs.bcachefs-tools}/bin/bcachefs unlock "/dev/nvme0n1p3"
         mkdir /bcachefs_recreate_root
         mount /dev/nvme0n1p3 /bcachefs_recreate_root
         find /bcachefs_recreate_root -maxdepth 1 | grep -v "/bcachefs_recreate_root/nix\|/bcachefs_recreate_root/persistent\|^/bcachefs_recreate_root$" | xargs rm -rf

@@ -19,6 +19,6 @@
     };
   };
   boot.initrd.systemd.contents."/etc/motd".text = ''
-  Use systemd-tty-ask-password-agent
+    Use systemd-tty-ask-password-agent
   '';
 }

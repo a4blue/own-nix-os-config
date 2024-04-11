@@ -33,6 +33,7 @@
         RemainAfterExit = true;
       };
       script = ''
+        exit 1
         find /sysroot -maxdepth 1 -not -wholename "/sysroot/nix" -and -not -wholename "/sysroot/persistent" -and -not -wholename "/sysroot/" | xargs rm -rf
       '';
     };

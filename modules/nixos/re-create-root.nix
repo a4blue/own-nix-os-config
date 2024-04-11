@@ -27,14 +27,14 @@
       unitConfig.DefaultDependencies = false;
       serviceConfig = {
         Type = "oneshot";
-        #ExecCondition = "${pkgs.bcachefs-tools}/bin/bcachefs unlock -c \"/dev/nvme0n1p3\"";
         Restart = "on-failure";
         RestartMode = "direct";
         RemainAfterExit = true;
       };
       script = ''
-        exit 1
-        find /sysroot -maxdepth 1 -not -wholename "/sysroot/nix" -and -not -wholename "/sysroot/persistent" -and -not -wholename "/sysroot/" | xargs rm -rf
+        find /sysroot -maxdepth 1 -not -wholename "/sysroot/nix" -and -not -wholename "/sysroot/persistent" -and -not -wholename "/sysroot" -and -not -wholename "/sysroot/var" | xargs rm -rf
+        # /sysroot/var/log is already mounted, why ?
+        find /sysroot/var -maxdepth 1 -not -wholename "/sysroot/var/log" -and -not -wholename "/sysroot/var/empty" -and -not -wholename "/sysroot/var" | xargs rm -rf
       '';
     };
   };

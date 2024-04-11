@@ -7,9 +7,10 @@
 }: {
   services.udev.packages = with pkgs; [gnugrep findutils];
   systemd.packages = with pkgs; [gnugrep findutils];
-  #boot.initrd.systemd.extraBin = {
-    #"find" = "${pkgs.gnugrep}/bin/find";
-  #};
+  boot.initrd.systemd.extraBin = {
+    "xargs" = "${pkgs.findutils}/bin/xargs";
+    "find" = "${pkgs.findutils}/bin/find";
+  };
   boot.initrd.systemd.packages = with pkgs; [gnugrep findutils];
   boot.initrd.systemd.services = {
     "recreate-root" = {
@@ -32,7 +33,7 @@
         RemainAfterExit = true;
       };
       script = ''
-        find /sysroot -maxdepth 1 | grep -v "/sysroot/nix\|/sysroot/persistent\|^/sysroot$" | xargs rm -rf
+        find /sysroot -maxdepth 1 -not -wholename "/sysroot/nix" -and -not -wholename "/sysroot/persistent" -and -not -wholename "/sysroot/" | xargs rm -rf
       '';
     };
   };

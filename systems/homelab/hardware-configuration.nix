@@ -17,12 +17,6 @@
   boot.kernelModules = ["kvm-intel"];
   boot.extraModulePackages = [];
 
-  #fileSystems."/" = {
-  #  device = "none";
-  #  fsType = "tmpfs";
-  #  options = ["defaults" "size=4G" "mode=0755"];
-  #};
-
   fileSystems."/" = {
     device = "/dev/nvme0n1p3";
     fsType = "bcachefs";
@@ -34,20 +28,6 @@
     device = "/dev/disk/by-label/boot";
     fsType = "vfat";
   };
-
-  #fileSystems."/persistent" = {
-  #  device = "/dev/nvme0n1p3";
-  #  neededForBoot = true;
-  #  fsType = "bcachefs";
-  #  options = ["X-mount.subdir=persistent"];
-  #};
-
-  #fileSystems."/nix" = {
-  #  device = "/dev/nvme0n1p3";
-  #  fsType = "bcachefs";
-  #  options = ["X-mount.subdir=nix" "compression=zstd"];
-  #  neededForBoot = true;
-  #};
 
   swapDevices = [
     {

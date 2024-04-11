@@ -20,7 +20,7 @@
     ../../modules/nixos/base.nix
     ../../modules/nixos/remote-disk-unlocking.nix
     ../../modules/nixos/re-create-root.nix
-    #../../modules/nixos/parts/acme-nginx.nix
+    ../../modules/nixos/parts/acme-nginx.nix
   ];
 
   programs.fuse.userAllowOther = true;
@@ -28,6 +28,10 @@
   boot.kernelParams = [
     "quiet"
   ];
+
+  security.tpm2.enable = true;
+  security.tpm2.pkcs11.enable = true; # expose /run/current-system/sw/lib/libtpm2_pkcs11.so
+  security.tpm2.tctiEnvironment.enable = true;
 
   home-manager = {
     extraSpecialArgs = {inherit inputs outputs;};
@@ -53,8 +57,9 @@
   # Driver needed for Remote disk Unlocking
   boot.initrd.availableKernelModules = ["r8169"];
   boot.initrd.systemd.enable = true;
+  boot.consoleLogLevel = 0;
 
-  boot.initrd.systemd.emergencyAccess = true;
+  #boot.initrd.systemd.emergencyAccess = true;
 
   # Network DNS Fallback
   networking.nameservers = ["8.8.8.8"];

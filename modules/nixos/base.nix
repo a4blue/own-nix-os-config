@@ -7,7 +7,7 @@
   imports = [
     inputs.sops-nix.nixosModules.sops
     ./system-packages.nix
-    #./homepage-dashboard.nix
+    ./homepage-dashboard.nix
   ];
 
   boot.loader = {
@@ -51,14 +51,25 @@
     hashedPasswordFile = config.sops.secrets.a4blue_easy_hashed_password.path;
   };
 
+  nix.settings.allowed-users = ["@wheel"];
+  security.sudo.execWheelOnly = true;
+
   services = {
     openssh = {
       enable = true;
       settings = {
         PermitRootLogin = "no";
         PasswordAuthentication = false;
+        KbdInteractiveAuthentication = false;
       };
       openFirewall = true;
+      allowSFTP = false;
+      extraConfig = ''
+        AllowTcpForwarding yes
+        AllowAgentForwarding no
+        AllowStreamLocalForwarding no
+        AuthenticationMethods publickey
+      '';
     };
     fstrim.enable = true;
   };

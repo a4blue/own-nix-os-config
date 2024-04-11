@@ -4,7 +4,7 @@
     openFirewall = true;
   };
 
-  environment.persistence."/persistence" = {
+  environment.persistence."/persistent" = {
     directories = [
       "/var/lib/tailscale"
     ];

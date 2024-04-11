@@ -52,6 +52,7 @@
   };
 
   nix.settings.allowed-users = ["@wheel"];
+  services.tailscale.enable = true;
   security.sudo.execWheelOnly = true;
 
   services = {

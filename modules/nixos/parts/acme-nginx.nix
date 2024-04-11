@@ -11,23 +11,10 @@
       "home.a4blue.me" = {
         forceSSL = true;
         enableACME = true;
-        # All serverAliases will be added as extra domain names on the certificate.
-        #serverAliases = [ "bar.example.com" ];
         locations."/" = {
           root = "/var/www";
         };
       };
-
-      # We can also add a different vhost and reuse the same certificate
-      # but we have to append extraDomainNames manually beforehand:
-      # security.acme.certs."foo.example.com".extraDomainNames = [ "baz.example.com" ];
-      #"baz.example.com" = {
-      #  forceSSL = true;
-      #  useACMEHost = "foo.example.com";
-      #  locations."/" = {
-      #    root = "/var/www";
-      #  };
-      #};
     };
   };
   users.users.nginx.extraGroups = ["acme"];
@@ -37,7 +24,7 @@
     443
   ];
 
-  environment.persistence."/nix/persist" = {
+  environment.persistence."/persistent" = {
     directories = [
       "/var/lib/acme"
     ];

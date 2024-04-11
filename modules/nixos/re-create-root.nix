@@ -5,6 +5,11 @@
   utils,
   ...
 }: {
+  services.udev.packages = with pkgs; [gnugrep findutils];
+  systemd.packages = with pkgs; [gnugrep findutils];
+  #boot.initrd.systemd.extraBin = {
+    #"find" = "${pkgs.gnugrep}/bin/find";
+  #};
   boot.initrd.systemd.packages = with pkgs; [gnugrep findutils];
   boot.initrd.systemd.services = {
     "recreate-root" = {

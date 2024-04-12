@@ -19,7 +19,12 @@
 
   environment.persistence."/persistent" = {
     directories = [
-      "/var/lib/postgresql"
+      {
+        directory = "/var/lib/postgresql";
+        mode = "0740";
+        user = "postgres";
+        group = "postgres";
+      }
     ];
   };
 }

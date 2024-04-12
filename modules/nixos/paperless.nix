@@ -40,7 +40,12 @@
 
   environment.persistence."/persistent" = {
     directories = [
-      "/var/lib/paperless"
+      {
+        directory = "/var/lib/paperless";
+        mode = "0740";
+        user = "paperless";
+        group = "paperless";
+      }
     ];
   };
 }

@@ -41,7 +41,12 @@
 
   environment.persistence."/persistent" = {
     directories = [
-      "/var/lib/acme"
+      {
+        directory = "/var/lib/acme";
+        mode = "740";
+        user = "acme";
+        group = "acme";
+      }
     ];
   };
 }

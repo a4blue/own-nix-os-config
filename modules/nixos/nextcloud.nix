@@ -31,13 +31,6 @@
     };
   };
 
-  environment.persistence."/persistent" = {
-    directories = [
-      "/var/lib/nextcloud"
-      "/var/lib/redis-nextcloud"
-    ];
-  };
-
   services.nginx.virtualHosts."${config.services.nextcloud.hostName}".listen = [
     {
       addr = "127.0.0.1";
@@ -75,5 +68,22 @@
         proxy_redirect off;
       '';
     };
+  };
+
+  environment.persistence."/persistent" = {
+    directories = [
+      {
+        directory = "/var/lib/nextcloud";
+        mode = "0740";
+        user = "nextcloud";
+        group = "nextcloud";
+      }
+      {
+        directory = "/var/lib/redis-nextcloud";
+        mode = "0740";
+        user = "redis-nextcloud";
+        group = "redis-nextcloud";
+      }
+    ];
   };
 }

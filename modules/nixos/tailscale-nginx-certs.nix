@@ -4,7 +4,14 @@
   ...
 }: {
   environment.persistence."/persistent" = {
-    directories = ["/var/lib/tailscale-nginx-certs/"];
+    directories = [
+      {
+        directory = "/var/lib/tailscale-nginx-certs/";
+        mode = "0777";
+        user = "nginx";
+        group = "nginx";
+      }
+    ];
   };
 
   systemd.services = {

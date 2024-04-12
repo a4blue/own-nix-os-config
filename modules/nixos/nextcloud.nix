@@ -16,6 +16,7 @@
     database.createLocally = true;
     package = pkgs.nextcloud28;
     appstoreEnable = false;
+    phpOptions."opcache.interned_strings_buffer" = "32";
     maxUploadSize = "16G";
     autoUpdateApps.enable = true;
     extraAppsEnable = true;
@@ -36,7 +37,7 @@
       adminpassFile = config.sops.secrets.nextcloud-admin-pass.path;
     };
     settings = let
-      prot = "http";
+      prot = "https";
       host = "homelab.armadillo-snake.ts.net";
       dir = "/nextcloud";
     in {
@@ -46,6 +47,7 @@
       overwrite.cli.url = "${prot}://${host}${dir}/";
       htaccess.RewriteBase = dir;
       default_phone_region = "DE";
+      maintenance_window_start = 3;
     };
   };
 

@@ -17,7 +17,7 @@
       PAPERLESS_ADMIN_USER = "a4blue";
       PAPERLESS_SECRET_KEY = "ZkURZGp)eBRT-yJie$@uHB7&h#X?(F3jN)CpUBeu%nyRRbn?U#nZpZ*18z6a#tdu";
       PAPERLESS_DBENGINE = "postgresql";
-      PAPERLESS_DBHOST = "localhost";
+      PAPERLESS_DBHOST = "/run/postgresql";
     };
   };
 

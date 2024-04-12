@@ -33,7 +33,7 @@
     ../../modules/nixos/tailscale-nginx-certs.nix
     #../../modules/nixos/paperless.nix
     ../../modules/nixos/postgresql.nix
-    #../../modules/nixos/nextcloud.nix
+    ../../modules/nixos/nextcloud.nix
   ];
 
   programs.fuse.userAllowOther = true;

@@ -30,13 +30,11 @@
           {
             "FritzBox" = {
               description = "Fritz";
-              widget = [
-                {
-                  type = "fritzbox";
-                  url = "http://192.168.178.1";
-                  fields = ["connectionStatus" "uptime" "maxDown" "maxUp"];
-                }
-              ];
+              widget = {
+                type = "fritzbox";
+                url = "http://192.168.178.1";
+                fields = ["connectionStatus" "uptime" "maxDown" "maxUp"];
+              };
             };
           }
         ];
@@ -58,6 +56,8 @@
             }
           ];
         };
+      }
+      {
         Developer = [
           {
             Github = [

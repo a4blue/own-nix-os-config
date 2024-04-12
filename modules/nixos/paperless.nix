@@ -1,7 +1,4 @@
 {config, ...}: {
-  sops.secrets.paperless_admin_mail = {};
-  sops.secrets.paperless_admin_password = {};
-  sops.secrets.paperless_secret_key = {};
   services.paperless = {
     enable = true;
     settings = {
@@ -18,10 +15,22 @@
       PAPERLESS_FORCE_SCRIPT_NAME = "/paperless";
       PAPERLESS_STATIC_URL = "/paperless/static/";
       PAPERLESS_ADMIN_USER = "a4blue";
-      #PAPERLESS_ADMIN_MAIL = builtins.readFile config.sops.secrets.paperless_admin_mail.path;
-      #PAPERLESS_ADMIN_PASSWORD = builtins.readFile config.sops.secrets.paperless_admin_password.path;
-      #PAPERLESS_SECRET_KEY = builtins.readFile config.sops.secrets.paperless_secret_key.path;
+      PAPERLESS_SECRET_KEY = "ZkURZGp)eBRT-yJie$@uHB7&h#X?(F3jN)CpUBeu%nyRRbn?U#nZpZ*18z6a#tdu";
+      PAPERLESS_DBENGINE = "postgresql";
+      PAPERLESS_DBHOST = "localhost";
     };
+  };
+
+  services.postgresql = {
+    ensureDatabases = [
+      "paperless"
+    ];
+    ensureUsers = [
+      {
+        name = "paperless";
+        ensureDBOwnership = true;
+      }
+    ];
   };
 
   environment.persistence."/persistent" = {

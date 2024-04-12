@@ -3,7 +3,10 @@
   pkgs,
   ...
 }: {
-  sops.secrets.nextcloud-admin-pass = {};
+  sops.secrets.nextcloud-admin-pass = {
+    owner = "nextcloud";
+    group = "nextcloud";
+  };
   services.nextcloud = {
     enable = true;
     https = true;

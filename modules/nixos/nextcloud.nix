@@ -12,6 +12,7 @@
     https = true;
     hostName = "localhost";
     configureRedis = true;
+    caching.redis = true;
     database.createLocally = true;
     package = pkgs.nextcloud28;
     appstoreEnable = false;

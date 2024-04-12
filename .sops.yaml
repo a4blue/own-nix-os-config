@@ -6,7 +6,6 @@ keys:
   - &a4blue 0949AD16A796430A17DA745B935AE16BC6A4D9B9
   - &homelab_iteration_11 age1khu90gj74f2y3cxldl6qsa3pv3uv82h8w395dc9vtute9ckzmc9qq0dmdh
   - &diy_pc_wsl2 age19aq3kpwursrz4tydp8jjhdzy7ud4kvw5shq4n7kr8hzrgdkp35gqtv48u7
-  - &main_nix_shell age1tm04akh6sdqs4hl2srqmd4x8s0sjjsj78nkm75x8gce32j6y6quqpgvhl7
 creation_rules:
   - path_regex: secrets/[^/]+\.(yaml|json|env|ini)$
     key_groups:
@@ -14,5 +13,4 @@ creation_rules:
       - *a4blue
       age:
       - *diy_pc_wsl2
-      - *main_nix_shell
       - *homelab_iteration_11

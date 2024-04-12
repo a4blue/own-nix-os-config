@@ -14,5 +14,6 @@
     sops
     parted
     util-linux
+    nvd
   ];
 }

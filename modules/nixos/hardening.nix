@@ -1,8 +1,4 @@
-{
-  config,
-  lib,
-  ...
-}: {
+{config, ...}: {
   boot.kernelParams = ["quiet"];
   boot.consoleLogLevel = 0;
   security.sudo.wheelNeedsPassword = false;

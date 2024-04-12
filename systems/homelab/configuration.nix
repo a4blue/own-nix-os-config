@@ -24,7 +24,8 @@
     ../../modules/nixos/re-create-root.nix
     ../../modules/nixos/hardening.nix
     ../../modules/nixos/home-manager-base.nix
-    ../../modules/nixos/parts/acme-nginx.nix
+    ../../modules/nixos/nginx.nix
+    ../../modules/nixos/traefik.nix
     ../../modules/nixos/tailscale.nix
   ];
 

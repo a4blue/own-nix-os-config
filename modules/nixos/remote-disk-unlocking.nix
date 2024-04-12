@@ -1,8 +1,4 @@
-{
-  config,
-  lib,
-  ...
-}: {
+{config, ...}: {
   boot.kernelParams = ["ip=dhcp"];
   boot.initrd.systemd.enable = true;
   boot.initrd.network = {

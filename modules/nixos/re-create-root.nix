@@ -1,8 +1,6 @@
 {
   config,
-  lib,
   pkgs,
-  utils,
   ...
 }: {
   # findutils is needed since we need 'find' and 'xargs'

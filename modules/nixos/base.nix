@@ -1,9 +1,4 @@
-{
-  inputs,
-  config,
-  pkgs,
-  ...
-}: {
+{config, ...}: {
   imports = [
     ./system-packages.nix
     ./homepage-dashboard.nix

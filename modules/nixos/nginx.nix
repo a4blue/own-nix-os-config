@@ -1,4 +1,4 @@
-{
+{config, ...}: {
   security.acme.acceptTerms = true;
   security.acme.defaults.email = "a4blue@hotmail.de";
   services.nginx = {

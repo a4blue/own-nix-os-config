@@ -6,7 +6,6 @@
 }: {
   config.services.homepage-dashboard = {
     enable = true;
-    openFirewall = true;
     listenPort = 3000;
     widgets = [
       {

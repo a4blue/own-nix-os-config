@@ -1,8 +1,4 @@
-{
-  config,
-  inputs,
-  ...
-}: {
+{config, ...}: {
   environment.persistence."/persistent" = {
     # Hide these mounts from the sidebar of file managers
     hideMounts = true;

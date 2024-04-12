@@ -1,0 +1,12 @@
+entryPoints:
+  web:
+    address: ":10000"
+
+  websecure:
+    address: ":10001"
+    asDefault: true
+    http3: 
+      advertisedPort: 443
+certificatesResolvers:
+    tailscale-cert:
+        tailscale: {}

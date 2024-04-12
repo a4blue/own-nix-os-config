@@ -1,0 +1,17 @@
+http:
+  routers:
+    Dashboard:
+      entryPoints:
+        - "websecure"
+      rule: "PathPrefix('/dashboard')"
+      service: "Dashboard"
+      tls:
+        certResolver: tailscale-cert
+        domains:
+          - main: "homelab.armadillo-snake.ts.net"
+  services:
+    Dashboard:
+      loadBalancer:
+        servers:
+          - url: "http://localhost:3000"
+

@@ -29,17 +29,33 @@
         "Monitoring" = {
           "FritzBox" = {
             description = "Fritz";
-            widget = {
-              type = "fritzbox";
-              url = "http://192.168.178.1";
-              fields = ["connectionStatus" "uptime" "maxDown" "maxUp"];
-            };
+            widget = [
+              {
+                type = "fritzbox";
+                url = "http://192.168.178.1";
+                fields = ["connectionStatus" "uptime" "maxDown" "maxUp"];
+              }
+            ];
           };
         };
       }
     ];
     bookmarks = [
       {
+        Services = {
+          Paperless = [
+            {
+              abbr = "PL";
+              href = "https://homelab.armadillo-snake.ts.net/paperless";
+            }
+          ];
+          Nextcloud = [
+            {
+              abbr = "NC";
+              href = "https://homelab.armadillo-snake.ts.net/nextcloud";
+            }
+          ];
+        };
         Developer = [
           {
             Github = [

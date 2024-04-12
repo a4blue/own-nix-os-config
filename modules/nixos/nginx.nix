@@ -22,6 +22,10 @@
           recommendedProxySettings = true;
           proxyPass = "http://localhost:3000";
         };
+        locations."/paperless" = {
+          recommendedProxySettings = true;
+          proxyPass = "http://localhost:28981";
+        };
         sslCertificate = "/var/lib/tailscale-nginx-certs/homelab.armadillo-snake.ts.net.crt";
         sslCertificateKey = "/var/lib/tailscale-nginx-certs/homelab.armadillo-snake.ts.net.key";
       };
@@ -30,7 +34,7 @@
         default = true;
       };
     };
-    tailscaleAuth.virtualHosts = [];
+    tailscaleAuth.virtualHosts = ["homelab.armadillo-snake.ts.net"];
   };
   users.users.nginx.extraGroups = ["acme"];
 

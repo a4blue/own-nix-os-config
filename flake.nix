@@ -19,6 +19,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    nix-inspect.url = "github:bluskript/nix-inspect";
+
     # Disko bcachefs support is not that great yet, disable for now
     #disko = {
     #  url = "github:nix-community/disko";

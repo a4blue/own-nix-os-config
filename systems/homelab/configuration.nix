@@ -30,6 +30,7 @@
     # https://tailscale.com/kb/1234/traefik-certificates
     #../../modules/nixos/traefik.nix
     ../../modules/nixos/tailscale.nix
+    ../../modules/nixos/tailscale-nginx-certs.nix
   ];
 
   programs.fuse.userAllowOther = true;

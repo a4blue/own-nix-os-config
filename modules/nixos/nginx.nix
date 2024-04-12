@@ -22,8 +22,8 @@
           recommendedProxySettings = true;
           proxyPass = "http://localhost:3000";
         };
-        sslCertificate = "/var/lib/tailscale/certs/homelab.armadillo-snake.ts.net.crt";
-        sslCertificateKey = "/var/lib/tailscale/certs/homelab.armadillo-snake.ts.net.key";
+        sslCertificate = "/var/lib/tailscale-nginx-certs/homelab.armadillo-snake.ts.net.crt";
+        sslCertificateKey = "/var/lib/tailscale-nginx-certs/homelab.armadillo-snake.ts.net.key";
       };
       "" = {
         globalRedirect = "home.a4blue.de";

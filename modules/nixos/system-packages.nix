@@ -1,4 +1,9 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  inputs,
+  system,
+  ...
+}: {
   environment.systemPackages = with pkgs; [
     vim
     wget
@@ -15,5 +20,6 @@
     parted
     util-linux
     nvd
+    inputs.nix-inspect.packages.${system}.default
   ];
 }

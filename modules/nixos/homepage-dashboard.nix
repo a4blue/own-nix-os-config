@@ -42,20 +42,22 @@
     ];
     bookmarks = [
       {
-        Services = {
-          Paperless = [
-            {
-              abbr = "PL";
-              href = "https://homelab.armadillo-snake.ts.net/paperless";
-            }
-          ];
-          Nextcloud = [
-            {
-              abbr = "NC";
-              href = "https://homelab.armadillo-snake.ts.net/nextcloud";
-            }
-          ];
-        };
+        Services = [
+          {
+            Paperless = [
+              {
+                abbr = "PL";
+                href = "https://homelab.armadillo-snake.ts.net/paperless";
+              }
+            ];
+            Nextcloud = [
+              {
+                abbr = "NC";
+                href = "https://homelab.armadillo-snake.ts.net/nextcloud";
+              }
+            ];
+          }
+        ];
       }
       {
         Developer = [

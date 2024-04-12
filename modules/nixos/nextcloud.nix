@@ -1,16 +1,23 @@
-{config, ...}: {
+{
+  config,
+  pkgs,
+  ...
+}: {
+  sops.secrets.nextcloud-admin-pass = {};
   services.nextcloud = {
     enable = true;
     https = true;
-    hostName = "homelab.armadillo-snake.ts.net/nextcloud";
+    hostName = "localhost";
     configureRedis = true;
     database.createLocally = true;
+    package = pkgs.nextcloud28;
     config = {
       dbtype = "pgsql";
+      adminpassFile = config.sops.secrets.nextcloud-admin-pass.path;
     };
     settings = let
       prot = "http";
-      host = "127.0.0.1";
+      host = "homelab.armadillo-snake.ts.net";
       dir = "/nextcloud";
     in {
       overwriteprotocol = prot;

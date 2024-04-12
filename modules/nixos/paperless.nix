@@ -33,6 +33,11 @@
     ];
   };
 
+  services.nginx.virtualHosts."homelab.armadillo-snake.ts.net".locations."/paperless" = {
+    recommendedProxySettings = true;
+    proxyPass = "http://localhost:28981";
+  };
+
   environment.persistence."/persistent" = {
     directories = [
       "/var/lib/paperless"

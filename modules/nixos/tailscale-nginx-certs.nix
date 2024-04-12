@@ -32,8 +32,8 @@
         ${pkgs.tailscale}/bin/tailscale cert homelab.armadillo-snake.ts.net
         cp /var/lib/tailscale/certs/homelab.armadillo-snake.ts.net.crt /var/lib/tailscale-nginx-certs/
         cp /var/lib/tailscale/certs/homelab.armadillo-snake.ts.net.key /var/lib/tailscale-nginx-certs/
-        chown nginx:nginx /var/lib/tailscale-nginx-certs/homelab.armadillo-snake.ts.net.crt /var/lib/tailscale-nginx-certs/homelab.armadillo-snake.ts.net.crt
-        chmod 640 /var/lib/tailscale-nginx-certs/homelab.armadillo-snake.ts.net.crt /var/lib/tailscale-nginx-certs/homelab.armadillo-snake.ts.net.crt
+        chown nginx:nginx /var/lib/tailscale-nginx-certs/homelab.armadillo-snake.ts.net.crt /var/lib/tailscale-nginx-certs/homelab.armadillo-snake.ts.net.key
+        chmod 640 /var/lib/tailscale-nginx-certs/homelab.armadillo-snake.ts.net.crt /var/lib/tailscale-nginx-certs/homelab.armadillo-snake.ts.net.key
       '';
     };
   };

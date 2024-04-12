@@ -39,7 +39,12 @@
     description = "Alexander Ratajczak";
     extraGroups = ["networkmanager" "wheel"];
     openssh.authorizedKeys.keys = [
+      # Win11 DIY Powershell
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOb2erO3CjSDZdQNfU720I4vxt1K5XzECQ/ncROZmA2X"
+      # Win11 DIY WSL2 Ubuntu22.04
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJIOPBiaBpAIpr9bTdZ6oWW+smZlywoeC8mh0Tz1R9IM"
+      # Termux Pixel7Pro
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAYaqu6PwownHMqXluc61CdJLkJE3WOEtEOyKqKd+zXP"
     ];
     #hashedPasswordFile = config.sops.secrets.a4blue_hashed_password.path;
     hashedPasswordFile = config.sops.secrets.a4blue_easy_hashed_password.path;

@@ -34,6 +34,7 @@
   environment.persistence."/persistent" = {
     directories = [
       "/var/lib/nextcloud"
+      "/var/lib/redis-nextcloud"
     ];
   };
 

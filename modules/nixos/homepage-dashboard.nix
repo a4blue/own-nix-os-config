@@ -50,6 +50,8 @@
                 href = "https://homelab.armadillo-snake.ts.net/paperless";
               }
             ];
+          }
+          {
             Nextcloud = [
               {
                 abbr = "NC";

@@ -26,18 +26,20 @@
     ];
     services = [
       {
-        "Monitoring" = {
-          "FritzBox" = {
-            description = "Fritz";
-            widget = [
-              {
-                type = "fritzbox";
-                url = "http://192.168.178.1";
-                fields = ["connectionStatus" "uptime" "maxDown" "maxUp"];
-              }
-            ];
-          };
-        };
+        "Monitoring" = [
+          {
+            "FritzBox" = {
+              description = "Fritz";
+              widget = [
+                {
+                  type = "fritzbox";
+                  url = "http://192.168.178.1";
+                  fields = ["connectionStatus" "uptime" "maxDown" "maxUp"];
+                }
+              ];
+            };
+          }
+        ];
       }
     ];
     bookmarks = [

@@ -14,6 +14,7 @@
     configureRedis = true;
     database.createLocally = true;
     package = pkgs.nextcloud28;
+    appstoreEnable = false;
     config = {
       dbtype = "pgsql";
       adminpassFile = config.sops.secrets.nextcloud-admin-pass.path;

@@ -7,6 +7,7 @@
     recommendedGzipSettings = true;
     recommendedProxySettings = true;
     enable = true;
+    tailscaleAuth.enable = true;
     virtualHosts = {
       "home.a4blue.me" = {
         forceSSL = true;
@@ -15,7 +16,21 @@
           root = "/var/www";
         };
       };
+      "homelab.armadillo-snake.ts.net" = {
+        forceSSL = true;
+        locations."/" = {
+          recommendedProxySettings = true;
+          proxyPass = "http://localhost:3000";
+        };
+        sslCertificate = "/var/lib/tailscale/certs/homelab.armadillo-snake.ts.net.crt";
+        sslCertificateKey = "/var/lib/tailscale/certs/homelab.armadillo-snake.ts.net.key";
+      };
+      "*" = {
+        globalRedirect = "home.a4blue.de";
+        default = true;
+      };
     };
+    tailscaleAuth.virtualHosts = [];
   };
   users.users.nginx.extraGroups = ["acme"];
 

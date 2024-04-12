@@ -25,7 +25,10 @@
     ../../modules/nixos/hardening.nix
     ../../modules/nixos/home-manager-base.nix
     ../../modules/nixos/nginx.nix
-    ../../modules/nixos/traefik.nix
+    # Traefik 3.0 supports Tailscale Cert resolving
+    # so don't use it yet
+    # https://tailscale.com/kb/1234/traefik-certificates
+    #../../modules/nixos/traefik.nix
     ../../modules/nixos/tailscale.nix
   ];
 

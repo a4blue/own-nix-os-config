@@ -19,12 +19,13 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    disko = {
-      url = "github:nix-community/disko";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # Disko bcachefs support is not that great yet, disable for now
+    #disko = {
+    #  url = "github:nix-community/disko";
+    #  inputs.nixpkgs.follows = "nixpkgs";
+    #};
 
-    flake-utils.url = "github:numtide/flake-utils/main";
+    #flake-utils.url = "github:numtide/flake-utils/main";
   };
 
   outputs = {
@@ -47,7 +48,7 @@
         specialArgs = {inherit inputs outputs system;};
         modules = [
           ./systems/homelab/configuration.nix
-          inputs.disko.nixosModules.disko
+          #inputs.disko.nixosModules.disko
         ];
       };
       # nix build .#nixosConfigurations.iso.config.system.build.isoImage

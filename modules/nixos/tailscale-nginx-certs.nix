@@ -6,6 +6,7 @@
   environment.persistence."/persistent" = {
     directories = ["/var/lib/tailscale-nginx-certs/"];
   };
+
   systemd.services = {
     "tailscale-certs" = {
       description = "Generates and copies tailscale certs";

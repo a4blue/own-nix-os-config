@@ -25,7 +25,7 @@
         sslCertificate = "/var/lib/tailscale-nginx-certs/homelab.armadillo-snake.ts.net.crt";
         sslCertificateKey = "/var/lib/tailscale-nginx-certs/homelab.armadillo-snake.ts.net.key";
       };
-      "" = {
+      "_" = {
         globalRedirect = "home.a4blue.de";
         default = true;
       };

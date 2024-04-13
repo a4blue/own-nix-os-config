@@ -24,8 +24,8 @@
         environment = {BORG_RSH = "ssh -p23 -i /nix/secret/hetzner_storage_box/ssh_hetzner_storage_box_ed25519_key";};
         compression = "zstd,10";
         startAt = "daily";
-        preHook = "bcachefs subvolume snapshot /persistent/ /borgbackup";
-        postHook = "bcachefs subvolume delete /borgbackup/";
+        preHook = "${pkgs.bcachefs-tools}/bin/bcachefs subvolume snapshot /persistent/ /borgbackup";
+        postHook = "${pkgs.bcachefs-tools}/bin/bcachefs subvolume delete /borgbackup/";
         # TODO
         # Prune should be investigated
         #prune.keep = {};

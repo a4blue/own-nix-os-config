@@ -16,8 +16,6 @@
     hostName = "localhost";
     configureRedis = true;
     caching.redis = true;
-    logType = "file";
-    logLevel = 1;
     database.createLocally = true;
     package = pkgs.nextcloud28;
     appstoreEnable = false;
@@ -53,6 +51,8 @@
       htaccess.RewriteBase = dir;
       default_phone_region = "DE";
       maintenance_window_start = 3;
+      log_type = "file";
+      loglevel = 1;
     };
   };
 

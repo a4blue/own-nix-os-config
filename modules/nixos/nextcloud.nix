@@ -3,6 +3,9 @@
   pkgs,
   ...
 }: {
+  imports = [
+    ./nginx.nix
+  ];
   sops.secrets.nextcloud-admin-pass = {
     owner = "nextcloud";
     group = "nextcloud";
@@ -17,7 +20,7 @@
     package = pkgs.nextcloud28;
     appstoreEnable = false;
     phpOptions."opcache.interned_strings_buffer" = "32";
-    maxUploadSize = "16G";
+    maxUploadSize = "4G";
     autoUpdateApps.enable = true;
     extraAppsEnable = true;
     extraApps = with config.services.nextcloud.package.packages.apps; {
@@ -86,6 +89,7 @@
         proxy_set_header Host $host;
         proxy_cache_bypass $http_upgrade;
         proxy_redirect off;
+        client_max_body_size 5000m;
       '';
     };
   };

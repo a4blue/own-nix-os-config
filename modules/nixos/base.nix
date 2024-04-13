@@ -1,7 +1,6 @@
 {config, ...}: {
   imports = [
     ./system-packages.nix
-    ./homepage-dashboard.nix
   ];
 
   boot.loader = {

@@ -3,6 +3,9 @@
   pkgs,
   ...
 }: {
+  imports = [
+    ./tailscale.nix
+  ];
   environment.persistence."/persistent" = {
     directories = [
       {

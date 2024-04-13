@@ -1,4 +1,8 @@
 {config, ...}: {
+  imports = [
+    ./nginx.nix
+    ./postgresql.nix
+  ];
   services.paperless = {
     enable = true;
     settings = {

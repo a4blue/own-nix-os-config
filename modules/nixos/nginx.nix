@@ -1,4 +1,7 @@
 {config, ...}: {
+  imports = [
+    ./tailscale-nginx-certs.nix
+  ];
   security.acme.acceptTerms = true;
   security.acme.defaults.email = "a4blue@hotmail.de";
   services.nginx = {
@@ -9,6 +12,7 @@
     enable = true;
     tailscaleAuth.enable = true;
     virtualHosts = {
+      # Public DynDNS
       "home.a4blue.me" = {
         forceSSL = true;
         enableACME = true;
@@ -16,17 +20,15 @@
           root = "/var/www";
         };
       };
+      # Tailscale
       "homelab.armadillo-snake.ts.net" = {
         forceSSL = true;
-        locations."/" = {
-          recommendedProxySettings = true;
-          proxyPass = "http://localhost:3000";
-        };
         sslCertificate = "/var/lib/tailscale-nginx-certs/homelab.armadillo-snake.ts.net.crt";
         sslCertificateKey = "/var/lib/tailscale-nginx-certs/homelab.armadillo-snake.ts.net.key";
       };
+      # Default match
       "_" = {
-        globalRedirect = "home.a4blue.de";
+        globalRedirect = "home.a4blue.me";
         default = true;
       };
     };
@@ -46,6 +48,12 @@
         mode = "740";
         user = "acme";
         group = "acme";
+      }
+      {
+        directory = "/var/www";
+        mode = "740";
+        user = "nginx";
+        group = "nginx";
       }
     ];
   };

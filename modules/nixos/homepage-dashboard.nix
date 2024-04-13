@@ -1,10 +1,8 @@
-{
-  config,
-  pkgs,
-  lib,
-  ...
-}: {
-  config.services.homepage-dashboard = {
+{config, ...}: {
+  imports = [
+    ./nginx.nix
+  ];
+  services.homepage-dashboard = {
     enable = true;
     listenPort = 3000;
     widgets = [
@@ -59,6 +57,14 @@
               }
             ];
           }
+          {
+            Photoprism = [
+              {
+                abbr = "PP";
+                href = "https://homelab.armadillo-snake.ts.net/photoprism";
+              }
+            ];
+          }
         ];
       }
       {
@@ -86,5 +92,10 @@
         ];
       }
     ];
+  };
+
+  services.nginx.virtualHosts."homelab.armadillo-snake.ts.net".locations."/" = {
+    recommendedProxySettings = true;
+    proxyPass = "http://localhost:3000";
   };
 }

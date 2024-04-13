@@ -18,22 +18,19 @@
     # disko has no subvolume support yet :´(
     #../../disko/bcachefs-tmpfs-root.nix
 
+    # base stuff
     ../../modules/nixos/base.nix
     ../../modules/nixos/remote-disk-unlocking.nix
     ../../modules/nixos/impermanence.nix
     ../../modules/nixos/re-create-root.nix
     ../../modules/nixos/hardening.nix
     ../../modules/nixos/home-manager-base.nix
-    ../../modules/nixos/nginx.nix
-    # Traefik 3.0 supports Tailscale Cert resolving
-    # so don't use it yet
-    # https://tailscale.com/kb/1234/traefik-certificates
-    #../../modules/nixos/traefik.nix
-    ../../modules/nixos/tailscale.nix
-    ../../modules/nixos/tailscale-nginx-certs.nix
+
+    # web services
+    ../../modules/nixos/homepage-dashboard.nix
     ../../modules/nixos/paperless.nix
-    ../../modules/nixos/postgresql.nix
     ../../modules/nixos/nextcloud.nix
+    ../../modules/nixos/photoprism.nix
   ];
 
   programs.fuse.userAllowOther = true;

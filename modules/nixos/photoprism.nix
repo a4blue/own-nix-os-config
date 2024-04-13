@@ -35,10 +35,11 @@
     proxyPass = "http://localhost:2342";
     proxyWebsockets = true;
     extraConfig = ''
-      proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-      proxy_set_header Host $host;
       proxy_buffering off;
       client_max_body_size 500m;
+      proxy_set_header Upgrade $http_upgrade;
+      proxy_set_header Connection "upgrade";
+      proxy_redirect off;
     '';
   };
 

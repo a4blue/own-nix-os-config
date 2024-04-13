@@ -14,7 +14,8 @@ bcachefs format --encrypt /dev/nvme0n1p3
 bcachefs unlock -k session /dev/nvme0n1p3
 # mount
 mount /dev/nvme0n1p3 /mnt/
-mkdir -pv /mnt/{boot,nix,persistent,etc/ssh,var/{lib,log}}
+bcachefs subvolume create /mnt/persistent
+mkdir -pv /mnt/{boot,nix,etc/ssh,var/{lib,log}}
 mount /dev/disk/by-label/boot /mnt/boot/
 mkdir -pv /mnt/{nix/secret/initrd,persistent/{etc/ssh,var/{lib,log}}}
 mount -o bind /mnt/persistent/var/log /mnt/var/log

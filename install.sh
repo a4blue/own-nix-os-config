@@ -22,11 +22,15 @@ mount -o bind /mnt/persistent/var/log /mnt/var/log
 chmod 0700 /mnt/nix/secret
 mkdir -pv /mnt/persistent/home/
 chmod 0777 /mnt/persistent/home
+# Generate SOPS Keys
 ssh-keygen -t ed25519 -N "" -C "" -f /mnt/nix/secret/initrd/ssh_host_ed25519_key
 nix-shell --extra-experimental-features flakes -p ssh-to-age --run 'cat /mnt/nix/secret/initrd/ssh_host_ed25519_key.pub | ssh-to-age'
 chmod 0755 /mnt/persistent/etc/ssh
+# Generate sshd Keys
 ssh-keygen -t ed25519 -N "" -C "" -f /mnt/persistent/etc/ssh/ssh_host_ed25519_key
 ssh-keygen -t rsa -b 4096 -N "" -C "" -f /mnt/persistent/etc/ssh/ssh_host_rsa_key
+# Generate Hetzner Storage Box Keys (for Borgbackup)
+ssh-keygen -t ed25519 -N "" -C "" -f /mnt/nix/secret/hetzner_storage_box/ssh_hetzner_storage_box_ed25519_key
 
 #nixos-generate-config --root /mnt
 #git clone https://github.com/a4blue/own-nix-os-config.git /home/nixos/own-nix-os-config

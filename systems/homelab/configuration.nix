@@ -31,6 +31,7 @@
     ../../modules/nixos/paperless.nix
     ../../modules/nixos/nextcloud.nix
     ../../modules/nixos/photoprism.nix
+    ../../modules/nixos/borgbackup.nix
   ];
 
   programs.fuse.userAllowOther = true;

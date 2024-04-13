@@ -11,10 +11,10 @@
   };
   services.photoprism = {
     enable = true;
-    #passwordFile = config.sops.secrets.photoprism_password.path;
-    storagePath = "/var/lib/photoprism";
-    originalsPath = "/var/lib/photoprism/originals";
-    importPath = "/var/lib/photoprism/import";
+    passwordFile = config.sops.secrets.photoprism_password.path;
+    storagePath = "/var/lib/photoprism-storage";
+    originalsPath = "${config.services.photoprism.storagePath}/originals";
+    importPath = "${config.services.photoprism.storagePath}/import";
     port = 2342;
     address = "localhost";
     settings = {
@@ -26,6 +26,7 @@
       PHOTOPRISM_DATABASE_NAME = "photoprism";
       PHOTOPRISM_DATABASE_SERVER = "/run/mysqld/mysqld.sock";
       PHOTOPRISM_DATABASE_USER = "photoprism";
+      PHOTOPRISM_CONFIG_PATH = "${config.services.photoprism.storagePath}/config";
     };
   };
 
@@ -56,7 +57,7 @@
   environment.persistence."/persistent" = {
     directories = [
       {
-        directory = "/var/lib/photoprism";
+        directory = "${config.services.photoprism.storagePath}";
         mode = "0777";
         user = "photoprism";
         group = "photoprism";

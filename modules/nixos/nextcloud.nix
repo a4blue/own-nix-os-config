@@ -16,17 +16,19 @@
     hostName = "localhost";
     configureRedis = true;
     caching.redis = true;
+    logType = "file";
+    logLevel = 1;
     database.createLocally = true;
     package = pkgs.nextcloud28;
     appstoreEnable = false;
     phpOptions."opcache.interned_strings_buffer" = "32";
-    maxUploadSize = "4G";
+    maxUploadSize = "8G";
     autoUpdateApps.enable = true;
     extraAppsEnable = true;
     extraApps = with config.services.nextcloud.package.packages.apps; {
       # List of apps we want to install and are already packaged in
       # https://github.com/NixOS/nixpkgs/blob/master/pkgs/servers/nextcloud/packages/nextcloud-apps.json
-      inherit calendar contacts mail notes tasks;
+      inherit bookmarks calendar contacts mail notes tasks previewgenerator;
 
       # Custom app installation example.
       ##cookbook = pkgs.fetchNextcloudApp rec {
@@ -89,7 +91,7 @@
         proxy_set_header Host $host;
         proxy_cache_bypass $http_upgrade;
         proxy_redirect off;
-        client_max_body_size 5000m;
+        client_max_body_size 9000m;
       '';
     };
   };

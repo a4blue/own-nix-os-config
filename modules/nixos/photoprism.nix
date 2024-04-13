@@ -4,8 +4,10 @@
     ./mysql.nix
   ];
   sops.secrets.photoprism_password = {
-    owner = "photoprism";
-    group = "photoprism";
+    #owner = "photoprism";
+    #group = "photoprism";
+    # ugly
+    mode = "0777";
   };
   services.photoprism = {
     enable = true;

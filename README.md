@@ -49,3 +49,9 @@ and run ```nix-shell```. **Note to myself:** Your PGP Key is the final backup, t
 
 ## Cleanup
 Generally cleanup the code to be more readable
+
+# Noteworthy Stuff
+- Using encrypted bcachefs with remote unlock
+- borgbackup with bcachefs subvolume snapshot
+- Impermanence with bcachefs via systemd Service on boot
+- new tailscale cert on boot for nginx

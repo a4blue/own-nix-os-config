@@ -7,6 +7,8 @@
     borgbackup
   ];
 
+  systemd.packages = [pkgs.bcachefs-tools];
+
   sops.secrets.borgbackup_passphrase = {};
 
   services.borgbackup = {

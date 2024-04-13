@@ -28,6 +28,7 @@ and run ```nix-shell```. **Note to myself:** Your PGP Key is the final backup, t
 ### General
 - Duplicati (probably not, evaluating borgbackup for now)
 - Use Case for TPM2 ?
+  - ssh host key on TPM for remote disk unlock to prevent MITM-Attack by reading boot partition ? Secure Boot needs to be also enabled for this to work
 - "Automatic" updates ? Github build pipeline ?
 - Authentik ? (usefull if more users) or Authelia ?
 ### Local Network Only

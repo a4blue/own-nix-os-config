@@ -11,7 +11,7 @@
   };
   services.photoprism = {
     enable = true;
-    passwordFile = config.sops.secrets.photoprism_password.path;
+    #passwordFile = config.sops.secrets.photoprism_password.path;
     storagePath = "/var/lib/photoprism";
     originalsPath = "/var/lib/photoprism/originals";
     importPath = "/var/lib/photoprism/import";

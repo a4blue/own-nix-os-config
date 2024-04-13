@@ -12,6 +12,7 @@
     passwordFile = config.sops.secrets.photoprism_password.path;
     storagePath = "/var/lib/photoprism";
     originalsPath = "/var/lib/photoprism/originals";
+    importPath = "/var/lib/photoprism/import";
     port = 2342;
     address = "localhost";
     settings = {
@@ -34,7 +35,6 @@
       proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
       proxy_set_header Host $host;
       proxy_buffering off;
-      proxy_http_version 1.1;
       client_max_body_size 500m;
     '';
   };
@@ -55,7 +55,7 @@
     directories = [
       {
         directory = "/var/lib/photoprism";
-        mode = "0740";
+        mode = "0777";
         user = "photoprism";
         group = "photoprism";
       }

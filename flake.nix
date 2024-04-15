@@ -5,7 +5,10 @@
     # Nixpkgs
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
-    impermanence.url = "github:nix-community/impermanence";
+    impermanence = {
+      url = "github:nix-community/impermanence";
+      #inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     # Home manager
     home-manager = {
@@ -19,7 +22,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nix-inspect.url = "github:bluskript/nix-inspect";
+    nix-inspect = {
+      url = "github:bluskript/nix-inspect";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     # Disko bcachefs support is not that great yet, disable for now
     #disko = {

@@ -32,6 +32,7 @@
     ../../modules/nixos/nextcloud.nix
     ../../modules/nixos/photoprism.nix
     ../../modules/nixos/borgbackup.nix
+    ../../modules/nixos/jellyfin.nix
   ];
 
   programs.fuse.userAllowOther = true;

@@ -33,6 +33,7 @@
     ../../modules/nixos/photoprism.nix
     ../../modules/nixos/borgbackup.nix
     ../../modules/nixos/jellyfin.nix
+    ../../modules/nixos/forgejo.nix
   ];
 
   programs.fuse.userAllowOther = true;

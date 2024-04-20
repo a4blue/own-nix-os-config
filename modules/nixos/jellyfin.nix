@@ -25,4 +25,15 @@
     jellyfin-web
     jellyfin-ffmpeg
   ];
+
+  environment.persistence."/persistent" = {
+    directories = [
+      {
+        directory = "/var/lib/jellyfin";
+        mode = "0740";
+        user = "jellyfin";
+        group = "jellyfin";
+      }
+    ];
+  };
 }

@@ -50,6 +50,12 @@
         user = "paperless";
         group = "paperless";
       }
+      {
+        directory = "/var/lib/redis-paperless";
+        mode = "0740";
+        user = "redis-paperless";
+        group = "redis-paperless";
+      }
     ];
   };
 }

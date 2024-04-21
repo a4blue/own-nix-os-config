@@ -1,10 +1,12 @@
-{config, ...}: {
+{config, ...}: let
+  servicePort = 37999;
+in {
   imports = [
     ./nginx.nix
   ];
   services.homepage-dashboard = {
     enable = true;
-    listenPort = 3000;
+    listenPort = servicePort;
     widgets = [
       {
         resources = {
@@ -96,6 +98,6 @@
 
   services.nginx.virtualHosts."homelab.armadillo-snake.ts.net".locations."/" = {
     recommendedProxySettings = true;
-    proxyPass = "http://localhost:3000";
+    proxyPass = "http://localhost:${builtins.toString servicePort}";
   };
 }

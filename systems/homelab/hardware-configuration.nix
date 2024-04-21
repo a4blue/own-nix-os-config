@@ -29,6 +29,13 @@
     fsType = "vfat";
   };
 
+  fileSystems."/SDMedia" = {
+    device = "/dev/sda1";
+    fsType = "bcachefs";
+    options = ["compression=zstd"];
+    neededForBoot = true;
+  };
+
   swapDevices = [
     {
       device = "/dev/nvme0n1p2";

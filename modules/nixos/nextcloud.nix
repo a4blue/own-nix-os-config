@@ -2,7 +2,9 @@
   config,
   pkgs,
   ...
-}: {
+}: let
+  servicePort = 38000;
+in {
   imports = [
     ./nginx.nix
   ];
@@ -59,7 +61,7 @@
   services.nginx.virtualHosts."${config.services.nextcloud.hostName}".listen = [
     {
       addr = "127.0.0.1";
-      port = 8080;
+      port = servicePort;
     }
   ];
 
@@ -87,7 +89,7 @@
         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
         proxy_set_header X-NginX-Proxy true;
         proxy_set_header X-Forwarded-Proto http;
-        proxy_pass http://localhost:8080/; # tailing / is important!
+        proxy_pass http://localhost:${builtins.toString servicePort}/; # tailing / is important!
         proxy_set_header Host $host;
         proxy_cache_bypass $http_upgrade;
         proxy_redirect off;

@@ -38,7 +38,7 @@
         # TODO
         # making it extensible would probably be great
         script = ''
-          find /sysroot -maxdepth 1 -not -wholename "/sysroot/nix" -and -not -wholename "/sysroot/persistent" -and -not -wholename "/sysroot" -and -not -wholename "/sysroot/var" | xargs rm -rf
+          find /sysroot -maxdepth 1 -not -wholename "/sysroot/nix" -and -not -wholename "/sysroot/persistent" -and -not -wholename "/sysroot" -and -not -wholename "/sysroot/var" -and -not -wholename "/sysroot/SDMedia" | xargs rm -rf
           # /sysroot/var/log is already mounted, why ?
           find /sysroot/var -maxdepth 1 -not -wholename "/sysroot/var/log" -and -not -wholename "/sysroot/var/empty" -and -not -wholename "/sysroot/var" | xargs rm -rf
         '';

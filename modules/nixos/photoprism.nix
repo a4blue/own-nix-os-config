@@ -1,4 +1,6 @@
-{config, ...}: {
+{config, ...}: let
+  servicePort = 38002;
+in {
   imports = [
     ./nginx.nix
     ./mysql.nix
@@ -15,7 +17,7 @@
     storagePath = "/var/lib/photoprism-storage";
     originalsPath = "${config.services.photoprism.storagePath}/originals";
     importPath = "${config.services.photoprism.storagePath}/import";
-    port = 2342;
+    port = servicePort;
     address = "localhost";
     settings = {
       PHOTOPRISM_ADMIN_USER = "root";
@@ -32,7 +34,7 @@
 
   services.nginx.virtualHosts."homelab.armadillo-snake.ts.net".locations."/photoprism" = {
     recommendedProxySettings = true;
-    proxyPass = "http://localhost:2342";
+    proxyPass = "http://localhost:${builtins.toString servicePort}";
     proxyWebsockets = true;
     extraConfig = ''
       proxy_buffering off;

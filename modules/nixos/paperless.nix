@@ -1,4 +1,6 @@
-{config, ...}: {
+{config, ...}: let
+  servicePort = 38001;
+in {
   imports = [
     ./nginx.nix
     ./postgresql.nix
@@ -22,6 +24,7 @@
       PAPERLESS_SECRET_KEY = "ZkURZGp)eBRT-yJie$@uHB7&h#X?(F3jN)CpUBeu%nyRRbn?U#nZpZ*18z6a#tdu";
       PAPERLESS_DBENGINE = "postgresql";
       PAPERLESS_DBHOST = "/run/postgresql";
+      PAPERLESS_PORT = servicePort;
     };
   };
 
@@ -39,7 +42,7 @@
 
   services.nginx.virtualHosts."homelab.armadillo-snake.ts.net".locations."/paperless" = {
     recommendedProxySettings = true;
-    proxyPass = "http://localhost:28981";
+    proxyPass = "http://localhost:${builtins.toString servicePort}";
   };
 
   environment.persistence."/persistent" = {

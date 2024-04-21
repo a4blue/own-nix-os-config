@@ -29,6 +29,7 @@ in {
       PHOTOPRISM_DATABASE_SERVER = "/run/mysqld/mysqld.sock";
       PHOTOPRISM_DATABASE_USER = "photoprism";
       PHOTOPRISM_CONFIG_PATH = "${config.services.photoprism.storagePath}/config";
+      PHOTOPRISM_DEBUG = "";
     };
   };
 
@@ -41,7 +42,7 @@ in {
       client_max_body_size 500m;
       proxy_set_header Upgrade $http_upgrade;
       proxy_set_header Connection "upgrade";
-      proxy_redirect off;
+      proxy_http_version 1.1;
     '';
   };
 

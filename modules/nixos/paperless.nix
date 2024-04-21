@@ -7,6 +7,7 @@ in {
   ];
   services.paperless = {
     enable = true;
+    port = servicePort;
     settings = {
       PAPERLESS_CONSUMER_IGNORE_PATTERN = [
         ".DS_STORE/*"
@@ -24,7 +25,6 @@ in {
       PAPERLESS_SECRET_KEY = "ZkURZGp)eBRT-yJie$@uHB7&h#X?(F3jN)CpUBeu%nyRRbn?U#nZpZ*18z6a#tdu";
       PAPERLESS_DBENGINE = "postgresql";
       PAPERLESS_DBHOST = "/run/postgresql";
-      PAPERLESS_PORT = builtins.toString servicePort;
     };
   };
 

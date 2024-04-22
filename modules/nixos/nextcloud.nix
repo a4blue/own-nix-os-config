@@ -1,6 +1,7 @@
 {
   config,
   pkgs,
+  lib,
   ...
 }: let
   servicePort = 38000;
@@ -9,6 +10,7 @@ in {
     exiftool
     nodejs_21
     ffmpeg_7
+    perl
   ];
   hardware.opengl = {
     enable = true;
@@ -112,6 +114,8 @@ in {
       '';
     };
   };
+
+  systemd.services.nextcloud-cron.path = [pkgs.exiftool pkgs.perl pkgs.ffmpeg_7];
 
   environment.persistence."/persistent" = {
     directories = [

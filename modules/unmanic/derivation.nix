@@ -1,19 +1,24 @@
-{
-  fetchPypi,
-  pkgs,
-}:
+{pkgs}:
 pkgs.python3Packages.buildPythonPackage rec {
   pname = "unmanic";
   format = "wheel";
   version = "0.2.6";
-  src = fetchPypi {
+  src = pkgs.python3Packages.fetchPypi {
     inherit pname version format;
     sha256 = "sha256-tbjqOvBetQ3c+IZCFDdenTS8GnBEccDJJIa7QQQVTOk=";
     dist = "py3";
     python = "py3";
   };
-  postInstall = ''
-    ls
-    mkdir -p /var/lib/unmanic
-  '';
+  dependencies = [
+    pkgs.psutils
+    pkgs.python3Packages.schedule
+    pkgs.python3Packages.tornado
+    pkgs.python3Packages.marshmallow
+    pkgs.python3Packages.peewee
+    pkgs.python3Packages.peewee-migrate
+    pkgs.python3Packages.psutil
+    pkgs.python3Packages.requests
+    pkgs.python3Packages.requests-toolbelt
+    pkgs.python3Packages.py-cpuinfo
+  ];
 }

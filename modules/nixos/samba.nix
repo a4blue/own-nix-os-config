@@ -33,8 +33,8 @@
         "guest ok" = "no";
         "create mask" = "0644";
         "directory mask" = "0755";
-        "force user" = "a4blue";
-        "force group" = "a4blue";
+        "force user" = "a4blueHomelab";
+        "force group" = "a4blueHomelab";
       };
     };
   };

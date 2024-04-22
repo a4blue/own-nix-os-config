@@ -5,6 +5,17 @@
 }: let
   servicePort = 38000;
 in {
+  environment.systemPackages = with pkgs; [
+    exiftool
+    nodejs_21
+    ffmpeg_7
+  ];
+  hardware.opengl = {
+    enable = true;
+    extraPackages = with pkgs; [
+      intel-media-driver
+    ];
+  };
   imports = [
     ./nginx.nix
   ];

@@ -1,40 +1,40 @@
 {config, ...}: let
   servicePort = 38002;
 in {
-  imports = [
-    ./nginx.nix
-    ./mysql.nix
-  ];
+  #imports = [
+  #  ./nginx.nix
+  #  ./mysql.nix
+  #];
   # Photoprism sadly runs as root
-  sops.secrets.photoprism_password = {
-    #owner = "photoprism";
-    #group = "photoprism";
-    # ugly
-    mode = "0777";
-  };
-  services.photoprism = {
-    enable = true;
-    passwordFile = config.sops.secrets.photoprism_password.path;
-    storagePath = "/var/lib/photoprism-storage";
-    originalsPath = "${config.services.photoprism.storagePath}/originals";
-    importPath = "${config.services.photoprism.storagePath}/import";
-    port = servicePort;
-    address = "192.168.178.64";
-    settings = {
-      PHOTOPRISM_DEFAULT_LOCALE = "de";
-      #PHOTOPRISM_SITE_URL = "https://homelab.armadillo-snake.ts.net/photoprism";
-      PHOTOPRISM_SITE_URL = "http://192.168.178.64:${builtins.toString servicePort}";
-      #PHOTOPRISM_TRUSTED_PROXY = "127.0.0.1";
-      PHOTOPRISM_DATABASE_DRIVER = "mysql";
-      PHOTOPRISM_DATABASE_NAME = "photoprism";
-      PHOTOPRISM_DATABASE_SERVER = "/run/mysqld/mysqld.sock";
-      PHOTOPRISM_DATABASE_USER = "photoprism";
-      PHOTOPRISM_CONFIG_PATH = "${config.services.photoprism.storagePath}/config";
-      PHOTOPRISM_DEBUG = "";
-    };
-  };
+  #sops.secrets.photoprism_password = {
+  #owner = "photoprism";
+  #group = "photoprism";
+  # ugly
+  #  mode = "0777";
+  #};
+  #services.photoprism = {
+  #  enable = true;
+  #  passwordFile = config.sops.secrets.photoprism_password.path;
+  #  storagePath = "/var/lib/photoprism-storage";
+  #  originalsPath = "${config.services.photoprism.storagePath}/originals";
+  #  importPath = "${config.services.photoprism.storagePath}/import";
+  #  port = servicePort;
+  #  address = "192.168.178.64";
+  #  settings = {
+  #    PHOTOPRISM_DEFAULT_LOCALE = "de";
+  #PHOTOPRISM_SITE_URL = "https://homelab.armadillo-snake.ts.net/photoprism";
+  #    PHOTOPRISM_SITE_URL = "http://192.168.178.64:${builtins.toString servicePort}";
+  #PHOTOPRISM_TRUSTED_PROXY = "127.0.0.1";
+  #    PHOTOPRISM_DATABASE_DRIVER = "mysql";
+  #    PHOTOPRISM_DATABASE_NAME = "photoprism";
+  #    PHOTOPRISM_DATABASE_SERVER = "/run/mysqld/mysqld.sock";
+  #    PHOTOPRISM_DATABASE_USER = "photoprism";
+  #    PHOTOPRISM_CONFIG_PATH = "${config.services.photoprism.storagePath}/config";
+  #    PHOTOPRISM_DEBUG = "";
+  #  };
+  #};
 
-  networking.firewall.allowedTCPPorts = [servicePort];
+  #networking.firewall.allowedTCPPorts = [servicePort];
 
   #services.nginx.virtualHosts."homelab.armadillo-snake.ts.net".locations."/photoprism" = {
   #  recommendedProxySettings = true;

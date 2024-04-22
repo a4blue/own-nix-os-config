@@ -31,7 +31,7 @@ in {
     caching.redis = true;
     database.createLocally = true;
     package = pkgs.nextcloud28;
-    appstoreEnable = false;
+    appstoreEnable = true;
     phpOptions."opcache.interned_strings_buffer" = "32";
     maxUploadSize = "8G";
     autoUpdateApps.enable = true;
@@ -41,15 +41,15 @@ in {
       # https://github.com/NixOS/nixpkgs/blob/master/pkgs/servers/nextcloud/packages/nextcloud-apps.json
       inherit bookmarks calendar contacts mail notes tasks previewgenerator maps memories;
 
-      recognize = pkgs.fetchNextcloudApp {
-        url = "https://github.com/nextcloud/recognize/releases/download/v6.1.1/recognize-6.1.1.tar.gz";
-        sha256 = "sha256-ziUc4J2y1lW1BwygwOKedOWbeAnPpBDwT9wh35R0MYk=";
-        license = "agpl3Plus";
-        appVersion = "6.1.1";
-        description = "👁 👂 Smart media tagging for Nextcloud: recognizes faces, objects, landscapes, music genres";
-        homepage = "https://apps.nextcloud.com/apps/recognize";
-        appName = "recognize";
-      };
+      #recognize = pkgs.fetchNextcloudApp {
+      #  url = "https://github.com/nextcloud/recognize/releases/download/v6.1.1/recognize-6.1.1.tar.gz";
+      #  sha256 = "sha256-ziUc4J2y1lW1BwygwOKedOWbeAnPpBDwT9wh35R0MYk=";
+      #  license = "agpl3Plus";
+      #  appVersion = "6.1.1";
+      #  description = "👁 👂 Smart media tagging for Nextcloud: recognizes faces, objects, landscapes, music genres";
+      #  homepage = "https://apps.nextcloud.com/apps/recognize";
+      #  appName = "recognize";
+      #};
     };
 
     config = {

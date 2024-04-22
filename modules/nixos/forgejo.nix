@@ -1,6 +1,9 @@
 {config, ...}: let
   servicePort = 38003;
 in {
+  imports = [
+    ./nginx.nix
+  ];
   services.forgejo = {
     enable = true;
     database.type = "postgres";
@@ -16,7 +19,7 @@ in {
   };
   services.nginx.virtualHosts."homelab.armadillo-snake.ts.net".locations."/forgejo" = {
     recommendedProxySettings = true;
-    proxyPass = "http://localhost:${builtins.toString servicePort}";
+    proxyPass = "http://localhost:${builtins.toString servicePort}/";
     extraConfig = ''
       client_max_body_size 512M;
     '';

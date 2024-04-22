@@ -35,7 +35,8 @@
     ../../modules/nixos/jellyfin.nix
     ../../modules/nixos/forgejo.nix
     # other services
-    ../../modules/nixos/nfs.nix
+    #../../modules/nixos/nfs.nix
+    ../../modules/nixos/samba.nix
   ];
 
   programs.fuse.userAllowOther = true;

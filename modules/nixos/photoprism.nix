@@ -5,6 +5,7 @@ in {
     ./nginx.nix
     ./mysql.nix
   ];
+  # Photoprism sadly runs as root
   sops.secrets.photoprism_password = {
     #owner = "photoprism";
     #group = "photoprism";
@@ -18,12 +19,12 @@ in {
     originalsPath = "${config.services.photoprism.storagePath}/originals";
     importPath = "${config.services.photoprism.storagePath}/import";
     port = servicePort;
-    address = "localhost";
+    address = "192.168.178.64";
     settings = {
-      PHOTOPRISM_ADMIN_USER = "root";
       PHOTOPRISM_DEFAULT_LOCALE = "de";
-      PHOTOPRISM_SITE_URL = "https://homelab.armadillo-snake.ts.net/photoprism";
-      PHOTOPRISM_TRUSTED_PROXY = "127.0.0.1";
+      #PHOTOPRISM_SITE_URL = "https://homelab.armadillo-snake.ts.net/photoprism";
+      PHOTOPRISM_SITE_URL = "http://192.168.178.64:${builtins.toString servicePort}";
+      #PHOTOPRISM_TRUSTED_PROXY = "127.0.0.1";
       PHOTOPRISM_DATABASE_DRIVER = "mysql";
       PHOTOPRISM_DATABASE_NAME = "photoprism";
       PHOTOPRISM_DATABASE_SERVER = "/run/mysqld/mysqld.sock";
@@ -33,17 +34,19 @@ in {
     };
   };
 
-  services.nginx.virtualHosts."homelab.armadillo-snake.ts.net".locations."/photoprism" = {
-    recommendedProxySettings = true;
-    proxyPass = "http://localhost:${builtins.toString servicePort}";
-    proxyWebsockets = true;
-    extraConfig = ''
-      proxy_buffering off;
-      client_max_body_size 500m;
-      proxy_set_header Upgrade $http_upgrade;
-      proxy_set_header Connection "upgrade";
-    '';
-  };
+  networking.firewall.allowedTCPPorts = [servicePort];
+
+  #services.nginx.virtualHosts."homelab.armadillo-snake.ts.net".locations."/photoprism" = {
+  #  recommendedProxySettings = true;
+  #  proxyPass = "http://localhost:${builtins.toString servicePort}";
+  #  proxyWebsockets = true;
+  #  extraConfig = ''
+  #    proxy_buffering off;
+  #    client_max_body_size 500m;
+  #    proxy_set_header Upgrade $http_upgrade;
+  #    proxy_set_header Connection "upgrade";
+  #  '';
+  #};
 
   services.mysql = {
     ensureDatabases = ["photoprism"];

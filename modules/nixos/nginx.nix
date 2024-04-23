@@ -2,8 +2,20 @@
   imports = [
     ./tailscale-nginx-certs.nix
   ];
-  security.acme.acceptTerms = true;
-  security.acme.defaults.email = "a4blue@hotmail.de";
+  sops.secrets.dynu_api_key = {};
+  security.acme = {
+    acceptTerms = true;
+    defaults.email = "a4blue@hotmail.de";
+    certs."home-test.a4blue.me" = {
+      domain = "home-test.a4blue.me";
+      extraDomainNames = ["*.home-test.a4blue.me"];
+      dnsProvider = "dynu";
+      dnsPropagationCheck = true;
+      credentialFiles = {
+        "DYNU_API_KEY_FILE" = config.sops.secrets.dynu_api_key.path;
+      };
+    };
+  };
   services.nginx = {
     recommendedTlsSettings = true;
     recommendedOptimisation = true;
@@ -16,7 +28,13 @@
       "home.a4blue.me" = {
         forceSSL = true;
         enableACME = true;
-        serverAliases = ["*.home.a4blue.me"];
+        locations."/" = {
+          root = "/var/www";
+        };
+      };
+      "home-test.a4blue.me" = {
+        forceSSL = true;
+        useACMEHost = "home-test.a4blue.me";
         locations."/" = {
           root = "/var/www";
         };

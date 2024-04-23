@@ -115,7 +115,7 @@ in {
     };
   };
 
-  systemd.services.nextcloud-cron.path = [pkgs.exiftool pkgs.perl pkgs.ffmpeg_7];
+  systemd.services.nextcloud-cron.path = [pkgs.exiftool pkgs.perl pkgs.ffmpeg_7 pkgs.nodejs_21];
 
   environment.persistence."/persistent" = {
     directories = [

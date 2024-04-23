@@ -20,8 +20,8 @@
       #use sendfile = yes
       #max protocol = smb2
       # note: localhost is the ipv6 localhost ::1
-      #hosts allow = 192.168.178.0/24 127.0.0.1 localhost
-      #hosts deny = 0.0.0.0/0
+      hosts allow = 192.168.178.0/24 127.0.0.1 localhost
+      hosts deny = 0.0.0.0/0
       guest account = nobody
       map to guest = bad user
     '';
@@ -34,7 +34,7 @@
         "create mask" = "2777";
         "directory mask" = "2777";
         "force user" = "a4blue";
-        "force group" = "a4blue";
+        "force group" = "users";
       };
     };
   };

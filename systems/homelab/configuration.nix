@@ -68,7 +68,7 @@
   #boot.initrd.systemd.emergencyAccess = true;
 
   # Network DNS Fallback
-  networking.nameservers = ["8.8.8.8"];
+  networking.nameservers = ["127.0.0.1" "8.8.8.8"];
 
   # Set your time zone.
   time.timeZone = "Europe/Berlin";

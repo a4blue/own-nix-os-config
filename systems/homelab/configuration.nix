@@ -30,15 +30,14 @@
     ../../modules/nixos/homepage-dashboard.nix
     ../../modules/nixos/paperless.nix
     ../../modules/nixos/nextcloud.nix
-    ../../modules/nixos/photoprism.nix
     ../../modules/nixos/borgbackup.nix
     ../../modules/nixos/jellyfin.nix
     ../../modules/nixos/forgejo.nix
     ../../modules/unmanic/default.nix
-    ../../modules/nixos/authentik.nix
     # other services
     #../../modules/nixos/nfs.nix
     ../../modules/nixos/samba.nix
+    ../../modules/nixos/blocky.nix
   ];
 
   programs.fuse.userAllowOther = true;

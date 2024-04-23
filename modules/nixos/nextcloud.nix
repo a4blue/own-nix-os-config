@@ -20,6 +20,7 @@ in {
   };
   imports = [
     ./nginx.nix
+    ./mysql.nix
   ];
   sops.secrets.nextcloud-admin-pass = {
     owner = "nextcloud";

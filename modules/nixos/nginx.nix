@@ -16,6 +16,7 @@
       "home.a4blue.me" = {
         forceSSL = true;
         enableACME = true;
+        serverAliases = ["*.home.a4blue.me"];
         locations."/" = {
           root = "/var/www";
         };

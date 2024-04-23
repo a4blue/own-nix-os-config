@@ -5,10 +5,10 @@
       ports.dns = 53;
       customDNS = {
         customTTL = "1h";
-        filterUnmappedTypes = "true";
+        filterUnmappedTypes = true;
         mapping = {
-          home.a4blue.me = "192.168.178.64";
-          nextclod.home.a4blue.me = "192.168.178.64";
+          "home.a4blue.me" = "192.168.178.64";
+          "nextclod.home.a4blue.me" = "192.168.178.64";
         };
       };
       upstreams.groups.default = [

@@ -3,6 +3,7 @@
 in {
   imports = [
     ./nginx.nix
+    ./postgresql.nix
   ];
   services.forgejo = {
     enable = true;

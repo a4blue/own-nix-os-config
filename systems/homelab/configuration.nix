@@ -35,6 +35,7 @@
     ../../modules/nixos/jellyfin.nix
     ../../modules/nixos/forgejo.nix
     ../../modules/unmanic/default.nix
+    ../../modules/nixos/authentik.nix
     # other services
     #../../modules/nixos/nfs.nix
     ../../modules/nixos/samba.nix

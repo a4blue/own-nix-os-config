@@ -59,14 +59,6 @@ in {
               }
             ];
           }
-          {
-            Photoprism = [
-              {
-                abbr = "PP";
-                href = "https://homelab.armadillo-snake.ts.net/photoprism";
-              }
-            ];
-          }
         ];
       }
       {
@@ -96,8 +88,13 @@ in {
     ];
   };
 
-  services.nginx.virtualHosts."homelab.armadillo-snake.ts.net".locations."/" = {
+  services.nginx.virtualHosts."homepage.homelab.local".locations."/" = {
     recommendedProxySettings = true;
     proxyPass = "http://localhost:${builtins.toString servicePort}";
+    extraConfig = ''
+      deny 192.168.178.1;
+      allow 192.168.178.0/24;
+      deny all;
+    '';
   };
 }

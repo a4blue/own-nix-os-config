@@ -49,8 +49,6 @@
     hashedPasswordFile = config.sops.secrets.a4blue_easy_hashed_password.path;
   };
 
-  services.tailscale.enable = true;
-
   services = {
     openssh.enable = true;
     fstrim.enable = true;

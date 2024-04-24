@@ -20,18 +20,18 @@
     serviceConfig = {
       Type = "oneshot";
     };
+  };
 
-    systemd.timers."dynu-ip-update" = {
-      enable = true;
-      wantedBy = [
-        "timers.target"
-      ];
-      after = ["network-online.target"];
-      timerConfig = {
-        Unit = "dynu-ip-update.service";
-        OnBootSec = "10m";
-        OnUnitActiveSec = "10m";
-      };
+  systemd.timers."dynu-ip-update" = {
+    enable = true;
+    wantedBy = [
+      "timers.target"
+    ];
+    after = ["network-online.target"];
+    timerConfig = {
+      Unit = "dynu-ip-update.service";
+      OnBootSec = "10m";
+      OnUnitActiveSec = "10m";
     };
   };
 }

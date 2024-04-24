@@ -6,6 +6,7 @@
   security.acme = {
     acceptTerms = true;
     defaults.email = "a4blue@hotmail.de";
+    dnsResolver = "1.1.1.1:53";
     certs."homelab.a4blue.me" = {
       domain = "homelab.a4blue.me";
       extraDomainNames = ["*.homelab.a4blue.me"];

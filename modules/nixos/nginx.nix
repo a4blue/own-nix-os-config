@@ -17,7 +17,6 @@
       credentialFiles = {
         "DYNU_API_KEY_FILE" = config.sops.secrets.dynu_api_key.path;
       };
-      extraLegoFlags = ["vvv"];
     };
   };
   services.nginx = {

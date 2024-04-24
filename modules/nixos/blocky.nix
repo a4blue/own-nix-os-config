@@ -6,13 +6,13 @@
       caching.prefetching = true;
       caching.prefetchExpires = "12h";
       caching.cacheTimeNegative = "-1";
+      log.level = "warn";
       customDNS = {
         customTTL = "1h";
         filterUnmappedTypes = true;
         mapping = {
-          "home-test.a4blue.me" = "192.168.178.64";
-          "home.a4blue.me" = "192.168.178.64";
-          "nextcloud.home.a4blue.me" = "192.168.178.64";
+          "homelab.a4blue.me" = "192.168.178.64";
+          "*.homelab.a4blue.me" = "192.168.178.64";
         };
       };
       upstreams.groups.default = [
@@ -21,9 +21,11 @@
         # Digitale Gesellschaft
         "https://dns.digitale-gesellschaft.ch/dns-query"
         # Uncensored DNS Anycast
-        "tcp-tls:198.180.150.12:853"
+        #"tcp-tls:198.180.150.12:853"
         # Uncensored DNS Unicast
-        "tcp-tls:89.233.43.71:853"
+        #"tcp-tls:89.233.43.71:853"
+        "https://dnsforge.de/dns-query"
+        "https://dns.quad9.net/dns-query"
       ];
       bootstrapDns = {
         upstream = "https://dns.digitale-gesellschaft.ch/dns-query";

@@ -20,6 +20,7 @@
     serviceConfig = {
       Type = "oneshot";
     };
+    path = [pkgs.curlFull];
   };
 
   systemd.timers."dynu-ip-update" = {
@@ -27,7 +28,7 @@
     wantedBy = [
       "timers.target"
     ];
-    after = ["network-online.target"];
+    after = [];
     timerConfig = {
       Unit = "dynu-ip-update.service";
       OnBootSec = "10m";

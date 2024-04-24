@@ -6,15 +6,15 @@
   security.acme = {
     acceptTerms = true;
     defaults.email = "a4blue@hotmail.de";
-    #certs."home-test.a4blue.me" = {
-    #  domain = "home-test.a4blue.me";
-    #  extraDomainNames = ["*.home-test.a4blue.me"];
-    #  dnsProvider = "dynu";
-    #  dnsPropagationCheck = true;
-    #  credentialFiles = {
-    #    "DYNU_API_KEY_FILE" = config.sops.secrets.dynu_api_key.path;
-    #  };
-    #};
+    certs."homelab.a4blue.me" = {
+      domain = "homelab.a4blue.me";
+      extraDomainNames = ["*.homelab.a4blue.me"];
+      dnsProvider = "dynu";
+      dnsPropagationCheck = true;
+      credentialFiles = {
+        "DYNU_API_KEY_FILE" = config.sops.secrets.dynu_api_key.path;
+      };
+    };
   };
   services.nginx = {
     recommendedTlsSettings = true;
@@ -33,8 +33,8 @@
         };
       };
       "homelab.a4blue.me" = {
-        #forceSSL = true;
-        #useACMEHost = "home-test.a4blue.me";
+        forceSSL = true;
+        useACMEHost = "homelab.a4blue.me";
         locations."/" = {
           root = "/var/www";
         };

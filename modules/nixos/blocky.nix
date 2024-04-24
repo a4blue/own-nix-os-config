@@ -5,7 +5,7 @@
       ports.dns = 53;
       caching.prefetching = true;
       caching.prefetchExpires = "12h";
-      caching.cacheTimeNegative = "-1";
+      caching.cacheTimeNegative = "-1 min";
       log.level = "warn";
       customDNS = {
         customTTL = "1h";
@@ -13,6 +13,8 @@
         mapping = {
           "homelab.a4blue.me" = "192.168.178.64";
           "*.homelab.a4blue.me" = "192.168.178.64";
+          "*.homelab.local" = "192.168.178.64";
+          "homelab.local" = "192.168.178.64";
         };
       };
       upstreams.groups.default = [

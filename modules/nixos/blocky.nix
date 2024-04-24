@@ -5,7 +5,7 @@
       ports.dns = 53;
       caching.prefetching = true;
       caching.prefetchExpires = "12h";
-      caching.cacheTimeNegative = "-1 min";
+      caching.cacheTimeNegative = "1m";
       log.level = "warn";
       customDNS = {
         customTTL = "1h";

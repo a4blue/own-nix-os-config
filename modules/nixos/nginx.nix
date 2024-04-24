@@ -16,9 +16,6 @@
       dnsPropagationCheck = true;
       credentialFiles = {
         "DYNU_API_KEY_FILE" = config.sops.secrets.dynu_api_key.path;
-        "DYNU_POLLING_INTERVAL" = 10;
-        "DYNU_PROPAGATION_TIMEOUT" = 60;
-        "DYNU_TTL" = 120;
       };
       extraLegoFlags = ["vvv"];
     };

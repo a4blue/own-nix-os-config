@@ -9,15 +9,6 @@
       email = "a4blue@hotmail.de";
       dnsResolver = "1.1.1.1:53";
     };
-    certs."homelab.a4blue.me" = {
-      domain = "homelab.a4blue.me";
-      extraDomainNames = ["*.homelab.a4blue.me"];
-      dnsProvider = "dynu";
-      dnsPropagationCheck = true;
-      credentialFiles = {
-        "DYNU_API_KEY_FILE" = config.sops.secrets.dynu_api_key.path;
-      };
-    };
   };
   services.nginx = {
     recommendedTlsSettings = true;
@@ -31,13 +22,6 @@
       "home.a4blue.me" = {
         forceSSL = true;
         enableACME = true;
-        locations."/" = {
-          root = "/var/www";
-        };
-      };
-      "homelab.a4blue.me" = {
-        forceSSL = true;
-        useACMEHost = "homelab.a4blue.me";
         locations."/" = {
           root = "/var/www";
         };

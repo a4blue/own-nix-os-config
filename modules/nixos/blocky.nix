@@ -15,6 +15,8 @@
           "*.homelab.a4blue.me" = "192.168.178.64";
           "*.homelab.local" = "192.168.178.64";
           "homelab.local" = "192.168.178.64";
+          "home.a4blue.me" = "192.168.178.64";
+          "nextcloud.home.a4blue.me" = "192.168.178.64";
         };
       };
       upstreams.groups.default = [

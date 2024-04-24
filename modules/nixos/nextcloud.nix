@@ -20,7 +20,6 @@ in {
   };
   imports = [
     ./nginx.nix
-    ./mysql.nix
   ];
   sops.secrets.nextcloud-admin-pass = {
     owner = "nextcloud";
@@ -36,7 +35,7 @@ in {
     package = pkgs.nextcloud28;
     appstoreEnable = true;
     phpOptions."opcache.interned_strings_buffer" = "32";
-    maxUploadSize = "8G";
+    maxUploadSize = "4G";
     autoUpdateApps.enable = true;
     extraAppsEnable = true;
     extraApps = with config.services.nextcloud.package.packages.apps; {
@@ -61,14 +60,11 @@ in {
     };
     settings = let
       prot = "https";
-      host = "homelab.armadillo-snake.ts.net";
-      dir = "/nextcloud";
+      host = "nextcloud.home.a4blue.me";
     in {
       overwriteprotocol = prot;
       overwritehost = host;
-      overwritewebroot = dir;
-      overwrite.cli.url = "${prot}://${host}${dir}/";
-      htaccess.RewriteBase = dir;
+      overwrite.cli.url = "${prot}://${host}/";
       default_phone_region = "DE";
       maintenance_window_start = 3;
       log_type = "file";
@@ -83,35 +79,14 @@ in {
     }
   ];
 
-  services.nginx.virtualHosts."homelab.armadillo-snake.ts.net" = {
-    locations."^~ /.well-known" = {
-      priority = 9000;
+  services.nginx.virtualHosts."nextcloud.home.a4blue.me" = {
+    forceSSL = true;
+    enableACME = true;
+    locations."/" = {
+      recommendedProxySettings = true;
+      proxyPass = "http://localhost:${builtins.toString servicePort}";
       extraConfig = ''
-        absolute_redirect off;
-        location ~ ^/\\.well-known/(?:carddav|caldav)$ {
-          return 301 /nextcloud/remote.php/dav;
-        }
-        location ~ ^/\\.well-known/host-meta(?:\\.json)?$ {
-          return 301 /nextcloud/public.php?service=host-meta-json;
-        }
-        location ~ ^/\\.well-known/(?!acme-challenge|pki-validation) {
-          return 301 /nextcloud/index.php$request_uri;
-        }
-        try_files $uri $uri/ =404;
-      '';
-    };
-    locations."/nextcloud/" = {
-      priority = 9999;
-      extraConfig = ''
-        proxy_set_header X-Real-IP $remote_addr;
-        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-        proxy_set_header X-NginX-Proxy true;
-        proxy_set_header X-Forwarded-Proto http;
-        proxy_pass http://localhost:${builtins.toString servicePort}/; # tailing / is important!
-        proxy_set_header Host $host;
-        proxy_cache_bypass $http_upgrade;
-        proxy_redirect off;
-        client_max_body_size 9000m;
+        client_max_body_size 4096;
       '';
     };
   };

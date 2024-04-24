@@ -6,7 +6,7 @@
 }: let
   unmanic = import ./derivation.nix {inherit pkgs;};
 in {
-  systemd.services."unmanic.service" = {
+  systemd.services."unmanic" = {
     enable = true;
     script = ''
       ${unmanic}/bin/unmanic

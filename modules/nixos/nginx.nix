@@ -51,7 +51,7 @@
     directories = [
       {
         directory = "/var/lib/acme";
-        mode = "740";
+        mode = "2744";
         user = "acme";
         group = "acme";
       }

@@ -16,7 +16,22 @@
       curl "http://api-ipv4.dynu.com/nic/update?username=a4blue&password=$IPPASSWORD"
       unset IPPASSWORD
     '';
-    environment = {
+    restartIfChanged = true;
+    serviceConfig = {
+      Type = "oneshot";
+    };
+
+    systemd.timers."dynu-ip-update" = {
+      enable = true;
+      wantedBy = [
+        "timers.target"
+      ];
+      after = ["network-online.target"];
+      timerConfig = {
+        Unit = "dynu-ip-update.service";
+        OnBootSec = "10m";
+        OnUnitActiveSec = "10m";
+      };
     };
   };
 }

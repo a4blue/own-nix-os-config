@@ -3,9 +3,10 @@
   pkgs,
   lib,
   ...
-}: let
-  servicePort = 38000;
-in {
+}: {
+  imports = [
+    ./nginx.nix
+  ];
   environment.systemPackages = with pkgs; [
     exiftool
     nodejs_21
@@ -18,9 +19,7 @@ in {
       intel-media-driver
     ];
   };
-  imports = [
-    ./nginx.nix
-  ];
+
   sops.secrets.nextcloud-admin-pass = {
     owner = "nextcloud";
     group = "nextcloud";
@@ -28,7 +27,7 @@ in {
   services.nextcloud = {
     enable = true;
     https = true;
-    hostName = "localhost";
+    hostName = "nextcloud.home.a4blue.me";
     configureRedis = true;
     caching.redis = true;
     database.createLocally = true;
@@ -58,13 +57,7 @@ in {
       dbtype = "pgsql";
       adminpassFile = config.sops.secrets.nextcloud-admin-pass.path;
     };
-    settings = let
-      prot = "https";
-      host = "nextcloud.home.a4blue.me";
-    in {
-      overwriteprotocol = prot;
-      overwritehost = host;
-      overwrite.cli.url = "${prot}://${host}/";
+    settings = {
       default_phone_region = "DE";
       maintenance_window_start = 3;
       log_type = "file";
@@ -72,23 +65,9 @@ in {
     };
   };
 
-  services.nginx.virtualHosts."${config.services.nextcloud.hostName}".listen = [
-    {
-      addr = "127.0.0.1";
-      port = servicePort;
-    }
-  ];
-
-  services.nginx.virtualHosts."nextcloud.home.a4blue.me" = {
+  services.nginx.virtualHosts."${config.services.nextcloud.hostName}" = {
     forceSSL = true;
     enableACME = true;
-    locations."/" = {
-      recommendedProxySettings = true;
-      proxyPass = "http://localhost:${builtins.toString servicePort}";
-      extraConfig = ''
-        client_max_body_size 4096;
-      '';
-    };
   };
 
   systemd.services.nextcloud-cron.path = [pkgs.exiftool pkgs.perl pkgs.ffmpeg_7 pkgs.nodejs_21];

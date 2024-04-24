@@ -17,20 +17,40 @@
       };
       upstreams.groups.default = [
         # Digital Courage
-        "tcp-tls:5.9.164.112:853"
+        "tcp-tls:dns3.digitalcourage.de:853"
         # Digitale Gesellschaft
         "https://dns.digitale-gesellschaft.ch/dns-query"
         # Uncensored DNS Anycast
-        #"tcp-tls:198.180.150.12:853"
+        "https://anycast.uncensoreddns.org/dns-query"
         # Uncensored DNS Unicast
-        #"tcp-tls:89.233.43.71:853"
+        "https://unicast.uncensoreddns.org/dns-query"
+        # DNS Forge
         "https://dnsforge.de/dns-query"
+        # Quad9 (Should i trust them ?)
         "https://dns.quad9.net/dns-query"
       ];
-      bootstrapDns = {
-        upstream = "https://dns.digitale-gesellschaft.ch/dns-query";
-        ips = ["2a05:fc84::42" "2a05:fc84::43" "185.95.218.42" "185.95.218.43"];
-      };
+      bootstrapDns = [
+        {
+          upstream = "https://dns.digitale-gesellschaft.ch/dns-query";
+          ips = ["2a05:fc84::42" "2a05:fc84::43" "185.95.218.42" "185.95.218.43"];
+        }
+        {
+          upstream = "tcp-tls:dns3.digitalcourage.de:853";
+          ips = ["5.9.164.112" "2a01:4f8:251:554::2"];
+        }
+        {
+          upstream = "https://dns.quad9.net/dns-query";
+          ips = ["9.9.9.9" "149.112.112.112" "2620:fe::fe" "2620:fe::9"];
+        }
+        {
+          upstream = "https://anycast.uncensoreddns.org/dns-query";
+          ips = ["91.239.100.100" "2001:67c:28a4::"];
+        }
+        {
+          upstream = "https://unicast.uncensoreddns.org/dns-query";
+          ips = ["89.233.43.71" "2a01:3a0:53:53::"];
+        }
+      ];
       blocking = {
         blackLists = {
           ads = ["https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts"];

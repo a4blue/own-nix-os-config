@@ -32,7 +32,7 @@
           root = "/var/www";
         };
       };
-      "home-test.a4blue.me" = {
+      "homelab.a4blue.me" = {
         #forceSSL = true;
         #useACMEHost = "home-test.a4blue.me";
         locations."/" = {

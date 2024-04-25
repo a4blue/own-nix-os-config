@@ -50,6 +50,12 @@
         user = "nginx";
         group = "nginx";
       }
+      {
+        directory = "var/lib/";
+        mode = "600";
+        user = "nginx";
+        group = "nginx";
+      }
     ];
   };
 }

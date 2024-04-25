@@ -1,5 +1,6 @@
 {config, ...}: let
   servicePort = 38001;
+  serviceDomain = "paperless.homelab.internal";
 in {
   imports = [
     ./nginx.nix
@@ -18,7 +19,7 @@ in {
         optimize = 1;
         pdfa_image_compression = "lossless";
       };
-      PAPERLESS_URL = "https://paperless.homelab.local";
+      PAPERLESS_URL = "https://${serviceDomain}";
       PAPERLESS_FORCE_SCRIPT_NAME = "/paperless";
       PAPERLESS_STATIC_URL = "/paperless/static/";
       PAPERLESS_ADMIN_USER = "a4blue";
@@ -40,8 +41,8 @@ in {
     ];
   };
 
-  services.nginx.virtualHosts."paperless.homelab.local" = {
-    forceSSL = true;
+  services.nginx.virtualHosts."${serviceDomain}" = {
+    #forceSSL = true;
     sslCertificateKey = "/var/lib/self-signed-nginx-cert/homelab-local-root.key";
     sslCertificate = "/var/lib/self-signed-nginx-cert/wildcard-homelab-local.pem";
     extraConfig = ''

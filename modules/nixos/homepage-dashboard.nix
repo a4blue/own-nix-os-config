@@ -1,5 +1,6 @@
 {config, ...}: let
   servicePort = 37999;
+  serviceDomain = "homepage.homelab.local";
 in {
   imports = [
     ./nginx.nix
@@ -47,7 +48,7 @@ in {
             Paperless = [
               {
                 abbr = "PL";
-                href = "https://paperless.homelab.local";
+                href = "https://paperless.homelab.internal";
               }
             ];
           }
@@ -55,7 +56,7 @@ in {
             Forgejo = [
               {
                 abbr = "FG";
-                href = "https://forgejo.homelab.local";
+                href = "https://forgejo.homelab.internal";
               }
             ];
           }
@@ -63,7 +64,7 @@ in {
             Jellyfin = [
               {
                 abbr = "JF";
-                href = "https://jellyfin.homelab.local";
+                href = "https://jellyfin.homelab.internal";
               }
             ];
           }
@@ -108,8 +109,8 @@ in {
     ];
   };
 
-  services.nginx.virtualHosts."homepage.homelab.local" = {
-    forceSSL = true;
+  services.nginx.virtualHosts."${serviceDomain}" = {
+    #forceSSL = true;
     sslCertificateKey = "/var/lib/self-signed-nginx-cert/homelab-local-root.key";
     sslCertificate = "/var/lib/self-signed-nginx-cert/wildcard-homelab-local.pem";
     extraConfig = ''

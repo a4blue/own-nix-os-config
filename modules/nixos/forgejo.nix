@@ -1,5 +1,6 @@
 {config, ...}: let
   servicePort = 38003;
+  serviceDomain = "forgejo.homelab.internal";
 in {
   imports = [
     ./nginx.nix
@@ -11,15 +12,15 @@ in {
     lfs.enable = true;
     settings = {
       server = {
-        DOMAIN = "forgejo.homelab.local";
-        ROOT_URL = "http://${config.services.forgejo.settings.server.DOMAIN}";
+        DOMAIN = serviceDomain;
+        ROOT_URL = "https://${config.services.forgejo.settings.server.DOMAIN}";
         HTTP_PORT = servicePort;
       };
       #service.DISABLE_REGISTRATION = true;
     };
   };
-  services.nginx.virtualHosts."forgejo.homelab.local" = {
-    forceSSL = true;
+  services.nginx.virtualHosts."${serviceDomain}" = {
+    #forceSSL = true;
     sslCertificateKey = "/var/lib/self-signed-nginx-cert/homelab-local-root.key";
     sslCertificate = "/var/lib/self-signed-nginx-cert/wildcard-homelab-local.pem";
     extraConfig = ''

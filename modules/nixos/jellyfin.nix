@@ -4,6 +4,7 @@
   ...
 }: let
   servicePort = 8096;
+  serviceDomain = "jellyfin.homelab.internal";
 in {
   imports = [
     ./nginx.nix
@@ -30,8 +31,8 @@ in {
     jellyfin-ffmpeg
   ];
 
-  services.nginx.virtualHosts."jellyfin.homelab.local" = {
-    forceSSL = true;
+  services.nginx.virtualHosts."${serviceDomain}" = {
+    #forceSSL = true;
     sslCertificateKey = "/var/lib/self-signed-nginx-cert/homelab-local-root.key";
     sslCertificate = "/var/lib/self-signed-nginx-cert/wildcard-homelab-local.pem";
     extraConfig = ''

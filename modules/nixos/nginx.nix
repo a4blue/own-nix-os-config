@@ -23,9 +23,9 @@
         };
       };
       # Default match
-      "_" = {
-        globalRedirect = "home.a4blue.me";
-      };
+      #"_" = {
+      #  globalRedirect = "home.a4blue.me";
+      #};
     };
   };
   users.users.nginx.extraGroups = ["acme"];

@@ -36,12 +36,12 @@
     neededForBoot = true;
   };
 
-  fileSystems."/LargeMedia" = {
-    device = "/dev/sdb1";
-    fsType = "bcachefs";
-    options = ["compression=zstd"];
-    neededForBoot = false;
-  };
+  #fileSystems."/LargeMedia" = {
+  #  device = "/dev/sdb1";
+  #  fsType = "bcachefs";
+  #  options = ["compression=zstd"];
+  #  neededForBoot = false;
+  #};
 
   swapDevices = [
     {

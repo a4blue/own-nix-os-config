@@ -34,6 +34,6 @@ ssh-keygen -t rsa -b 4096 -N "" -C "" -f /mnt/persistent/etc/ssh/ssh_host_rsa_ke
 ssh-keygen -t ed25519 -N "" -C "" -f /mnt/nix/secret/hetzner_storage_box/ssh_hetzner_storage_box_ed25519_key
 
 #nixos-generate-config --root /mnt
-#git clone https://github.com/a4blue/own-nix-os-config.git /home/nixos/own-nix-os-config
-#nixos-install --no-root-passwd --root /mnt --flake /home/nixos/own-nix-os-config#homelab
+#git clone https://github.com/a4blue/own-nix-os-config.git /mnt/home/nixos/own-nix-os-config
+#nixos-install --root /mnt --flake /mnt/home/nixos/own-nix-os-config#homelab
 #dd if=<path-to-image> of=/dev/sdX bs=4M conv=fsync

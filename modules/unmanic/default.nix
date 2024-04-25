@@ -4,7 +4,7 @@
   lib,
   ...
 }: let
-  unmanic = import ./derivation.nix {inherit pkgs;};
+  unmanic = import ./derivation.nix {inherit pkgs lib;};
 in {
   systemd.services."unmanic" = {
     enable = true;
@@ -14,6 +14,9 @@ in {
     environment = {
       HOME_DIR = "/var/lib/unmanic";
       CACHE_DIR = "/tmp/unmanic";
+    };
+    serviceConfig = {
+      User="root";
     };
     path = [
       pkgs.psutils
@@ -26,6 +29,8 @@ in {
       pkgs.python3Packages.requests
       pkgs.python3Packages.requests-toolbelt
       pkgs.python3Packages.py-cpuinfo
+      pkgs.python3Packages.watchdog
+      pkgs.python3Packages.inquirer
     ];
   };
   networking.firewall.allowedTCPPorts = [8888];

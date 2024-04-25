@@ -51,6 +51,19 @@ and run ```nix-shell```. **Note to myself:** Your PGP Key is the final backup, t
 ## Cleanup
 Generally cleanup the code to be more readable
 
+# Housekeeping
+
+## Self-signed Certs
+````
+nix-shell -p openssl
+cd /persistent/var/lib/self-signed-nginx-cert
+openssl ecparam -genkey -name secp521r1 -out homelab-local-root.key
+openssl req -new -key homelab-local-root.key -out csr-wildcard-homelab-local.pem
+openssl req -x509 -nodes -days 365 -key homelab-local-root.key -in csr-wildcard-homelab-local.pem -out wildcard-homelab-local.pem
+chmod 600 /persistent/var/lib/self-signed-nginx-cert/*
+chown nginx:nginx /persistent/var/lib/self-signed-nginx-cert/*
+````
+
 # Noteworthy Stuff
 - Using encrypted bcachefs with remote unlock
 - borgbackup with bcachefs subvolume snapshot

@@ -25,7 +25,6 @@
       # Default match
       "_" = {
         globalRedirect = "home.a4blue.me";
-        default = true;
       };
     };
   };

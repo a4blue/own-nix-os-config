@@ -1,6 +1,6 @@
 {config, ...}: let
   servicePort = 37999;
-  serviceDomain = "homepage.homelab.local";
+  serviceDomain = "homepage.homelab.internal";
 in {
   imports = [
     ./nginx.nix

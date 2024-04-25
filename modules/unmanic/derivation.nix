@@ -21,6 +21,24 @@
           final."peewee"
         ];
       };
+      "swagger-ui-py" = prev.buildPythonPackage {
+        pname = "swagger-ui-py";
+        version = "23.9.23";
+        src = pkgs.fetchurl {
+          url = "https://files.pythonhosted.org/packages/c0/e6/be065ce1553646836a706a788bb6251b01e2dd2c7a080ff2dbdcfa7df6ca/swagger_ui_py-23.9.23-py3-none-any.whl";
+          sha256 = "0xrxfz4p2zh898x9q2rlx62r642zh0y98lhql5ssgxk73ldbhvz8";
+        };
+        format = "wheel";
+        doCheck = false;
+        buildInputs = [];
+        checkInputs = [];
+        nativeBuildInputs = [];
+        propagatedBuildInputs = [
+          final."PyYaml"
+          final."jinja2"
+          final."packaging"
+        ];
+      };
     };
   };
 in
@@ -66,6 +84,7 @@ in
       urllib3
       wcwidth
       xmod
+      "swagger-ui-py"
     ];
 
     meta = with lib; {

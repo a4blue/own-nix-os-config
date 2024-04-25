@@ -1,13 +1,4 @@
 {config, ...}: {
-  environment.persistence."/SDMedia" = {
-    directories = [
-      {
-        directory = "/export/SDMedia";
-        user = "nobody";
-        group = "nogroup";
-      }
-    ];
-  };
   services.samba = {
     enable = true;
     securityType = "user";
@@ -27,7 +18,7 @@
     '';
     shares = {
       private = {
-        path = "/export/SDMedia";
+        path = "/SDMedia/smb";
         browseable = "yes";
         "read only" = "no";
         "guest ok" = "no";

@@ -25,6 +25,8 @@
     ../../modules/nixos/re-create-root.nix
     ../../modules/nixos/hardening.nix
     ../../modules/nixos/home-manager-base.nix
+    #../../modules/nixos/docker.nix
+    ../../modules/nixos/docker/unmanic.nix
 
     # web services
     ../../modules/nixos/homepage-dashboard.nix
@@ -33,7 +35,7 @@
     ../../modules/nixos/borgbackup.nix
     ../../modules/nixos/jellyfin.nix
     ../../modules/nixos/forgejo.nix
-    ../../modules/unmanic/default.nix
+    #../../modules/unmanic/default.nix
     # other services
     ../../modules/nixos/samba.nix
     ../../modules/nixos/blocky.nix

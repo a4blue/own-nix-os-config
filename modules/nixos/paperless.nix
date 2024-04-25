@@ -18,7 +18,7 @@ in {
         optimize = 1;
         pdfa_image_compression = "lossless";
       };
-      PAPERLESS_URL = "https://homelab.armadillo-snake.ts.net";
+      PAPERLESS_URL = "http://paperless.homelab.local";
       PAPERLESS_FORCE_SCRIPT_NAME = "/paperless";
       PAPERLESS_STATIC_URL = "/paperless/static/";
       PAPERLESS_ADMIN_USER = "a4blue";
@@ -40,9 +40,14 @@ in {
     ];
   };
 
-  services.nginx.virtualHosts."homelab.armadillo-snake.ts.net".locations."/paperless" = {
+  services.nginx.virtualHosts."paperless.homelab.local".locations."/" = {
     recommendedProxySettings = true;
     proxyPass = "http://localhost:${builtins.toString servicePort}";
+    extraConfig = ''
+      deny 192.168.178.1;
+      allow 192.168.178.0/24;
+      deny all;
+    '';
   };
 
   environment.persistence."/persistent" = {

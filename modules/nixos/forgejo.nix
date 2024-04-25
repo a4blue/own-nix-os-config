@@ -11,18 +11,21 @@ in {
     lfs.enable = true;
     settings = {
       server = {
-        DOMAIN = "homelab.armadillo-snake.ts.net/forgejo/";
-        ROOT_URL = "https://${config.services.forgejo.settings.server.DOMAIN}";
+        DOMAIN = "forgejo.homelab.local";
+        ROOT_URL = "http://${config.services.forgejo.settings.server.DOMAIN}";
         HTTP_PORT = servicePort;
       };
       #service.DISABLE_REGISTRATION = true;
     };
   };
-  services.nginx.virtualHosts."homelab.armadillo-snake.ts.net".locations."/forgejo" = {
+  services.nginx.virtualHosts."forgejo.homelab.local".locations."/" = {
     recommendedProxySettings = true;
     proxyPass = "http://localhost:${builtins.toString servicePort}/";
     extraConfig = ''
       client_max_body_size 512M;
+      deny 192.168.178.1;
+      allow 192.168.178.0/24;
+      deny all;
     '';
   };
 

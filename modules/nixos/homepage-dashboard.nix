@@ -88,17 +88,18 @@ in {
     ];
   };
 
-  services.nginx.virtualHosts."homepage.homelab.local"= {
+  services.nginx.virtualHosts."homepage.homelab.local" = {
     forceSSL = true;
     sslCertificateKey = "/var/lib/self-signed-nginx-cert/homelab-local-root.key";
     sslCertificate = "/var/lib/self-signed-nginx-cert/wildcard-homelab-local.pem";
     locations."/" = {
-    recommendedProxySettings = true;
-    proxyPass = "http://localhost:${builtins.toString servicePort}";
-    extraConfig = ''
-      deny 192.168.178.1;
-      allow 192.168.178.0/24;
-      deny all;
-    '';
-  };};
+      recommendedProxySettings = true;
+      proxyPass = "http://localhost:${builtins.toString servicePort}";
+      extraConfig = ''
+        deny 192.168.178.1;
+        allow 192.168.178.0/24;
+        deny all;
+      '';
+    };
+  };
 }

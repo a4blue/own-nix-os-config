@@ -51,7 +51,7 @@
         group = "nginx";
       }
       {
-        directory = "var/lib/";
+        directory = "/var/lib/self-signed-nginx-cert";
         mode = "600";
         user = "nginx";
         group = "nginx";

@@ -28,4 +28,5 @@ in {
       pkgs.python3Packages.py-cpuinfo
     ];
   };
+  networking.firewall.allowedTCPPorts = [8888];
 }

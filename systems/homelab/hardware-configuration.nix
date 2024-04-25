@@ -36,6 +36,13 @@
     neededForBoot = true;
   };
 
+  fileSystems."/LargeMedia" = {
+    device = "/dev/sdb1";
+    fsType = "bcachefs";
+    options = ["compression=zstd"];
+    neededForBoot = true;
+  };
+
   swapDevices = [
     {
       device = "/dev/nvme0n1p2";

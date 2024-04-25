@@ -36,11 +36,17 @@
         "force user" = "a4blue";
         "force group" = "users";
       };
+      "LargeMedia" = {
+        path = "/LargeMedia/smb";
+        browseable = "yes";
+        "read only" = "no";
+        "guest ok" = "no";
+        "create mask" = "2777";
+        "directory mask" = "2777";
+        "force user" = "a4blue";
+        "force group" = "users";
+      };
     };
-  };
-  services.samba-wsdd = {
-    enable = true;
-    openFirewall = true;
   };
   networking.firewall.allowPing = true;
 }

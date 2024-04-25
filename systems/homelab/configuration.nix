@@ -37,7 +37,7 @@
     ../../modules/nixos/forgejo.nix
     #../../modules/unmanic/default.nix
     # other services
-    ../../modules/nixos/samba.nix
+    #../../modules/nixos/samba.nix
     ../../modules/nixos/blocky.nix
   ];
 

@@ -29,12 +29,12 @@
     fsType = "vfat";
   };
 
-  fileSystems."/SDMedia" = {
-    device = "/dev/sda1";
-    fsType = "bcachefs";
-    options = ["compression=zstd"];
-    neededForBoot = true;
-  };
+  #fileSystems."/SDMedia" = {
+  #  device = "/dev/sda1";
+  #  fsType = "bcachefs";
+  #  options = ["compression=zstd"];
+  #  neededForBoot = true;
+  #};
 
   #fileSystems."/LargeMedia" = {
   #  device = "/dev/sdb1";

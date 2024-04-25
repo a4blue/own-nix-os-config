@@ -40,7 +40,7 @@
     device = "/dev/sdb1";
     fsType = "bcachefs";
     options = ["compression=zstd"];
-    neededForBoot = true;
+    neededForBoot = false;
   };
 
   swapDevices = [

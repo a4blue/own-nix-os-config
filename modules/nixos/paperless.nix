@@ -18,7 +18,7 @@ in {
         optimize = 1;
         pdfa_image_compression = "lossless";
       };
-      PAPERLESS_URL = "http://paperless.homelab.local";
+      PAPERLESS_URL = "https://paperless.homelab.local";
       PAPERLESS_FORCE_SCRIPT_NAME = "/paperless";
       PAPERLESS_STATIC_URL = "/paperless/static/";
       PAPERLESS_ADMIN_USER = "a4blue";
@@ -40,14 +40,22 @@ in {
     ];
   };
 
-  services.nginx.virtualHosts."paperless.homelab.local".locations."/" = {
-    recommendedProxySettings = true;
-    proxyPass = "http://localhost:${builtins.toString servicePort}";
+  services.nginx.virtualHosts."paperless.homelab.local" = {
+    forceSSL = true;
+    sslCertificateKey = "/var/lib/self-signed-nginx-cert/homelab-local-root.key";
+    sslCertificate = "/var/lib/self-signed-nginx-cert/wildcard-homelab-local.pem";
     extraConfig = ''
-      deny 192.168.178.1;
-      allow 192.168.178.0/24;
-      deny all;
+      ssl_stapling off;
     '';
+    locations."/" = {
+      recommendedProxySettings = true;
+      proxyPass = "http://localhost:${builtins.toString servicePort}";
+      extraConfig = ''
+        deny 192.168.178.1;
+        allow 192.168.178.0/24;
+        deny all;
+      '';
+    };
   };
 
   environment.persistence."/persistent" = {

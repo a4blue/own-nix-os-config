@@ -42,20 +42,40 @@ in {
     ];
     bookmarks = [
       {
-        Services = [
+        "Local Services" = [
           {
             Paperless = [
               {
                 abbr = "PL";
-                href = "https://homelab.armadillo-snake.ts.net/paperless";
+                href = "https://paperless.homelab.local";
               }
             ];
           }
           {
+            Forgejo = [
+              {
+                abbr = "FG";
+                href = "https://forgejo.homelab.local";
+              }
+            ];
+          }
+          {
+            Jellyfin = [
+              {
+                abbr = "JF";
+                href = "https://jellyfin.homelab.local";
+              }
+            ];
+          }
+        ];
+      }
+      {
+        "Public Services" = [
+          {
             Nextcloud = [
               {
                 abbr = "NC";
-                href = "https://homelab.armadillo-snake.ts.net/nextcloud";
+                href = "https://nextcloud.home.a4blue.me";
               }
             ];
           }
@@ -92,6 +112,9 @@ in {
     forceSSL = true;
     sslCertificateKey = "/var/lib/self-signed-nginx-cert/homelab-local-root.key";
     sslCertificate = "/var/lib/self-signed-nginx-cert/wildcard-homelab-local.pem";
+    extraConfig = ''
+      ssl_stapling off;
+    '';
     locations."/" = {
       recommendedProxySettings = true;
       proxyPass = "http://localhost:${builtins.toString servicePort}";

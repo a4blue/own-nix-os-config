@@ -35,10 +35,8 @@
     ../../modules/nixos/forgejo.nix
     ../../modules/unmanic/default.nix
     # other services
-    #../../modules/nixos/nfs.nix
     ../../modules/nixos/samba.nix
     ../../modules/nixos/blocky.nix
-    ../../modules/nixos/dynu.nix
   ];
 
   programs.fuse.userAllowOther = true;

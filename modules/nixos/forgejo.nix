@@ -18,15 +18,23 @@ in {
       #service.DISABLE_REGISTRATION = true;
     };
   };
-  services.nginx.virtualHosts."forgejo.homelab.local".locations."/" = {
-    recommendedProxySettings = true;
-    proxyPass = "http://localhost:${builtins.toString servicePort}/";
+  services.nginx.virtualHosts."forgejo.homelab.local" = {
+    forceSSL = true;
+    sslCertificateKey = "/var/lib/self-signed-nginx-cert/homelab-local-root.key";
+    sslCertificate = "/var/lib/self-signed-nginx-cert/wildcard-homelab-local.pem";
     extraConfig = ''
-      client_max_body_size 512M;
-      deny 192.168.178.1;
-      allow 192.168.178.0/24;
-      deny all;
+      ssl_stapling off;
     '';
+    locations."/" = {
+      recommendedProxySettings = true;
+      proxyPass = "http://localhost:${builtins.toString servicePort}/";
+      extraConfig = ''
+        client_max_body_size 512M;
+        deny 192.168.178.1;
+        allow 192.168.178.0/24;
+        deny all;
+      '';
+    };
   };
 
   environment.persistence."/persistent" = {

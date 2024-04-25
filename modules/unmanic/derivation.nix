@@ -1,4 +1,7 @@
-{pkgs,lib}:
+{
+  pkgs,
+  lib,
+}:
 pkgs.python3Packages.buildPythonPackage rec {
   pname = "unmanic";
   format = "wheel";
@@ -10,19 +13,38 @@ pkgs.python3Packages.buildPythonPackage rec {
     python = "py3";
   };
 
-  dependencies = [
+  dependencies = with pkgs.python3Packages; [
     pkgs.psutils
-    pkgs.python3Packages.schedule
-    pkgs.python3Packages.tornado
-    pkgs.python3Packages.marshmallow
-    pkgs.python3Packages.peewee
-    pkgs.python3Packages.peewee-migrate
-    pkgs.python3Packages.psutil
-    pkgs.python3Packages.requests
-    pkgs.python3Packages.requests-toolbelt
-    pkgs.python3Packages.py-cpuinfo
-    pkgs.python3Packages.watchdog
-    pkgs.python3Packages.inquirer
+    schedule
+    tornado
+    marshmallow
+    peewee
+    peewee-migrate
+    psutil
+    requests
+    requests-toolbelt
+    py-cpuinfo
+    watchdog
+    inquirer
+    markupsafe
+    pyyaml
+    blessed
+    certifi
+    charset-normalizer
+    click
+    editor
+    idna
+    inquirer
+    jinja2
+    packaging
+    readchar
+    runs
+    schedule
+    six
+    #swagger-ui-py
+    urllib3
+    wcwidth
+    xmod
   ];
 
   meta = with lib; {

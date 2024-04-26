@@ -18,6 +18,7 @@
   users.users = {
     unmanic = {
       group = "unmanic";
+      isNormalUser = true;
       home = "/var/lib/unmanic";
       extraGroups = ["smbUser" "render"];
     };

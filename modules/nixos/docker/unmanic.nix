@@ -18,7 +18,6 @@
   users.users = {
     unmanic = {
       group = "unmanic";
-      isHomeUser = true;
       home = "/var/lib/unmanic";
       extraGroups = ["smbUser" "render"];
     };
@@ -36,6 +35,6 @@
       }
     ];
   };
-  
+
   networking.firewall.allowedTCPPorts = [8888];
 }

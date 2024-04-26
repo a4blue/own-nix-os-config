@@ -39,6 +39,7 @@
     # other services
     ../../modules/nixos/samba.nix
     ../../modules/nixos/blocky.nix
+    ../../modules/nixos/fail2ban.nix
   ];
 
   programs.fuse.userAllowOther = true;

@@ -16,12 +16,11 @@ in {
         ROOT_URL = "https://${config.services.forgejo.settings.server.DOMAIN}";
         HTTP_PORT = servicePort;
       };
-      #service.DISABLE_REGISTRATION = true;
+      service.DISABLE_REGISTRATION = true;
     };
   };
   services.nginx.virtualHosts."${serviceDomain}" = {
-    #forceSSL = true;
-    addSSL = true;
+    forceSSL = true;
     sslCertificateKey = "/var/lib/self-signed-nginx-cert/homelab-local-root.key";
     sslCertificate = "/var/lib/self-signed-nginx-cert/wildcard-homelab-local.pem";
     extraConfig = ''

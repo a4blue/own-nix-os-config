@@ -6,6 +6,7 @@
 }: {
   imports = [
     ./nginx.nix
+    ./fail2ban.nix
   ];
   environment.systemPackages = with pkgs; [
     exiftool
@@ -71,6 +72,29 @@
   };
 
   systemd.services.nextcloud-cron.path = [pkgs.exiftool pkgs.perl pkgs.ffmpeg_7 pkgs.nodejs_21];
+
+  services.fail2ban = {
+    jails = {
+      backend = "auto";
+      enabled = "true";
+      port = "80,443";
+      protocol = "tcp";
+      filter = "nextcloud";
+      maxretry = "3";
+      bantime = "86400";
+      findtime = "43200";
+      logpath = "/var/lib/nextcloud/data/nextcloud.log";
+    };
+  };
+  environment.etc = {
+    "fail2ban/filter.d/nextcloud.conf".text = ''
+          [Definition]
+      _groupsre = (?:(?:,?\s*"\w+":(?:"[^"]+"|\w+))*)
+      failregex = ^\{%(_groupsre)s,?\s*"remoteAddr":"<HOST>"%(_groupsre)s,?\s*"message":"Login failed:
+                  ^\{%(_groupsre)s,?\s*"remoteAddr":"<HOST>"%(_groupsre)s,?\s*"message":"Trusted domain error.
+      datepattern = ,?\s*"time"\s*:\s*"%%Y-%%m-%%d[T ]%%H:%%M:%%S(%%z)?"
+    '';
+  };
 
   environment.persistence."/persistent" = {
     directories = [

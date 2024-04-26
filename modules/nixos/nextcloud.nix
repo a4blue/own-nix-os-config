@@ -75,15 +75,17 @@
 
   services.fail2ban = {
     jails = {
-      backend = "auto";
-      enabled = "true";
-      port = "80,443";
-      protocol = "tcp";
-      filter = "nextcloud";
-      maxretry = "3";
-      bantime = "86400";
-      findtime = "43200";
-      logpath = "/var/lib/nextcloud/data/nextcloud.log";
+      nextcloud.settings = {
+        backend = "auto";
+        enabled = "true";
+        port = "80,443";
+        protocol = "tcp";
+        filter = "nextcloud";
+        maxretry = "3";
+        bantime = "86400";
+        findtime = "43200";
+        logpath = "/var/lib/nextcloud/data/nextcloud.log";
+      };
     };
   };
   environment.etc = {

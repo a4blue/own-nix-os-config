@@ -18,7 +18,8 @@
   users.users = {
     unmanic = {
       group = "unmanic";
-      isSystemUser = true;
+      isHomeUser = true;
+      home = "/var/lib/unmanic";
       extraGroups = ["smbUser" "render"];
     };
   };
@@ -35,17 +36,6 @@
       }
     ];
   };
-
-  #users = optionalAttrs (cfg.user == defaultUser) {
-  #    users.${defaultUser} = {
-  #      group = defaultUser;
-  #      uid = config.ids.uids.paperless;
-  #      home = cfg.dataDir;
-  #    };
-  #    groups.${defaultUser} = {
-  #      gid = config.ids.gids.paperless;
-  #    };
-
-  #users.users."unmanic" = {};
+  
   networking.firewall.allowedTCPPorts = [8888];
 }

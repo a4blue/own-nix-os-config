@@ -25,7 +25,7 @@
         "create mask" = "2777";
         "directory mask" = "2777";
         "force user" = "a4blue";
-        "force group" = "users";
+        "force group" = "smbUser";
       };
       "LargeMedia" = {
         path = "/LargeMedia/smb";
@@ -35,9 +35,12 @@
         "create mask" = "2777";
         "directory mask" = "2777";
         "force user" = "a4blue";
-        "force group" = "users";
+        "force group" = "smbUser";
       };
     };
+  };
+  users.groups.smbUser = {
+    members = ["a4blue"];
   };
   networking.firewall.allowPing = true;
 }

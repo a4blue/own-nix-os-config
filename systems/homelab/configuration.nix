@@ -40,6 +40,7 @@
     ../../modules/nixos/samba.nix
     ../../modules/nixos/blocky.nix
     ../../modules/nixos/fail2ban.nix
+    ../../modules/nixos/clamav.nix
   ];
 
   programs.fuse.userAllowOther = true;

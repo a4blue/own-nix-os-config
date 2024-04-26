@@ -49,6 +49,8 @@ in {
     };
   };
 
+  users.users.jellyfin.extraGroups = ["render" "smbUser"];
+
   environment.persistence."/persistent" = {
     directories = [
       {

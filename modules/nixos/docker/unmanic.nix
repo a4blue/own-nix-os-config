@@ -11,16 +11,27 @@
       "/LargeMedia:/library"
       "/tmp/unmanic:/tmp/unmanic"
     ];
-    user = "root:root";
+    extraOptions = ["--device=/dev/dri/renderD128"];
+    user = "unmanic:unmanic";
   };
+
+  users.users = {
+    unmanic = {
+      group = "unmanic";
+      isSystemUser = true;
+      extraGroups = ["smbUser" "render"];
+    };
+  };
+
+  users.groups.unmanic = {};
 
   environment.persistence."/persistent" = {
     directories = [
       {
         directory = "/var/lib/unmanic";
         mode = "2744";
-        user = "root";
-        group = "root";
+        user = "unmanic";
+        group = "unmanic";
       }
     ];
   };

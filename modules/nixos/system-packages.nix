@@ -21,7 +21,6 @@
     util-linux
     nvd
     inputs.nix-inspect.packages.${system}.default
-    clamav
     strace
     perl
     rsync

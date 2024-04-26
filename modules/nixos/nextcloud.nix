@@ -7,10 +7,11 @@
   imports = [
     ./nginx.nix
     ./fail2ban.nix
+    ./clamav.nix
   ];
   environment.systemPackages = with pkgs; [
     exiftool
-    nodejs_21
+    nodejs_22
     ffmpeg_7
     perl
   ];
@@ -71,7 +72,13 @@
     enableACME = true;
   };
 
-  systemd.services.nextcloud-cron.path = [pkgs.exiftool pkgs.perl pkgs.ffmpeg_7 pkgs.nodejs_21];
+  systemd.services.nextcloud-cron.path = [
+    pkgs.exiftool
+    pkgs.perl
+    pkgs.ffmpeg_7
+    pkgs.nodejs_22
+    pkgs.clamav
+  ];
 
   services.fail2ban = {
     jails = {

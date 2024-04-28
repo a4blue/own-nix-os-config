@@ -43,4 +43,15 @@
     members = ["a4blue"];
   };
   networking.firewall.allowPing = true;
+
+  environment.persistence."/persistent" = {
+    directories = [
+      {
+        directory = "/var/lib/samba";
+        mode = "0740";
+        user = "root";
+        group = "root";
+      }
+    ];
+  };
 }

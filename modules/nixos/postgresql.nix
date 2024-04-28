@@ -17,6 +17,14 @@
     #'';
   };
 
+  # temp debug
+  services.pgadmin = {
+    enable = true;
+    openFirewall = true;
+    initialPasswordFile = "/nix/secret/weak_password";
+    initialEmail = "test@test.com";
+  };
+
   environment.persistence."/persistent" = {
     directories = [
       {

@@ -27,11 +27,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # Disko bcachefs support is not that great yet, disable for now
-    #disko = {
-    #  url = "github:nix-community/disko";
-    #  inputs.nixpkgs.follows = "nixpkgs";
-    #};
+    nixos-wsl = {
+      url = "github:nix-community/NixOS-WSL/main";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     #flake-utils.url = "github:numtide/flake-utils/main";
   };
@@ -40,6 +39,7 @@
     self,
     nixpkgs,
     home-manager,
+    nixos-wsl,
     ...
   } @ inputs: let
     inherit (self) outputs;
@@ -50,21 +50,31 @@
 
     # NixOS configuration entrypoint
     # Available through 'nixos-rebuild --flake .#your-hostname'
-    # or nix build ./#nixosConfigurations.homelab.config.system.build.toplevel
     nixosConfigurations = {
+      # nix build ./#nixosConfigurations.homelab.config.system.build.toplevel
       homelab = nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs outputs system;};
         modules = [
+          {nixpkgs.hostPlatform = "x86_64-linux";}
           ./systems/homelab/configuration.nix
-          #inputs.disko.nixosModules.disko
         ];
       };
       # nix build .#nixosConfigurations.iso.config.system.build.isoImage
       iso = nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs outputs system;};
         modules = [
+          {nixpkgs.hostPlatform = "x86_64-linux";}
           (nixpkgs + "/nixos/modules/installer/cd-dvd/installation-cd-minimal-new-kernel-no-zfs.nix")
           ./systems/iso/configuration.nix
+        ];
+      };
+      # nix build ./#nixosConfigurations.wsl.config.system.build.toplevel
+      wsl = nixpkgs.lib.nixosSystem {
+        specialArgs = {inherit inputs outputs system;};
+        modules = [
+          {nixpkgs.hostPlatform = "x86_64-linux";}
+          nixos-wsl.nixosModules.default
+          ./systems/wsl2/configuration.nix
         ];
       };
     };

@@ -6,6 +6,8 @@ keys:
   - &a4blue 0949AD16A796430A17DA745B935AE16BC6A4D9B9
   - &homelab_iteration_11 age1khu90gj74f2y3cxldl6qsa3pv3uv82h8w395dc9vtute9ckzmc9qq0dmdh
   - &diy_pc_wsl2 age19aq3kpwursrz4tydp8jjhdzy7ud4kvw5shq4n7kr8hzrgdkp35gqtv48u7
+  - &diy_pc_wsl2_ubuntu_2404 age13gxhv0qtedhzg9l9qxhzsvgh0vme6vgzr7sugfs92x0cg259jsgq8w87tx
+  - &diy_pc_wsl2_nixos age14jjaupqzcnrp48nlq9mhycafwpfn6wpj7f7vk6mnfur0dgyhvf0s5m9yc0
 creation_rules:
   - path_regex: secrets/[^/]+\.(yaml|json|env|ini)$
     key_groups:
@@ -14,3 +16,5 @@ creation_rules:
       age:
       - *diy_pc_wsl2
       - *homelab_iteration_11
+      - *diy_pc_wsl2_ubuntu_2404
+      - *diy_pc_wsl2_nixos

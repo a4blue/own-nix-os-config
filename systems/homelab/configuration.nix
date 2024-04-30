@@ -47,6 +47,22 @@
   networking.hostName = "homelab";
   zramSwap.enable = true;
 
+  boot.loader = {
+    systemd-boot = {
+      enable = true;
+      configurationLimit = 5;
+    };
+    efi.canTouchEfiVariables = true;
+    timeout = 10;
+  };
+
+  services = {
+    openssh.enable = true;
+    fstrim.enable = true;
+  };
+
+  networking.networkmanager.enable = true;
+
   # TODO
   # Extra Module, maybe use it for something ?
   security.tpm2.enable = true;

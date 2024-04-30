@@ -3,15 +3,6 @@
     ./system-packages.nix
   ];
 
-  boot.loader = {
-    systemd-boot = {
-      enable = true;
-      configurationLimit = 5;
-    };
-    efi.canTouchEfiVariables = true;
-    timeout = 10;
-  };
-
   nixpkgs.config.allowUnfree = true;
   nix = {
     gc = {
@@ -48,14 +39,4 @@
     #hashedPasswordFile = config.sops.secrets.a4blue_hashed_password.path;
     hashedPasswordFile = config.sops.secrets.a4blue_easy_hashed_password.path;
   };
-
-  services = {
-    openssh.enable = true;
-    fstrim.enable = true;
-  };
-
-  networking.networkmanager.enable = true;
-
-  # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
-  system.stateVersion = "23.11";
 }

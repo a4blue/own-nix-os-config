@@ -6,15 +6,10 @@
   home,
   ...
 }: {
-  # You can import other home-manager modules here
-  imports = [
-    inputs.impermanence.nixosModules.home-manager.impermanence
-  ];
-
   home = {
     username = "a4blue";
     homeDirectory = "/home/a4blue";
-    stateVersion = "23.11";
+    stateVersion = "24.05";
     keyboard = null;
   };
 
@@ -37,14 +32,6 @@
     enable = true;
     userName = "Alexander Ratajczak";
     userEmail = "a4blue@hotmail.de";
-  };
-
-  home.persistence."/persistent/home/a4blue" = {
-    allowOther = true;
-    directories = [
-      ".ssh"
-      "nixos-git"
-    ];
   };
 
   #sops = {

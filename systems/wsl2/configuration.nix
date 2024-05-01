@@ -48,6 +48,7 @@
 
   wsl.enable = true;
   wsl.defaultUser = "nixos";
+  wsl.docker-desktop.enable = true;
 
-  system.stateVersion = "24.05"; # Did you read the comment?
+  system.stateVersion = "24.05";
 }

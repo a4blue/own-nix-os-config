@@ -59,6 +59,7 @@
   services = {
     openssh.enable = true;
     fstrim.enable = true;
+    fwupd.enable = true;
   };
 
   networking.networkmanager.enable = true;

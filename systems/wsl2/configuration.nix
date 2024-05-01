@@ -8,7 +8,6 @@
   imports = [
     inputs.sops-nix.nixosModules.sops
     inputs.home-manager.nixosModules.home-manager
-    inputs.nix-ld.nixosModules.nix-ld
     ../../modules/nixos/base.nix
     ../../modules/nixos/home-manager-base.nix
   ];
@@ -16,10 +15,22 @@
   home-manager.users = {
     a4blue = {
       imports = [
-        ./../../modules/home-manager/base.nix
+        ../../modules/home-manager/base.nix
+        ../../modules/home-manager/vscode-remote-wsl.nix
       ];
+      own.vscode-remote-wsl = {
+        enable = true;
+        nixos-version = "unstable";
+      };
     };
     nixos = {
+      imports = [
+        ../../modules/home-manager/vscode-remote-wsl.nix
+      ];
+      own.vscode-remote-wsl = {
+        enable = true;
+        nixos-version = "unstable";
+      };
       home = {
         username = "nixos";
         homeDirectory = "/home/nixos";
@@ -29,9 +40,9 @@
     };
   };
 
-  programs.nix-ld.dev.enable = true;
+  programs.nix-ld.enable = true;
 
-  programs.nix-ld.dev.libraries = with pkgs; [
+  programs.nix-ld.libraries = with pkgs; [
     pkgs.stdenv.cc.cc
   ];
 

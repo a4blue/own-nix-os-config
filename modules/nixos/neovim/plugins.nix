@@ -33,6 +33,7 @@
   plugins = with pkgs.vimPlugins; [
     LazyVim
     better-escape-nvim
+    bufferline-nvim
     clangd_extensions-nvim
     cmp-buffer
     cmp-nvim-lsp
@@ -41,6 +42,7 @@
     conform-nvim
     crates-nvim
     dracula-nvim
+    dashboard-nvim
     dressing-nvim
     flash-nvim
     friendly-snippets

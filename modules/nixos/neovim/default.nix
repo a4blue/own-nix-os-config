@@ -54,6 +54,7 @@ in {
     nil
     tree-sitter
     nodejs_20
+    gccgo
   ];
   programs.neovim = {
     enable = true;

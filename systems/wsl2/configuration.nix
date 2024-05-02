@@ -8,6 +8,7 @@
   imports = [
     inputs.sops-nix.nixosModules.sops
     inputs.home-manager.nixosModules.home-manager
+    ../../modules/nixos/neovim/default.nix
     ../../modules/nixos/base.nix
     ../../modules/nixos/home-manager-base.nix
   ];

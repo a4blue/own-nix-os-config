@@ -23,21 +23,6 @@
         nixos-version = "unstable";
       };
     };
-    nixos = {
-      imports = [
-        ../../modules/home-manager/vscode-remote-wsl.nix
-      ];
-      own.vscode-remote-wsl = {
-        enable = true;
-        nixos-version = "unstable";
-      };
-      home = {
-        username = "nixos";
-        homeDirectory = "/home/nixos";
-        stateVersion = "24.05";
-        keyboard = null;
-      };
-    };
   };
 
   programs.nix-ld.enable = true;
@@ -47,7 +32,7 @@
   ];
 
   wsl.enable = true;
-  wsl.defaultUser = "nixos";
+  wsl.defaultUser = "a4blue";
   wsl.docker-desktop.enable = true;
 
   system.stateVersion = "24.05";

@@ -51,7 +51,7 @@ in {
       PKGS_EXPRESSION=nixpkgs/$NIXPKGS_BRANCH#pkgs
 
       # Get directory where this shell script is located
-      VSCODE_SERVER_DIR="$( cd "$( dirname "$\{BASH_SOURCE [0]}" )" >/dev/null 2>&1 && pwd )"
+      VSCODE_SERVER_DIR="$( cd "$( dirname "''${BASH_SOURCE [0]}" )" >/dev/null 2>&1 && pwd )"
       echo "Got vscode directory : $VSCODE_SERVER_DIR"
       echo "If the directory is incorrect, you can hardcode it on the script."
 

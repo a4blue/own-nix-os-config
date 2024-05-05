@@ -13,6 +13,7 @@
     ];
     extraOptions = ["--device=/dev/dri/renderD128"];
     user = "unmanic:unmanic";
+    autoStart = false;
   };
 
   users.users = {

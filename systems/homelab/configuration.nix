@@ -26,7 +26,7 @@
     ../../modules/nixos/hardening.nix
     ../../modules/nixos/home-manager-base.nix
     ../../modules/nixos/docker.nix
-    #../../modules/nixos/docker/unmanic.nix
+    ../../modules/nixos/docker/unmanic.nix
 
     # web services
     ../../modules/nixos/homepage-dashboard.nix

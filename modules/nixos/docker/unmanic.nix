@@ -1,11 +1,15 @@
-{config, ...}: {
+{config, ...}: let
+  servicePort = 9999;
+  # Not used yet
+  serviceDomain = "unmanic.homelab.internal";
+in {
   imports = [
     ../docker.nix
   ];
 
   virtualisation.oci-containers.containers."unmanic-docker" = {
     image = "josh5/unmanic:latest";
-    ports = ["8888:8888"];
+    ports = ["${builtins.toString servicePort}:8888"];
     volumes = [
       "/var/lib/unmanic/config:/config"
       "/LargeMedia:/library"
@@ -38,5 +42,5 @@
     ];
   };
 
-  networking.firewall.allowedTCPPorts = [8888];
+  networking.firewall.allowedTCPPorts = [servicePort];
 }

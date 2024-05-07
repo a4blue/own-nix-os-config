@@ -1,5 +1,5 @@
 {config, ...}: let
-  servicePort = 9999;
+  servicePort = 8888;
   # Not used yet
   serviceDomain = "unmanic.homelab.internal";
 in {

@@ -27,13 +27,14 @@
     ../../modules/nixos/home-manager-base.nix
     ../../modules/nixos/docker.nix
     ../../modules/nixos/docker/unmanic.nix
+    ../../modules/nixos/docker/stash.nix
 
     # web services
     ../../modules/nixos/homepage-dashboard.nix
     ../../modules/nixos/paperless.nix
     ../../modules/nixos/nextcloud.nix
     ../../modules/nixos/borgbackup.nix
-    #../../modules/nixos/jellyfin.nix
+    ../../modules/nixos/jellyfin.nix
     ../../modules/nixos/forgejo.nix
     #../../modules/unmanic/default.nix
     # other services

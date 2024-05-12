@@ -27,7 +27,7 @@ in {
       STASH_PORT = "9999";
     };
     extraOptions = ["--device=/dev/dri/renderD128"];
-    user = "a4blue:users";
+    #user = "a4blue:users";
     autoStart = false;
   };
 

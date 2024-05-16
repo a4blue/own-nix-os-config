@@ -36,6 +36,7 @@
     ../../modules/nixos/borgbackup.nix
     ../../modules/nixos/jellyfin.nix
     ../../modules/nixos/forgejo.nix
+    ../../modules/nixos/firefly-iii.nix
     #../../modules/unmanic/default.nix
     # other services
     ../../modules/nixos/samba.nix

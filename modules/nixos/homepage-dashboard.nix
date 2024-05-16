@@ -68,6 +68,14 @@ in {
               }
             ];
           }
+          {
+            Firefly = [
+              {
+                abbr = "FF";
+                href = "https://firefly.homelab.internal";
+              }
+            ];
+          }
         ];
       }
       {

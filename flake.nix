@@ -78,12 +78,29 @@
           ./systems/homelab/configuration.nix
         ];
       };
+      # nix build ./#nixosConfigurations.desktop-nix.config.system.build.toplevel
+      desktop-nix = nixpkgs.lib.nixosSystem {
+        specialArgs = {inherit inputs outputs system;};
+        modules = [
+          {nixpkgs.hostPlatform = "x86_64-linux";}
+          ./systems/desktop-nix/configuration.nix
+        ];
+      };
       # nix build .#nixosConfigurations.iso.config.system.build.isoImage
       iso = nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs outputs system;};
         modules = [
           {nixpkgs.hostPlatform = "x86_64-linux";}
           (nixpkgs + "/nixos/modules/installer/cd-dvd/installation-cd-minimal-new-kernel-no-zfs.nix")
+          ./systems/iso/configuration.nix
+        ];
+      };
+      # nix build .#nixosConfigurations.gui-iso.config.system.build.isoImage
+      gui-iso = nixpkgs.lib.nixosSystem {
+        specialArgs = {inherit inputs outputs system;};
+        modules = [
+          {nixpkgs.hostPlatform = "x86_64-linux";}
+          (nixpkgs + "/nixos/modules/installer/cd-dvd/installation-cd-graphical-calamares-plasma6.nix")
           ./systems/iso/configuration.nix
         ];
       };

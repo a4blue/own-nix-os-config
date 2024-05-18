@@ -1,7 +1,4 @@
-{
-  config,
-  ...
-}: let
+{config, ...}: let
   #servicePort = 38003;
   serviceDomain = "firefly.homelab.internal";
 in {

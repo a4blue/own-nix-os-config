@@ -29,6 +29,11 @@ in {
     jellyfin
     jellyfin-web
     jellyfin-ffmpeg
+    #
+    intel-media-sdk
+    onevpl-intel-gpu
+    libvpl
+    vdpauinfo
   ];
 
   services.nginx.virtualHosts."${serviceDomain}" = {

@@ -1,11 +1,16 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  lib,
+  ...
+}: {
   imports = [
     ./../../modules/nixos/system-packages.nix
   ];
 
   nixpkgs.hostPlatform = "x86_64-linux";
 
-  boot.supportedFilesystems = ["bcachefs"];
+  boot.supportedFilesystems.bcachefs = true;
+  boot.supportedFilesystems.zfs = lib.mkForce false;
 
   users.users.nixos = {
     isNormalUser = true;
@@ -36,5 +41,5 @@
   console.keyMap = "de";
 
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
-  system.stateVersion = "23.11";
+  system.stateVersion = "24.05";
 }

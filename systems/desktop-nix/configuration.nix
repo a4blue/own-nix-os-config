@@ -15,10 +15,7 @@
     inputs.home-manager.nixosModules.home-manager
 
     ./hardware-configuration.nix
-    # disko has no subvolume support yet :´(
-    #../../disko/bcachefs-tmpfs-root.nix
 
-    # base stuff
     ../../modules/nixos/base.nix
     ../../modules/nixos/remote-disk-unlocking.nix
     ../../modules/nixos/impermanence.nix
@@ -26,27 +23,33 @@
     ../../modules/nixos/hardening.nix
     ../../modules/nixos/home-manager-base.nix
     ../../modules/nixos/docker.nix
-    ../../modules/nixos/docker/unmanic.nix
-    ../../modules/nixos/docker/stash.nix
-
-    # web services
-    ../../modules/nixos/homepage-dashboard.nix
-    ../../modules/nixos/paperless.nix
-    ../../modules/nixos/nextcloud.nix
-    ../../modules/nixos/borgbackup.nix
-    ../../modules/nixos/jellyfin.nix
-    ../../modules/nixos/forgejo.nix
-    ../../modules/nixos/firefly-iii.nix
-    #../../modules/unmanic/default.nix
-    # other services
-    ../../modules/nixos/samba.nix
-    ../../modules/nixos/blocky.nix
-    ../../modules/nixos/fail2ban.nix
-    ../../modules/nixos/clamav.nix
   ];
 
+  environment.systemPackages = with pkgs; [
+    parted
+    gparted
+    gptfdisk
+    pciutils
+    uutils-coreutils
+    wget
+    rsync
+    git
+    git-extras
+    git-lfs
+    firefox
+    htop
+    ncdu
+    qdirstat
+  ];
+
+  services.desktopManager.plasma6.enable = true;
+  services.displayManager.defaultSession = "plasma";
+  services.displayManager.sddm.wayland.enable = true;
+  services.xserver.enable = true;
+  services.displayManager.sddm.enable = true;
+
   programs.fuse.userAllowOther = true;
-  networking.hostName = "homelab";
+  networking.hostName = "desktop-nix";
   zramSwap.enable = true;
 
   boot.loader = {
@@ -88,10 +91,10 @@
   boot.initrd.availableKernelModules = ["r8169"];
   boot.initrd.systemd.enable = true;
 
-  #boot.initrd.systemd.emergencyAccess = true;
+  boot.initrd.systemd.emergencyAccess = true;
 
   # Network DNS Fallback
-  networking.nameservers = ["127.0.0.1" "8.8.8.8"];
+  #networking.nameservers = ["127.0.0.1" "8.8.8.8"];
 
   # Set your time zone.
   time.timeZone = "Europe/Berlin";

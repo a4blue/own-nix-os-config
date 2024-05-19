@@ -19,13 +19,27 @@
     ../../modules/nixos/base.nix
     ../../modules/nixos/remote-disk-unlocking.nix
     ../../modules/nixos/impermanence.nix
-    ../../modules/nixos/re-create-root.nix
+    #../../modules/nixos/re-create-root.nix
     ../../modules/nixos/hardening.nix
     ../../modules/nixos/home-manager-base.nix
     ../../modules/nixos/docker.nix
   ];
 
   environment.systemPackages = with pkgs; [
+    parted
+    gparted
+    gptfdisk
+    pciutils
+    uutils-coreutils
+    wget
+    rsync
+    git
+    git-extras
+    git-lfs
+    firefox
+    htop
+    ncdu
+    qdirstat
     parted
     gparted
     gptfdisk
@@ -47,6 +61,8 @@
   services.displayManager.sddm.wayland.enable = true;
   services.xserver.enable = true;
   services.displayManager.sddm.enable = true;
+
+  hardware.enableAllFirmware = true;
 
   programs.fuse.userAllowOther = true;
   networking.hostName = "desktop-nix";
@@ -112,6 +128,13 @@
     LC_PAPER = "de_DE.UTF-8";
     LC_TELEPHONE = "de_DE.UTF-8";
     LC_TIME = "de_DE.UTF-8";
+  };
+
+  services.printing.enable = true;
+
+  services.pipewire = {
+    enable = true;
+    pulse.enable = true;
   };
 
   # Configure keymap in X11

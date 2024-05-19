@@ -9,6 +9,7 @@ keys:
   - &diy_pc_wsl2_ubuntu_2404 age13gxhv0qtedhzg9l9qxhzsvgh0vme6vgzr7sugfs92x0cg259jsgq8w87tx
   - &diy_pc_wsl2_nixos age14jjaupqzcnrp48nlq9mhycafwpfn6wpj7f7vk6mnfur0dgyhvf0s5m9yc0
   - &diy_pc_wsl2_nixos_a4blue age1qay9dnyfe036cum0wygdjhurfjytjgenp5eagxmq66tsqd08cg8spu975c
+  - &diy_pc_nixos age1vcxd930l6hwfunalzy8s0yaawg8rpst70fp4nzwrkn7g8ssjyucsz8sr4g
 creation_rules:
   - path_regex: secrets/[^/]+\.(yaml|json|env|ini)$
     key_groups:
@@ -20,3 +21,4 @@ creation_rules:
       - *diy_pc_wsl2_ubuntu_2404
       - *diy_pc_wsl2_nixos
       - *diy_pc_wsl2_nixos_a4blue
+      - *diy_pc_nixos

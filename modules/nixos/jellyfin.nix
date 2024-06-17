@@ -31,7 +31,7 @@ in {
     jellyfin-ffmpeg
     #
     intel-media-sdk
-    onevpl-intel-gpu
+    vpl-gpu-rt
     libvpl
     vdpauinfo
   ];

@@ -33,7 +33,7 @@
     configureRedis = true;
     caching.redis = true;
     database.createLocally = true;
-    package = pkgs.nextcloud28;
+    package = pkgs.nextcloud29;
     appstoreEnable = true;
     phpOptions."opcache.interned_strings_buffer" = "32";
     maxUploadSize = "4G";

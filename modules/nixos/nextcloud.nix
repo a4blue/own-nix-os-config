@@ -15,7 +15,7 @@
     ffmpeg_7
     perl
   ];
-  hardware.opengl = {
+  hardware.graphics = {
     enable = true;
     extraPackages = with pkgs; [
       intel-media-driver

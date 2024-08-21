@@ -7,7 +7,7 @@
   imports = [
     ./nginx.nix
     ./fail2ban.nix
-    ./clamav.nix
+    #./clamav.nix
   ];
   environment.systemPackages = with pkgs; [
     exiftool
@@ -77,7 +77,6 @@
     pkgs.perl
     pkgs.ffmpeg_7
     pkgs.nodejs_22
-    pkgs.clamav
   ];
 
   services.fail2ban = {

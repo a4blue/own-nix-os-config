@@ -34,7 +34,7 @@
     ../../modules/nixos/paperless.nix
     ../../modules/nixos/nextcloud.nix
     ../../modules/nixos/borgbackup.nix
-    ../../modules/nixos/jellyfin.nix
+    #../../modules/nixos/jellyfin.nix
     ../../modules/nixos/forgejo.nix
     ../../modules/nixos/firefly-iii.nix
     #../../modules/unmanic/default.nix
@@ -42,7 +42,7 @@
     ../../modules/nixos/samba.nix
     ../../modules/nixos/blocky.nix
     ../../modules/nixos/fail2ban.nix
-    ../../modules/nixos/clamav.nix
+    #../../modules/nixos/clamav.nix
   ];
 
   programs.fuse.userAllowOther = true;

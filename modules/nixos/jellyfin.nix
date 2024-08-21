@@ -30,7 +30,7 @@ in {
   environment.systemPackages = with pkgs; [
     jellyfin
     jellyfin-web
-    jellyfin-ffmpeg
+    #jellyfin-ffmpeg
     #
     intel-media-sdk
     vpl-gpu-rt

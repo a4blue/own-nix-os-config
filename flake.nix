@@ -27,13 +27,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nixos-wsl = {
-      url = "github:nix-community/NixOS-WSL/main";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    flake-parts.url = "github:hercules-ci/flake-parts";
-    flake-parts.inputs.nixpkgs-lib.follows = "nixpkgs";
+    #flake-parts.url = "github:hercules-ci/flake-parts";
+    #flake-parts.inputs.nixpkgs-lib.follows = "nixpkgs";
 
     # Plugins not available in nixpkgs
     huez-nvim = {
@@ -58,7 +53,6 @@
     self,
     nixpkgs,
     home-manager,
-    nixos-wsl,
     ...
   } @ inputs: let
     inherit (self) outputs;
@@ -102,15 +96,6 @@
           {nixpkgs.hostPlatform = "x86_64-linux";}
           (nixpkgs + "/nixos/modules/installer/cd-dvd/installation-cd-graphical-calamares-plasma6.nix")
           ./systems/iso/configuration.nix
-        ];
-      };
-      # nix build ./#nixosConfigurations.wsl.config.system.build.toplevel
-      wsl = nixpkgs.lib.nixosSystem {
-        specialArgs = {inherit inputs outputs system;};
-        modules = [
-          {nixpkgs.hostPlatform = "x86_64-linux";}
-          nixos-wsl.nixosModules.default
-          ./systems/wsl2/configuration.nix
         ];
       };
     };

@@ -43,6 +43,7 @@
     ../../modules/nixos/blocky.nix
     ../../modules/nixos/fail2ban.nix
     #../../modules/nixos/clamav.nix
+    ../../modules/nixos/dynv6.nix
   ];
 
   programs.fuse.userAllowOther = true;

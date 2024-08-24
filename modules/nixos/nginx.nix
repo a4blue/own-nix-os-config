@@ -1,5 +1,4 @@
 {config, ...}: {
-  sops.secrets.dynu_api_key = {};
   security.acme = {
     acceptTerms = true;
     defaults = {

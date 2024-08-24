@@ -21,6 +21,7 @@
         AllowAgentForwarding no
         AllowStreamLocalForwarding no
         AuthenticationMethods publickey
+        PubkeyAuthOptions verify-required
       '';
     };
   };

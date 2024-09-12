@@ -26,27 +26,6 @@
       url = "github:bluskript/nix-inspect";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    #flake-parts.url = "github:hercules-ci/flake-parts";
-    #flake-parts.inputs.nixpkgs-lib.follows = "nixpkgs";
-
-    # Plugins not available in nixpkgs
-    huez-nvim = {
-      url = "github:vague2k/huez.nvim";
-      flake = false;
-    };
-    blame-me-nvim = {
-      url = "github:hougesen/blame-me.nvim";
-      flake = false;
-    };
-    cmake-tools-nvim = {
-      url = "github:Civitasv/cmake-tools.nvim";
-      flake = false;
-    };
-    cmake-gtest-nvim = {
-      url = "github:hfn92/cmake-gtest.nvim";
-      flake = false;
-    };
   };
 
   outputs = {

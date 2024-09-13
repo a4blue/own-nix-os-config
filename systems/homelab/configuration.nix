@@ -1,6 +1,3 @@
-# Edit this configuration file to define what should be installed on
-# your system.  Help is available in the configuration.nix(5) man page
-# and in the NixOS manual (accessible by running ‘nixos-help’).
 {
   config,
   pkgs,
@@ -15,8 +12,6 @@
     inputs.home-manager.nixosModules.home-manager
 
     ./hardware-configuration.nix
-    # disko has no subvolume support yet :´(
-    #../../disko/bcachefs-tmpfs-root.nix
 
     # base stuff
     ../../modules/nixos/base.nix
@@ -36,7 +31,7 @@
     ../../modules/nixos/borgbackup.nix
     #../../modules/nixos/jellyfin.nix
     ../../modules/nixos/forgejo.nix
-    ../../modules/nixos/firefly-iii.nix
+    #../../modules/nixos/firefly-iii.nix
     #../../modules/unmanic/default.nix
     # other services
     ../../modules/nixos/samba.nix
@@ -122,5 +117,5 @@
   # Configure console keymap
   console.keyMap = "de";
 
-  system.stateVersion = "24.05";
+  system.stateVersion = "24.11";
 }

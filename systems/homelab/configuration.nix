@@ -29,7 +29,7 @@
     ../../modules/nixos/paperless.nix
     ../../modules/nixos/nextcloud.nix
     ../../modules/nixos/borgbackup.nix
-    #../../modules/nixos/jellyfin.nix
+    ../../modules/nixos/jellyfin.nix
     ../../modules/nixos/forgejo.nix
     #../../modules/nixos/firefly-iii.nix
     #../../modules/unmanic/default.nix

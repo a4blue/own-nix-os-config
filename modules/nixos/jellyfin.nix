@@ -17,15 +17,18 @@ in {
     enable = true;
     extraPackages = with pkgs; [
       intel-media-driver
-      vaapiIntel
+      intel-vaapi-driver
+      #vaapiIntel
       vaapiVdpau
       libvdpau-va-gl
       intel-compute-runtime
+      vpl-gpu-rt
     ];
   };
 
   services.jellyfin = {
     enable = true;
+    openFirewall = true;
   };
   environment.systemPackages = with pkgs; [
     jellyfin

@@ -18,7 +18,6 @@ in {
     extraPackages = with pkgs; [
       intel-media-driver
       intel-vaapi-driver
-      #vaapiIntel
       vaapiVdpau
       libvdpau-va-gl
       intel-compute-runtime
@@ -34,7 +33,6 @@ in {
     jellyfin
     jellyfin-web
     #jellyfin-ffmpeg
-    #
     intel-media-sdk
     vpl-gpu-rt
     libvpl
@@ -52,6 +50,21 @@ in {
       recommendedProxySettings = true;
       proxyPass = "http://localhost:${builtins.toString servicePort}";
       extraConfig = ''
+        proxy_set_header X-Forwarded-Protocol $scheme;
+        deny 192.168.178.1;
+        allow 192.168.178.0/24;
+        deny all;
+        proxy_buffering off;
+      '';
+    };
+    locations."/socket" = {
+      recommendedProxySettings = true;
+      proxyPass = "http://localhost:${builtins.toString servicePort}";
+      extraConfig = ''
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection "upgrade";
+        proxy_set_header X-Forwarded-Protocol $scheme;
         deny 192.168.178.1;
         allow 192.168.178.0/24;
         deny all;

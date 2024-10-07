@@ -39,7 +39,7 @@
     ../../modules/nixos/fail2ban.nix
     #../../modules/nixos/clamav.nix
     ../../modules/nixos/dynv6.nix
-    ../../modules/nixos/stalwart.nix
+    #../../modules/nixos/stalwart.nix
   ];
 
   programs.fuse.userAllowOther = true;

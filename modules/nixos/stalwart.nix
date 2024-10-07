@@ -71,8 +71,8 @@
       {
         directory = "/var/lib/stalwart";
         mode = "0740";
-        user = "root";
-        group = "root";
+        user = "stalwart-mail";
+        group = "stalwart-mail";
       }
     ];
   };

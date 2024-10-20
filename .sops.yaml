@@ -11,6 +11,7 @@ keys:
   - &diy_pc_wsl2_nixos_a4blue age1qay9dnyfe036cum0wygdjhurfjytjgenp5eagxmq66tsqd08cg8spu975c
   - &diy_pc_nixos age1vcxd930l6hwfunalzy8s0yaawg8rpst70fp4nzwrkn7g8ssjyucsz8sr4g
   - &laptop_nix_initrd age1nu6e3xj8rlnyjda848g60u6ljyp5s62qt9lfmk7ytqha83xnyf8q9mee48
+  - &laptop_nix_initrd_2024 age1vscc45869s7j897q349gzelr3f0yqp8kf3ly2dnknph706cctvmqy4vwer
 creation_rules:
   - path_regex: secrets/[^/]+\.(yaml|json|env|ini)$
     key_groups:
@@ -24,3 +25,4 @@ creation_rules:
       - *diy_pc_wsl2_nixos_a4blue
       - *diy_pc_nixos
       - *laptop_nix_initrd
+      - *laptop_nix_initrd_2024

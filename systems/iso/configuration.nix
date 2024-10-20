@@ -12,6 +12,8 @@
   boot.supportedFilesystems.bcachefs = true;
   boot.supportedFilesystems.zfs = lib.mkForce false;
 
+  boot.kernelPackages = pkgs.linuxPackages_latest;
+
   users.users.nixos = {
     isNormalUser = true;
     extraGroups = ["wheel"];
@@ -19,6 +21,10 @@
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOb2erO3CjSDZdQNfU720I4vxt1K5XzECQ/ncROZmA2X"
     ];
   };
+
+  #boot.initrd.kernelModules = [ "wl" ];
+
+  #boot.kernelModules = [ "kvm-intel" "wl" ];
 
   security.sudo.wheelNeedsPassword = false;
 
@@ -41,5 +47,5 @@
   console.keyMap = "de";
 
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
-  system.stateVersion = "24.05";
+  system.stateVersion = "24.11";
 }

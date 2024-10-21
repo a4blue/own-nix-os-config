@@ -10,6 +10,14 @@ and run ```nix-shell```. **Note to myself:** Your PGP Key is the final backup, t
 
 # TODO's
 
+## General
+- move from nix-shell to nix shell (flakeify shell)
+- move homelab configurations to homelab folder and therefore unpollute the modules folder
+- common configuration/modules for nixOs / home-manager should be developed afterwards
+
+## Gaming
+- develop a PoC on laptop
+
 ## Hardening
 - Secure Boot
 - Limit Local Login possibility
@@ -33,7 +41,9 @@ and run ```nix-shell```. **Note to myself:** Your PGP Key is the final backup, t
 - Some sensible Site
 
 ## Cleanup
-Generally cleanup the code to be more readable
+- Generally cleanup the code to be more readable
+- sops keys need some cleanup, also the secrets
+- sops secrets rename to camelCase
 
 # Housekeeping
 
@@ -52,4 +62,3 @@ chown nginx:nginx /persistent/var/lib/self-signed-nginx-cert/*
 - Using encrypted bcachefs with remote unlock
 - borgbackup with bcachefs subvolume snapshot
 - Impermanence with bcachefs via systemd Service on boot
-- new tailscale cert on boot for nginx

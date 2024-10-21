@@ -7,10 +7,10 @@
   config.sops.secrets.home_wifi_psk = {};
   config.networking.wireless = lib.mkIf config.networking.wireless.enable {
     secretsFile = config.sops.secrets.home_wifi_psk.path;
-    networks."NoNameWLAN 5Ghz" = {
+    networks."NoNameWLAN 5GHz" = {
       pskRaw = "ext:HOME_WIFI_PSK";
     };
-    networks."NoNameWLAN 2.4Ghz" = {
+    networks."NoNameWLAN 2.4GHz" = {
       pskRaw = "ext:HOME_WIFI_PSK";
     };
   };
@@ -18,25 +18,22 @@
   config.networking.networkmanager = lib.mkIf config.networking.networkmanager.enable {
     ensureProfiles.environmentFiles = [config.sops.secrets.home_wifi_psk.path];
     ensureProfiles.profiles = {
-      "NoNameWLAN 5Ghz" = {
+      "NoNameWLAN 5GHz" = {
         connection = {
-          id = "NoNameWLAN 5Ghz";
+          id = "NoNameWLAN 5GHz";
           permissions = "";
           type = "wifi";
         };
         ipv4 = {
-          dns-search = "";
           method = "auto";
         };
         ipv6 = {
           addr-gen-mode = "stable-privacy";
-          dns-search = "";
           method = "auto";
         };
         wifi = {
-          mac-address-blacklist = "";
           mode = "infrastructure";
-          ssid = "NoNameWLAN 5Ghz";
+          ssid = "NoNameWLAN 5GHz";
         };
         wifi-security = {
           auth-alg = "open";
@@ -44,25 +41,22 @@
           psk = "$HOME_WIFI_PSK";
         };
       };
-      "NoNameWLAN 2.4Ghz" = {
+      "NoNameWLAN 2.4GHz" = {
         connection = {
-          id = "NoNameWLAN 2.4Ghz";
+          id = "NoNameWLAN 2.4GHz";
           permissions = "";
           type = "wifi";
         };
         ipv4 = {
-          dns-search = "";
           method = "auto";
         };
         ipv6 = {
           addr-gen-mode = "stable-privacy";
-          dns-search = "";
           method = "auto";
         };
         wifi = {
-          mac-address-blacklist = "";
           mode = "infrastructure";
-          ssid = "NoNameWLAN 2.4Ghz";
+          ssid = "NoNameWLAN 2.4GHz";
         };
         wifi-security = {
           auth-alg = "open";

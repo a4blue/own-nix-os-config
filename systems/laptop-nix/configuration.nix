@@ -68,6 +68,8 @@
   networking.hostName = "laptop-nix";
   sops.secrets.home_wifi_psk = {};
   networking.wireless = {
+    enable = true;
+    userControlled.enable = true;
     secretsFile = config.sops.secrets.home_wifi_psk.path;
     networks."NoNameWLAN" = {
       pskRaw = "ext:HOME_WIFI_PSK";

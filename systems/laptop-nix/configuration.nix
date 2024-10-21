@@ -22,6 +22,7 @@
     #../../modules/nixos/re-create-root.nix
     ../../modules/nixos/hardening.nix
     ../../modules/nixos/home-manager-base.nix
+    ../../modules/nixos/home-wifi.nix
     #../../modules/nixos/docker.nix
   ];
 
@@ -66,15 +67,15 @@
 
   programs.fuse.userAllowOther = true;
   networking.hostName = "laptop-nix";
-  sops.secrets.home_wifi_psk = {};
-  networking.wireless = {
-    enable = true;
-    userControlled.enable = true;
-    secretsFile = config.sops.secrets.home_wifi_psk.path;
-    networks."NoNameWLAN" = {
-      pskRaw = "ext:HOME_WIFI_PSK";
-    };
-  };
+  #sops.secrets.home_wifi_psk = {};
+  #networking.wireless = {
+  #  enable = true;
+  #  userControlled.enable = true;
+  #  secretsFile = config.sops.secrets.home_wifi_psk.path;
+  #  networks."NoNameWLAN" = {
+  #    pskRaw = "ext:HOME_WIFI_PSK";
+  #  };
+  #};
 
   zramSwap.enable = true;
 

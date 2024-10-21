@@ -66,6 +66,14 @@
 
   programs.fuse.userAllowOther = true;
   networking.hostName = "laptop-nix";
+  sops.secrets.home_wifi_psk = {};
+  networking.wireless = {
+    secretsFile = config.sops.secrets.home_wifi_psk.path;
+    networks."NoNameWLAN" = {
+      pskRaw = "ext:HOME_WIFI_PSK";
+    };
+  };
+
   zramSwap.enable = true;
 
   boot.loader = {

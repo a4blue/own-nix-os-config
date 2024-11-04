@@ -16,4 +16,8 @@
       "/etc/ssh/ssh_host_rsa_key"
     ];
   };
+  # https://github.com/nix-community/impermanence/issues/229
+  # FIXME
+  boot.initrd.systemd.suppressedUnits = ["systemd-machine-id-commit.service"];
+  systemd.suppressedSystemUnits = ["systemd-machine-id-commit.service"];
 }

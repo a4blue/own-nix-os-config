@@ -11,6 +11,8 @@ in {
   ];
   nixpkgs.config.packageOverrides = pkgs: {
     vaapiIntel = pkgs.vaapiIntel.override {enableHybridCodec = true;};
+    # https://github.com/NixOS/nixpkgs/pull/353198
+    # FIXME
     jellyfin-ffmpeg = pkgs.jellyfin-ffmpeg.override {
       ffmpeg_7-full = pkgs.ffmpeg_7-full.override {
         withXevd = false;

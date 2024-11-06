@@ -12,7 +12,7 @@
   boot.supportedFilesystems.bcachefs = true;
   boot.supportedFilesystems.zfs = lib.mkForce false;
 
-  boot.kernelPackages = pkgs.linuxPackages_latest;
+  #boot.kernelPackages = pkgs.linuxPackages_latest;
 
   users.users.nixos = {
     isNormalUser = true;

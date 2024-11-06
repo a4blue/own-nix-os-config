@@ -25,6 +25,16 @@
       url = "github:bluskript/nix-inspect";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    nixvim = {
+      url = "github:nix-community/nixvim";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    own-nixvim = {
+      url = "github:a4blue/own-nixvim";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {
@@ -35,7 +45,17 @@
   } @ inputs: let
     inherit (self) outputs;
     system = "x86_64-linux";
+    # Function to create Neovim packages with unique names
+    mkNeovimPackages = pkgs: neovimPkgs: let
+      mkNeovimAlias = name: pkg:
+        pkgs.runCommand "neovim-${name}" {} ''
+          mkdir -p $out/bin
+          ln -s ${pkg}/bin/nvim $out/bin/nvim-${name}
+        '';
+    in
+      builtins.mapAttrs mkNeovimAlias neovimPkgs;
   in {
+    nix.nixPath = ["nixpkgs=${inputs.nixpkgs}"];
     # Enables `nix fmt` at root of repo to format all nix files
     formatter.${system} = nixpkgs.legacyPackages.${system}.alejandra;
 
@@ -82,6 +102,21 @@
           {nixpkgs.hostPlatform = "x86_64-linux";}
           (nixpkgs + "/nixos/modules/installer/cd-dvd/installation-cd-graphical-calamares-plasma6.nix")
           ./systems/iso/configuration.nix
+        ];
+      };
+    };
+
+    devShells.${system} = {
+      default = nixpkgs.legacyPackages.${system}.mkShell {
+        NIX_CONFIG = "experimental-features = nix-command flakes";
+        packages = with nixpkgs.legacyPackages.${system}; [
+          gnupg
+          sops
+          nix
+          git
+          nvd
+	  age
+          inputs.own-nixvim.packages.${system}.default
         ];
       };
     };

@@ -83,6 +83,7 @@
             git
             nvd
             age
+            just
             inputs.own-nixvim.packages.${system}.default
           ];
         };

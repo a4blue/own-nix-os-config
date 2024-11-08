@@ -1,3 +1,6 @@
+default:
+  @just --list --justfile {{justfile()}}
+
 update-diff:
   mkdir -p gen
   #nix build .#nixosConfigurations.iso.config.system.build.isoImage -o gen/iso

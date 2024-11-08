@@ -68,15 +68,6 @@
 
   programs.fuse.userAllowOther = true;
   networking.hostName = "laptop-nix";
-  #sops.secrets.home_wifi_psk = {};
-  #networking.wireless = {
-  #  enable = true;
-  #  userControlled.enable = true;
-  #  secretsFile = config.sops.secrets.home_wifi_psk.path;
-  #  networks."NoNameWLAN" = {
-  #    pskRaw = "ext:HOME_WIFI_PSK";
-  #  };
-  #};
 
   zramSwap.enable = true;
 
@@ -97,6 +88,24 @@
 
   networking.networkmanager.enable = true;
 
+  programs.steam = {
+    enable = true;
+    package = pkgs.steam.override {
+      #withJava = true;
+      #withPrimus = true;
+      #extraPkgs = pkgs: [ bumblebee glxinfo ];
+    };
+    remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
+    dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
+    localNetworkGameTransfers.openFirewall = true; # Open ports in the firewall for Steam Local Network Game Transfers
+    gamescopeSession.enable = true;
+  };
+  #programs.java.enable = true;
+  programs.nix-ld = {
+    enable = true;
+    #libraries = pkgs.steam-run.fhsenv.args.multiPkgs pkgs;
+  };
+
   # TODO
   # Extra Module, maybe use it for something ?
   security.tpm2.enable = true;
@@ -108,6 +117,9 @@
       imports = [
         ./../../modules/home-manager/base.nix
         #./../../modules/home-manager/persistence.nix
+      ];
+      home.packages = with pkgs; [
+        proton-pass
       ];
     };
   };
@@ -150,11 +162,43 @@
       pkgs.rocmPackages.clr.icd
       pkgs.amdvlk
     ];
+    extraPackages32 = [
+      pkgs.driversi686Linux.amdvlk
+    ];
   };
 
+  security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
+    alsa.enable = true;
+    alsa.support32Bit = true;
     pulse.enable = true;
+    extraConfig.pipewire."92-low-latency" = {
+      "context.properties" = {
+        "default.clock.rate" = 48000;
+        "default.clock.quantum" = 32;
+        "default.clock.min-quantum" = 32;
+        "default.clock.max-quantum" = 32;
+      };
+      extraConfig.pipewire-pulse."92-low-latency" = {
+        context.modules = [
+          {
+            name = "libpipewire-module-protocol-pulse";
+            args = {
+              pulse.min.req = "32/48000";
+              pulse.default.req = "32/48000";
+              pulse.max.req = "32/48000";
+              pulse.min.quantum = "32/48000";
+              pulse.max.quantum = "32/48000";
+            };
+          }
+        ];
+        stream.properties = {
+          node.latency = "32/48000";
+          resample.quality = 1;
+        };
+      };
+    };
   };
 
   # Configure keymap in X11

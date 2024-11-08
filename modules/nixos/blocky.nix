@@ -116,7 +116,7 @@
     directories = [
       {
         directory = "/var/lib/blocky";
-        mode = "0740";
+        mode = "0777";
       }
     ];
   };

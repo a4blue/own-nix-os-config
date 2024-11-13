@@ -63,7 +63,7 @@
   services.displayManager.sddm.wayland.enable = true;
   services.xserver.enable = true;
   services.displayManager.sddm.enable = true;
-
+  programs.firefox.nativeMessagingHosts.packages = [pkgs.plasma5Packages.plasma-browser-integration];
   hardware.enableAllFirmware = true;
 
   programs.fuse.userAllowOther = true;

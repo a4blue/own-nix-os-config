@@ -1,4 +1,8 @@
-{config, ...}: {
+{
+  config,
+  inputs,
+  ...
+}: {
   imports = [
     ./system-packages.nix
   ];
@@ -14,6 +18,7 @@
       experimental-features = "nix-command flakes";
       auto-optimise-store = true;
     };
+    nixPath = ["nixpkgs=${inputs.nixpkgs}"];
   };
 
   sops = {

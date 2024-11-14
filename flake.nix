@@ -86,6 +86,9 @@
             just
             inputs.own-nixvim.packages.${system}.default
           ];
+          shellHook = ''
+            export PS1="\n\u@nix-shell:\w\$:"
+          '';
         };
       };
     })

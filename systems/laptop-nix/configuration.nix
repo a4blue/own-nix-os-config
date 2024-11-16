@@ -41,20 +41,6 @@
     htop
     ncdu
     qdirstat
-    parted
-    gparted
-    gptfdisk
-    pciutils
-    uutils-coreutils
-    wget
-    rsync
-    git
-    git-extras
-    git-lfs
-    firefox
-    htop
-    ncdu
-    qdirstat
     pynitrokey
   ];
 
@@ -106,8 +92,6 @@
     #libraries = pkgs.steam-run.fhsenv.args.multiPkgs pkgs;
   };
 
-  # TODO
-  # Extra Module, maybe use it for something ?
   security.tpm2.enable = true;
   security.tpm2.pkcs11.enable = true; # expose /run/current-system/sw/lib/libtpm2_pkcs11.so
   security.tpm2.tctiEnvironment.enable = true;
@@ -149,9 +133,6 @@
   boot.initrd.systemd.enable = true;
 
   boot.initrd.systemd.emergencyAccess = true;
-
-  # Network DNS Fallback
-  #networking.nameservers = ["127.0.0.1" "8.8.8.8"];
 
   # Set your time zone.
   time.timeZone = "Europe/Berlin";

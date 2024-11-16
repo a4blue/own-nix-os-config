@@ -84,10 +84,13 @@
             nvd
             age
             just
+            nix-tree
+            nix-output-monitor
+            statix
             inputs.own-nixvim.packages.${system}.default
           ];
           shellHook = ''
-            export PS1="\n\u@nix-shell:\w\$:"
+            export PS1="\n[\u@nix-shell:\w\]$:\n"
           '';
         };
       };

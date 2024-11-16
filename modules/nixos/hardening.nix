@@ -3,9 +3,9 @@
   lib,
   ...
 }: {
-  environment.defaultPackages = lib.mkForce [];
-  boot.kernelParams = ["quiet"];
-  boot.consoleLogLevel = 0;
+  #environment.defaultPackages = lib.mkForce [];
+  #boot.kernelParams = ["quiet"];
+  #boot.consoleLogLevel = 0;
   security.sudo.wheelNeedsPassword = false;
   services = {
     openssh = {

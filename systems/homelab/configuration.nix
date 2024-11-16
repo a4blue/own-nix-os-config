@@ -53,7 +53,7 @@
   boot.loader = {
     systemd-boot = {
       enable = true;
-      configurationLimit = 5;
+      configurationLimit = 10;
     };
     efi.canTouchEfiVariables = true;
     timeout = 10;
@@ -89,7 +89,7 @@
   boot.initrd.availableKernelModules = ["r8169"];
   boot.initrd.systemd.enable = true;
 
-  #boot.initrd.systemd.emergencyAccess = true;
+  boot.initrd.systemd.emergencyAccess = true;
 
   # Network DNS Fallback
   networking.nameservers = ["127.0.0.1" "8.8.8.8"];

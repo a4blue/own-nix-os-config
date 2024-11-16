@@ -25,16 +25,17 @@ in {
       services = {
         "recreate-root" = {
           description = "Deletes everything in rootfs except nix and persistent";
-          requiredBy = ["initrd-nixos-activation.service"];
+          requiredBy = [];
           after = ["sysroot.mount"];
           before = [
             "initrd-nixos-activation.service"
-            "initrd-switch-root.target"
+            "initrd-switch-root.service"
+            "initrd-find-nixos-closure.service"
             "shutdown.target"
           ];
           # TODO
           # Is it needed ?
-          bindsTo = ["${cfg.systemd-device-bind}"];
+          #bindsTo = ["${cfg.systemd-device-bind}"];
           conflicts = ["shutdown.target"];
           unitConfig.DefaultDependencies = false;
           serviceConfig = {

@@ -82,7 +82,7 @@
     };
   };
 
-  boot.kernelPackages = pkgs.linuxPackages_latest;
+  boot.kernelPackages = pkgs.linuxPackages_6_11;
   boot.supportedFilesystems = ["bcachefs"];
 
   # Driver needed for Remote disk Unlocking

@@ -104,6 +104,7 @@
       ];
       home.packages = with pkgs; [
         proton-pass
+        joplin-desktop
       ];
       programs.firefox = {
         enable = true;

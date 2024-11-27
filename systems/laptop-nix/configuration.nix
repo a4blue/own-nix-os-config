@@ -42,6 +42,8 @@
     ncdu
     qdirstat
     pynitrokey
+    nerdfonts
+    fira-code-nerdfont
   ];
 
   services.desktopManager.plasma6.enable = true;
@@ -105,6 +107,8 @@
       home.packages = with pkgs; [
         proton-pass
         joplin-desktop
+        wezterm
+        alacritty
       ];
       programs.firefox = {
         enable = true;

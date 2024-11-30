@@ -1,15 +1,13 @@
 {
-  inputs,
-  lib,
-  config,
   pkgs,
-  home,
+  config,
   ...
-}: {
+}:
+with config; {
   home = {
     username = "a4blue";
     homeDirectory = "/home/a4blue";
-    stateVersion = "24.05";
+    stateVersion = "25.05";
     keyboard = null;
   };
 
@@ -17,11 +15,9 @@
     vim
     wget
     htop
-    git
     home-manager
     nano
     curl
-    ranger
     tmux
     sops
   ];

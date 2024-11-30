@@ -1,14 +1,10 @@
 {
-  inputs,
   lib,
   config,
-  pkgs,
-  home,
   ...
-}: {
-  imports = [
-    inputs.impermanence.nixosModules.home-manager.impermanence
-  ];
+}:
+lib.mkIf (config.home
+  ? persistence) {
   home.persistence."/persistent/home/a4blue" = {
     allowOther = true;
     directories = [

@@ -20,7 +20,7 @@
     parted
     util-linux
     nvd
-    inputs.nix-inspect.packages.${system}.default
+    #inputs.nix-inspect.packages.${system}.default
     strace
     perl
     rsync

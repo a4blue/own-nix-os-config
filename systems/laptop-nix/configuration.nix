@@ -42,8 +42,8 @@
     ncdu
     qdirstat
     pynitrokey
-    nerdfonts
-    fira-code-nerdfont
+    nerd-fonts.fira-code
+    vulkan-tools
   ];
 
   services.desktopManager.plasma6.enable = true;
@@ -108,7 +108,6 @@
         proton-pass
         joplin-desktop
         wezterm
-        alacritty
       ];
       programs.firefox = {
         enable = true;

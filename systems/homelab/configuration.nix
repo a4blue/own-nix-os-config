@@ -78,6 +78,7 @@
       imports = [
         ./../../modules/home-manager/base.nix
         ./../../modules/home-manager/persistence.nix
+        inputs.impermanence.nixosModules.home-manager.impermanence
       ];
     };
   };

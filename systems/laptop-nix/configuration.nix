@@ -43,8 +43,11 @@
     qdirstat
     pynitrokey
     nerd-fonts.fira-code
+    nerd-fonts.terminess-ttf
+    fira-code
     vulkan-tools
   ];
+  fonts.packages = [pkgs.nerd-fonts.fira-code];
 
   services.desktopManager.plasma6.enable = true;
   services.displayManager.defaultSession = "plasma";

@@ -8,9 +8,9 @@
       caching.cacheTimeNegative = "1m";
       caching.minTime = "10m";
 
-      queryLog.type = "csv";
-      queryLog.target = "/var/lib/blocky";
-      queryLog.logRetentionDays = 7;
+      #queryLog.type = "csv";
+      #queryLog.target = "/var/lib/blocky";
+      #queryLog.logRetentionDays = 7;
 
       log.level = "warn";
       customDNS = {

@@ -54,7 +54,7 @@
   services.displayManager.sddm.wayland.enable = true;
   services.xserver.enable = true;
   services.displayManager.sddm.enable = true;
-  programs.firefox.nativeMessagingHosts.packages = [pkgs.plasma5Packages.plasma-browser-integration];
+  programs.firefox.nativeMessagingHosts.packages = [pkgs.plasma6Packages.plasma-browser-integration];
   hardware.enableAllFirmware = true;
 
   programs.fuse.userAllowOther = true;
@@ -132,7 +132,7 @@
     };
   };
 
-  boot.kernelPackages = pkgs.linuxPackages_6_11;
+  boot.kernelPackages = pkgs.linuxPackages_6_12;
   boot.supportedFilesystems = ["bcachefs"];
 
   # Driver needed for Remote disk Unlocking

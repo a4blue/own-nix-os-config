@@ -59,7 +59,8 @@
         "https://dns.njal.la/dns-query"
         # https://opennameserver.org/
         # UnCensored ✅
-        "https://ns.opennameserver.org/dns-query"
+        # Cert Error
+        #"https://ns.opennameserver.org/dns-query"
         # https://controld.com/free-dns
         # UnCensored ✅
         "https://freedns.controld.com/p0"

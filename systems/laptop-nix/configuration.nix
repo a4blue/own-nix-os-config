@@ -24,6 +24,7 @@
     ../../modules/nixos/home-manager-base.nix
     ../../modules/nixos/home-wifi.nix
     #../../modules/nixos/docker.nix
+    ./38c3-wifi.nix
   ];
 
   environment.systemPackages = with pkgs; [
@@ -111,6 +112,7 @@
         proton-pass
         joplin-desktop
         wezterm
+        element-desktop
       ];
       programs.firefox = {
         enable = true;

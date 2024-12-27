@@ -27,6 +27,8 @@
     ./38c3-wifi.nix
   ];
 
+  nix.settings.substituters = ["https://cache.nixos.sh"];
+  nix.settings.connect-timeout = 5;
   environment.systemPackages = with pkgs; [
     parted
     gparted

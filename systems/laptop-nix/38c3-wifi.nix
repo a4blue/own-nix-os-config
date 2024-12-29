@@ -1,6 +1,7 @@
 {
   lib,
   config,
+  pkgs,
   ...
 }: {
   config.networking.networkmanager.ensureProfiles.profiles = {
@@ -24,9 +25,10 @@
         password = "38C3";
         phase2-auth = "pap";
         altsubject-matches = "DNS:radius.c3noc.net";
-        ca-cert = "${builtins.fetchurl {
+        ca-cert = "${pkgs.fetchurl {
           url = "https://letsencrypt.org/certs/isrgrootx1.pem";
           sha256 = "sha256:1la36n2f31j9s03v847ig6ny9lr875q3g7smnq33dcsmf2i5gd92";
+          postFetch = "chmod 444 $downloadedFile";
         }}";
       };
       ipv4 = {method = "auto";};

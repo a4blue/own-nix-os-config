@@ -29,6 +29,7 @@
 
   nix.settings.substituters = ["https://cache.nixos.sh"];
   nix.settings.connect-timeout = 5;
+  nix.settings.download-attempts = 1;
   environment.systemPackages = with pkgs; [
     parted
     gparted
@@ -57,7 +58,7 @@
   services.displayManager.sddm.wayland.enable = true;
   services.xserver.enable = true;
   services.displayManager.sddm.enable = true;
-  programs.firefox.nativeMessagingHosts.packages = [pkgs.plasma6Packages.plasma-browser-integration];
+  programs.firefox.nativeMessagingHosts.packages = [pkgs.kdePackages.plasma-browser-integration];
   hardware.enableAllFirmware = true;
 
   programs.fuse.userAllowOther = true;
@@ -115,6 +116,8 @@
         joplin-desktop
         wezterm
         element-desktop
+        simplex-chat-desktop
+        signal-desktop
       ];
       programs.firefox = {
         enable = true;
@@ -168,7 +171,7 @@
     enable = true;
     enable32Bit = true;
     extraPackages = [
-      pkgs.rocmPackages.clr.icd
+      #pkgs.rocmPackages.clr.icd
       pkgs.amdvlk
     ];
     extraPackages32 = [

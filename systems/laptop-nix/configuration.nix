@@ -27,7 +27,7 @@
     ./38c3-wifi.nix
   ];
 
-  nix.settings.substituters = ["https://cache.nixos.sh"];
+  #nix.settings.substituters = ["https://cache.nixos.sh"];
   nix.settings.connect-timeout = 5;
   nix.settings.download-attempts = 1;
   environment.systemPackages = with pkgs; [
@@ -118,6 +118,7 @@
         element-desktop
         simplex-chat-desktop
         signal-desktop
+	libreoffice-qt6-fresh
       ];
       programs.firefox = {
         enable = true;

@@ -143,6 +143,5 @@
           ];
         };
       };
-      nix.settings.extra-substituters = ["https://cache.nixos.sh"];
     };
 }

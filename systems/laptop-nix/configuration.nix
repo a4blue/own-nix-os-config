@@ -24,7 +24,6 @@
     ../../modules/nixos/home-manager-base.nix
     ../../modules/nixos/home-wifi.nix
     #../../modules/nixos/docker.nix
-    ./38c3-wifi.nix
   ];
 
   #nix.settings.substituters = ["https://cache.nixos.sh"];
@@ -119,6 +118,8 @@
         simplex-chat-desktop
         signal-desktop
 	libreoffice-qt6-fresh
+	vlc
+	mpv
       ];
       programs.firefox = {
         enable = true;

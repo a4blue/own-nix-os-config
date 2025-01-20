@@ -40,7 +40,6 @@
     git
     git-extras
     git-lfs
-    firefox
     htop
     ncdu
     qdirstat
@@ -49,6 +48,9 @@
     nerd-fonts.terminess-ttf
     fira-code
     vulkan-tools
+    virtualgl
+    libva-utils
+    ffmpeg
   ];
   fonts.packages = [pkgs.nerd-fonts.fira-code];
 
@@ -117,9 +119,9 @@
         element-desktop
         simplex-chat-desktop
         signal-desktop
-	libreoffice-qt6-fresh
-	vlc
-	mpv
+        libreoffice-qt6-fresh
+        vlc
+        mpv
       ];
       programs.firefox = {
         enable = true;
@@ -136,6 +138,10 @@
           DisableFirefoxAccounts = true;
           DisablePocket = true;
           DontCheckDefaultBrowser = true;
+          Preferences = {
+            "gfx.webrender.all" = {Value = true;};
+            "media.ffmpeg.vaapi.enabled" = {Value = true;};
+          };
         };
       };
     };

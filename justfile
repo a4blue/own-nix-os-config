@@ -6,7 +6,7 @@ update-diff: _build-systems _update-and-build-systems-1 _diff-systems
 @_stash:
   git stash
 @_stash-pop:
-  git stash pop
+  -git stash pop
 @_build-systems: _stash && _stash-pop
   mkdir -p gen
   #nix build .#nixosConfigurations.iso.config.system.build.isoImage -o gen/iso

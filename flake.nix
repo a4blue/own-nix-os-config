@@ -5,6 +5,7 @@
     # Nixpkgs
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-24.11";
+    nixpkgs-prev.url = "github:nixos/nixpkgs?rev=5df43628fdf08d642be8ba5b3625a6c70731c19c";
 
     impermanence = {
       url = "github:nix-community/impermanence";
@@ -99,9 +100,7 @@
         };
       };
     })
-    // 
-      {
-      #nix.nixPath = ["nixpkgs=${inputs.nixpkgs}"];
+    // {
       nixosConfigurations = {
         # nix build ./#nixosConfigurations.homelab.config.system.build.toplevel
         homelab = nixpkgs.lib.nixosSystem {
@@ -123,11 +122,9 @@
         laptop-nix = nixpkgs.lib.nixosSystem {
           specialArgs = {inherit inputs outputs system;};
           modules = [
-            {
-	    nixpkgs.hostPlatform = "x86_64-linux";
-	    }
             ./systems/laptop-nix/configuration.nix
-	    {nix.settings.extra-substituters = ["https://nix-community.cachix.org"];}
+            ./overlays/previous.nix
+            {nix.settings.extra-substituters = ["https://nix-community.cachix.org"];}
           ];
         };
         # nix build .#nixosConfigurations.iso.config.system.build.isoImage

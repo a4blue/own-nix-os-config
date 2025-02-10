@@ -30,6 +30,9 @@ with config; {
     userEmail = "a4blue@hotmail.de";
   };
 
+  nix.gc.automatic = true;
+  nix.gc.options = "--delete-older-than 10d";
+
   #sops = {
   # Example Generation:
   # age-keygen -o ~/.config/sops/age/keys.txt

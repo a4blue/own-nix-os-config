@@ -24,5 +24,12 @@
     strace
     perl
     rsync
+    just
+    zellij
+    joshuto
+    fzf
+    zoxide
+    wl-clipboard
+    wl-clipboard-x11
   ];
 }

@@ -51,6 +51,11 @@
     virtualgl
     libva-utils
     ffmpeg
+    mangohud
+    protonup-qt
+    lutris
+    bottles
+    heroic
   ];
   fonts.packages = [pkgs.nerd-fonts.fira-code];
 
@@ -96,6 +101,7 @@
     localNetworkGameTransfers.openFirewall = true; # Open ports in the firewall for Steam Local Network Game Transfers
     gamescopeSession.enable = true;
   };
+  programs.gamemode.enable = true;
   #programs.java.enable = true;
   programs.nix-ld = {
     enable = true;

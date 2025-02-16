@@ -28,6 +28,7 @@ with config; {
     enable = true;
     userName = "Alexander Ratajczak";
     userEmail = "a4blue@hotmail.de";
+    signing.format = "openpgp";
   };
 
   nix.gc.automatic = true;

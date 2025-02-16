@@ -25,8 +25,8 @@ in
       }
       -- FIX START
       -- Currently there are issues, this fixes it
-      config.front_end = "WebGpu"
-      config.enable_wayland = false
+      --config.front_end = "WebGpu"
+      --config.enable_wayland = false
       -- FIX END
 
       -- and finally, return the configuration to wezterm

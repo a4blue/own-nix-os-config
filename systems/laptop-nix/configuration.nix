@@ -129,6 +129,7 @@
         libreoffice-qt6-fresh
         vlc
         mpv
+        nil
       ];
       programs.firefox = {
         enable = true;
@@ -150,6 +151,14 @@
             "media.ffmpeg.vaapi.enabled" = {Value = true;};
           };
         };
+      };
+      programs.vscode = {
+        enable = true;
+        package = pkgs.vscodium;
+        extensions = with pkgs.vscode-extensions; [
+          jnoortheen.nix-ide
+          kamadorueda.alejandra
+        ];
       };
     };
   };

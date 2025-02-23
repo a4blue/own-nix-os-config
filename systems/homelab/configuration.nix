@@ -76,7 +76,7 @@
   home-manager.users = {
     a4blue = {
       imports = [
-        ./../../modules/home-manager/base.nix
+        ./../../configs/home-manager/a4blue
         ./../../modules/home-manager/persistence.nix
         inputs.impermanence.nixosModules.home-manager.impermanence
       ];

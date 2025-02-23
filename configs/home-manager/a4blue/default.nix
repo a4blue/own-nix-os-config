@@ -4,6 +4,12 @@
   ...
 }:
 with config; {
+  imports = [
+    ./vscode.nix
+    ./firefox.nix
+    ./git.nix
+  ];
+
   home = {
     username = "a4blue";
     homeDirectory = "/home/a4blue";
@@ -24,23 +30,9 @@ with config; {
 
   # Enable home-manager and git
   programs.home-manager.enable = true;
-  programs.git = {
-    enable = true;
-    userName = "Alexander Ratajczak";
-    userEmail = "a4blue@hotmail.de";
-    signing.format = "openpgp";
-  };
-
+  programs.git.enable = true;
   nix.gc.automatic = true;
   nix.gc.options = "--delete-older-than 10d";
 
-  #sops = {
-  # Example Generation:
-  # age-keygen -o ~/.config/sops/age/keys.txt
-  #age.keyFile = "~/.config/sops/age/keys.txt"; # must have no password!
-  #defaultSopsFile = ./secrets.yaml;
-  #};
-
-  # Nicely reload system units when changing configs
   systemd.user.startServices = "sd-switch";
 }

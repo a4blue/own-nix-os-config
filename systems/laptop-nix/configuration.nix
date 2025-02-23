@@ -26,7 +26,6 @@
     #../../modules/nixos/docker.nix
   ];
 
-  #nix.settings.substituters = ["https://cache.nixos.sh"];
   nix.settings.connect-timeout = 5;
   nix.settings.download-attempts = 1;
   environment.systemPackages = with pkgs; [
@@ -116,8 +115,7 @@
   home-manager.users = {
     a4blue = {
       imports = [
-        ./../../modules/home-manager/base.nix
-        #./../../modules/home-manager/persistence.nix
+        ./../../configs/home-manager/a4blue
       ];
       home.packages = with pkgs; [
         proton-pass
@@ -129,37 +127,9 @@
         libreoffice-qt6-fresh
         vlc
         mpv
-        nil
       ];
-      programs.firefox = {
-        enable = true;
-        policies = {
-          DisableTelemetry = true;
-          DisableFirefoxStudies = true;
-          EnableTrackingProtection = {
-            Value = true;
-            Locked = true;
-            Cryptomining = true;
-            Fingerprinting = true;
-          };
-          DisableAccounts = true;
-          DisableFirefoxAccounts = true;
-          DisablePocket = true;
-          DontCheckDefaultBrowser = true;
-          Preferences = {
-            "gfx.webrender.all" = {Value = true;};
-            "media.ffmpeg.vaapi.enabled" = {Value = true;};
-          };
-        };
-      };
-      programs.vscode = {
-        enable = true;
-        package = pkgs.vscodium;
-        extensions = with pkgs.vscode-extensions; [
-          jnoortheen.nix-ide
-          kamadorueda.alejandra
-        ];
-      };
+      programs.firefox.enable = true;
+      programs.vscode.enable = true;
     };
   };
 

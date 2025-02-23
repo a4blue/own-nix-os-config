@@ -8,6 +8,9 @@ with config; {
     ./vscode.nix
     ./firefox.nix
     ./git.nix
+    ./alacritty.nix
+    ./fontconfig.nix
+    ./wezterm.nix
   ];
 
   home = {
@@ -31,6 +34,7 @@ with config; {
   # Enable home-manager and git
   programs.home-manager.enable = true;
   programs.git.enable = true;
+
   nix.gc.automatic = true;
   nix.gc.options = "--delete-older-than 10d";
 

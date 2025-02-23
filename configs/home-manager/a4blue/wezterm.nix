@@ -1,13 +1,12 @@
 {
-  config,
   lib,
   pkgs,
+  config,
   ...
-}: let
-  cfg = config.programs.wezterm;
-in
-  lib.mkIf cfg.enable {
-    cfg.extraConfig = ''
+}:
+lib.mkIf (config.programs.wezterm.enable) {
+  programs.wezterm = {
+    extraConfig = ''
       -- This will hold the configuration.
       local config = wezterm.config_builder()
 
@@ -32,5 +31,8 @@ in
       -- and finally, return the configuration to wezterm
       return config
     '';
-    home.packages = [pkgs.nerd-fonts.fira-code];
-  }
+  };
+  home.packages = [pkgs.nerd-fonts.fira-code];
+
+  fonts.fontconfig.enable = true;
+}

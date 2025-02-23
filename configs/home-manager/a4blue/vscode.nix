@@ -15,5 +15,7 @@ lib.mkIf (config.programs.vscode.enable) {
   home.packages = with pkgs; [
     nil
     alejandra
+    nerd-fonts.fira-code
   ];
+  fonts.fontconfig.enable = true;
 }

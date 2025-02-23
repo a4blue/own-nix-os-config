@@ -120,7 +120,6 @@
       home.packages = with pkgs; [
         proton-pass
         joplin-desktop
-        wezterm
         element-desktop
         simplex-chat-desktop
         signal-desktop
@@ -130,8 +129,11 @@
       ];
       programs.firefox.enable = true;
       programs.vscode.enable = true;
+      programs.alacritty.enable = true;
+      programs.wezterm.enable = true;
     };
   };
+  home-manager.backupFileExtension = "hm-backup";
 
   boot.kernelPackages = pkgs.linuxPackages_6_12;
   boot.supportedFilesystems = ["bcachefs"];

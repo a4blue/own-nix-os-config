@@ -7,7 +7,7 @@
 lib.mkIf (config.programs.vscode.enable) {
   programs.vscode = {
     package = pkgs.vscodium;
-    extensions = with pkgs.vscode-extensions; [
+    profiles.default.extensions = with pkgs.vscode-extensions; [
       jnoortheen.nix-ide
       kamadorueda.alejandra
     ];

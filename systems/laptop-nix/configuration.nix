@@ -26,7 +26,7 @@
     #../../modules/nixos/docker.nix
   ];
 
-  nix.settings.connect-timeout = 5;
+  nix.settings.connect-timeout = 30;
   nix.settings.download-attempts = 1;
   environment.systemPackages = with pkgs; [
     parted
@@ -135,7 +135,7 @@
   };
   home-manager.backupFileExtension = "hm-backup";
 
-  boot.kernelPackages = pkgs.linuxPackages_6_12;
+  boot.kernelPackages = pkgs.linuxPackages_6_13;
   boot.supportedFilesystems = ["bcachefs"];
 
   # Driver needed for Remote disk Unlocking

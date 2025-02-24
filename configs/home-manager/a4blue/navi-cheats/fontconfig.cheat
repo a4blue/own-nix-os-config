@@ -1,0 +1,4 @@
+% fontconfig
+
+# Regenerate Fontconfig Cache
+fc-cache -rf

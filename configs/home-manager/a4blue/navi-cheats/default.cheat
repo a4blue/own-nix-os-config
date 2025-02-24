@@ -1,0 +1,20 @@
+% help, navi
+
+# Read navy command-line help text
+navi --help
+
+# Read navy project README.md
+navi fn url::open "https://github.com/denisidoro/navi"
+
+% command-runner, make, just
+
+# list available just commands
+just --list
+
+# run just
+just
+
+% nix-tools, nvd
+
+# Diff Current System to other one
+nvd diff /run/current-system <other-system-path>

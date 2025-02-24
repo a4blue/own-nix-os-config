@@ -1,6 +1,7 @@
 {
   pkgs,
   config,
+  inputs,
   ...
 }:
 with config; {
@@ -11,6 +12,9 @@ with config; {
     ./alacritty.nix
     ./fontconfig.nix
     ./wezterm.nix
+    ./navi.nix
+    ./zellij.nix
+    ./bottom.nix
   ];
 
   home = {
@@ -21,19 +25,21 @@ with config; {
   };
 
   home.packages = with pkgs; [
-    vim
     wget
-    htop
-    home-manager
-    nano
     curl
-    tmux
+    home-manager
     sops
+    just
+    inputs.own-nixvim.packages.${system}.default
+    nvd
   ];
 
-  # Enable home-manager and git
+  # Enable default Programs (only non-gui allowed)
   programs.home-manager.enable = true;
   programs.git.enable = true;
+  programs.navi.enable = true;
+  programs.zellij.enable = true;
+  programs.bottom.enable = true;
 
   nix.gc.automatic = true;
   nix.gc.options = "--delete-older-than 10d";

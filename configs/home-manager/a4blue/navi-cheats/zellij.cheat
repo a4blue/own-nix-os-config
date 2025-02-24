@@ -1,0 +1,10 @@
+% zellij, tmux, multiplexer
+
+# Attach to a session
+zellij a <session_name>
+
+# List Sessions
+zellij ls
+
+# Start zellij
+zellij

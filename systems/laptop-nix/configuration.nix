@@ -127,6 +127,7 @@
         vlc
         mpv
       ];
+      # Enable GUI Programs
       programs.firefox.enable = true;
       programs.vscode.enable = true;
       programs.alacritty.enable = true;

@@ -41,6 +41,8 @@
     ../../modules/nixos/dynv6.nix
     #../../modules/nixos/stalwart.nix
     ../../modules/nixos/recreate-root/options.nix
+    ../../modules/nixos/prometheus.nix
+    ../../modules/nixos/grafana.nix
   ];
 
   modules.recreate-root.enable = true;

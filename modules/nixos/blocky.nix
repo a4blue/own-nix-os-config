@@ -41,19 +41,19 @@
         "https://unicast.uncensoreddns.org/dns-query"
         # https://dnsforge.de/
         # Censored 🚫
-        "https://dnsforge.de/dns-query"
+        #"https://dnsforge.de/dns-query"
         # https://quad9.net/de/service/service-addresses-and-features
         # Censored 🚫
-        "https://dns.quad9.net/dns-query"
+        #"https://dns.quad9.net/dns-query"
         # https://mullvad.net/de/help/dns-over-https-and-dns-over-tls
         # UnCensored ✅
         "https://dns.mullvad.net/dns-query"
         # https://blahdns.com/
         # Censored 🚫
-        "https://doh-de.blahdns.com/dns-query"
+        #"https://doh-de.blahdns.com/dns-query"
         # https://dismail.de/info.html#dns
         # Censored 🚫
-        "tcp-tls:fdns2.dismail.de:853"
+        #"tcp-tls:fdns2.dismail.de:853"
         # https://dns.njal.la/
         # UnCensored ✅
         "https://dns.njal.la/dns-query"
@@ -80,22 +80,22 @@
           upstream = "tcp-tls:dns3.digitalcourage.de:853";
           ips = ["5.9.164.112" "2a01:4f8:251:554::2"];
         }
-        {
-          upstream = "https://dns.quad9.net/dns-query";
-          ips = ["9.9.9.9" "149.112.112.112" "2620:fe::fe" "2620:fe::9"];
-        }
-        {
-          upstream = "https://anycast.uncensoreddns.org/dns-query";
-          ips = ["91.239.100.100" "2001:67c:28a4::"];
-        }
-        {
-          upstream = "https://unicast.uncensoreddns.org/dns-query";
-          ips = ["89.233.43.71" "2a01:3a0:53:53::"];
-        }
-        {
-          upstream = "https://dns.mullvad.net/dns-query";
-          ips = ["194.242.2.2" "2a07:e340::2"];
-        }
+        #{
+        #  upstream = "https://dns.quad9.net/dns-query";
+        #  ips = ["9.9.9.9" "149.112.112.112" "2620:fe::fe" "2620:fe::9"];
+        #}
+        #{
+        #  upstream = "https://anycast.uncensoreddns.org/dns-query";
+        #  ips = ["91.239.100.100" "2001:67c:28a4::"];
+        #}
+        #{
+        #  upstream = "https://unicast.uncensoreddns.org/dns-query";
+        #  ips = ["89.233.43.71" "2a01:3a0:53:53::"];
+        #}
+        #{
+        #  upstream = "https://dns.mullvad.net/dns-query";
+        #  ips = ["194.242.2.2" "2a07:e340::2"];
+        #}
       ];
       blocking = {
         denylists = {

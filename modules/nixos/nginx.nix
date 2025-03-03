@@ -5,6 +5,7 @@
     defaults = {
       email = "a4blue@hotmail.de";
       dnsResolver = "1.1.1.1:53";
+      enableDebugLogs = true;
     };
   };
   services.nginx = {

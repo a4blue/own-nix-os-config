@@ -1,5 +1,6 @@
 {config, ...}: {
   security.acme = {
+    useRoot = true;
     acceptTerms = true;
     defaults = {
       email = "a4blue@hotmail.de";

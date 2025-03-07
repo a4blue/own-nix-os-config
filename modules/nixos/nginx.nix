@@ -1,11 +1,9 @@
 {config, ...}: {
   security.acme = {
-    useRoot = true;
     acceptTerms = true;
     defaults = {
       email = "a4blue@hotmail.de";
       dnsResolver = "1.1.1.1:53";
-      enableDebugLogs = true;
     };
   };
   services.nginx = {
@@ -31,6 +29,7 @@
     };
   };
   users.users.nginx.extraGroups = ["acme"];
+  users.users.acme.extraGroups = ["nginx"];
 
   networking.firewall.allowedTCPPorts = [
     80

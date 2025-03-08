@@ -40,7 +40,7 @@
     directories = [
       {
         directory = "/var/lib/acme";
-        mode = "2744";
+        mode = "744";
         user = "acme";
         group = "acme";
       }

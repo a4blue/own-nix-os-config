@@ -132,6 +132,8 @@
       programs.vscode.enable = true;
       programs.alacritty.enable = true;
       programs.wezterm.enable = true;
+      programs.ssh.enable = true;
+      programs.joshuto.enable = true;
     };
   };
   home-manager.backupFileExtension = "hm-backup";

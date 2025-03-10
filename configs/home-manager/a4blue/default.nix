@@ -15,6 +15,8 @@ with config; {
     ./navi.nix
     ./zellij.nix
     ./bottom.nix
+    ./joshuto.nix
+    ./ssh.nix
   ];
 
   home = {

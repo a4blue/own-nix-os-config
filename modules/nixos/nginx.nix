@@ -14,7 +14,7 @@
     enable = true;
     virtualHosts = {
       # Public DynDNS
-      "home.a4blue.me" = {
+      "homelab.home.a4blue.me" = {
         forceSSL = true;
         enableACME = true;
         locations."/" = {
@@ -23,7 +23,7 @@
       };
       # Default match
       "_" = {
-        globalRedirect = "home.a4blue.me";
+        globalRedirect = "homelab.home.a4blue.me";
         default = true;
       };
     };

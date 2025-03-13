@@ -14,9 +14,14 @@
       #!/bin/sh
 
       token=$(cat ${config.sops.secrets.dynv6_token.path})
-      zone=home.a4blue.me
+      rootZone=home.a4blue.me
 
-      curl -k "https://ipv6.dynv6.com/api/update?token=''${token}&zone=''${zone}&ipv6prefix=auto"
+      curl -k "https://ipv6.dynv6.com/api/update?token=''${token}&zone=nextcloud.''${rootZone}&ipv6prefix=auto"
+      curl -k "https://ipv6.dynv6.com/api/update?token=''${token}&zone=homelab.''${rootZone}&ipv6prefix=auto"
+
+      curl -k "https://ipv4.dynv6.com/api/update?token=''${token}&zone=nextcloud.''${rootZone}&ipv4=auto"
+      curl -k "https://ipv4.dynv6.com/api/update?token=''${token}&zone=homelab.''${rootZone}&ipv4=auto"
+    
     '';
     restartIfChanged = true;
     serviceConfig = {

@@ -25,6 +25,7 @@ lib.mkIf (config.programs.firefox.enable) {
       };
     };
     languagePacks = ["en-US" "de"];
+    nativeMessagingHosts = [pkgs.kdePackages.plasma-browser-integration];
   };
   home.packages = with pkgs; [
     ffmpeg

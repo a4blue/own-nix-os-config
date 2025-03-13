@@ -21,7 +21,6 @@
     ../../modules/nixos/hardening.nix
     ../../modules/nixos/home-manager-base.nix
     ../../modules/nixos/docker.nix
-    ../../modules/nixos/docker/unmanic.nix
     ../../modules/nixos/docker/stash.nix
 
     # web services
@@ -32,7 +31,6 @@
     #../../modules/nixos/jellyfin.nix
     ../../modules/nixos/forgejo.nix
     #../../modules/nixos/firefly-iii.nix
-    #../../modules/unmanic/default.nix
     # other services
     ../../modules/nixos/samba.nix
     ../../modules/nixos/blocky.nix

@@ -12,14 +12,14 @@ lib.mkIf (config.programs.ssh.enable) {
         hostname = "192.168.178.64";
         user = "a4blue";
         extraOptions = {
-          "UserKnownHostsFile" = "homelab_known_hosts";
+          "UserKnownHostsFile" = "~/.ssh/homelab_known_hosts";
         };
       };
       "homelab-unlock" = {
         hostname = "192.168.178.64";
         user = "root";
         extraOptions = {
-          "UserKnownHostsFile" = "homelab-unlock_known_hosts";
+          "UserKnownHostsFile" = "~/.ssh/homelab-unlock_known_hosts";
         };
       };
     };

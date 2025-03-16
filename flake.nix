@@ -108,6 +108,7 @@
           modules = [
             {nixpkgs.hostPlatform = "x86_64-linux";}
             ./systems/homelab/configuration.nix
+            ./overlays/previous.nix
           ];
         };
         # nix build ./#nixosConfigurations.desktop-nix.config.system.build.toplevel

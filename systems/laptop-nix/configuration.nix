@@ -138,7 +138,7 @@
   };
   home-manager.backupFileExtension = "hm-backup";
 
-  boot.kernelPackages = pkgs.linuxPackages_6_13;
+  boot.kernelPackages = pkgs.linuxPackages_6_14;
   boot.supportedFilesystems = ["bcachefs"];
 
   # Driver needed for Remote disk Unlocking
@@ -195,5 +195,5 @@
   # Configure console keymap
   console.keyMap = "de";
 
-  system.stateVersion = "24.11";
+  system.stateVersion = "25.05";
 }

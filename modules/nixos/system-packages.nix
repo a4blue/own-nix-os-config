@@ -31,5 +31,6 @@
     zoxide
     wl-clipboard
     wl-clipboard-x11
+    nix-tree
   ];
 }

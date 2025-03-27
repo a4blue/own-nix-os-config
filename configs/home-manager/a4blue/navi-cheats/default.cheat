@@ -18,3 +18,21 @@ just
 
 # Diff Current System to other one
 nvd diff /run/current-system <other-system-path>
+
+# List system generations
+nix profile history --profile /nix/var/nix/profiles/system
+
+# GC Nix Store
+nix store gc
+
+# Optimise Nix Store
+nix store optimise
+
+# Print GC Roots
+nix-store --gc --print-roots
+
+# List Home-Manager Generations
+home-manager generations
+
+# Remove Home-Manager Generation by ID
+home-manager remove-generations <ID>

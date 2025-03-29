@@ -64,19 +64,7 @@
   in
     flake-utils.lib.eachDefaultSystem (system: let
       pkgs = import nixpkgs {inherit system;};
-      #build-systems =
-      #  pkgs.runCommandLocal "build-systems" {
-      #  NIX_CONFIG = "experimental-features = nix-command flakes";
-      #    src = ./.;
-      #    nativeBuildInputs = with pkgs; [nix];
-      #  } ''
-      #    nix build ./#nixosConfigurations.homelab.config.system.build.toplevel
-      #    nix build ./#nixosConfigurations.desktop-nix.config.system.build.toplevel
-      #    nix build ./#nixosConfigurations.laptop-nix.config.system.build.toplevel
-      #    mkdir "$out"
-      #  '';
     in {
-      #checks = {inherit build-systems;};
       formatter = pkgs.alejandra;
       devShells = {
         default = pkgs.mkShell {

@@ -62,8 +62,6 @@
   services.xserver.enable = true;
   services.displayManager.sddm.enable = true;
 
-  hardware.enableAllFirmware = true;
-
   programs.fuse.userAllowOther = true;
   networking.hostName = "desktop-nix";
   zramSwap.enable = true;

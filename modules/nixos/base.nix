@@ -7,7 +7,13 @@
     ./system-packages.nix
   ];
 
-  nixpkgs.config.allowUnfree = true;
+  #nixpkgs.config.allowUnfree = true;
+  hardware.enableRedistributableFirmware = true;
+
+  #hardware.enableAllFirmware = true;
+
+  system.stateVersion = "25.05";
+
   nix = {
     gc = {
       automatic = true;
@@ -17,6 +23,10 @@
     settings = {
       experimental-features = "nix-command flakes";
       auto-optimise-store = true;
+      extra-substituters = ["https://nix-community.cachix.org"];
+      trusted-public-keys = ["nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="];
+      connect-timeout = 30;
+      download-attempts = 1;
     };
     nixPath = ["nixpkgs=${inputs.nixpkgs}"];
   };

@@ -10,24 +10,19 @@
   ...
 }: {
   imports = [
-    #inputs.impermanence.nixosModules.impermanence
     inputs.sops-nix.nixosModules.sops
     inputs.home-manager.nixosModules.home-manager
 
     ./hardware-configuration.nix
 
     ../../modules/nixos/base.nix
-    #../../modules/nixos/remote-disk-unlocking.nix
-    #../../modules/nixos/impermanence.nix
-    #../../modules/nixos/re-create-root.nix
     ../../modules/nixos/hardening.nix
     ../../modules/nixos/home-manager-base.nix
     ../../modules/nixos/home-wifi.nix
-    #../../modules/nixos/docker.nix
+
+    ../../configs/common
   ];
 
-  nix.settings.connect-timeout = 30;
-  nix.settings.download-attempts = 1;
   environment.systemPackages = with pkgs; [
     parted
     gparted
@@ -64,12 +59,11 @@
   services.displayManager.sddm.wayland.enable = true;
   services.xserver.enable = true;
   services.displayManager.sddm.enable = true;
-  programs.firefox.nativeMessagingHosts.packages = [pkgs.kdePackages.plasma-browser-integration];
-  hardware.enableAllFirmware = true;
 
   hardware.bluetooth.enable = true;
 
   programs.fuse.userAllowOther = true;
+  programs.steam.enable = true;
   networking.hostName = "laptop-nix";
 
   zramSwap.enable = true;
@@ -91,28 +85,13 @@
 
   networking.networkmanager.enable = true;
 
-  programs.steam = {
-    enable = true;
-    package = pkgs.steam.override {
-      #withJava = true;
-      #withPrimus = true;
-      #extraPkgs = pkgs: [ bumblebee glxinfo ];
-    };
-    remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
-    dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
-    localNetworkGameTransfers.openFirewall = true; # Open ports in the firewall for Steam Local Network Game Transfers
-    gamescopeSession.enable = true;
-  };
-  programs.gamemode.enable = true;
-  #programs.java.enable = true;
-  programs.nix-ld = {
-    enable = true;
-    #libraries = pkgs.steam-run.fhsenv.args.multiPkgs pkgs;
-  };
-
   security.tpm2.enable = true;
   security.tpm2.pkcs11.enable = true; # expose /run/current-system/sw/lib/libtpm2_pkcs11.so
   security.tpm2.tctiEnvironment.enable = true;
+  nixpkgs.config.permittedInsecurePackages = [
+    "olm-3.2.16"
+    "fluffychat-linux-1.25.1"
+  ];
 
   home-manager.users = {
     a4blue = {
@@ -128,6 +107,8 @@
         libreoffice-qt6-fresh
         vlc
         mpv
+        fluffychat
+        #kdePackages.neochat
       ];
       # Enable GUI Programs
       programs.firefox.enable = true;
@@ -149,24 +130,6 @@
 
   boot.initrd.systemd.emergencyAccess = true;
 
-  # Set your time zone.
-  time.timeZone = "Europe/Berlin";
-
-  # Select internationalisation properties.
-  i18n.defaultLocale = "en_US.UTF-8";
-
-  i18n.extraLocaleSettings = {
-    LC_ADDRESS = "de_DE.UTF-8";
-    LC_IDENTIFICATION = "de_DE.UTF-8";
-    LC_MEASUREMENT = "de_DE.UTF-8";
-    LC_MONETARY = "de_DE.UTF-8";
-    LC_NAME = "de_DE.UTF-8";
-    LC_NUMERIC = "de_DE.UTF-8";
-    LC_PAPER = "de_DE.UTF-8";
-    LC_TELEPHONE = "de_DE.UTF-8";
-    LC_TIME = "de_DE.UTF-8";
-  };
-
   services.printing.enable = true;
   hardware.graphics = {
     enable = true;
@@ -187,15 +150,17 @@
     alsa.support32Bit = true;
     pulse.enable = true;
   };
-
-  # Configure keymap in X11
-  services.xserver = {
-    xkb.layout = "de";
-    xkb.variant = "";
+  services.pipewire.wireplumber.extraConfig."10-bluez" = {
+    "monitor.bluez.properties" = {
+      "bluez5.enable-sbc-xq" = true;
+      "bluez5.enable-msbc" = true;
+      "bluez5.enable-hw-volume" = true;
+      "bluez5.roles" = [
+        "hsp_hs"
+        "hsp_ag"
+        "hfp_hf"
+        "hfp_ag"
+      ];
+    };
   };
-
-  # Configure console keymap
-  console.keyMap = "de";
-
-  system.stateVersion = "25.05";
 }

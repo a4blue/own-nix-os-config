@@ -67,6 +67,8 @@
   programs.firefox.nativeMessagingHosts.packages = [pkgs.kdePackages.plasma-browser-integration];
   hardware.enableAllFirmware = true;
 
+  hardware.bluetooth.enable = true;
+
   programs.fuse.userAllowOther = true;
   networking.hostName = "laptop-nix";
 

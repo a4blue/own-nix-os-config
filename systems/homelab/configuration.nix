@@ -43,6 +43,7 @@
     ../../modules/nixos/grafana.nix
   ];
 
+  hardware.enableAllFirmware = true;
   modules.recreate-root.enable = true;
   modules.recreate-root.systemd-device-bind = "dev-nvme0n1p3.device";
 

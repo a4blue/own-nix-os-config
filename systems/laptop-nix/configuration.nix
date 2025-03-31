@@ -108,7 +108,7 @@
         vlc
         mpv
         fluffychat
-        #kdePackages.neochat
+        handbrake
       ];
       # Enable GUI Programs
       programs.firefox.enable = true;

@@ -21,7 +21,7 @@
 
       curl -k "https://ipv4.dynv6.com/api/update?token=''${token}&zone=nextcloud.''${rootZone}&ipv4=auto"
       curl -k "https://ipv4.dynv6.com/api/update?token=''${token}&zone=homelab.''${rootZone}&ipv4=auto"
-    
+
     '';
     restartIfChanged = true;
     serviceConfig = {

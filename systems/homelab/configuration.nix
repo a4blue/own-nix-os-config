@@ -24,7 +24,7 @@
     ../../modules/nixos/docker/stash.nix
 
     # web services
-    ../../modules/nixos/homepage-dashboard.nix
+    #../../modules/nixos/homepage-dashboard.nix
     ../../modules/nixos/paperless.nix
     ../../modules/nixos/nextcloud.nix
     ../../modules/nixos/borgbackup.nix

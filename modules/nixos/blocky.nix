@@ -112,13 +112,4 @@
   };
   networking.firewall.allowedTCPPorts = [53];
   networking.firewall.allowedUDPPorts = [53];
-
-  environment.persistence."/persistent" = {
-    directories = [
-      {
-        directory = "/var/lib/blocky";
-        mode = "0777";
-      }
-    ];
-  };
 }

@@ -13,6 +13,8 @@
 
     ./hardware-configuration.nix
 
+    ./configs/kernel-patch.nix
+
     # base stuff
     ../../modules/nixos/base.nix
     ../../modules/nixos/remote-disk-unlocking.nix

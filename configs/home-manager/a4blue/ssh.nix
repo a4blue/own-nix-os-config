@@ -24,4 +24,5 @@ lib.mkIf (config.programs.ssh.enable) {
       };
     };
   };
+  services.ssh-agent.enable = true;
 }

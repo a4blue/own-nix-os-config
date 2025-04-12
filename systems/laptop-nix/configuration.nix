@@ -95,6 +95,12 @@
 
   home-manager.users = {
     a4blue = {
+      xdg.mimeApps = {
+        enable = true;
+        defaultApplications = {
+          "video/x-matroska" = "vlc.desktop";
+        };
+      };
       imports = [
         ./../../configs/home-manager/a4blue
       ];
@@ -118,6 +124,9 @@
       programs.ssh.enable = true;
       programs.joshuto.enable = true;
       programs.ghostty.enable = true;
+
+      programs.ssh.matchBlocks."homelab".extraOptions."IdentityFile" = "~/.ssh/id_ed25519_sk_rk_9bff4ca58ab54a4c9973715e8c409e737b0df72132906345c58b885107431f4d";
+      programs.ssh.matchBlocks."homelab-unlock".extraOptions."IdentityFile" = "~/.ssh/id_ed25519_sk_rk_9bff4ca58ab54a4c9973715e8c409e737b0df72132906345c58b885107431f4d";
     };
   };
   home-manager.backupFileExtension = "hm-backup";

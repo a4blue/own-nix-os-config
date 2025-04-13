@@ -51,32 +51,49 @@
   modules.recreate-root.systemd-device-bind = "dev-nvme0n1p3.device";
 
   programs.fuse.userAllowOther = true;
-  networking.hostName = "homelab";
-  zramSwap.enable = true;
-
-  boot.loader = {
-    systemd-boot = {
-      enable = true;
-      configurationLimit = 5;
-    };
-    efi.canTouchEfiVariables = true;
-    timeout = 10;
+  networking = {
+    hostName = "homelab";
+    networkmanager.enable = true;
+    # Network DNS Fallback
+    nameservers = ["127.0.0.1" "8.8.8.8"];
   };
 
+  zramSwap.enable = true;
+
+  boot = {
+    loader = {
+      systemd-boot = {
+        enable = true;
+        configurationLimit = 5;
+      };
+      efi.canTouchEfiVariables = true;
+      timeout = 10;
+    };
+    kernelPackages = pkgs.linuxPackages_6_14;
+    supportedFilesystems = ["bcachefs"];
+
+    # Driver needed for Remote disk Unlocking
+    initrd = {
+      availableKernelModules = ["r8169"];
+      systemd.enable = true;
+      systemd.emergencyAccess = true;
+    };
+  };
   services = {
     openssh.enable = true;
     fstrim.enable = true;
     fwupd.enable = true;
   };
 
-  networking.networkmanager.enable = true;
-
   # TODO
   # Extra Module, maybe use it for something ?
-  security.tpm2.enable = true;
-  security.tpm2.pkcs11.enable = true; # expose /run/current-system/sw/lib/libtpm2_pkcs11.so
-  security.tpm2.tctiEnvironment.enable = true;
-
+  security = {
+    tpm2 = {
+      enable = true;
+      pkcs11.enable = true; # expose /run/current-system/sw/lib/libtpm2_pkcs11.so
+      tctiEnvironment.enable = true;
+    };
+  };
   home-manager.users = {
     a4blue = {
       imports = [
@@ -86,16 +103,4 @@
       ];
     };
   };
-
-  boot.kernelPackages = pkgs.linuxPackages_6_14;
-  boot.supportedFilesystems = ["bcachefs"];
-
-  # Driver needed for Remote disk Unlocking
-  boot.initrd.availableKernelModules = ["r8169"];
-  boot.initrd.systemd.enable = true;
-
-  boot.initrd.systemd.emergencyAccess = true;
-
-  # Network DNS Fallback
-  networking.nameservers = ["127.0.0.1" "8.8.8.8"];
 }

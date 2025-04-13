@@ -1,13 +1,15 @@
 {config, ...}: {
-  virtualisation.docker.enable = true;
-  virtualisation.docker.rootless = {
+  virtualisation.docker = {
     enable = true;
-    setSocketVariable = true;
+    rootless = {
+      enable = true;
+      setSocketVariable = true;
+    };
+    daemon.settings = {
+      data-root = "/var/lib/docker/data";
+    };
+    autoPrune.enable = true;
   };
-  virtualisation.docker.daemon.settings = {
-    data-root = "/var/lib/docker/data";
-  };
-  virtualisation.docker.autoPrune.enable = true;
   virtualisation.oci-containers.backend = "docker";
 
   environment.persistence."/persistent" = {

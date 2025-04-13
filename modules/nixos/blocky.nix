@@ -3,10 +3,12 @@
     enable = true;
     settings = {
       ports.dns = 53;
-      caching.prefetching = true;
-      caching.prefetchExpires = "2h";
-      caching.cacheTimeNegative = "1m";
-      caching.minTime = "10m";
+      caching = {
+        prefetching = true;
+        prefetchExpires = "2h";
+        cacheTimeNegative = "1m";
+        minTime = "10m";
+      };
 
       #queryLog.type = "csv";
       #queryLog.target = "/var/lib/blocky";

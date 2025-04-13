@@ -4,7 +4,7 @@
   config,
   ...
 }:
-lib.mkIf (config.programs.alacritty.enable) {
+lib.mkIf config.programs.alacritty.enable {
   programs.alacritty = {
     settings = {
       window = {

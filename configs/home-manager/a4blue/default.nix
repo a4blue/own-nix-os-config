@@ -37,11 +37,13 @@ with config; {
   ];
 
   # Enable default Programs (only non-gui allowed)
-  programs.home-manager.enable = true;
-  programs.git.enable = true;
-  programs.navi.enable = true;
-  programs.zellij.enable = true;
-  programs.bottom.enable = true;
+  programs = {
+    home-manager.enable = true;
+    git.enable = true;
+    navi.enable = true;
+    zellij.enable = true;
+    bottom.enable = true;
+  };
 
   nix.gc.automatic = true;
   nix.gc.options = "--delete-older-than 10d";

@@ -4,7 +4,7 @@
   config,
   ...
 }:
-lib.mkIf (config.programs.vscode.enable) {
+lib.mkIf config.programs.vscode.enable {
   programs.vscode = {
     package = pkgs.vscodium;
     profiles.default = {

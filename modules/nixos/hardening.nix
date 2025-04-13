@@ -6,7 +6,7 @@
   #environment.defaultPackages = lib.mkForce [];
   #boot.kernelParams = ["quiet"];
   #boot.consoleLogLevel = 0;
-  security.sudo.wheelNeedsPassword = false;
+
   services = {
     openssh = {
       settings = {
@@ -31,10 +31,13 @@
   };
 
   nix.settings.allowed-users = ["@wheel"];
-  security.sudo.execWheelOnly = true;
-  security.auditd.enable = true;
-  security.audit.enable = true;
-  security.audit.rules = [
-    "-a exit,always -F arch=b64 -S execve"
-  ];
+  security = {
+    sudo.execWheelOnly = true;
+    auditd.enable = true;
+    audit.enable = true;
+    audit.rules = [
+      "-a exit,always -F arch=b64 -S execve"
+    ];
+    sudo.wheelNeedsPassword = false;
+  };
 }

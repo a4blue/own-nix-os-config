@@ -4,7 +4,7 @@
   config,
   ...
 }:
-lib.mkIf (config.fonts.fontconfig.enable) {
+lib.mkIf config.fonts.fontconfig.enable {
   fonts.fontconfig = {
     defaultFonts = {
       emoji = ["Noto Color Emoji"];

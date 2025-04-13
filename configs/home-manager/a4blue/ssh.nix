@@ -4,7 +4,7 @@
   config,
   ...
 }:
-lib.mkIf (config.programs.ssh.enable) {
+lib.mkIf config.programs.ssh.enable {
   programs.ssh = {
     addKeysToAgent = "confirm 1h";
     matchBlocks = {

@@ -4,7 +4,7 @@
   config,
   ...
 }:
-lib.mkIf (config.programs.firefox.enable) {
+lib.mkIf config.programs.firefox.enable {
   programs.firefox = {
     policies = {
       DisableTelemetry = true;

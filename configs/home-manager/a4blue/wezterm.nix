@@ -4,7 +4,7 @@
   config,
   ...
 }:
-lib.mkIf (config.programs.wezterm.enable) {
+lib.mkIf config.programs.wezterm.enable {
   programs.wezterm = {
     extraConfig = ''
       -- This will hold the configuration.

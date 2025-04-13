@@ -4,7 +4,7 @@
   config,
   ...
 }:
-lib.mkIf (config.programs.bottom.enable) {
+lib.mkIf config.programs.bottom.enable {
   programs.bottom = {
     settings = {};
   };

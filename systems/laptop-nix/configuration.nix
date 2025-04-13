@@ -109,7 +109,7 @@
         joplin-desktop
         element-desktop
         simplex-chat-desktop
-        signal-desktop
+        signal-desktop-bin
         libreoffice-qt6-fresh
         vlc
         mpv

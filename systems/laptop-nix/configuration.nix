@@ -24,24 +24,12 @@
   ];
 
   environment.systemPackages = with pkgs; [
-    parted
     gparted
-    gptfdisk
-    pciutils
     uutils-coreutils
-    wget
     rsync
-    git
-    git-extras
-    git-lfs
-    htop
     ncdu
     qdirstat
     pynitrokey
-    nerd-fonts.fira-code
-    nerd-fonts.terminess-ttf
-    fira-code
-    vulkan-tools
     virtualgl
     libva-utils
     ffmpeg
@@ -53,7 +41,7 @@
     protontricks
     lact
   ];
-  fonts.packages = [pkgs.nerd-fonts.fira-code];
+  fonts.packages = [pkgs.nerd-fonts.fira-code pkgs.nerd-fonts.terminess-ttf];
 
   programs = {
     fuse.userAllowOther = true;
@@ -75,11 +63,8 @@
     kernelPackages = pkgs.linuxPackages_6_14;
     supportedFilesystems = ["bcachefs"];
 
-    # Driver needed for Remote disk Unlocking
     initrd = {
-      availableKernelModules = ["r8169"];
       systemd.enable = true;
-
       systemd.emergencyAccess = true;
     };
   };
@@ -182,7 +167,6 @@
       enable = true;
       enable32Bit = true;
       extraPackages = [
-        #pkgs.rocmPackages.clr.icd
         pkgs.amdvlk
       ];
       extraPackages32 = [

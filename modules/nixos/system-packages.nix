@@ -8,6 +8,8 @@
     vim
     wget
     git
+    git-extras
+    git-lfs
     home-manager
     nano
     efibootmgr

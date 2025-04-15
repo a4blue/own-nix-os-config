@@ -13,8 +13,8 @@
         "tcp-tls:ns3.de.dns.opennic.glue#dns.furrydns.de" # Koby
         "tcp-tls:ns13.de.dns.opennic.glue#ns1.opennameserver.org" # opennameserver.org
         "tcp-tls:ns16.de.dns.opennic.glue#ns2.opennameserver.org" # opennameserver.org
-        "tcp-tls:ns18.de.dns.opennic.glue#ns2.opennameserver.org" # opennameserver.org
-        "tcp-tls:ns23.de.dns.opennic.glue" # probst.click
+        "tcp-tls:ns18.de.dns.opennic.glue#ns3.opennameserver.org" # opennameserver.org
+        "tcp-tls:ns23.de.dns.opennic.glue#dns3.opennic.probst.click" # probst.click
         "tcp-tls:ns28.de.dns.opennic.glue#jabber-germany.de" # mistersixt
         "tcp-tls:ns29.de.dns.opennic.glue#morbitzer.de" # mistersixt
       ];
@@ -32,7 +32,8 @@
         customTTL = "1h";
         filterUnmappedTypes = true;
         mapping = {
-          #"fritz.box" = "192.168.178.1";
+          "fritz.box" = "192.168.178.1";
+          "*.fritz.box" = "192.168.178.1";
           #"homelab.a4blue.me" = "192.168.178.64";
           #"*.homelab.a4blue.me" = "192.168.178.64";
           #"*.homelab.internal" = "192.168.178.64";

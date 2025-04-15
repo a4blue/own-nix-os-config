@@ -11,21 +11,21 @@
         "tcp-tls:ns1.no.dns.opennic.glue#ns4.opennameserver.org" # opennameserver.org
         "tcp-tls:ns5.fi.dns.opennic.glue#dns.froth.zone" # sammefishe
         "tcp-tls:ns3.de.dns.opennic.glue#dns.furrydns.de" # Koby
-        "tcp-tls:ns13.de.dns.opennic.glue" # opennameserver.org
-        "tcp-tls:ns16.de.dns.opennic.glue" # opennameserver.org
-        "tcp-tls:ns18.de.dns.opennic.glue" # opennameserver.org
+        "tcp-tls:ns13.de.dns.opennic.glue#ns1.opennameserver.org" # opennameserver.org
+        "tcp-tls:ns16.de.dns.opennic.glue#ns2.opennameserver.org" # opennameserver.org
+        "tcp-tls:ns18.de.dns.opennic.glue#ns2.opennameserver.org" # opennameserver.org
         "tcp-tls:ns23.de.dns.opennic.glue" # probst.click
-        "tcp-tls:ns28.de.dns.opennic.glue" # mistersixt
+        "tcp-tls:ns28.de.dns.opennic.glue#jabber-germany.de" # mistersixt
         "tcp-tls:ns29.de.dns.opennic.glue#morbitzer.de" # mistersixt
       ];
       bootstrapDns = [
         {
-          upstream = "tcp-tls:ns2.de.dns.opennic.glue:853";
+          upstream = "tcp-tls:ns2.de.dns.opennic.glue:853#kekew.info";
           ips = ["80.152.203.134" "2003:a:64b:3b00::2"];
         }
         {
-          upstream = "tcp-tls:ns28.de.dns.opennic.glue:853#www.jabber-germany.de";
-          ips = ["152.53.15.127"];
+          upstream = "tcp-tls:ns28.de.dns.opennic.glue:853#jabber-germany.de";
+          ips = ["152.53.15.127" "2a03:4000:006b:0191:9825:1cff:fe34:0bbe"];
         }
       ];
       customDNS = {

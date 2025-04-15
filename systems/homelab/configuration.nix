@@ -13,7 +13,7 @@
 
     ./hardware-configuration.nix
 
-    ./configs/kernel-patch.nix
+    ./configs
 
     # base stuff
     ../../modules/nixos/base.nix
@@ -85,12 +85,10 @@
     fwupd.enable = true;
   };
 
-  # TODO
-  # Extra Module, maybe use it for something ?
   security = {
     tpm2 = {
       enable = true;
-      pkcs11.enable = true; # expose /run/current-system/sw/lib/libtpm2_pkcs11.so
+      pkcs11.enable = true;
       tctiEnvironment.enable = true;
     };
   };

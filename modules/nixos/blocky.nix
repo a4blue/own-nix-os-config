@@ -6,31 +6,26 @@
       log.level = "warn";
       upstreams.groups.default = [
         # Owners:
-        # opennameserver.org
-        "tcp-tls:ns1.no.dns.opennic.glue"
-        # sammefishe
-        "tcp-tls:ns5.fi.dns.opennic.glue"
-        # EricL
-        "tcp-tls:ns1.fr.dns.opennic.glue"
-        # mistersixt
-        "tcp-tls:ns29.de.dns.opennic.glue"
-        # probst.click
-        "tcp-tls:ns26.de.dns.opennic.glue"
-        # Koby
-        "tcp-tls:ns3.de.dns.opennic.glue"
+        #"tcp-tls:ns26.de.dns.opennic.glue" # probst.click, cert is expired
+        "tcp-tls:ns1.fr.dns.opennic.glue#dns.elanceleur.org" # EricL
+        "tcp-tls:ns1.no.dns.opennic.glue#ns4.opennameserver.org" # opennameserver.org
+        "tcp-tls:ns5.fi.dns.opennic.glue#dns.froth.zone" # sammefishe
+        "tcp-tls:ns3.de.dns.opennic.glue#dns.furrydns.de" # Koby
+        "tcp-tls:ns13.de.dns.opennic.glue" # opennameserver.org
+        "tcp-tls:ns16.de.dns.opennic.glue" # opennameserver.org
+        "tcp-tls:ns18.de.dns.opennic.glue" # opennameserver.org
+        "tcp-tls:ns23.de.dns.opennic.glue" # probst.click
+        "tcp-tls:ns28.de.dns.opennic.glue" # mistersixt
+        "tcp-tls:ns29.de.dns.opennic.glue#morbitzer.de" # mistersixt
       ];
       bootstrapDns = [
         {
-          upstream = "tcp-tls:dns.digitale-gesellschaft.ch:853";
-          ips = ["2a05:fc84::42" "2a05:fc84::43" "185.95.218.42" "185.95.218.43"];
+          upstream = "tcp-tls:ns2.de.dns.opennic.glue:853";
+          ips = ["80.152.203.134" "2003:a:64b:3b00::2"];
         }
         {
-          upstream = "tcp-tls:dns3.digitalcourage.de:853";
-          ips = ["5.9.164.112" "2a01:4f8:251:554::2"];
-        }
-        {
-          upstream = "tcp-tls:dot1.applied-privacy.net:853";
-          ips = ["146.255.56.98" "2a02:1b8:10:234::2"];
+          upstream = "tcp-tls:ns28.de.dns.opennic.glue:853#www.jabber-germany.de";
+          ips = ["152.53.15.127"];
         }
       ];
       customDNS = {

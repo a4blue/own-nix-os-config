@@ -6,8 +6,6 @@
 }:
 with config; {
   imports = [
-    ./localisation.nix
-    ./steam.nix
-    ./home-wifi.nix
+    ./kernel-patch.nix
   ];
 }

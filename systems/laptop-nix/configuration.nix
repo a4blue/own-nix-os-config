@@ -18,7 +18,6 @@
     ../../modules/nixos/base.nix
     ../../modules/nixos/hardening.nix
     ../../modules/nixos/home-manager-base.nix
-    ../../modules/nixos/home-wifi.nix
 
     ../../configs/common
   ];
@@ -146,7 +145,6 @@
         vscode.enable = true;
         alacritty.enable = true;
         wezterm.enable = true;
-
         joshuto.enable = true;
         ghostty.enable = true;
 

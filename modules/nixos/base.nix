@@ -6,11 +6,7 @@
   imports = [
     ./system-packages.nix
   ];
-
-  #nixpkgs.config.allowUnfree = true;
   hardware.enableRedistributableFirmware = true;
-
-  #hardware.enableAllFirmware = true;
 
   system.stateVersion = "25.05";
 

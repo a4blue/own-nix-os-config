@@ -22,6 +22,7 @@ lib.mkIf config.programs.firefox.enable {
       Preferences = {
         "gfx.webrender.all" = {Value = true;};
         "media.ffmpeg.vaapi.enabled" = {Value = true;};
+        "widget.use-xdg-desktop-portal.file-picker" = 1;
       };
     };
     languagePacks = ["en-US" "de"];

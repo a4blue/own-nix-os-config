@@ -96,6 +96,20 @@
             "hsp_ag"
             "hfp_hf"
             "hfp_ag"
+            "a2dp_sink"
+            "a2dp_source"
+            "bap_sink"
+            "bap_source"
+          ];
+          "bluez5.codecs" = [
+            "sbc"
+            "sbc_xq"
+            "aac"
+            "aptx"
+            "aptx_hd"
+            "aptx_ll"
+            "ldac"
+            "aptx_ll_duplex"
           ];
         };
       };

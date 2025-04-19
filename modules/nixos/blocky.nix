@@ -34,9 +34,9 @@
         mapping = {
           "fritz.box" = "192.168.178.1";
           "*.fritz.box" = "192.168.178.1";
+          "*.homelab.internal" = "192.168.178.64";
           #"homelab.a4blue.me" = "192.168.178.64";
           #"*.homelab.a4blue.me" = "192.168.178.64";
-          #"*.homelab.internal" = "192.168.178.64";
           #"homelab.internal" = "192.168.178.64";
           #"home.a4blue.me" = "192.168.178.64";
           #"nextcloud.home.a4blue.me" = "192.168.178.64";

@@ -46,7 +46,16 @@
     fuse.userAllowOther = true;
     steam.enable = true;
   };
-  networking.hostName = "laptop-nix";
+  networking = {
+    hostName = "laptop-nix";
+    networkmanager.enable = true;
+    firewall.allowedUDPPorts = [51820];
+    wireguard = {
+      # wireguard conf needs to be imperative for gui
+      # due to deactivating the connection once its gone
+      enable = true;
+    };
+  };
 
   zramSwap.enable = true;
 
@@ -80,6 +89,7 @@
     openssh.enable = true;
     fstrim.enable = true;
     fwupd.enable = true;
+    wg-netmanager.enable = true;
     pipewire = {
       enable = true;
       alsa.enable = true;
@@ -116,8 +126,6 @@
     };
   };
 
-  networking.networkmanager.enable = true;
-
   security = {
     tpm2 = {
       enable = true;
@@ -129,6 +137,8 @@
     "olm-3.2.16"
     "fluffychat-linux-1.25.1"
   ];
+
+  users.users.a4blue.extraGroups = ["dialout"];
 
   home-manager.users = {
     a4blue = {
@@ -152,6 +162,10 @@
         mpv
         fluffychat
         handbrake
+        arduino-ide
+        arduino-cli
+        protonvpn-gui
+        wireguard-tools
       ];
       # Enable GUI Programs
       programs = {

@@ -39,6 +39,7 @@
     heroic
     protontricks
     lact
+    podman-compose
   ];
   fonts.packages = [pkgs.nerd-fonts.fira-code pkgs.nerd-fonts.terminess-ttf];
 
@@ -57,12 +58,10 @@
     };
   };
 
-  # Enable common container config files in /etc/containers
-  virtualisation.containers.enable = true;
   virtualisation = {
+    containers.enable = true;
     podman = {
       enable = true;
-      # Create a `docker` alias for podman, to use it as a drop-in replacement
       dockerCompat = true;
       # Required for containers under podman-compose to be able to talk to each other.
       defaultNetwork.settings.dns_enabled = true;
@@ -181,8 +180,9 @@
         handbrake
         arduino-ide
         arduino-cli
-        protonvpn-gui
+        #protonvpn-gui
         wireguard-tools
+        podman-desktop
       ];
       # Enable GUI Programs
       programs = {

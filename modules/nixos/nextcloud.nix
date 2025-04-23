@@ -71,7 +71,23 @@
       extraApps = with config.services.nextcloud.package.packages.apps; {
         # List of apps we want to install and are already packaged in
         # https://github.com/NixOS/nixpkgs/blob/master/pkgs/servers/nextcloud/packages/nextcloud-apps.json
-        inherit bookmarks calendar contacts mail notes tasks previewgenerator maps memories;
+        inherit
+          app_api
+          bookmarks
+          calendar
+          contacts
+          cospend
+          forms
+          mail
+          maps
+          memories
+          notes
+          previewgenerator
+          #recognize
+          tasks
+          #twofactor_totp
+          whiteboard
+          ;
 
         #recognize = pkgs.fetchNextcloudApp {
         #  url = "https://github.com/nextcloud/recognize/releases/download/v6.1.1/recognize-6.1.1.tar.gz";

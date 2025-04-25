@@ -101,14 +101,14 @@
             ./overlays/previous.nix
           ];
         };
-        # nix build ./#nixosConfigurations.desktop-nix.config.system.build.toplevel
-        #desktop-nix = nixpkgs.lib.nixosSystem {
-        #  specialArgs = {inherit inputs outputs system;};
-        #  modules = [
-        #    {nixpkgs.hostPlatform = "x86_64-linux";}
-        #    ./systems/desktop-nix/configuration.nix
-        #  ];
-        #};
+        # nix build ./#nixosConfigurations.desktop.config.system.build.toplevel
+        desktop = nixpkgs.lib.nixosSystem {
+          specialArgs = {inherit inputs outputs system;};
+          modules = [
+            ./overlays/previous.nix
+            ./systems/desktop/configuration.nix
+          ];
+        };
         # nix build ./#nixosConfigurations.laptop-nix.config.system.build.toplevel
         laptop-nix = nixpkgs.lib.nixosSystem {
           specialArgs = {inherit inputs outputs system;};

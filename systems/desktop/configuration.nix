@@ -12,6 +12,7 @@
   imports = [
     inputs.sops-nix.nixosModules.sops
     inputs.home-manager.nixosModules.home-manager
+    inputs.impermanence.nixosModules.impermanence
 
     ./hardware-configuration.nix
 
@@ -22,6 +23,23 @@
     ../../configs/common
   ];
 
+  environment.persistence."/nix/persistent" = {
+    # Hide these mounts from the sidebar of file managers
+    hideMounts = true;
+
+    directories = [
+      "/var/log"
+      "/var/lib"
+      # Following will need a cleanup at start
+      "/tmp"
+      "/var/tmp"
+      "/var/cache"
+    ];
+
+    files = [
+      "/etc/machine-id"
+    ];
+  };
   sops = {
     age.sshKeyPaths = ["/nix/secret/initrd/sops_key"];
   };
@@ -169,7 +187,32 @@
       };
       imports = [
         ./../../configs/home-manager/a4blue
+        inputs.impermanence.nixosModules.home-manager.impermanence
       ];
+      home.persistence."/nix/persistent/home/a4blue" = {
+        allowOther = true;
+        directories = [
+          "Development"
+          "Downloads"
+          "Music"
+          "Pictures"
+          "Documents"
+          "Videos"
+          ".gnupg"
+          ".ssh"
+          ".nixops"
+          ".local/share/keyrings"
+          ".local/share/direnv"
+          # Will need cleanup
+          ".cache"
+          ".config"
+          ".mozilla"
+          {
+            directory = ".local/share/Steam";
+            method = "symlink";
+          }
+        ];
+      };
       home.packages = with pkgs; [
         proton-pass
         joplin-desktop

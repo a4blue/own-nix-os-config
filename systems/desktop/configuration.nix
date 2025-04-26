@@ -40,6 +40,9 @@
       "/etc/machine-id"
     ];
   };
+  sops = {
+    age.sshKeyPaths = ["/nix/secret/initrd/sops_key"];
+  };
   environment.systemPackages = with pkgs; [
     gparted
     uutils-coreutils

@@ -30,6 +30,7 @@
     directories = [
       "/var/log"
       "/var/lib"
+      "/etc/NetworkManager/system-connections"
       # Following will need a cleanup at start
       "/tmp"
       "/var/tmp"
@@ -61,6 +62,9 @@
     protontricks
     lact
     podman-compose
+    vulkan-tools
+    nvtopPackages.amd
+    fd
   ];
   fonts.packages = [pkgs.nerd-fonts.fira-code pkgs.nerd-fonts.terminess-ttf];
 
@@ -87,11 +91,6 @@
       # Required for containers under podman-compose to be able to talk to each other.
       defaultNetwork.settings.dns_enabled = true;
     };
-  };
-
-  users.users.myuser = {
-    isNormalUser = true;
-    extraGroups = ["podman"];
   };
 
   zramSwap.enable = true;
@@ -175,7 +174,7 @@
     "fluffychat-linux-1.25.1"
   ];
 
-  users.users.a4blue.extraGroups = ["dialout"];
+  users.users.a4blue.extraGroups = ["dialout" "podman" "gamemode"];
 
   home-manager.users = {
     a4blue = {
@@ -188,31 +187,11 @@
       imports = [
         ./../../configs/home-manager/a4blue
         inputs.impermanence.nixosModules.home-manager.impermanence
+        ./configs/home-manager/impermanence.nix
+        ./configs/home-manager/plasma.nix
+        inputs.plasma-manager.homeManagerModules.plasma-manager
       ];
-      home.persistence."/nix/persistent/home/a4blue" = {
-        allowOther = true;
-        directories = [
-          "Development"
-          "Downloads"
-          "Music"
-          "Pictures"
-          "Documents"
-          "Videos"
-          ".gnupg"
-          ".ssh"
-          ".nixops"
-          ".local/share/keyrings"
-          ".local/share/direnv"
-          # Will need cleanup
-          ".cache"
-          ".config"
-          ".mozilla"
-          {
-            directory = ".local/share/Steam";
-            method = "symlink";
-          }
-        ];
-      };
+
       home.packages = with pkgs; [
         proton-pass
         joplin-desktop
@@ -224,11 +203,13 @@
         mpv
         fluffychat
         handbrake
-        arduino-ide
-        arduino-cli
         #protonvpn-gui
         wireguard-tools
         podman-desktop
+        wineWowPackages.stable
+        #wineWowPackages.waylandFull
+        winetricks
+        bottles
       ];
       # Enable GUI Programs
       programs = {
@@ -255,17 +236,9 @@
     graphics = {
       enable = true;
       enable32Bit = true;
-      extraPackages = [
-        pkgs.amdvlk
-      ];
-      extraPackages32 = [
-        pkgs.driversi686Linux.amdvlk
-      ];
     };
     amdgpu = {
-      amdvlk.enable = true;
-      amdvlk.support32Bit.enable = true;
-      initrd.enable = true;
+      #initrd.enable = true;
       opencl.enable = true;
     };
     xpadneo.enable = true;

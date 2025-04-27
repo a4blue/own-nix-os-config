@@ -68,11 +68,6 @@
     };
   };
 
-  users.users.myuser = {
-    isNormalUser = true;
-    extraGroups = ["podman"];
-  };
-
   zramSwap.enable = true;
 
   boot = {
@@ -154,7 +149,7 @@
     "fluffychat-linux-1.25.1"
   ];
 
-  users.users.a4blue.extraGroups = ["dialout"];
+  users.users.a4blue.extraGroups = ["dialout" "podman"];
 
   home-manager.users = {
     a4blue = {

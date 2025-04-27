@@ -24,18 +24,16 @@ with config; {
     homeDirectory = "/home/a4blue";
     stateVersion = "25.05";
     keyboard = null;
+    packages = with pkgs; [
+      wget
+      curl
+      home-manager
+      sops
+      just
+      inputs.own-nixvim.packages.${system}.default
+      nvd
+    ];
   };
-
-  home.packages = with pkgs; [
-    wget
-    curl
-    home-manager
-    sops
-    just
-    inputs.own-nixvim.packages.${system}.default
-    nvd
-  ];
-
   # Enable default Programs (only non-gui allowed)
   programs = {
     home-manager.enable = true;

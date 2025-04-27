@@ -33,5 +33,6 @@
     pciutils
     nix-inspect
     bottom
+    dust
   ];
 }

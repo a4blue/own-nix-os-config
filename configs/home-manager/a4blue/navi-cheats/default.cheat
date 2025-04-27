@@ -36,3 +36,6 @@ home-manager generations
 
 # Remove Home-Manager Generation by ID
 home-manager remove-generations <ID>
+
+# If on tmpfs root this will show the usage
+dust / -x

@@ -43,7 +43,7 @@ in {
     };
   };
 
-  environment.persistence."/persistent" = {
+  environment.persistence."${config.modules.impermanenceExtra.defaultPath}" = {
     directories = [
       {
         directory = "/var/lib/firefly-iii";

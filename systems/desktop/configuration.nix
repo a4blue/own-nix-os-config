@@ -21,7 +21,6 @@
     ../../modules/nixos/home-manager-base.nix
 
     ../../configs/common
-    ../../modules/common
   ];
 
   modules.impermanenceExtra.enabled = true;
@@ -33,6 +32,7 @@
     directories = [
       "/var/log"
       "/var/lib"
+      # Persist non-declarative Network Connections
       "/etc/NetworkManager/system-connections"
       # Following will need a cleanup at start
       "/tmp"
@@ -57,12 +57,6 @@
     virtualgl
     libva-utils
     ffmpeg
-    mangohud
-    protonup-qt
-    lutris
-    bottles
-    heroic
-    protontricks
     lact
     podman-compose
     vulkan-tools
@@ -193,14 +187,18 @@
       imports = [
         inputs.impermanence.nixosModules.home-manager.impermanence
         inputs.plasma-manager.homeManagerModules.plasma-manager
-        ./../../configs/home-manager/a4blue
+        ../../configs/home-manager/a4blue
         ./configs/home-manager/impermanence.nix
         ./configs/home-manager/plasma.nix
-        ../../modules/home-manager
       ];
 
-      modules.impermanenceExtra.enabled = true;
-      modules.impermanenceExtra.defaultPath = "/nix/persistent/home/a4blue";
+      modules = {
+        impermanenceExtra = {
+          enabled = true;
+          defaultPath = "/nix/persistent/home/a4blue";
+        };
+        gaming.enable = true;
+      };
 
       home.packages = with pkgs; [
         proton-pass
@@ -213,13 +211,8 @@
         mpv
         fluffychat
         handbrake
-        #protonvpn-gui
         wireguard-tools
         podman-desktop
-        wineWowPackages.stable
-        #wineWowPackages.waylandFull
-        winetricks
-        bottles
       ];
       # Enable GUI Programs
       programs = {
@@ -248,7 +241,6 @@
       enable32Bit = true;
     };
     amdgpu = {
-      #initrd.enable = true;
       opencl.enable = true;
     };
     xpadneo.enable = true;

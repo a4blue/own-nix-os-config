@@ -18,10 +18,26 @@ lib.mkIf config.programs.vscode.enable {
       };
     };
   };
-  home.packages = with pkgs; [
-    nil
-    alejandra
-    nerd-fonts.fira-code
-  ];
   fonts.fontconfig.enable = true;
+  home =
+    (
+      if config.modules.impermanenceExtra.enabled
+      then {
+        persistence."${config.modules.impermanenceExtra.defaultPath}" = {
+          directories = [
+            ".config/VSCodium"
+            # Investigate if it is needed
+            #".vscode-oss"
+          ];
+        };
+      }
+      else {}
+    )
+    // {
+      packages = with pkgs; [
+        nil
+        alejandra
+        nerd-fonts.fira-code
+      ];
+    };
 }

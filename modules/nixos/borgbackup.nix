@@ -37,7 +37,7 @@
     };
   };
 
-  environment.persistence."/persistent" = {
+  environment.persistence."${config.modules.impermanenceExtra.defaultPath}" = {
     files = [
       "/root/.ssh/known_hosts"
     ];

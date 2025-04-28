@@ -19,7 +19,6 @@
     ../../modules/nixos/base.nix
     ../../modules/nixos/remote-disk-unlocking.nix
     ../../modules/nixos/impermanence.nix
-    #../../modules/nixos/re-create-root.nix
     ../../modules/nixos/hardening.nix
     ../../modules/nixos/home-manager-base.nix
     ../../modules/nixos/docker.nix
@@ -40,16 +39,13 @@
     #../../modules/nixos/clamav.nix
     ../../modules/nixos/dynv6.nix
     #../../modules/nixos/stalwart.nix
-    ../../modules/nixos/recreate-root/options.nix
     ../../modules/nixos/prometheus.nix
     ../../modules/nixos/grafana.nix
 
     ../../configs/common
-    ../../modules/common
   ];
-
-  modules.recreate-root.enable = true;
-  modules.recreate-root.systemd-device-bind = "dev-nvme0n1p3.device";
+  modules.impermanenceExtra.enabled = true;
+  modules.impermanenceExtra.defaultPath = "/persistent";
 
   programs.fuse.userAllowOther = true;
   networking = {

@@ -1,5 +1,5 @@
 {config, ...}: {
-  environment.persistence."/persistent" = {
+  environment.persistence."${config.modules.impermanenceExtra.defaultPath}" = {
     # Hide these mounts from the sidebar of file managers
     hideMounts = true;
 

@@ -28,7 +28,21 @@ lib.mkIf config.programs.firefox.enable {
     languagePacks = ["en-US" "de"];
     nativeMessagingHosts = [pkgs.kdePackages.plasma-browser-integration];
   };
-  home.packages = with pkgs; [
-    ffmpeg
-  ];
+  home =
+    (
+      if config.modules.impermanenceExtra.enabled
+      then {
+        persistence."${config.modules.impermanenceExtra.defaultPath}" = {
+          directories = [
+            ".mozilla"
+          ];
+        };
+      }
+      else {}
+    )
+    // {
+      packages = with pkgs; [
+        ffmpeg
+      ];
+    };
 }

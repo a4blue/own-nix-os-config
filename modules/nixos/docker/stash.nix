@@ -31,7 +31,7 @@ in {
     autoStart = false;
   };
 
-  environment.persistence."/persistent" = {
+  environment.persistence."${config.modules.impermanenceExtra.defaultPath}" = {
     directories = [
       {
         directory = "/var/lib/stash";

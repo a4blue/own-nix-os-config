@@ -15,14 +15,8 @@ lib.mkIf config.modules.impermanenceExtra.enabled {
       "Videos"
       "Persistence"
       ".ssh"
-      ".mozilla"
-      ".local/share/Steam"
       ".config/Proton Pass"
-      ".config/heroic"
       ".config/Signal"
-      ".config/VSCodium"
-      ".local/share/lutris"
-      ".local/share/bottles"
       ".local/share/baloo"
       ".local/share/chat.fluffy.fluffychat"
       ".local/share/simplex"
@@ -30,7 +24,6 @@ lib.mkIf config.modules.impermanenceExtra.enabled {
       ".local/state/wireplumber"
       ".gnupg"
       #".var"
-      #".vscode-oss"
       # Will need cleanup
       ".cache"
     ];

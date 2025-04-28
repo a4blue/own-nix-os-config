@@ -26,7 +26,7 @@
       '';
     };
 
-    persistence."/persistent" = {
+    persistence."${config.modules.impermanenceExtra.defaultPath}" = {
       directories = [
         {
           directory = "/var/lib/nextcloud";

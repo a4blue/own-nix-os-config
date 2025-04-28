@@ -17,6 +17,8 @@ with config; {
     ./bottom.nix
     ./joshuto.nix
     ./ssh.nix
+    ./gaming.nix
+    ../common
   ];
 
   home = {

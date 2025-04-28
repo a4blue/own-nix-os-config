@@ -10,5 +10,6 @@ with config; {
     ./steam.nix
     ./home-wifi.nix
     ./gnupg-agent.nix
+    ./impermanence-extra.nix
   ];
 }

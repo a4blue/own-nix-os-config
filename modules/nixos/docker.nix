@@ -12,7 +12,7 @@
   };
   virtualisation.oci-containers.backend = "docker";
 
-  environment.persistence."/persistent" = {
+  environment.persistence."${config.modules.impermanenceExtra.defaultPath}" = {
     directories = [
       {
         directory = "/var/lib/docker";

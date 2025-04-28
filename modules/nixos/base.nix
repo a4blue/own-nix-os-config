@@ -9,6 +9,7 @@
   hardware.enableRedistributableFirmware = true;
 
   system.stateVersion = "25.05";
+  sops.secrets.github_pat = {};
 
   nix = {
     gc = {
@@ -24,6 +25,9 @@
       connect-timeout = 30;
       download-attempts = 1;
     };
+    extraOptions = ''
+      !include ${config.sops.secrets.github_pat.path}
+    '';
     nixPath = ["nixpkgs=${inputs.nixpkgs}"];
   };
 

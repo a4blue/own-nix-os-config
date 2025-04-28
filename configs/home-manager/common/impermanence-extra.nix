@@ -10,6 +10,7 @@ in {
   options.modules.impermanenceExtra = {
     enabled = lib.mkOption {
       type = lib.types.bool;
+      default = false;
       description = "Flag if impermanence is Enabled.";
     };
     defaultPath = lib.mkOption {
@@ -19,8 +20,11 @@ in {
     };
   };
 
-  config.home = mkIf cfg.enabled {
-    persistence = assert cfg.enabled -> cfg.defaultPath != null; {
-    };
-  };
+  config.home =
+    if cfg.enabled
+    then {
+      persistence = assert cfg.enabled -> cfg.defaultPath != null; {
+      };
+    }
+    else {};
 }

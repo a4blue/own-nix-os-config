@@ -25,7 +25,7 @@
   #  initialEmail = "test@test.com";
   #};
 
-  environment.persistence."/persistent" = {
+  environment.persistence."${config.modules.impermanenceExtra.defaultPath}" = {
     directories = [
       {
         directory = "/var/lib/postgresql";

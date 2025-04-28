@@ -21,9 +21,12 @@
     ../../modules/nixos/home-manager-base.nix
 
     ../../configs/common
+    ../../modules/common
   ];
 
-  environment.persistence."/nix/persistent" = {
+  modules.impermanenceExtra.enabled = true;
+  modules.impermanenceExtra.defaultPath = "/nix/persistent";
+  environment.persistence."${config.modules.impermanenceExtra.defaultPath}" = {
     # Hide these mounts from the sidebar of file managers
     hideMounts = true;
 
@@ -65,12 +68,14 @@
     vulkan-tools
     nvtopPackages.amd
     fd
+    gnupg
   ];
   fonts.packages = [pkgs.nerd-fonts.fira-code pkgs.nerd-fonts.terminess-ttf];
 
   programs = {
     fuse.userAllowOther = true;
     steam.enable = true;
+    gnupg.agent.enable = true;
   };
   networking = {
     hostName = "desktop-nix";
@@ -114,6 +119,7 @@
   };
 
   services = {
+    udev.packages = [pkgs.nitrokey-udev-rules];
     desktopManager.plasma6.enable = true;
     displayManager = {
       defaultSession = "plasma";
@@ -185,12 +191,16 @@
         };
       };
       imports = [
-        ./../../configs/home-manager/a4blue
         inputs.impermanence.nixosModules.home-manager.impermanence
+        inputs.plasma-manager.homeManagerModules.plasma-manager
+        ./../../configs/home-manager/a4blue
         ./configs/home-manager/impermanence.nix
         ./configs/home-manager/plasma.nix
-        inputs.plasma-manager.homeManagerModules.plasma-manager
+        ../../modules/home-manager
       ];
+
+      modules.impermanenceExtra.enabled = true;
+      modules.impermanenceExtra.defaultPath = "/nix/persistent/home/a4blue";
 
       home.packages = with pkgs; [
         proton-pass

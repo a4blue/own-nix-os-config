@@ -20,6 +20,7 @@
     ../../modules/nixos/home-manager-base.nix
 
     ../../configs/common
+    ../../modules/common
   ];
 
   environment.systemPackages = with pkgs; [

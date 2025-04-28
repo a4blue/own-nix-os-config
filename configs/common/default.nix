@@ -9,5 +9,6 @@ with config; {
     ./localisation.nix
     ./steam.nix
     ./home-wifi.nix
+    ./gnupg-agent.nix
   ];
 }

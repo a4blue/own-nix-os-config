@@ -45,6 +45,7 @@
     ../../modules/nixos/grafana.nix
 
     ../../configs/common
+    ../../modules/common
   ];
 
   modules.recreate-root.enable = true;

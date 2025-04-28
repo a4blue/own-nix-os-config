@@ -1,5 +1,10 @@
 {
-  home.persistence."/nix/persistent/home/a4blue" = {
+  config,
+  lib,
+  ...
+}:
+lib.mkIf config.modules.impermanenceExtra.enabled {
+  home.persistence."${config.modules.impermanenceExtra.defaultPath}" = {
     allowOther = true;
     directories = [
       "Development"
@@ -23,7 +28,7 @@
       ".local/share/simplex"
       ".pki"
       ".local/state/wireplumber"
-      #".gnupg"
+      ".gnupg"
       #".var"
       #".vscode-oss"
       # Will need cleanup

@@ -24,5 +24,14 @@ lib.mkIf config.programs.ssh.enable {
       };
     };
   };
-  services.ssh-agent.enable = true;
+  home =
+    if config.modules.impermanenceExtra.enabled
+    then {
+      persistence."${config.modules.impermanenceExtra.defaultPath}" = {
+        directories = [
+          ".ssh"
+        ];
+      };
+    }
+    else {};
 }

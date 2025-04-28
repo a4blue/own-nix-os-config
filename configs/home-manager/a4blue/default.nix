@@ -18,6 +18,8 @@ with config; {
     ./joshuto.nix
     ./ssh.nix
     ./gaming.nix
+    ./graphical-apps.nix
+    ./gnupg-agent.nix
     ../common
   ];
 
@@ -34,6 +36,7 @@ with config; {
       just
       inputs.own-nixvim.packages.${system}.default
       nvd
+      wireguard-tools
     ];
   };
   # Enable default Programs (only non-gui allowed)

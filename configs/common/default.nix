@@ -11,5 +11,6 @@ with config; {
     ./home-wifi.nix
     ./gnupg-agent.nix
     ./impermanence-extra.nix
+    ./bluetooth.nix
   ];
 }

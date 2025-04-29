@@ -22,6 +22,8 @@ in {
               ".local/share/Steam"
               ".local/share/lutris"
               ".local/share/bottles"
+              ".config/steamtinkerlaunch"
+              ".local/share/comet"
             ];
           };
         }
@@ -33,7 +35,13 @@ in {
           winetricks
           bottles
           lutris
-          heroic
+          (heroic.override {
+            extraPkgs = pkgs: [
+              pkgs.gamescope
+              pkgs.gamemode
+              pkgs.mangohud
+            ];
+          })
           mangohud
           protonup-qt
           protontricks

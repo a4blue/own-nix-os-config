@@ -20,6 +20,7 @@ with config; {
     ./gaming.nix
     ./graphical-apps.nix
     ./gnupg-agent.nix
+    ./pipewire.nix
     ../common
   ];
 

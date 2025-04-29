@@ -14,10 +14,12 @@ lib.mkIf config.modules.impermanenceExtra.enabled {
       "Documents"
       "Videos"
       "Persistence"
-      ".local/share/baloo"
       ".pki"
+      # Sound settings
       ".local/state/wireplumber"
-      #".var"
+      # KDE Stuff
+      ".local/share/baloo"
+      ".local/share/klipper"
       # Will need cleanup
       ".cache"
     ];

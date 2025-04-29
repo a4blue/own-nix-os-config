@@ -7,6 +7,11 @@
 lib.mkIf config.programs.alacritty.enable {
   programs.alacritty = {
     settings = {
+      bell = {
+        animation = "EaseOut";
+        duration = 100;
+        color = "#374145";
+      };
       window = {
         position = "None";
         # Leads to an error right now

@@ -18,6 +18,8 @@ lib.mkIf config.programs.steam.enable {
       dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
       localNetworkGameTransfers.openFirewall = true; # Open ports in the firewall for Steam Local Network Game Transfers
       gamescopeSession.enable = true;
+      protontricks.enable = true;
+      extraCompatPackages = with pkgs; [proton-ge-bin steamtinkerlaunch];
     };
     gamemode.enable = true;
     nix-ld = {

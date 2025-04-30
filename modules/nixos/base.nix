@@ -9,7 +9,7 @@
   hardware.enableRedistributableFirmware = true;
 
   system.stateVersion = "25.05";
-  sops.secrets.github_pat = {};
+  sops.secrets.github_pat = {mode = "0777";};
 
   nix = {
     gc = {
@@ -34,7 +34,6 @@
   sops = {
     defaultSopsFile = ./../../secrets/secrets.yaml;
     age.sshKeyPaths = ["/nix/secret/initrd/ssh_host_ed25519_key"];
-    #secrets.a4blue_hashed_password.neededForUsers = true;
     secrets.a4blue_easy_hashed_password.neededForUsers = true;
   };
 
@@ -52,8 +51,10 @@
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAYaqu6PwownHMqXluc61CdJLkJE3WOEtEOyKqKd+zXP"
       # Nitrokey
       "sk-ssh-ed25519@openssh.com AAAAGnNrLXNzaC1lZDI1NTE5QG9wZW5zc2guY29tAAAAIPFRV7ZJOgn9N5DBl4b+NwjTWNXJURDBd761JGB8ZZm+AAAABHNzaDo="
+      "sk-ssh-ed25519@openssh.com AAAAGnNrLXNzaC1lZDI1NTE5QG9wZW5zc2guY29tAAAAINQzo89EsYmlmVZSJrsPWUapwQofmpDbjYAMTE1E7N6AAAAAC3NzaDpIb21lTmV0 ssh:HomeNet"
+      # Nitrokey Home Backup
+      "sk-ssh-ed25519@openssh.com AAAAGnNrLXNzaC1lZDI1NTE5QG9wZW5zc2guY29tAAAAIPYowMyQtbljcuZZDerqqxbukUmUG8IJdAfgck/00+NgAAAAC3NzaDpIb21lTmV0 ssh:HomeNet"
     ];
-    #hashedPasswordFile = config.sops.secrets.a4blue_hashed_password.path;
     hashedPasswordFile = config.sops.secrets.a4blue_easy_hashed_password.path;
   };
 }

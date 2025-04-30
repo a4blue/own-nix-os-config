@@ -118,7 +118,7 @@
   };
   nixpkgs.config.permittedInsecurePackages = [
     "olm-3.2.16"
-    "fluffychat-linux-1.25.1"
+    "fluffychat-linux-1.26.0"
   ];
 
   users.users.a4blue.extraGroups = ["dialout" "podman"];

@@ -111,8 +111,8 @@
         desktop = nixpkgs.lib.nixosSystem {
           specialArgs = {inherit inputs outputs system;};
           modules = [
-            ./overlays/previous.nix
             ./systems/desktop/configuration.nix
+            ./overlays/previous.nix
           ];
         };
         # nix build ./#nixosConfigurations.laptop-nix.config.system.build.toplevel

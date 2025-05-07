@@ -25,6 +25,7 @@
 
   modules.impermanenceExtra.enabled = true;
   modules.impermanenceExtra.defaultPath = "/nix/persistent";
+  modules.sabnzbd.enable = true;
   environment.persistence."${config.modules.impermanenceExtra.defaultPath}" = {
     # Hide these mounts from the sidebar of file managers
     hideMounts = true;

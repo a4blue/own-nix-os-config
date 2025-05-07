@@ -10,6 +10,7 @@ lib.mkIf config.programs.steam.enable {
     builtins.elem (lib.getName pkg) [
       "steam"
       "steam-unwrapped"
+      "unrar"
     ];
 
   programs = {

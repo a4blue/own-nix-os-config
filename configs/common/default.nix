@@ -12,5 +12,6 @@ with config; {
     ./gnupg-agent.nix
     ./impermanence-extra.nix
     ./bluetooth.nix
+    ./sabnzbd.nix
   ];
 }

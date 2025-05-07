@@ -159,6 +159,12 @@
         ./configs/home-manager/plasma.nix
       ];
 
+      home.persistence."${config.home-manager.users.a4blue.modules.impermanenceExtra.defaultPath}" = {
+        directories = [
+          ".sabnzbd"
+        ];
+      };
+
       modules = {
         impermanenceExtra = {
           enabled = true;

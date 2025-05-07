@@ -16,6 +16,7 @@ in {
       enable = true;
       defaultApplications = {
         "video/x-matroska" = "vlc.desktop";
+        "video/mp4" = "vlc.desktop";
       };
     };
   };

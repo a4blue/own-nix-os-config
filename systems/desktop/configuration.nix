@@ -104,6 +104,15 @@
       efi.canTouchEfiVariables = true;
       timeout = 10;
     };
+    kernelParams = [
+      # Enable overclocking
+      "amdgpu.ppfeaturemask=0xffffffff"
+      # Enable additional Video output during boot
+      "video=DP-1:1920x1080@60"
+      "video=DP-2:1920x1080@60"
+      "video=DP-3:1920x1080@60"
+      "video=HDMI-A-1:1920x1080@60"
+    ];
     kernelPackages = pkgs.linuxPackages_6_14;
     supportedFilesystems = ["bcachefs"];
 

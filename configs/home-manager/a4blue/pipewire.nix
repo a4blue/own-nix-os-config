@@ -53,7 +53,7 @@ in {
   };
   xdg.configFile."pipewire/pipewire.conf.d/60-echo-cancel.conf" = {
     text = builtins.toJSON {
-      context.modules = [
+      "context.modules" = [
         # Echo cancellation
         {
           name = "libpipewire-module-echo-cancel";

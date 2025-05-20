@@ -24,6 +24,7 @@ in {
               ".local/share/bottles"
               ".config/steamtinkerlaunch"
               ".local/share/comet"
+              ".config/MangoHud/MangoHud.conf"
             ];
           };
         }

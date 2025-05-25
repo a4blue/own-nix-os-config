@@ -32,7 +32,8 @@ in {
       )
       // {
         packages = with pkgs; [
-          wineWowPackages.stable
+          #wineWowPackages.stable
+          wineWowPackages.unstable
           winetricks
           bottles
           lutris

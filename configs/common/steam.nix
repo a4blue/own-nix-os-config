@@ -13,6 +13,10 @@ lib.mkIf config.programs.steam.enable {
       "unrar"
     ];
 
+  environment.systemPackages = with pkgs; [
+    steamtinkerlaunch
+  ];
+
   programs = {
     steam = {
       remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play

@@ -25,6 +25,7 @@ in {
               ".config/steamtinkerlaunch"
               ".local/share/comet"
               ".config/MangoHud/MangoHud.conf"
+              ".paradoxlauncher"
             ];
           };
         }
@@ -32,7 +33,6 @@ in {
       )
       // {
         packages = with pkgs; [
-          #wineWowPackages.stable
           wineWowPackages.unstable
           winetricks
           bottles

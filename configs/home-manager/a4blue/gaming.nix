@@ -26,6 +26,7 @@ in {
               ".local/share/comet"
               ".config/MangoHud/MangoHud.conf"
               ".paradoxlauncher"
+              ".factorio"
             ];
           };
         }

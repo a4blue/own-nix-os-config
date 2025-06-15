@@ -8,7 +8,7 @@
   ];
   hardware.enableRedistributableFirmware = true;
 
-  system.stateVersion = "25.05";
+  system.stateVersion = "25.11";
   sops.secrets.github_pat = {mode = "0777";};
 
   nix = {

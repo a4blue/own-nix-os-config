@@ -6,13 +6,6 @@
   ...
 }:
 lib.mkIf config.programs.steam.enable {
-  nixpkgs.config.allowUnfreePredicate = pkg:
-    builtins.elem (lib.getName pkg) [
-      "steam"
-      "steam-unwrapped"
-      "unrar"
-    ];
-
   environment.systemPackages = with pkgs; [
     steamtinkerlaunch
   ];

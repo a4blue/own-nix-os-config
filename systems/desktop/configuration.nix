@@ -67,6 +67,13 @@
   ];
   fonts.packages = [pkgs.nerd-fonts.fira-code pkgs.nerd-fonts.terminess-ttf];
 
+  nixpkgs.config.allowUnfreePredicate = pkg:
+    builtins.elem (lib.getName pkg) [
+      "steam"
+      "steam-unwrapped"
+      "unrar"
+    ];
+
   programs = {
     fuse.userAllowOther = true;
     steam.enable = true;
@@ -182,7 +189,7 @@
   };
   nixpkgs.config.permittedInsecurePackages = [
     "olm-3.2.16"
-    "fluffychat-linux-1.26.1"
+    "fluffychat-linux-1.27.0"
   ];
 
   users.users.a4blue.extraGroups = ["dialout" "podman" "gamemode"];

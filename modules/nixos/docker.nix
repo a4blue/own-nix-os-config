@@ -5,6 +5,9 @@
       enable = true;
       setSocketVariable = true;
     };
+    # Until https://github.com/koverstreet/bcachefs/issues/877 is fixed (Kernel 6.17 apparently ...)
+    storageDriver = "overlay";
+
     daemon.settings = {
       data-root = "/var/lib/docker/data";
     };

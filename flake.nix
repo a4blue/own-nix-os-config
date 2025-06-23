@@ -3,10 +3,10 @@
 
   inputs = {
     # Nixpkgs
-    #nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     #nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable-small";
-    nixpkgs.url = "github:nixos/nixpkgs?rev=43558d56a7eb2a59b72a98674668287a4d23a61c";
-    nixpkgs-prev.url = "github:nixos/nixpkgs?rev=8e698c3f15a17e8a25ea42de9a75220b6f6d2824";
+    #nixpkgs.url = "github:nixos/nixpkgs?rev=a386ecc118389196ebffd47c094f7edfca7ce544";
+    nixpkgs-prev.url = "github:nixos/nixpkgs?rev=4206c4cb56751df534751b058295ea61357bbbaa";
 
     impermanence = {
       url = "github:nix-community/impermanence";

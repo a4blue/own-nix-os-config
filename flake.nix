@@ -6,7 +6,7 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     #nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable-small";
     #nixpkgs.url = "github:nixos/nixpkgs?rev=a386ecc118389196ebffd47c094f7edfca7ce544";
-    nixpkgs-prev.url = "github:nixos/nixpkgs?rev=4206c4cb56751df534751b058295ea61357bbbaa";
+    nixpkgs-prev.url = "github:nixos/nixpkgs?rev=18dd725c29603f582cf1900e0d25f9f1063dbf11";
 
     impermanence = {
       url = "github:nix-community/impermanence";

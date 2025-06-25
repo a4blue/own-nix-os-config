@@ -1,26 +1,25 @@
 {
   nixpkgs,
   inputs,
+  lib,
   ...
 }: {
   nixpkgs.overlays = [
     inputs.nix-vscode-extensions.overlays.default
     (final: prev: {
       #git = inputs.nixpkgs-prev.legacyPackages.${prev.system}.git;
-      #pynitrokey = inputs.nixpkgs-prev.legacyPackages.${prev.system}.pynitrokey;
-      #forgejo-lts = inputs.nixpkgs-prev.legacyPackages.${prev.system}.forgejo-lts;
+
       #mesa = inputs.nixpkgs-unstable-small.legacyPackages.${prev.system}.mesa;
-      #linuxPackages_6_14 = inputs.nixpkgs-unstable-small.legacyPackages.${prev.system}.linuxPackages_6_14;
-      #nitrokey-udev-rules = prev.nitrokey-udev-rules.overrideAttrs (old: {
-      #  version = "1.1.0";
-      #  src = prev.fetchFromGitHub {
-      #    owner = "Nitrokey";
-      #    repo = "nitrokey-udev-rules";
-      #    rev = "v1.1.0";
-      #    hash = "sha256-LKpd6O9suAc2+FFgpuyTClEgL/JiZiokH3DV8P3C7Aw=";
-      #  };
-      #  nativeBuildInputs = [final.pkgs.ruff final.pkgs.pyright];
-      #});
+      linuxPackages_6_15 = prev.linuxPackagesFor (prev.linuxKernel.kernels.linux_6_15.override {
+        argsOverride = rec {
+          src = prev.fetchurl {
+            url = "mirror://kernel/linux/kernel/v${lib.versions.major version}.x/linux-${version}.tar.xz";
+            sha256 = "NFjNamxQjhYdvFQG5yuZ1dvfkp+vcEpn25ukbQdRSFg=";
+          };
+          version = "6.15.2";
+          modDirVersion = "6.15.2";
+        };
+      });
     })
   ];
 }

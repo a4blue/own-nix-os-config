@@ -5,12 +5,16 @@
     # Nixpkgs
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     #nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable-small";
-    #nixpkgs.url = "github:nixos/nixpkgs?rev=a386ecc118389196ebffd47c094f7edfca7ce544";
-    nixpkgs-prev.url = "github:nixos/nixpkgs?rev=18dd725c29603f582cf1900e0d25f9f1063dbf11";
+    #nixpkgs.url = "github:nixos/nixpkgs?rev=9f4e767a3c29b591c32b2785f6a8997b2e60b949";
 
     impermanence = {
       url = "github:nix-community/impermanence";
     };
+
+    #bcachefs-tools = {
+    #  url = "github:koverstreet/bcachefs-tools/master";
+    #  inputs.nixpkgs.follows = "nixpkgs";
+    #};
 
     # Home manager
     home-manager = {

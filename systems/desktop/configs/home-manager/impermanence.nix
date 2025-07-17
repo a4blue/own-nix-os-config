@@ -22,6 +22,10 @@ lib.mkIf config.modules.impermanenceExtra.enabled {
       ".local/share/klipper"
       # Will need cleanup
       ".cache"
+      ".local/share/Haveno-reto"
+      # Flatpack shared Data
+      ".local/share/FlatPackData"
+      ".local/share/xmr-btc-swap"
     ];
     files = [
       # KDE Display Settings

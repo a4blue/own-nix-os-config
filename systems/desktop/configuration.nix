@@ -180,6 +180,14 @@
     };
   };
 
+  #virtualisation.virtualbox.host.enable = true;
+  #users.extraGroups.vboxusers.members = ["a4blue"];
+
+  virtualisation.libvirtd.enable = true;
+  programs.virt-manager.enable = true;
+  programs.firejail.enable = true;
+  services.flatpak.enable = true;
+
   security = {
     tpm2 = {
       enable = true;
@@ -192,7 +200,7 @@
     "fluffychat-linux-1.27.0"
   ];
 
-  users.users.a4blue.extraGroups = ["dialout" "podman" "gamemode"];
+  users.users.a4blue.extraGroups = ["dialout" "podman" "gamemode" "libvirtd"];
 
   home-manager.users = {
     a4blue = {
@@ -202,6 +210,7 @@
         ../../configs/home-manager/a4blue
         ./configs/home-manager/impermanence.nix
         ./configs/home-manager/plasma.nix
+        ./configs/home-manager/tor.nix
       ];
 
       home.persistence."${config.home-manager.users.a4blue.modules.impermanenceExtra.defaultPath}" = {

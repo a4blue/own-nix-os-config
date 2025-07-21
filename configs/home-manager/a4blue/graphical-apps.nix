@@ -39,7 +39,7 @@ in {
       // {
         packages = with pkgs; [
           element-desktop
-          simplex-chat-desktop
+          #simplex-chat-desktop
           signal-desktop-bin
           fluffychat
           proton-pass

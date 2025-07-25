@@ -34,5 +34,7 @@
     nix-inspect
     bottom
     dust
+    unrar-free
+    ntfs3g
   ];
 }

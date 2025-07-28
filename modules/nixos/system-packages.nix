@@ -36,5 +36,7 @@
     dust
     unrar-free
     ntfs3g
+    unar
+    p7zip
   ];
 }

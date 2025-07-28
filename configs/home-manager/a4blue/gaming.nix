@@ -27,6 +27,7 @@ in {
               ".config/MangoHud/MangoHud.conf"
               ".paradoxlauncher"
               ".factorio"
+              ".local/share/7DaysToDie"
             ];
           };
         }

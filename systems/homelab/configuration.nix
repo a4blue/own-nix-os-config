@@ -66,7 +66,7 @@
       efi.canTouchEfiVariables = true;
       timeout = 10;
     };
-    kernelPackages = pkgs.linuxPackages_6_15;
+    kernelPackages = pkgs.linuxPackages_6_16;
     supportedFilesystems = ["bcachefs"];
 
     # Driver needed for Remote disk Unlocking

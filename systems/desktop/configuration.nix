@@ -120,7 +120,7 @@
       "video=DP-3:1920x1080@60"
       "video=HDMI-A-1:1920x1080@60"
     ];
-    kernelPackages = pkgs.linuxPackages_6_15;
+    kernelPackages = pkgs.linuxPackages_6_16;
     supportedFilesystems = ["bcachefs"];
 
     initrd = {

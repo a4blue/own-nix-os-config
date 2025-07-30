@@ -27,12 +27,12 @@
     device = "/dev/disk/by-uuid/4446d92c-ccea-441e-bbf7-d1fc9f09cff6";
     fsType = "bcachefs";
     neededForBoot = true;
-    options = ["X-mount.mkdir"];
+    options = ["X-mount.mkdir" "casefold_disabled"];
   };
   fileSystems."/Games" = {
     device = "/dev/disk/by-uuid/2d17f20f-cb73-4026-b693-d6fd7d2adba4";
     fsType = "bcachefs";
-    options = ["X-mount.mkdir"];
+    options = ["X-mount.mkdir" "casefold_disabled"];
   };
 
   fileSystems."/boot" = {

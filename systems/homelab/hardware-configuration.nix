@@ -24,7 +24,7 @@
   fileSystems."/" = {
     device = "/dev/nvme0n1p3";
     fsType = "bcachefs";
-    options = ["compression=zstd"];
+    options = ["compression=zstd" "casefold_disabled"];
     neededForBoot = true;
   };
 

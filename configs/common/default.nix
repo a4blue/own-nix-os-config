@@ -13,5 +13,6 @@ with config; {
     ./impermanence-extra.nix
     ./bluetooth.nix
     ./sabnzbd.nix
+    ./tmux.nix
   ];
 }

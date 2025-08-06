@@ -113,7 +113,7 @@
     };
     kernelParams = [
       # Enable overclocking
-      "amdgpu.ppfeaturemask=0xffffffff"
+      #"amdgpu.ppfeaturemask=0xffffffff"
       # Enable additional Video output during boot
       "video=DP-1:1920x1080@60"
       "video=DP-2:1920x1080@60"
@@ -149,6 +149,25 @@
       alsa.enable = true;
       alsa.support32Bit = true;
       pulse.enable = true;
+      extraConfig.pipewire-pulse."92-low-latency" = {
+        "context.properties" = [
+          {
+            name = "libpipewire-module-protocol-pulse";
+            args = {};
+          }
+        ];
+        "pulse.properties" = {
+          "pulse.min.req" = "32/48000";
+          "pulse.min.quantum" = "32/48000";
+          "pulse.default.req" = "960/48000";
+          "pulse.max.req" = "1024/48000";
+          "pulse.max.quantum" = "1024/48000";
+        };
+        "stream.properties" = {
+          "node.latency" = "32/48000";
+          "resample.quality" = 1;
+        };
+      };
       extraConfig.pipewire."51-disable-suspension" = {
         "monitor.alsa.rules" = [
           {
@@ -260,9 +279,11 @@
     };
     amdgpu = {
       opencl.enable = true;
+      overdrive.enable = true;
     };
     xpadneo.enable = true;
     bluetooth.enable = true;
+    sane.enable = true;
   };
 
   systemd.packages = with pkgs; [lact];

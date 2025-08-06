@@ -14,5 +14,6 @@ with config; {
     ./bluetooth.nix
     ./sabnzbd.nix
     ./tmux.nix
+    ./printing.nix
   ];
 }

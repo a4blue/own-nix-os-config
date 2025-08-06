@@ -93,7 +93,7 @@
                 "applications:steam.desktop"
                 "applications:chat.simplex.app.desktop"
                 "applications:Fluffychat.desktop"
-                "applications:signal-desktop.desktop"
+                "applications:${(builtins.elemAt pkgs.signal-desktop.out.desktopItems 0).name}"
                 "applications:proton-pass.desktop"
                 "applications:firefox.desktop"
               ];

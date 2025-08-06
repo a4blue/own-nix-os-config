@@ -24,6 +24,7 @@
       trusted-public-keys = ["nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="];
       connect-timeout = 30;
       download-attempts = 1;
+      max-jobs = 2;
     };
     extraOptions = ''
       !include ${config.sops.secrets.github_pat.path}

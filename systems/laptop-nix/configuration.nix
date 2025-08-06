@@ -175,9 +175,11 @@
     };
     amdgpu = {
       opencl.enable = true;
+      overdrive.enable = true;
     };
     xpadneo.enable = true;
     bluetooth.enable = true;
+    sane.enable = true;
   };
 
   systemd.packages = with pkgs; [lact];

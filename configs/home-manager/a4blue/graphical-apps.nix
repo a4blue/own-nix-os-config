@@ -40,7 +40,7 @@ in {
         packages = with pkgs; [
           element-desktop
           #simplex-chat-desktop
-          signal-desktop-bin
+          signal-desktop
           fluffychat
           proton-pass
           joplin-desktop

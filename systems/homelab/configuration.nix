@@ -29,7 +29,7 @@
     ../../modules/nixos/paperless.nix
     ../../modules/nixos/nextcloud.nix
     ../../modules/nixos/borgbackup.nix
-    #../../modules/nixos/jellyfin.nix
+    ../../modules/nixos/jellyfin.nix
     ../../modules/nixos/forgejo.nix
     #../../modules/nixos/firefly-iii.nix
     # other services
@@ -56,6 +56,8 @@
   };
 
   zramSwap.enable = true;
+
+  nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) ["intel-ocl"];
 
   boot = {
     loader = {
@@ -96,6 +98,45 @@
         ./../../modules/home-manager/persistence.nix
         inputs.impermanence.nixosModules.home-manager.impermanence
       ];
+    };
+  };
+
+  systemd.services."bcachefs-mount" = {
+    after = ["local-fs.target"];
+    wantedBy = ["multi-user.target"];
+    environment = {
+      DEVICE_PATH = "/dev/disk/by-uuid/97c07ac6-f5d8-4ab2-8f8f-3b089416d8ed";
+      MOUNT_POINT = "/LargeMedia";
+    };
+    script = ''
+      #!${pkgs.runtimeShell} -e
+
+      ${pkgs.keyutils}/bin/keyctl link @u @s
+
+      # Check if the device path exists
+      if [ ! -b "$DEVICE_PATH" ]; then
+        echo "Error: Device path $DEVICE_PATH does not exist."
+        exit 1
+      fi
+
+      # Check if the drive is already mounted
+      if ${pkgs.util-linux}/bin/mountpoint -q "$MOUNT_POINT"; then
+        echo "Drive already mounted at $MOUNT_POINT. Skipping..."
+        exit 0
+      fi
+
+      # Wait for the device to become available
+      while [ ! -b "$DEVICE_PATH" ]; do
+        echo "Waiting for $DEVICE_PATH to become available..."
+        sleep 5
+      done
+
+      # Mount the device
+      ${pkgs.bcachefs-tools}/bin/bcachefs mount -f /nix/secret/LargeMediaKey "$DEVICE_PATH" "$MOUNT_POINT"
+    '';
+    serviceConfig = {
+      Type = "oneshot";
+      User = "root";
     };
   };
 }

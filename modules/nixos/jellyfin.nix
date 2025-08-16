@@ -9,27 +9,17 @@ in {
   imports = [
     ./nginx.nix
   ];
-  nixpkgs.config.packageOverrides = pkgs: {
-    vaapiIntel = pkgs.vaapiIntel.override {enableHybridCodec = true;};
-    # https://github.com/NixOS/nixpkgs/pull/353198
-    # FIXME
-    jellyfin-ffmpeg = pkgs.jellyfin-ffmpeg.override {
-      ffmpeg_7-full = pkgs.ffmpeg_7-full.override {
-        withXevd = false;
-        withXeve = false;
-      };
-    };
-  };
 
+  systemd.services.jellyfin.environment.LIBVA_DRIVER_NAME = "iHD";
+  environment.sessionVariables = {LIBVA_DRIVER_NAME = "iHD";};
   hardware.graphics = {
     enable = true;
     extraPackages = with pkgs; [
       intel-media-driver
-      intel-vaapi-driver
-      vaapiVdpau
-      libvdpau-va-gl
+      libva-vdpau-driver
       intel-compute-runtime
       vpl-gpu-rt
+      intel-ocl
     ];
   };
 
@@ -37,15 +27,6 @@ in {
     enable = true;
     openFirewall = true;
   };
-  environment.systemPackages = with pkgs; [
-    jellyfin
-    jellyfin-web
-    #jellyfin-ffmpeg
-    intel-media-sdk
-    vpl-gpu-rt
-    libvpl
-    vdpauinfo
-  ];
 
   services.nginx.virtualHosts."${serviceDomain}" = {
     forceSSL = true;

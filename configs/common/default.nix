@@ -15,5 +15,6 @@ with config; {
     ./sabnzbd.nix
     ./tmux.nix
     ./printing.nix
+    ./containers.nix
   ];
 }

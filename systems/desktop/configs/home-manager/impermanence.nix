@@ -26,6 +26,8 @@ lib.mkIf config.modules.impermanenceExtra.enabled {
       # Flatpack shared Data
       ".local/share/FlatPackData"
       ".local/share/xmr-btc-swap"
+      # Podman
+      ".local/share/containers"
     ];
     files = [
       # KDE Display Settings

@@ -23,9 +23,11 @@
     ../../configs/common
   ];
 
-  modules.impermanenceExtra.enabled = true;
-  modules.impermanenceExtra.defaultPath = "/nix/persistent";
-  modules.sabnzbd.enable = true;
+  modules = {
+    impermanenceExtra.enabled = true;
+    impermanenceExtra.defaultPath = "/nix/persistent";
+    sabnzbd.enable = true;
+  };
   environment.persistence."${config.modules.impermanenceExtra.defaultPath}" = {
     # Hide these mounts from the sidebar of file managers
     hideMounts = true;
@@ -91,13 +93,7 @@
   };
 
   virtualisation = {
-    containers.enable = true;
-    podman = {
-      enable = true;
-      dockerCompat = true;
-      # Required for containers under podman-compose to be able to talk to each other.
-      defaultNetwork.settings.dns_enabled = true;
-    };
+    podman.enable = true;
   };
 
   zramSwap.enable = true;

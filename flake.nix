@@ -93,6 +93,8 @@
             nix-tree
             nix-output-monitor
             statix
+            nh
+            nix-du
             inputs.own-nixvim.packages.${system}.default
           ];
           shellHook = ''

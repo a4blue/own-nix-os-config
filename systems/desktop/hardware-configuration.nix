@@ -12,33 +12,37 @@
     (modulesPath + "/installer/scan/not-detected.nix")
   ];
 
-  boot.initrd.availableKernelModules = ["nvme" "xhci_pci" "ahci" "usb_storage" "usbhid" "sd_mod"];
-  boot.initrd.kernelModules = [];
-  boot.kernelModules = ["kvm-amd"];
-  boot.extraModulePackages = [];
-
-  fileSystems."/" = {
-    device = "none";
-    fsType = "tmpfs";
-    options = ["defaults" "size=512M" "mode=755"];
+  boot = {
+    initrd.availableKernelModules = ["nvme" "xhci_pci" "ahci" "usb_storage" "usbhid" "sd_mod"];
+    initrd.kernelModules = [];
+    kernelModules = ["kvm-amd"];
+    extraModulePackages = [];
   };
 
-  fileSystems."/nix" = {
-    device = "/dev/disk/by-uuid/4446d92c-ccea-441e-bbf7-d1fc9f09cff6";
-    fsType = "bcachefs";
-    neededForBoot = true;
-    options = ["X-mount.mkdir" "casefold_disabled"];
-  };
-  fileSystems."/Games" = {
-    device = "/dev/disk/by-uuid/2d17f20f-cb73-4026-b693-d6fd7d2adba4";
-    fsType = "bcachefs";
-    options = ["X-mount.mkdir" "casefold_disabled"];
-  };
+  fileSystems = {
+    "/" = {
+      device = "none";
+      fsType = "tmpfs";
+      options = ["defaults" "size=512M" "mode=755"];
+    };
 
-  fileSystems."/boot" = {
-    device = "/dev/disk/by-uuid/BC23-260A";
-    fsType = "vfat";
-    options = ["umask=007" "X-mount.mkdir"];
+    "/nix" = {
+      device = "/dev/disk/by-uuid/4446d92c-ccea-441e-bbf7-d1fc9f09cff6";
+      fsType = "bcachefs";
+      neededForBoot = true;
+      options = ["X-mount.mkdir" "casefold_disabled"];
+    };
+    "/Games" = {
+      device = "/dev/disk/by-uuid/2d17f20f-cb73-4026-b693-d6fd7d2adba4";
+      fsType = "bcachefs";
+      options = ["X-mount.mkdir" "casefold_disabled"];
+    };
+
+    "/boot" = {
+      device = "/dev/disk/by-uuid/BC23-260A";
+      fsType = "vfat";
+      options = ["umask=007" "X-mount.mkdir"];
+    };
   };
 
   swapDevices = [

@@ -61,7 +61,7 @@ in {
     };
   };
 
-  users.users.jellyfin.extraGroups = ["render" "smbUser"];
+  users.users.jellyfin.extraGroups = ["render" "smbUser" "video"];
 
   environment.persistence."${config.modules.impermanenceExtra.defaultPath}" = {
     directories = [

@@ -58,6 +58,9 @@
   zramSwap.enable = true;
 
   nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) ["intel-ocl"];
+  nixpkgs.config.allowUnfree = true;
+  hardware.enableAllFirmware = true;
+  hardware.intel-gpu-tools.enable = true;
 
   boot = {
     loader = {

@@ -56,7 +56,7 @@
     rsync
     ncdu
     qdirstat
-    pynitrokey
+    #pynitrokey
     virtualgl
     libva-utils
     ffmpeg

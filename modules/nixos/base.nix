@@ -44,17 +44,13 @@
     description = "Alexander Ratajczak";
     extraGroups = ["networkmanager" "wheel"];
     openssh.authorizedKeys.keys = [
-      # Win11 DIY Powershell
-      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOb2erO3CjSDZdQNfU720I4vxt1K5XzECQ/ncROZmA2X"
-      # Win11 DIY WSL2 Ubuntu22.04
-      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJIOPBiaBpAIpr9bTdZ6oWW+smZlywoeC8mh0Tz1R9IM"
       # Termux Pixel7Pro
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAYaqu6PwownHMqXluc61CdJLkJE3WOEtEOyKqKd+zXP"
       # Nitrokey
       "sk-ssh-ed25519@openssh.com AAAAGnNrLXNzaC1lZDI1NTE5QG9wZW5zc2guY29tAAAAIPFRV7ZJOgn9N5DBl4b+NwjTWNXJURDBd761JGB8ZZm+AAAABHNzaDo="
       "sk-ssh-ed25519@openssh.com AAAAGnNrLXNzaC1lZDI1NTE5QG9wZW5zc2guY29tAAAAINQzo89EsYmlmVZSJrsPWUapwQofmpDbjYAMTE1E7N6AAAAAC3NzaDpIb21lTmV0 ssh:HomeNet"
-      # Nitrokey Home Backup
-      "sk-ssh-ed25519@openssh.com AAAAGnNrLXNzaC1lZDI1NTE5QG9wZW5zc2guY29tAAAAIPYowMyQtbljcuZZDerqqxbukUmUG8IJdAfgck/00+NgAAAAC3NzaDpIb21lTmV0 ssh:HomeNet"
+      # Nitrokey Backup
+      "sk-ssh-ed25519@openssh.com AAAAGnNrLXNzaC1lZDI1NTE5QG9wZW5zc2guY29tAAAAIFe4fmeT6W1f3+YBrRlR5DBjQ1Xo0WNi6j+ptstlXGO5AAAAD3NzaDpIb21lTmV0LUJhaw== ssh:HomeNet-Bak"
     ];
     hashedPasswordFile = config.sops.secrets.a4blue_easy_hashed_password.path;
   };

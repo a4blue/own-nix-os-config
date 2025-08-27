@@ -152,10 +152,6 @@
 
         ssh = {
           enable = true;
-          matchBlocks."homelab"
-          .extraOptions."IdentityFile" = "~/.ssh/id_ed25519_sk_rk_9bff4ca58ab54a4c9973715e8c409e737b0df72132906345c58b885107431f4d";
-          matchBlocks."homelab-unlock"
-          .extraOptions."IdentityFile" = "~/.ssh/id_ed25519_sk_rk_9bff4ca58ab54a4c9973715e8c409e737b0df72132906345c58b885107431f4d";
         };
       };
     };

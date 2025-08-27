@@ -3,6 +3,8 @@
 ## Set Pin
 If not already done, the FIDO2 PIN should be set with ```nitropy fido2 set-pin```
 ## Generate new keys
-Generate resident keys ```ssh-keygen -t ed25519-sk -O resident -O application="ssh:HomeNet"```
+Generate resident keys:
+```ssh-keygen -t ed25519-sk -O resident -O application="ssh:HomeNet-Bak" -f ~/.ssh/id_ed25519_sk_HomeNet-Bak```
 Copy keys to local machine ```ssh-keygen -K```
-Output will be ./id_ed25519_sk_rk_HomeNet
+## List Keys
+```nitropy fido2 list-credentials```

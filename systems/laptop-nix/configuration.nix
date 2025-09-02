@@ -127,7 +127,7 @@
   home-manager.users = {
     a4blue = {
       imports = [
-        inputs.plasma-manager.homeManagerModules.plasma-manager
+        inputs.plasma-manager.homeModules.plasma-manager
         ./../../configs/home-manager/a4blue
         ../desktop/configs/home-manager/plasma.nix
       ];

@@ -221,7 +221,7 @@
     a4blue = {
       imports = [
         inputs.impermanence.nixosModules.home-manager.impermanence
-        inputs.plasma-manager.homeManagerModules.plasma-manager
+        inputs.plasma-manager.homeModules.plasma-manager
         ../../configs/home-manager/a4blue
         ./configs/home-manager/impermanence.nix
         ./configs/home-manager/plasma.nix

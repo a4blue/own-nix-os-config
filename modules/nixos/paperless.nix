@@ -10,6 +10,7 @@ in {
     paperless = {
       enable = true;
       port = servicePort;
+      domain = serviceDomain;
       settings = {
         PAPERLESS_CONSUMER_IGNORE_PATTERN = [
           ".DS_STORE/*"

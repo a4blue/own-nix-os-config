@@ -7,6 +7,8 @@
 lib.mkIf config.programs.firefox.enable {
   programs.firefox = {
     policies = {
+      AppAutoUpdate = false;
+      BackgroundAppUpdate = false;
       DisableTelemetry = true;
       DisableFirefoxStudies = true;
       EnableTrackingProtection = {
@@ -19,6 +21,12 @@ lib.mkIf config.programs.firefox.enable {
       DisableFirefoxAccounts = true;
       DisablePocket = true;
       DontCheckDefaultBrowser = true;
+      OfferToSaveLogins = false;
+      AutofillAddressEnabled = false;
+      AutofillCreditCardEnabled = false;
+      DisableProfileImport = true;
+      DisableSetDesktopBackground = true;
+      HttpsOnlyMode = "enabled";
       Preferences = {
         "gfx.webrender.all" = {Value = true;};
         "media.ffmpeg.vaapi.enabled" = {Value = true;};

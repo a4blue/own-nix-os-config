@@ -16,5 +16,6 @@ with config; {
     ./tmux.nix
     ./printing.nix
     ./containers.nix
+    ./clamav.nix
   ];
 }

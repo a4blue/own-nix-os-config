@@ -80,6 +80,12 @@
     fuse.userAllowOther = true;
     steam.enable = true;
     gnupg.agent.enable = true;
+    virt-manager.enable = true;
+    firejail.enable = true;
+    appimage = {
+      enable = true;
+      binfmt = true;
+    };
   };
   networking = {
     hostName = "desktop-nix";
@@ -94,11 +100,13 @@
 
   virtualisation = {
     podman.enable = true;
+    libvirtd.enable = true;
   };
 
   zramSwap.enable = true;
 
   boot = {
+    tmp.cleanOnBoot = true;
     loader = {
       systemd-boot = {
         enable = true;
@@ -127,6 +135,7 @@
 
   services = {
     udev.packages = [pkgs.nitrokey-udev-rules];
+    flatpak.enable = true;
     desktopManager.plasma6.enable = true;
     displayManager = {
       defaultSession = "plasma";
@@ -145,25 +154,6 @@
       alsa.enable = true;
       alsa.support32Bit = true;
       pulse.enable = true;
-      #extraConfig.pipewire-pulse."92-low-latency" = {
-      #  "context.properties" = [
-      #    {
-      #      name = "libpipewire-module-protocol-pulse";
-      #      args = {};
-      #    }
-      #  ];
-      #  "pulse.properties" = {
-      #    "pulse.min.req" = "32/48000";
-      #    "pulse.min.quantum" = "32/48000";
-      #    "pulse.default.req" = "960/48000";
-      #    "pulse.max.req" = "1024/48000";
-      #    "pulse.max.quantum" = "1024/48000";
-      #  };
-      #  "stream.properties" = {
-      #    "node.latency" = "32/48000";
-      #    "resample.quality" = 1;
-      #  };
-      #};
       extraConfig.pipewire."51-disable-suspension" = {
         "monitor.alsa.rules" = [
           {
@@ -183,25 +173,16 @@
           }
         ];
       };
-      #extraConfig.pipewire."92-low-latency" = {
-      #  "context.properties" = {
-      #    "default.clock.rate" = 48000;
-      #    #"default.clock.rate" = 192000;
-      #    "default.clock.quantum" = 32;
-      #    "default.clock.min-quantum" = 32;
-      #    "default.clock.max-quantum" = 32;
-      #  };
-      #};
+      extraConfig.pipewire."92-low-latency" = {
+        "context.properties" = {
+          "default.clock.rate" = 48000;
+          "default.clock.quantum" = 128;
+          "default.clock.min-quantum" = 128;
+          "default.clock.max-quantum" = 128;
+        };
+      };
     };
   };
-
-  #virtualisation.virtualbox.host.enable = true;
-  #users.extraGroups.vboxusers.members = ["a4blue"];
-
-  virtualisation.libvirtd.enable = true;
-  programs.virt-manager.enable = true;
-  programs.firejail.enable = true;
-  services.flatpak.enable = true;
 
   security = {
     tpm2 = {
@@ -210,10 +191,6 @@
       tctiEnvironment.enable = true;
     };
   };
-  nixpkgs.config.permittedInsecurePackages = [
-    "olm-3.2.16"
-    "fluffychat-linux-1.27.0"
-  ];
 
   users.users.a4blue.extraGroups = ["dialout" "podman" "gamemode" "libvirtd"];
 

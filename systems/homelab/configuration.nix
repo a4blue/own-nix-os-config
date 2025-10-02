@@ -25,18 +25,14 @@
     ../../modules/nixos/docker/stash.nix
 
     # web services
-    #../../modules/nixos/homepage-dashboard.nix
-    ../../modules/nixos/paperless.nix
     ../../modules/nixos/nextcloud.nix
     ../../modules/nixos/borgbackup.nix
     ../../modules/nixos/jellyfin.nix
     ../../modules/nixos/forgejo.nix
-    #../../modules/nixos/firefly-iii.nix
     # other services
     ../../modules/nixos/samba.nix
     ../../modules/nixos/blocky.nix
     ../../modules/nixos/fail2ban.nix
-    #../../modules/nixos/clamav.nix
     ../../modules/nixos/dynv6.nix
     #../../modules/nixos/stalwart.nix
     ../../modules/nixos/prometheus.nix

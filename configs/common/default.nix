@@ -17,5 +17,6 @@ with config; {
     ./printing.nix
     ./containers.nix
     ./clamav.nix
+    ./audio.nix
   ];
 }

@@ -6,6 +6,5 @@
 }:
 with config; {
   imports = [
-    #./kernel-patch.nix
   ];
 }

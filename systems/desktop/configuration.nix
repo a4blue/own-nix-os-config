@@ -27,6 +27,7 @@
     impermanenceExtra.enabled = true;
     impermanenceExtra.defaultPath = "/nix/persistent";
     sabnzbd.enable = true;
+    desktopAudio.enable = true;
   };
   environment.persistence."${config.modules.impermanenceExtra.defaultPath}" = {
     # Hide these mounts from the sidebar of file managers
@@ -148,40 +149,6 @@
     fstrim.enable = true;
     fwupd.enable = true;
     wg-netmanager.enable = true;
-    pipewire = {
-      enable = true;
-      audio.enable = true;
-      alsa.enable = true;
-      alsa.support32Bit = true;
-      pulse.enable = true;
-      extraConfig.pipewire."51-disable-suspension" = {
-        "monitor.alsa.rules" = [
-          {
-            "matches" = [
-              {
-                "node.name" = "~alsa_input.*";
-              }
-              {
-                "node.name" = "~alsa_output.*";
-              }
-            ];
-            "actions" = {
-              "update-props" = {
-                "session.suspend-timeout-seconds" = 0;
-              };
-            };
-          }
-        ];
-      };
-      extraConfig.pipewire."92-low-latency" = {
-        "context.properties" = {
-          "default.clock.rate" = 48000;
-          "default.clock.quantum" = 128;
-          "default.clock.min-quantum" = 128;
-          "default.clock.max-quantum" = 128;
-        };
-      };
-    };
   };
 
   security = {

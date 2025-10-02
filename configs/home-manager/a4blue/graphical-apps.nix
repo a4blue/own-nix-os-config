@@ -17,6 +17,11 @@ in {
       defaultApplications = {
         "video/x-matroska" = "vlc.desktop";
         "video/mp4" = "vlc.desktop";
+        "text/html" = "firefox.desktop";
+        "x-scheme-handler/http" = "firefox.desktop";
+        "x-scheme-handler/https" = "firefox.desktop";
+        "x-scheme-handler/about" = "firefox.desktop";
+        "x-scheme-handler/unknown" = "firefox.desktop";
       };
     };
   };
@@ -30,7 +35,6 @@ in {
               ".config/Proton Pass"
               ".config/Signal"
               ".local/share/chat.fluffy.fluffychat"
-              ".local/share/simplex"
             ];
           };
         }
@@ -38,8 +42,6 @@ in {
       )
       // {
         packages = with pkgs; [
-          element-desktop
-          #simplex-chat-desktop
           signal-desktop
           fluffychat
           proton-pass
@@ -47,7 +49,6 @@ in {
           libreoffice-qt6-fresh
           vlc
           mpv
-          handbrake
           podman-desktop
         ];
       });

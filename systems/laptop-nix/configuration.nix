@@ -40,6 +40,7 @@
     gnupg
   ];
   fonts.packages = [pkgs.nerd-fonts.fira-code pkgs.nerd-fonts.terminess-ttf];
+  modules.desktopAudio.enable = true;
 
   nixpkgs.config.allowUnfreePredicate = pkg:
     builtins.elem (lib.getName pkg) [
@@ -102,12 +103,6 @@
     fstrim.enable = true;
     fwupd.enable = true;
     wg-netmanager.enable = true;
-    pipewire = {
-      enable = true;
-      alsa.enable = true;
-      alsa.support32Bit = true;
-      pulse.enable = true;
-    };
   };
 
   security = {

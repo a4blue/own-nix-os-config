@@ -1,6 +1,6 @@
 {config, ...}: let
   servicePort = 38003;
-  serviceDomain = "forgejo.homelab.internal";
+  serviceDomain = "forgejo.home.a4blue.me";
 in {
   imports = [
     ./nginx.nix
@@ -31,10 +31,7 @@ in {
       proxyPass = "http://localhost:${builtins.toString servicePort}/";
       extraConfig = ''
         client_max_body_size 512M;
-        deny 192.168.178.1;
-        allow 192.168.178.0/24;
-        deny all;
-      '';
+        '';
     };
   };
 

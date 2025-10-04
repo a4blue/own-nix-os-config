@@ -4,7 +4,7 @@
   ...
 }: let
   servicePort = 8096;
-  serviceDomain = "jellyfin.homelab.internal";
+  serviceDomain = "jellyfin.home.a4blue.me";
 in {
   imports = [
     ./nginx.nix
@@ -24,7 +24,7 @@ in {
       maxretry = 3
       bantime = 86400
       findtime = 43200
-      logpath = /path_to_logs/jellyfin*.log
+      logpath = /var/lib/jellyfin/log/jellyfin*.log
     '';
     "fail2ban/filter.d/jellyfin.conf".text = ''
       [Definition]
@@ -102,15 +102,15 @@ in {
     sslCertificate = "/var/lib/self-signed-nginx-cert/wildcard-homelab-local.pem";
     extraConfig = ''
       ssl_stapling off;
+      client_max_body_size 20M;
+      http2 on;
+      add_header X-Content-Type-Options "nosniff";
     '';
     locations."/" = {
       recommendedProxySettings = true;
       proxyPass = "http://localhost:${builtins.toString servicePort}";
       extraConfig = ''
         proxy_set_header X-Forwarded-Protocol $scheme;
-        deny 192.168.178.1;
-        allow 192.168.178.0/24;
-        deny all;
         proxy_buffering off;
       '';
     };
@@ -122,10 +122,7 @@ in {
         proxy_set_header Upgrade $http_upgrade;
         proxy_set_header Connection "upgrade";
         proxy_set_header X-Forwarded-Protocol $scheme;
-        deny 192.168.178.1;
-        allow 192.168.178.0/24;
-        deny all;
-      '';
+        '';
     };
   };
 

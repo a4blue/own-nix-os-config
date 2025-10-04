@@ -1,7 +1,7 @@
 {config, ...}: let
   servicePort = 9999;
   # Not used yet
-  serviceDomain = "stash.homelab.internal";
+  serviceDomain = "stash.home.a4blue.me";
 in {
   imports = [
     ../docker.nix
@@ -28,7 +28,7 @@ in {
     };
     extraOptions = ["--device=/dev/dri/renderD128"];
     #user = "a4blue:users";
-    autoStart = false;
+    autoStart = true;
   };
 
   environment.persistence."${config.modules.impermanenceExtra.defaultPath}" = {
@@ -41,6 +41,24 @@ in {
       }
     ];
   };
+
+  services.nginx.virtualHosts."${serviceDomain}" = {
+    forceSSL = true;
+    sslCertificateKey = "/var/lib/self-signed-nginx-cert/homelab-local-root.key";
+    sslCertificate = "/var/lib/self-signed-nginx-cert/wildcard-homelab-local.pem";
+    extraConfig = ''
+      ssl_stapling off;
+    '';
+    locations."/" = {
+      recommendedProxySettings = true;
+      proxyPass = "http://localhost:${builtins.toString servicePort}/";
+      extraConfig = ''
+        client_max_body_size 512M;
+        '';
+    };
+  };
+
+  systemd.services."${config.virtualisation.oci-containers.containers."stash-container".serviceName}".after = ["LargeMedia.mount"];
 
   networking.firewall.allowedTCPPorts = [servicePort];
 }

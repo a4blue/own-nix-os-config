@@ -2,12 +2,16 @@
   config,
   pkgs,
   lib,
+  inputs,
   ...
-}: {
+}: let
+  nc4nix = import "${inputs.nc4nix}/default.nix" {
+    inherit (pkgs) lib recurseIntoAttrs fetchurl runCommand callPackage;
+  };
+in {
   imports = [
     ./nginx.nix
     ./fail2ban.nix
-    #./clamav.nix
   ];
   environment = {
     systemPackages = with pkgs; [
@@ -66,39 +70,39 @@
       appstoreEnable = true;
       phpOptions."opcache.interned_strings_buffer" = "32";
       maxUploadSize = "4G";
-      autoUpdateApps.enable = true;
+      autoUpdateApps.enable = false;
       extraAppsEnable = true;
-      extraApps = with config.services.nextcloud.package.packages.apps; {
-        # List of apps we want to install and are already packaged in
-        # https://github.com/NixOS/nixpkgs/blob/master/pkgs/servers/nextcloud/packages/nextcloud-apps.json
-        inherit
-          app_api
-          bookmarks
-          calendar
-          contacts
-          cospend
-          forms
-          mail
-          maps
-          memories
-          notes
-          previewgenerator
-          #recognize
-          tasks
-          #twofactor_totp
-          whiteboard
-          ;
-
-        #recognize = pkgs.fetchNextcloudApp {
-        #  url = "https://github.com/nextcloud/recognize/releases/download/v6.1.1/recognize-6.1.1.tar.gz";
-        #  sha256 = "sha256-ziUc4J2y1lW1BwygwOKedOWbeAnPpBDwT9wh35R0MYk=";
-        #  license = "agpl3Plus";
-        #  appVersion = "6.1.1";
-        #  description = "👁 👂 Smart media tagging for Nextcloud: recognizes faces, objects, landscapes, music genres";
-        #  homepage = "https://apps.nextcloud.com/apps/recognize";
-        #  appName = "recognize";
-        #};
-      };
+      extraApps =
+        {
+          inherit
+            (config.services.nextcloud.package.packages.apps)
+            # List of apps we want to install and are already packaged in
+            # https://github.com/NixOS/nixpkgs/blob/master/pkgs/servers/nextcloud/packages/nextcloud-apps.json
+            app_api
+            bookmarks
+            calendar
+            contacts
+            cospend
+            forms
+            mail
+            maps
+            memories
+            notes
+            previewgenerator
+            tasks
+            whiteboard
+            ;
+        }
+        // {
+          inherit
+            (nc4nix.nextcloud-31)
+            cfg_share_links
+            duplicatefinder
+            files_downloadactivity
+            quota_warning
+            recognize
+            ;
+        };
 
       config = {
         dbtype = "pgsql";

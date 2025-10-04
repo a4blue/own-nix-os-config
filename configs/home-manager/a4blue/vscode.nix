@@ -10,8 +10,8 @@ lib.mkIf config.programs.vscode.enable {
     profiles.default = {
       extensions = with pkgs.vscode-marketplace; [
         jnoortheen.nix-ide
-        kamadorueda.alejandra
-        sainnhe.everforest
+        #kamadorueda.alejandra
+        #sainnhe.everforest
       ];
       userSettings = {
         "editor.fontLigatures" = true;

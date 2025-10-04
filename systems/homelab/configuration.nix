@@ -73,7 +73,7 @@
       # https://bbs.archlinux.org/viewtopic.php?id=284971
       options usb-storage quirks=174c:1356:u
     '';
-    kernelPackages = pkgs.linuxPackages_6_16;
+    kernelPackages = pkgs.linuxPackages_6_17;
     supportedFilesystems = ["bcachefs"];
 
     # Driver needed for Remote disk Unlocking

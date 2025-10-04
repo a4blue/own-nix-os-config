@@ -5,6 +5,7 @@
     # Nixpkgs
     #nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable-small";
+    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-25.05";
     #nixpkgs.url = "github:nixos/nixpkgs?rev=9f4e767a3c29b591c32b2785f6a8997b2e60b949";
 
     impermanence = {
@@ -53,6 +54,14 @@
     };
     nix-vscode-extensions = {
       url = "github:nix-community/nix-vscode-extensions/master";
+    };
+    nc4nix = {
+      url = "github:helsinki-systems/nc4nix";
+      flake = false;
+    };
+    declarative-jellyfin = {
+      url = "github:Sveske-Juice/declarative-jellyfin";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
@@ -112,6 +121,7 @@
             {nixpkgs.hostPlatform = "x86_64-linux";}
             ./systems/homelab/configuration.nix
             ./overlays/previous.nix
+            inputs.declarative-jellyfin.nixosModules.default
           ];
         };
         # nix build ./#nixosConfigurations.desktop.config.system.build.toplevel

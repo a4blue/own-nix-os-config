@@ -98,10 +98,8 @@ in {
 
   services.nginx.virtualHosts."${serviceDomain}" = {
     forceSSL = true;
-    sslCertificateKey = "/var/lib/self-signed-nginx-cert/homelab-local-root.key";
-    sslCertificate = "/var/lib/self-signed-nginx-cert/wildcard-homelab-local.pem";
+    enableACME = true;
     extraConfig = ''
-      ssl_stapling off;
       client_max_body_size 20M;
       add_header X-Content-Type-Options "nosniff";
     '';
@@ -121,7 +119,7 @@ in {
         proxy_set_header Upgrade $http_upgrade;
         proxy_set_header Connection "upgrade";
         proxy_set_header X-Forwarded-Protocol $scheme;
-        '';
+      '';
     };
   };
 

@@ -21,17 +21,13 @@ in {
   };
   services.nginx.virtualHosts."${serviceDomain}" = {
     forceSSL = true;
-    sslCertificateKey = "/var/lib/self-signed-nginx-cert/homelab-local-root.key";
-    sslCertificate = "/var/lib/self-signed-nginx-cert/wildcard-homelab-local.pem";
-    extraConfig = ''
-      ssl_stapling off;
-    '';
+    enableACME = true;
     locations."/" = {
       recommendedProxySettings = true;
       proxyPass = "http://localhost:${builtins.toString servicePort}/";
       extraConfig = ''
         client_max_body_size 512M;
-        '';
+      '';
     };
   };
 

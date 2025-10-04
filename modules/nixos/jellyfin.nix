@@ -24,7 +24,7 @@ in {
       maxretry = 3
       bantime = 86400
       findtime = 43200
-      logpath = /var/lib/jellyfin/log/jellyfin*.log
+      logpath = /var/lib/jellyfin/log/log*.log
     '';
     "fail2ban/filter.d/jellyfin.conf".text = ''
       [Definition]
@@ -103,7 +103,6 @@ in {
     extraConfig = ''
       ssl_stapling off;
       client_max_body_size 20M;
-      http2 on;
       add_header X-Content-Type-Options "nosniff";
     '';
     locations."/" = {

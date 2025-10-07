@@ -4,9 +4,9 @@
   inputs = {
     # Nixpkgs
     #nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable-small";
+    #nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable-small";
     nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-25.05";
-    #nixpkgs.url = "github:nixos/nixpkgs?rev=9f4e767a3c29b591c32b2785f6a8997b2e60b949";
+    nixpkgs.url = "github:nixos/nixpkgs?rev=bad3e00dbad0d8de376b98694ea3e684baf32ef0";
 
     impermanence = {
       url = "github:nix-community/impermanence";

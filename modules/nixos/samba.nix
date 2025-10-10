@@ -13,16 +13,6 @@
         "guest account" = "nobody";
         "map to guest" = "bad user";
       };
-      private = {
-        path = "/SDMedia/smb";
-        browseable = "yes";
-        "read only" = "no";
-        "guest ok" = "no";
-        "create mask" = "2777";
-        "directory mask" = "2777";
-        "force user" = "a4blue";
-        "force group" = "smbUser";
-      };
       "LargeMedia" = {
         path = "/LargeMedia/smb";
         browseable = "yes";
@@ -37,6 +27,18 @@
   };
   users.groups.smbUser = {
     members = ["a4blue"];
+  };
+  services.samba-wsdd = {
+    enable = true;
+    openFirewall = true;
+  };
+
+  services.avahi = {
+    publish.enable = true;
+    publish.userServices = true;
+    nssmdns4 = true;
+    enable = true;
+    openFirewall = true;
   };
   networking.firewall.allowPing = true;
 

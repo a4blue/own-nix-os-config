@@ -72,6 +72,7 @@
       # https://forum.level1techs.com/t/external-usb-3-hdd-fails-to-transfer-files-on-linux/153056/15
       # https://bbs.archlinux.org/viewtopic.php?id=284971
       options usb-storage quirks=174c:1356:u
+      options usbcore autosuspend=-1
     '';
     kernelPackages = pkgs.linuxPackages_6_17;
     supportedFilesystems = ["bcachefs"];

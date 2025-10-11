@@ -111,7 +111,7 @@
     after = ["local-fs.target"];
     wantedBy = ["multi-user.target"];
     environment = {
-      DEVICE_PATH = "/dev/disk/by-uuid/97c07ac6-f5d8-4ab2-8f8f-3b089416d8ed";
+      DEVICE_PATH = "/dev/disk/by-uuid/97c07ac6-f5d8-4ab2-8f8f-3b089416d8ed:/dev/sde:/dev/sdg:/dev/sda1";
       MOUNT_POINT = "/LargeMedia";
     };
     script = ''

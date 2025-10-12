@@ -35,8 +35,8 @@
     ../../modules/nixos/fail2ban.nix
     ../../modules/nixos/dynv6.nix
     #../../modules/nixos/stalwart.nix
-    ../../modules/nixos/prometheus.nix
-    ../../modules/nixos/grafana.nix
+    #../../modules/nixos/prometheus.nix
+    #../../modules/nixos/grafana.nix
 
     ../../configs/common
   ];
@@ -53,7 +53,6 @@
 
   zramSwap.enable = true;
 
-  nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) ["intel-ocl"];
   nixpkgs.config.allowUnfree = true;
   hardware.enableAllFirmware = true;
   hardware.intel-gpu-tools.enable = true;
@@ -106,6 +105,12 @@
       ];
     };
   };
+
+  environment.systemPackages = [
+  ];
+  nixpkgs.config.permittedInsecurePackages = [
+    "mbedtls-2.28.10"
+  ];
 
   systemd.services."bcachefs-mount" = {
     after = ["local-fs.target"];

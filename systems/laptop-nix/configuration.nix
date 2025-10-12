@@ -88,6 +88,9 @@
       systemd.emergencyAccess = true;
     };
   };
+  nixpkgs.config.permittedInsecurePackages = [
+    "mbedtls-2.28.10"
+  ];
 
   services = {
     udev.packages = [pkgs.nitrokey-udev-rules];

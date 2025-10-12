@@ -70,7 +70,7 @@
       # This should fix "stuttering" external HDD
       # https://forum.level1techs.com/t/external-usb-3-hdd-fails-to-transfer-files-on-linux/153056/15
       # https://bbs.archlinux.org/viewtopic.php?id=284971
-      options usb-storage quirks=174c:1356:u
+      #options usb-storage quirks=174c:1356:u
       options usbcore autosuspend=-1
     '';
     kernelPackages = pkgs.linuxPackages_6_17;
@@ -116,7 +116,7 @@
     after = ["local-fs.target"];
     wantedBy = ["multi-user.target"];
     environment = {
-      DEVICE_PATH = "/dev/disk/by-uuid/97c07ac6-f5d8-4ab2-8f8f-3b089416d8ed:/dev/sde:/dev/sdg:/dev/sda1";
+      DEVICE_PATH = "/dev/disk/by-partlabel/LargeMedia01:/dev/disk/by-partlabel/LargeMediaForeground";
       MOUNT_POINT = "/LargeMedia";
     };
     script = ''

@@ -70,6 +70,7 @@
       # This should fix "stuttering" external HDD
       # https://forum.level1techs.com/t/external-usb-3-hdd-fails-to-transfer-files-on-linux/153056/15
       # https://bbs.archlinux.org/viewtopic.php?id=284971
+      # seems like the core issue is a bad usb host, switching to new device soon
       #options usb-storage quirks=174c:1356:u
       options usbcore autosuspend=-1
     '';
@@ -116,7 +117,7 @@
     after = ["local-fs.target"];
     wantedBy = ["multi-user.target"];
     environment = {
-      DEVICE_PATH = "/dev/disk/by-partlabel/LargeMedia01:/dev/disk/by-partlabel/LargeMediaForeground";
+      DEVICE_PATH = "/dev/disk/by-partlabel/LargeMedia01";
       MOUNT_POINT = "/LargeMedia";
     };
     script = ''
@@ -136,6 +137,8 @@
         exit 0
       fi
 
+      # Due to the large array it could take some time
+      sleep 15
       # Wait for the device to become available
       while [ ! -b "$DEVICE_PATH" ]; do
         echo "Waiting for $DEVICE_PATH to become available..."

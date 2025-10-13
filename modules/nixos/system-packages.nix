@@ -38,5 +38,7 @@
     ntfs3g
     unar
     p7zip
+    keyutils
+    usbutils
   ];
 }

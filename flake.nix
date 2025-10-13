@@ -12,11 +12,6 @@
       url = "github:nix-community/impermanence";
     };
 
-    #bcachefs-tools = {
-    #  url = "github:koverstreet/bcachefs-tools/master";
-    #  inputs.nixpkgs.follows = "nixpkgs";
-    #};
-
     # Home manager
     home-manager = {
       url = "github:nix-community/home-manager/master";

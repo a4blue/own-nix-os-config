@@ -6,19 +6,17 @@
     #nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable-small";
     nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-25.05";
-    #nixpkgs.url = "github:nixos/nixpkgs?rev=bad3e00dbad0d8de376b98694ea3e684baf32ef0";
+    nixpkgs-forgejo-fix.url = "github:nixos/nixpkgs?rev=afd023e2601f11af4366b61780a37ff63d317691";
 
     impermanence = {
       url = "github:nix-community/impermanence";
     };
 
-    # Home manager
     home-manager = {
       url = "github:nix-community/home-manager/master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # Sops (secrets management)
     sops-nix = {
       url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -38,22 +36,25 @@
       url = "github:a4blue/own-nixvim";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
     flake-utils.url = "github:numtide/flake-utils/main";
-    disko.url = "github:nix-community/disko/latest";
-    disko.inputs.nixpkgs.follows = "nixpkgs";
 
     plasma-manager = {
       url = "github:nix-community/plasma-manager";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.home-manager.follows = "home-manager";
     };
+
     nix-vscode-extensions = {
       url = "github:nix-community/nix-vscode-extensions/master";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
+
     nc4nix = {
       url = "github:helsinki-systems/nc4nix";
       flake = false;
     };
+
     declarative-jellyfin = {
       url = "github:Sveske-Juice/declarative-jellyfin";
       inputs.nixpkgs.follows = "nixpkgs";

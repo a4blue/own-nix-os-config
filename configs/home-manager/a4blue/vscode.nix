@@ -9,7 +9,8 @@ lib.mkIf config.programs.vscode.enable {
     package = pkgs.vscodium;
     profiles.default = {
       extensions = with pkgs.vscode-marketplace; [
-        jnoortheen.nix-ide
+        # Broken for now
+        #jnoortheen.nix-ide
         #kamadorueda.alejandra
         #sainnhe.everforest
       ];

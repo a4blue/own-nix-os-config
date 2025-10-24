@@ -19,6 +19,7 @@
     ../../modules/nixos/base.nix
     ../../modules/nixos/hardening.nix
     ../../modules/nixos/home-manager-base.nix
+    ../../modules/nixos/impermanence.nix
 
     ../../configs/common
   ];
@@ -34,18 +35,9 @@
     hideMounts = true;
 
     directories = [
-      "/var/log"
       "/var/lib"
       # Persist non-declarative Network Connections
       "/etc/NetworkManager/system-connections"
-      # Following will need a cleanup at start
-      "/tmp"
-      "/var/tmp"
-      "/var/cache"
-    ];
-
-    files = [
-      "/etc/machine-id"
     ];
   };
   sops = {

@@ -14,7 +14,7 @@
 
     ./hardware-configuration.nix
 
-    #./configs
+    ./configs
 
     # base stuff
     ../../modules/nixos/base.nix

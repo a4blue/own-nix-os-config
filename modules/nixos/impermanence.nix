@@ -6,6 +6,9 @@
     directories = [
       "/var/log"
       "/var/lib/nixos"
+      "/tmp"
+      "/var/tmp"
+      "/var/cache"
     ];
 
     files = [

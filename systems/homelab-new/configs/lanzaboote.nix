@@ -5,7 +5,7 @@
   inputs,
   ...
 }: {
-  persistence."${config.modules.impermanenceExtra.defaultPath}" = {
+  environment.persistence."${config.modules.impermanenceExtra.defaultPath}" = {
     directories = [
       {
         directory = "/var/lib/sbctl";

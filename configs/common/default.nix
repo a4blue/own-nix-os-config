@@ -18,5 +18,6 @@ with config; {
     ./containers.nix
     ./clamav.nix
     ./audio.nix
+    ./fwupd.nix
   ];
 }

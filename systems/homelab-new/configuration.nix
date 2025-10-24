@@ -72,11 +72,6 @@
       timeout = 10;
     };
     extraModprobeConfig = ''
-      # This should fix "stuttering" external HDD
-      # https://forum.level1techs.com/t/external-usb-3-hdd-fails-to-transfer-files-on-linux/153056/15
-      # https://bbs.archlinux.org/viewtopic.php?id=284971
-      # seems like the core issue is a bad usb host, switching to new device soon
-      #options usb-storage quirks=174c:1356:u
       options usbcore autosuspend=-1
     '';
     kernelPackages = pkgs.linuxPackages_6_17;
@@ -84,7 +79,6 @@
 
     # Driver needed for Remote disk Unlocking
     initrd = {
-      availableKernelModules = ["r8169"];
       systemd.enable = true;
       systemd.emergencyAccess = true;
     };

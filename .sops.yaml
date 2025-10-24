@@ -4,26 +4,14 @@
 # for a more complex example.
 keys:
   - &homelab_iteration_11 age1khu90gj74f2y3cxldl6qsa3pv3uv82h8w395dc9vtute9ckzmc9qq0dmdh
-  - &diy_pc_wsl2 age19aq3kpwursrz4tydp8jjhdzy7ud4kvw5shq4n7kr8hzrgdkp35gqtv48u7
-  - &diy_pc_wsl2_ubuntu_2404 age13gxhv0qtedhzg9l9qxhzsvgh0vme6vgzr7sugfs92x0cg259jsgq8w87tx
-  - &diy_pc_wsl2_nixos age14jjaupqzcnrp48nlq9mhycafwpfn6wpj7f7vk6mnfur0dgyhvf0s5m9yc0
-  - &diy_pc_wsl2_nixos_a4blue age1qay9dnyfe036cum0wygdjhurfjytjgenp5eagxmq66tsqd08cg8spu975c
-  - &diy_pc_nixos age1vcxd930l6hwfunalzy8s0yaawg8rpst70fp4nzwrkn7g8ssjyucsz8sr4g
-  - &laptop_nix_initrd age1nu6e3xj8rlnyjda848g60u6ljyp5s62qt9lfmk7ytqha83xnyf8q9mee48
   - &laptop_nix_initrd_2024 age1vscc45869s7j897q349gzelr3f0yqp8kf3ly2dnknph706cctvmqy4vwer
-  - &a4blue_laptop_nix age1s32m5vgfzuf52fa6x5rwgga2z7j8f8qhuz6dl6f9mwlxcychdcfq2szatg
   - &desktop_nix age109q654kevygshq6fqgpzxydzdsc4v6gsdufwhc8hczrwh3f7g5fqe4hd7g
+  - &homelab_new age17ej3ht25us24we8v3c3eyp7arp468mzjzr4axjncxus0a4jteqvs8tmr7s
 creation_rules:
   - path_regex: secrets/[^/]+\.(yaml|json|env|ini)$
     key_groups:
     - age:
-      - *diy_pc_wsl2
       - *homelab_iteration_11
-      - *diy_pc_wsl2_ubuntu_2404
-      - *diy_pc_wsl2_nixos
-      - *diy_pc_wsl2_nixos_a4blue
-      - *diy_pc_nixos
-      - *laptop_nix_initrd
       - *laptop_nix_initrd_2024
-      - *a4blue_laptop_nix
       - *desktop_nix
+      - *homelab_new

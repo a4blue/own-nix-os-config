@@ -12,55 +12,36 @@
     (modulesPath + "/installer/scan/not-detected.nix")
   ];
 
-  boot = {
-    initrd = {
-      availableKernelModules = ["xhci_pci" "ahci" "nvme" "usbhid" "usb_storage" "ums_realtek" "sd_mod" "uas"];
-      kernelModules = [];
-    };
-    kernelModules = ["kvm-intel"];
-    extraModulePackages = [];
-  };
+  boot.initrd.availableKernelModules = ["xhci_pci" "thunderbolt" "nvme" "usbhid" "usb_storage" "sd_mod"];
+  boot.initrd.kernelModules = [];
+  boot.kernelModules = ["kvm-intel"];
+  boot.extraModulePackages = [];
 
   fileSystems."/" = {
-    device = "/dev/nvme0n1p3";
+    device = "none";
+    fsType = "tmpfs";
+    options = ["defaults" "size=2048M" "mode=755"];
+  };
+
+  fileSystems."/nix" = {
+    device = "/dev/disk/by-uuid/2f8d3293-769a-4c33-b57f-9194ccac77a7";
     fsType = "bcachefs";
-    options = ["compression=zstd" "casefold_disabled"];
     neededForBoot = true;
+    options = ["X-mount.mkdir"];
   };
 
   fileSystems."/boot" = {
-    device = "/dev/disk/by-label/boot";
+    device = "/dev/disk/by-uuid/78CD-FBD8";
     fsType = "vfat";
+    options = ["fmask=0022" "dmask=0022" "X-mount.mkdir"];
   };
-
-  #fileSystems."/SDMedia" = {
-  #  device = "/dev/sda1";
-  #  fsType = "bcachefs";
-  #  options = ["compression=zstd"];
-  #  neededForBoot = true;
-  #};
-
-  #fileSystems."/LargeMedia" = {
-  #  device = "/dev/sdb1";
-  #  fsType = "bcachefs";
-  #  options = ["compression=zstd"];
-  #  neededForBoot = false;
-  #};
 
   swapDevices = [
     {
-      device = "/dev/nvme0n1p2";
+      device = "/dev/disk/by-partuuid/e264e41d-75b0-4749-9f0b-ed3e86aee1b2";
       randomEncryption.enable = true;
     }
   ];
-
-  # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
-  # (the default) this is the recommended approach. When using systemd-networkd it's
-  # still possible to use this option, but it's recommended to use it in conjunction
-  # with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
-  networking.useDHCP = lib.mkDefault true;
-  # networking.interfaces.enp1s0.useDHCP = lib.mkDefault true;
-  # networking.interfaces.wlo1.useDHCP = lib.mkDefault true;
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;

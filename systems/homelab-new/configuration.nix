@@ -10,6 +10,7 @@
     inputs.impermanence.nixosModules.impermanence
     inputs.sops-nix.nixosModules.sops
     inputs.home-manager.nixosModules.home-manager
+    inputs.lanzaboote.nixosModules.lanzaboote
 
     ./hardware-configuration.nix
 
@@ -52,7 +53,7 @@
     hostName = "homelab-new";
     networkmanager.enable = true;
     # Network DNS Fallback
-    nameservers = ["127.0.0.1" "8.8.8.8"];
+    #nameservers = ["127.0.0.1" "8.8.8.8"];
   };
 
   zramSwap.enable = true;
@@ -63,11 +64,12 @@
 
   boot = {
     tmp.cleanOnBoot = true;
+    lanzaboote = {
+      enable = true;
+      pkiBundle = "/var/lib/sbctl";
+    };
     loader = {
-      systemd-boot = {
-        enable = true;
-        configurationLimit = 5;
-      };
+      systemd-boot.enable = lib.mkForce false;
       efi.canTouchEfiVariables = true;
       timeout = 10;
     };
@@ -77,12 +79,12 @@
     kernelPackages = pkgs.linuxPackages_6_17;
     supportedFilesystems = ["bcachefs"];
 
-    # Driver needed for Remote disk Unlocking
     initrd = {
       systemd.enable = true;
       systemd.emergencyAccess = true;
     };
   };
+
   services = {
     openssh.enable = true;
     fstrim.enable = true;
@@ -103,10 +105,17 @@
         ./../../modules/home-manager/persistence.nix
         inputs.impermanence.nixosModules.home-manager.impermanence
       ];
+      modules = {
+        impermanenceExtra = {
+          enabled = true;
+          defaultPath = "/nix/persistent/home/a4blue";
+        };
+      };
     };
   };
 
   environment.systemPackages = [
+    pkgs.sbctl
   ];
   nixpkgs.config.permittedInsecurePackages = [
   ];

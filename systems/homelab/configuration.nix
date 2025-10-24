@@ -104,8 +104,15 @@
         ./../../modules/home-manager/persistence.nix
         inputs.impermanence.nixosModules.home-manager.impermanence
       ];
+      modules = {
+        impermanenceExtra = {
+          enabled = true;
+          defaultPath = "/persistent/home/a4blue";
+        };
+      };
     };
   };
+  home-manager.backupFileExtension = "hm-backup";
 
   environment.systemPackages = [
   ];

@@ -113,6 +113,7 @@
       };
     };
   };
+  home-manager.backupFileExtension = "hm-backup";
 
   environment.systemPackages = [
     pkgs.sbctl

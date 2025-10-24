@@ -5,7 +5,7 @@
 }:
 lib.mkIf (config.home
   ? persistence) {
-  home.persistence."/persistent/home/a4blue" = {
+  home.persistence."${config.modules.impermanenceExtra.defaultPath}" = {
     allowOther = true;
     directories = [
       ".ssh"

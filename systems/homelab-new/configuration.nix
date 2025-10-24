@@ -35,9 +35,6 @@
     #../../modules/nixos/blocky.nix
     #../../modules/nixos/fail2ban.nix
     #../../modules/nixos/dynv6.nix
-    #../../modules/nixos/stalwart.nix
-    #../../modules/nixos/prometheus.nix
-    #../../modules/nixos/grafana.nix
 
     ../../configs/common
   ];

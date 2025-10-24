@@ -6,7 +6,7 @@
 }:
 with config; {
   imports = [
-    ./large-media-mount.nix
+    #./large-media-mount.nix
     ./lanzaboote.nix
   ];
 }

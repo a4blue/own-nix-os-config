@@ -40,5 +40,6 @@
     p7zip
     keyutils
     usbutils
+    inetutils
   ];
 }

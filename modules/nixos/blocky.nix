@@ -37,12 +37,12 @@
         };
         mapping = {
           "fritz.box" = "192.168.178.1";
-          "homelab.internal" = "192.168.178.64";
-          "nextcloud.home.a4blue.me" = "192.168.178.64";
-          "homelab.home.a4blue.me" = "192.168.178.64";
-          "jellyfin.home.a4blue.me" = "192.168.178.64";
-          "stash.home.a4blue.me" = "192.168.178.64";
-          "forgejo.home.a4blue.me" = "192.168.178.64";
+          "homelab.internal" = "192.168.178.65";
+          "nextcloud.home.a4blue.me" = "192.168.178.65";
+          "homelab.home.a4blue.me" = "192.168.178.65";
+          "jellyfin.home.a4blue.me" = "192.168.178.65";
+          "stash.home.a4blue.me" = "192.168.178.65";
+          "forgejo.home.a4blue.me" = "192.168.178.65";
         };
       };
       blocking = {

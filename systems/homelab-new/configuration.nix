@@ -22,19 +22,19 @@
     ../../modules/nixos/impermanence.nix
     ../../modules/nixos/hardening.nix
     ../../modules/nixos/home-manager-base.nix
-    #../../modules/nixos/docker.nix
-    #../../modules/nixos/docker/stash.nix
+    ../../modules/nixos/docker.nix
+    ../../modules/nixos/docker/stash.nix
 
     # web services
-    #../../modules/nixos/nextcloud.nix
-    #../../modules/nixos/borgbackup.nix
-    #../../modules/nixos/jellyfin.nix
-    #../../modules/nixos/forgejo.nix
+    ../../modules/nixos/nextcloud.nix
+    ../../modules/nixos/borgbackup.nix
+    ../../modules/nixos/jellyfin.nix
+    ../../modules/nixos/forgejo.nix
     # other services
-    #../../modules/nixos/samba.nix
-    #../../modules/nixos/blocky.nix
-    #../../modules/nixos/fail2ban.nix
-    #../../modules/nixos/dynv6.nix
+    ../../modules/nixos/samba.nix
+    ../../modules/nixos/blocky.nix
+    ../../modules/nixos/fail2ban.nix
+    ../../modules/nixos/dynv6.nix
 
     ../../configs/common
   ];
@@ -67,6 +67,7 @@
     };
     loader = {
       systemd-boot.enable = lib.mkForce false;
+      systemd-boot.configurationLimit = 5;
       efi.canTouchEfiVariables = true;
       timeout = 10;
     };

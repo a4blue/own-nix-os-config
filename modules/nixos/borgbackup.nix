@@ -24,7 +24,7 @@
         environment = {BORG_RSH = "ssh -p23 -i /nix/secret/hetzner_storage_box/ssh_hetzner_storage_box_ed25519_key";};
         compression = "zstd,16";
         startAt = "daily";
-        preHook = "${pkgs.bcachefs-tools}/bin/bcachefs subvolume snapshot /persistent/ /tmp/borgbackup";
+        preHook = "${pkgs.bcachefs-tools}/bin/bcachefs subvolume snapshot /nix/persistent/ /nix/tmp/borgbackup";
         postHook = "${pkgs.bcachefs-tools}/bin/bcachefs subvolume delete /tmp/borgbackup/";
         prune.keep = {
           within = "1d"; # Keep all archives from the last day

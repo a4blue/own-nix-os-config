@@ -20,8 +20,8 @@
     settings = {
       experimental-features = "nix-command flakes";
       auto-optimise-store = false;
-      extra-substituters = ["https://nix-community.cachix.org"];
-      trusted-public-keys = ["nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="];
+      extra-substituters = ["http://ncps.homelab.internal:8501" "https://nix-community.cachix.org"];
+      trusted-public-keys = ["ncps.homelab.internal:8j2IwS6XdP3mpY8JoLVl8TCClJv1bllrNfGQP4B2kyI=" "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="];
       connect-timeout = 30;
       download-attempts = 1;
       max-jobs = 2;

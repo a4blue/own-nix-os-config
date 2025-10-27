@@ -38,14 +38,14 @@ in {
           wineWowPackages.unstable
           winetricks
           bottles
-          #lutris
-          #(heroic.override {
-          #  extraPkgs = pkgs: [
-          #    pkgs.gamescope
-          #    pkgs.gamemode
-          #    pkgs.mangohud
-          #  ];
-          #})
+          lutris
+          (heroic.override {
+            extraPkgs = pkgs: [
+              pkgs.gamescope
+              pkgs.gamemode
+              pkgs.mangohud
+            ];
+          })
           mangohud
           protonup-qt
           protontricks

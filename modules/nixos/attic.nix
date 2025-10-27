@@ -3,7 +3,11 @@
     enable = true;
     environmentFile = "/nix/secret/attic/environmentFile";
     settings = {
-      listen = "[::]:8085";
+      listen = "192.168.178.65:8085";
+      storage = {
+        type = "local";
+        path = "/var/lib/atticd-storage";
+      };
 
       jwt = {};
       chunking = {
@@ -26,7 +30,7 @@
   };
   environment.persistence."${config.modules.impermanenceExtra.defaultPath}" = {
     directories = [
-      "/var/lib/atticd"
+      "/var/lib/atticd-storage"
     ];
   };
 }

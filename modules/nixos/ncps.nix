@@ -2,7 +2,7 @@
   services.ncps = {
     enable = true;
     cache.hostName = "ncps.homelab.internal";
-    server.addr = "0.0.0.0:8501";
+    server.addr = "192.168.178.65:8501";
     upstream = {
       caches = [
         "https://cache.nixos.org"

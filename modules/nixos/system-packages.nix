@@ -41,5 +41,7 @@
     keyutils
     usbutils
     inetutils
+    # build failure for now
+    #attic
   ];
 }

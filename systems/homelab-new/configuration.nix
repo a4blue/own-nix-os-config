@@ -11,6 +11,7 @@
     inputs.sops-nix.nixosModules.sops
     inputs.home-manager.nixosModules.home-manager
     inputs.lanzaboote.nixosModules.lanzaboote
+    inputs.attic.nixosModules.atticd
 
     ./hardware-configuration.nix
 
@@ -35,6 +36,9 @@
     ../../modules/nixos/blocky.nix
     ../../modules/nixos/fail2ban.nix
     ../../modules/nixos/dynv6.nix
+
+    ../../modules/nixos/attic.nix
+    ../../modules/nixos/ncps.nix
 
     ../../configs/common
   ];

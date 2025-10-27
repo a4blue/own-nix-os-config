@@ -6,7 +6,8 @@
     #nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable-small";
     nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-25.05";
-    nixpkgs-forgejo-fix.url = "github:nixos/nixpkgs?rev=afd023e2601f11af4366b61780a37ff63d317691";
+    nixpkgs-prev-unstable-small.url = "github:nixos/nixpkgs?rev=642fae6c6a7fbd9b9a61e2d3fc849c99bb4d485a";
+    pyrate-fix.url = "github:yzhou216/pyrate-limiter-tests?rev=af5c66eab8ee227cd7fa0aa6b5c28d7db50b4372";
 
     impermanence = {
       url = "github:nix-community/impermanence";
@@ -62,6 +63,11 @@
 
     lanzaboote = {
       url = "github:nix-community/lanzaboote/v0.4.2";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    attic = {
+      url = "github:zhaofengli/attic";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };

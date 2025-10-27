@@ -183,6 +183,7 @@
 
       home.packages = with pkgs; [
         kdePackages.krdc
+        kdePackages.konversation
       ];
       services.gpg-agent.enable = true;
       # Enable GUI Programs

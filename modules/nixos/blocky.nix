@@ -3,6 +3,9 @@
     enable = true;
     settings = {
       ports.dns = 53;
+      ports.tls = 83;
+      certFile = "/nix/secret/blocky_cert/blocky.crt";
+      keyFile = "/nix/secret/blocky_cert/blocky.key";
       log.level = "warn";
       upstreams.groups.default = [
         # Owners:
@@ -66,6 +69,6 @@
       #queryLog = {type = "console";};
     };
   };
-  networking.firewall.allowedTCPPorts = [53];
-  networking.firewall.allowedUDPPorts = [53];
+  networking.firewall.allowedTCPPorts = [53 83];
+  networking.firewall.allowedUDPPorts = [53 83];
 }

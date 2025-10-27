@@ -3,12 +3,14 @@
   inputs,
   lib,
   ...
-}: {
+}: let
+  pyrate-prev = import inputs.pyrate-fix {system = "x86_64-linux";};
+in {
   nixpkgs.overlays = [
     inputs.nix-vscode-extensions.overlays.default
     (final: prev: {
-      pynitrokey = inputs.nixpkgs-stable.legacyPackages.${prev.system}.pynitrokey;
-      forgejo-lts = inputs.nixpkgs-forgejo-fix.legacyPackages.${prev.system}.forgejo-lts;
+      libreoffice-qt6-fresh = inputs.nixpkgs-prev-unstable-small.legacyPackages.${prev.system}.libreoffice-qt6-fresh;
+      #python313Packages.pyrate-limiter = pyrate-prev.python313Packages.pyrate-limiter;
     })
   ];
 }

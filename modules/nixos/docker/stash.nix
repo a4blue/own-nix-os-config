@@ -58,7 +58,7 @@ in {
     };
   };
 
-  systemd.services."${config.virtualisation.oci-containers.containers."stash-container".serviceName}".after = ["LargeMedia.mount" "bcachefs-large-media-mount.service"];
+  systemd.services."${config.virtualisation.oci-containers.containers."stash-container".serviceName}".requires = ["LargeMedia.mount"];
 
   networking.firewall.allowedTCPPorts = [servicePort];
 }

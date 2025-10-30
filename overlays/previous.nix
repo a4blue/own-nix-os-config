@@ -5,7 +5,7 @@
   ...
 }: {
   nixpkgs.overlays = [
-    inputs.attic.overlays.default
+    #inputs.attic.overlays.default
     inputs.nix-vscode-extensions.overlays.default
     (final: prev: {
       libreoffice-qt6-fresh = inputs.nixpkgs-prev-unstable-small.legacyPackages.${prev.system}.libreoffice-qt6-fresh;

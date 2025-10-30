@@ -63,10 +63,18 @@
     lanzaboote = {
       url = "github:nix-community/lanzaboote/v0.4.2";
       inputs.nixpkgs.follows = "nixpkgs";
+      # FIXME
+      inputs.rust-overlay.follows = "rust-overlay";
     };
 
     attic = {
       url = "github:zhaofengli/attic";
+      #inputs.nixpkgs.follows = "nixpkgs";
+    };
+    # FIXME
+    # Temp. fix for lanzaboote
+    rust-overlay = {
+      url = "github:oxalica/rust-overlay";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };

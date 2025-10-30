@@ -33,4 +33,7 @@
       "/var/lib/atticd-storage"
     ];
   };
+
+  networking.firewall.allowedTCPPorts = [8085];
+  networking.firewall.allowedUDPPorts = [8085];
 }

@@ -52,6 +52,7 @@ in {
         enableHwAcceleration = true;
         enableHwEncoding = true;
       };
+      remoteClientBitrateLimit = 30000000;
       UICulture = "en-US";
       pluginRepositories = [
         {
@@ -93,6 +94,9 @@ in {
     };
     network = {
       publishedServerUriBySubnet = ["all=https://${serviceDomain}"];
+      enableIPv4 = true;
+      enableIPv6 = true;
+      knownProxies = ["127.0.0.1" "::1"];
     };
   };
 

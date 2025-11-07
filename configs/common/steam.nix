@@ -30,7 +30,7 @@ lib.mkIf config.programs.steam.enable {
       domain = "a4blue";
       type = "hard";
       item = "nofile";
-      value = "524288";
+      value = "1048576";
     }
   ];
 }

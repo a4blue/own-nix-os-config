@@ -47,6 +47,7 @@ in {
     openFirewall = false;
     system = {
       serverName = "a4blue's нетflix";
+      isStartupWizardCompleted = true;
       # Use Hardware Acceleration for trickplay image generation
       trickplayOptions = {
         enableHwAcceleration = true;

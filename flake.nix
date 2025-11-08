@@ -3,10 +3,7 @@
 
   inputs = {
     # Nixpkgs
-    #nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable-small";
-    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-25.05";
-    nixpkgs-prev-unstable-small.url = "github:nixos/nixpkgs?rev=642fae6c6a7fbd9b9a61e2d3fc849c99bb4d485a";
 
     impermanence = {
       url = "github:nix-community/impermanence";
@@ -56,26 +53,18 @@
     };
 
     declarative-jellyfin = {
-      url = "github:Sveske-Juice/declarative-jellyfin";
+      url = "github:a4blue/declarative-jellyfin/test-migration-fix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
     lanzaboote = {
-      url = "github:nix-community/lanzaboote/v0.4.2";
+      url = "github:nix-community/lanzaboote/v0.4.3";
       inputs.nixpkgs.follows = "nixpkgs";
-      # FIXME
-      inputs.rust-overlay.follows = "rust-overlay";
     };
 
     attic = {
       url = "github:zhaofengli/attic";
       #inputs.nixpkgs.follows = "nixpkgs";
-    };
-    # FIXME
-    # Temp. fix for lanzaboote
-    rust-overlay = {
-      url = "github:oxalica/rust-overlay";
-      inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 

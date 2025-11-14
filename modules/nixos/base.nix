@@ -25,6 +25,7 @@
       connect-timeout = 30;
       download-attempts = 1;
       max-jobs = 2;
+      download-buffer-size = 524288000;
     };
     extraOptions = ''
       !include ${config.sops.secrets.github_pat.path}
@@ -37,6 +38,23 @@
     age.sshKeyPaths = ["/nix/secret/initrd/ssh_host_ed25519_key"];
     secrets.a4blue_easy_hashed_password.neededForUsers = true;
   };
+
+  security.pam.loginLimits = [
+    {
+      domain = "*";
+      type = "hard";
+      item = "nofile";
+      value = "1048576";
+    }
+    {
+      domain = "*";
+      type = "soft";
+      item = "nofile";
+      value = "65536";
+    }
+  ];
+
+  systemd.extraConfig = "DefaultLimitNOFILE=65536:1048576";
 
   users.mutableUsers = false;
   users.users.a4blue = {

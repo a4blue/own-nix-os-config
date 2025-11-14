@@ -27,6 +27,10 @@
         exit 0
       fi
 
+      if [ ! -d "$MOUNT_POINT" ]; then
+        mkdir $MOUNT_POINT
+      fi
+
       sleep 15
 
       # Mount the device

@@ -25,12 +25,4 @@ lib.mkIf config.programs.steam.enable {
     };
     java.enable = true;
   };
-  security.pam.loginLimits = [
-    {
-      domain = "a4blue";
-      type = "hard";
-      item = "nofile";
-      value = "1048576";
-    }
-  ];
 }

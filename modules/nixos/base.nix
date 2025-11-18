@@ -55,6 +55,9 @@
   ];
 
   #systemd.extraConfig = "DefaultLimitNOFILE=65536:1048576";
+  systemd.settings.Manager = {
+    DefaultLimitNOFILE = "65536:1048576";
+  };
 
   users.mutableUsers = false;
   users.users.a4blue = {

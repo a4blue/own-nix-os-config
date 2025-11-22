@@ -1,6 +1,7 @@
 {
   config,
   inputs,
+  lib,
   ...
 }: {
   imports = [
@@ -54,10 +55,11 @@
     }
   ];
 
-  #systemd.extraConfig = "DefaultLimitNOFILE=65536:1048576";
   systemd.settings.Manager = {
     DefaultLimitNOFILE = "65536:1048576";
   };
+
+  systemd.services.nix-daemon.serviceConfig."LimitNOFILE" = lib.mkForce "65536:1048576";
 
   users.mutableUsers = false;
   users.users.a4blue = {

@@ -83,11 +83,14 @@ in {
             calendar
             contacts
             cospend
+            deck
+            end_to_end_encryption
             forms
             mail
             maps
             memories
             notes
+            phonetrack
             previewgenerator
             tasks
             whiteboard
@@ -96,11 +99,14 @@ in {
         // {
           inherit
             (nc4nix.nextcloud-31)
+            announcementcenter
             cfg_share_links
             duplicatefinder
             files_downloadactivity
             quota_warning
             recognize
+            secrets
+            transfer_quota_monitor
             ;
         };
 

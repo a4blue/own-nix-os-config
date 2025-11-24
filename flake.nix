@@ -66,6 +66,11 @@
       url = "github:zhaofengli/attic";
       #inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    firefox = {
+      url = "github:nix-community/flake-firefox-nightly";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {

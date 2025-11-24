@@ -2,10 +2,12 @@
   lib,
   pkgs,
   config,
+  inputs,
   ...
 }:
 lib.mkIf config.programs.firefox.enable {
   programs.firefox = {
+    package = inputs.firefox.packages.${pkgs.stdenv.hostPlatform.system}.firefox-nightly-bin;
     policies = {
       AppAutoUpdate = false;
       BackgroundAppUpdate = false;

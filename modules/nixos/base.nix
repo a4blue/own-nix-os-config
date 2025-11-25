@@ -9,7 +9,7 @@
   ];
   hardware.enableRedistributableFirmware = true;
 
-  system.stateVersion = "25.11";
+  system.stateVersion = "26.05";
   sops.secrets.github_pat = {mode = "0777";};
 
   nix = {
@@ -45,13 +45,31 @@
       domain = "*";
       type = "hard";
       item = "nofile";
-      value = "1048576";
+      value = 1048576;
     }
     {
       domain = "*";
       type = "soft";
       item = "nofile";
-      value = "65536";
+      value = 65536;
+    }
+    {
+      domain = "a4blue";
+      type = "-";
+      item = "nofile";
+      value = 1048576;
+    }
+    {
+      domain = "@users";
+      type = "hard";
+      item = "nofile";
+      value = 1048576;
+    }
+    {
+      domain = "@users";
+      type = "soft";
+      item = "nofile";
+      value = 65536;
     }
   ];
 
@@ -60,6 +78,7 @@
   };
 
   systemd.services.nix-daemon.serviceConfig."LimitNOFILE" = lib.mkForce "65536:1048576";
+  #systemd.services."user@1000".serviceConfig.LimitNOFILE = "65536:1048576";
   services.orca.enable = false;
 
   users.mutableUsers = false;

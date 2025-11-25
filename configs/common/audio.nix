@@ -39,13 +39,7 @@ in {
       {
         domain = "@audio";
         item = "nofile";
-        type = "soft";
-        value = "99999";
-      }
-      {
-        domain = "@audio";
-        item = "nofile";
-        type = "hard";
+        type = "-";
         value = "99999";
       }
     ];

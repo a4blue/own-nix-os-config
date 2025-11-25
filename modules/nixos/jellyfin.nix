@@ -78,18 +78,23 @@ in {
       };
     };
     encoding = {
-      allowAv1Encoding = false;
+      allowAv1Encoding = true;
       allowHevcEncoding = true;
       enableDecodingColorDepth10Hevc = true;
       enableDecodingColorDepth10Vp9 = true;
+      enableDecodingColorDepth10HevcRext = true;
+      enableDecodingColorDepth12HevcRext = true;
       enableHardwareEncoding = true;
       enableSegmentDeletion = false;
+      enableVppTonemapping = true;
       hardwareAccelerationType = "qsv";
       hardwareDecodingCodecs = [
         # enable the codecs your system supports
         "h264"
         "hevc"
-        "vc1"
+        "av1"
+        "mpeg2video"
+        "vp9"
       ];
       qsvDevice = "/dev/dri/renderD128";
     };

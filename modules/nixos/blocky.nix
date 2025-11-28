@@ -13,11 +13,11 @@
         "tcp-tls:ns1.fr.dns.opennic.glue#dns.elanceleur.org" # EricL
         "tcp-tls:ns1.no.dns.opennic.glue#ns4.opennameserver.org" # opennameserver.org
         "tcp-tls:ns5.fi.dns.opennic.glue#dns.froth.zone" # sammefishe
-        "tcp-tls:ns3.de.dns.opennic.glue#dns.furrydns.de" # Koby
+        "tcp-tls:ns3.de.dns.opennic.glue#dns.geekbyte.de" # Koby
         "tcp-tls:ns13.de.dns.opennic.glue#ns1.opennameserver.org" # opennameserver.org
         "tcp-tls:ns16.de.dns.opennic.glue#ns2.opennameserver.org" # opennameserver.org
         "tcp-tls:ns18.de.dns.opennic.glue#ns3.opennameserver.org" # opennameserver.org
-        "tcp-tls:ns23.de.dns.opennic.glue#dns3.opennic.probst.click" # probst.click
+        #"tcp-tls:ns23.de.dns.opennic.glue#dns3.opennic.probst.click" # probst.click, cert expired
         "tcp-tls:ns28.de.dns.opennic.glue#jabber-germany.de" # mistersixt
         "tcp-tls:ns29.de.dns.opennic.glue#morbitzer.de" # mistersixt
       ];

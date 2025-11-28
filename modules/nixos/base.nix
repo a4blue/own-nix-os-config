@@ -57,19 +57,13 @@
       domain = "a4blue";
       type = "-";
       item = "nofile";
-      value = 1048576;
+      value = -1;
     }
     {
       domain = "@users";
-      type = "hard";
+      type = "-";
       item = "nofile";
-      value = 1048576;
-    }
-    {
-      domain = "@users";
-      type = "soft";
-      item = "nofile";
-      value = 65536;
+      value = -1;
     }
   ];
 

@@ -40,6 +40,8 @@
     gnupg
   ];
   fonts.packages = [pkgs.nerd-fonts.fira-code pkgs.nerd-fonts.terminess-ttf];
+  fonts.enableDefaultPackages = true;
+  fonts.enableGhostscriptFonts = true;
   modules.desktopAudio.enable = true;
 
   nixpkgs.config.allowUnfreePredicate = pkg:

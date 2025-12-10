@@ -28,7 +28,7 @@
     rsync
     ncdu
     qdirstat
-    pynitrokey
+    #pynitrokey
     virtualgl
     libva-utils
     ffmpeg
@@ -82,7 +82,7 @@
       efi.canTouchEfiVariables = true;
       timeout = 10;
     };
-    kernelPackages = pkgs.linuxPackages_6_17;
+    kernelPackages = pkgs.linuxPackages_6_18;
     supportedFilesystems = ["bcachefs"];
 
     initrd = {

@@ -49,7 +49,7 @@
     rsync
     ncdu
     qdirstat
-    pynitrokey
+    #pynitrokey
     virtualgl
     libva-utils
     ffmpeg
@@ -121,7 +121,7 @@
       "video=DP-3:1920x1080@60"
       "video=HDMI-A-1:1920x1080@60"
     ];
-    kernelPackages = pkgs.linuxPackages_6_17;
+    kernelPackages = pkgs.linuxPackages_6_18;
     supportedFilesystems = ["bcachefs"];
 
     initrd = {

@@ -27,7 +27,7 @@ with config; {
   home = {
     username = "a4blue";
     homeDirectory = "/home/a4blue";
-    stateVersion = "25.11";
+    stateVersion = "26.05";
     keyboard = null;
     packages = with pkgs; [
       wget

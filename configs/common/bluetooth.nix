@@ -47,9 +47,9 @@ lib.mkIf config.hardware.bluetooth.enable {
     };
   };
   hardware.bluetooth.powerOnBoot = true;
-  hardware.bluetooth.settings = {
-    General = {
-      Experimental = true;
-    };
-  };
+  #hardware.bluetooth.settings = {
+  #  General = {
+  #    Experimental = true;
+  #  };
+  #};
 }

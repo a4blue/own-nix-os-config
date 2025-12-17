@@ -85,4 +85,9 @@
     ];
     hashedPasswordFile = config.sops.secrets.a4blue_easy_hashed_password.path;
   };
+  users.users.root = {
+    name = "root";
+    isSystemUser = true;
+    hashedPasswordFile = config.sops.secrets.a4blue_easy_hashed_password.path;
+  };
 }

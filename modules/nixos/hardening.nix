@@ -3,7 +3,6 @@
   lib,
   ...
 }: {
-  #environment.defaultPackages = lib.mkForce [];
   #boot.kernelParams = ["quiet"];
   #boot.consoleLogLevel = 0;
 

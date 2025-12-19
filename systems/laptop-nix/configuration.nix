@@ -28,7 +28,7 @@
     rsync
     ncdu
     qdirstat
-    #pynitrokey
+    pynitrokey
     virtualgl
     libva-utils
     ffmpeg
@@ -39,9 +39,11 @@
     fd
     gnupg
   ];
-  fonts.packages = [pkgs.nerd-fonts.fira-code pkgs.nerd-fonts.terminess-ttf];
-  fonts.enableDefaultPackages = true;
-  fonts.enableGhostscriptFonts = true;
+  fonts = {
+    packages = [pkgs.nerd-fonts.fira-code pkgs.nerd-fonts.terminess-ttf];
+    enableDefaultPackages = true;
+    enableGhostscriptFonts = true;
+  };
   modules.desktopAudio.enable = true;
 
   nixpkgs.config.allowUnfreePredicate = pkg:
@@ -112,7 +114,7 @@
   security = {
     tpm2 = {
       enable = true;
-      pkcs11.enable = true; # expose /run/current-system/sw/lib/libtpm2_pkcs11.so
+      pkcs11.enable = true;
       tctiEnvironment.enable = true;
     };
   };

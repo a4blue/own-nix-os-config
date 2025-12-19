@@ -41,7 +41,6 @@
     keyutils
     usbutils
     inetutils
-    # build failure for now
     inputs.attic.packages.${system}.attic
   ];
 }

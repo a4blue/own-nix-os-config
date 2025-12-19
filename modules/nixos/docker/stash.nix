@@ -1,6 +1,5 @@
 {config, ...}: let
   servicePort = 9999;
-  # Not used yet
   serviceDomain = "stash.home.a4blue.me";
 in {
   imports = [
@@ -27,7 +26,6 @@ in {
       STASH_PORT = "9999";
     };
     extraOptions = ["--device=/dev/dri/renderD128"];
-    #user = "a4blue:users";
     autoStart = true;
   };
 

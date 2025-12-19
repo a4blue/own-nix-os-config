@@ -9,11 +9,6 @@
 
   nixpkgs.hostPlatform = "x86_64-linux";
 
-  boot.supportedFilesystems.bcachefs = true;
-  boot.supportedFilesystems.zfs = lib.mkForce false;
-
-  #boot.kernelPackages = pkgs.linuxPackages_latest;
-
   users.users.nixos = {
     isNormalUser = true;
     extraGroups = ["wheel"];
@@ -28,9 +23,13 @@
     ];
   };
 
-  boot.initrd.availableKernelModules = ["nvme" "xhci_pci" "ahci" "usb_storage" "usbhid" "sd_mod" "thunderbolt" "usbhid" "uas"];
+  boot = {
+    initrd.availableKernelModules = ["nvme" "xhci_pci" "ahci" "usb_storage" "usbhid" "sd_mod" "thunderbolt" "usbhid" "uas"];
+    supportedFilesystems.bcachefs = true;
+    boot.supportedFilesystems.zfs = lib.mkForce false;
 
-  boot.kernelModules = ["kvm-intel" "kvm-amd"];
+    kernelModules = ["kvm-intel" "kvm-amd"];
+  };
 
   security.sudo.wheelNeedsPassword = false;
 

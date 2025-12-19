@@ -31,7 +31,6 @@
     desktopAudio.enable = true;
   };
   environment.persistence."${config.modules.impermanenceExtra.defaultPath}" = {
-    # Hide these mounts from the sidebar of file managers
     hideMounts = true;
 
     directories = [
@@ -49,7 +48,7 @@
     rsync
     ncdu
     qdirstat
-    #pynitrokey
+    pynitrokey
     virtualgl
     libva-utils
     ffmpeg
@@ -60,9 +59,11 @@
     fd
     gnupg
   ];
-  fonts.packages = [pkgs.nerd-fonts.fira-code pkgs.nerd-fonts.terminess-ttf];
-  fonts.enableDefaultPackages = true;
-  fonts.enableGhostscriptFonts = true;
+  fonts = {
+    packages = [pkgs.nerd-fonts.fira-code pkgs.nerd-fonts.terminess-ttf];
+    enableDefaultPackages = true;
+    enableGhostscriptFonts = true;
+  };
 
   nixpkgs.config.allowUnfreePredicate = pkg:
     builtins.elem (lib.getName pkg) [
@@ -113,8 +114,6 @@
       timeout = 10;
     };
     kernelParams = [
-      # Enable overclocking
-      #"amdgpu.ppfeaturemask=0xffffffff"
       # Enable additional Video output during boot
       "video=DP-1:1920x1080@60"
       "video=DP-2:1920x1080@60"
@@ -141,7 +140,7 @@
     };
     xserver.enable = true;
     printing.enable = true;
-    #openssh.enable = true;
+    openssh.enable = true;
     fstrim.enable = true;
     fwupd.enable = true;
     wg-netmanager.enable = true;
@@ -150,7 +149,7 @@
   security = {
     tpm2 = {
       enable = true;
-      pkcs11.enable = true; # expose /run/current-system/sw/lib/libtpm2_pkcs11.so
+      pkcs11.enable = true;
       tctiEnvironment.enable = true;
     };
   };

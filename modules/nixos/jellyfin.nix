@@ -12,24 +12,36 @@ in {
   ];
 
   systemd.services.jellyfin.environment.LIBVA_DRIVER_NAME = "iHD";
-  environment.sessionVariables = {LIBVA_DRIVER_NAME = "iHD";};
-  environment.etc = {
-    "fail2ban/jail.d/jellyfin.local".text = ''
-      [jellyfin]
-      backend = auto
-      enabled = true
-      port = 80,443
-      protocol = tcp
-      filter = jellyfin
-      maxretry = 3
-      bantime = 86400
-      findtime = 43200
-      logpath = /var/lib/jellyfin/log/log*.log
-    '';
-    "fail2ban/filter.d/jellyfin.conf".text = ''
-      [Definition]
-      failregex = ^.*Authentication request for .* has been denied \(IP: "<ADDR>"\)\.
-    '';
+  environment = {
+    sessionVariables = {LIBVA_DRIVER_NAME = "iHD";};
+    etc = {
+      "fail2ban/jail.d/jellyfin.local".text = ''
+        [jellyfin]
+        backend = auto
+        enabled = true
+        port = 80,443
+        protocol = tcp
+        filter = jellyfin
+        maxretry = 3
+        bantime = 86400
+        findtime = 43200
+        logpath = /var/lib/jellyfin/log/log*.log
+      '';
+      "fail2ban/filter.d/jellyfin.conf".text = ''
+        [Definition]
+        failregex = ^.*Authentication request for .* has been denied \(IP: "<ADDR>"\)\.
+      '';
+    };
+    persistence."${config.modules.impermanenceExtra.defaultPath}" = {
+      directories = [
+        {
+          directory = "/var/lib/jellyfin";
+          mode = "0740";
+          user = "jellyfin";
+          group = "jellyfin";
+        }
+      ];
+    };
   };
   hardware.graphics = {
     enable = true;
@@ -48,7 +60,6 @@ in {
     system = {
       serverName = "a4blue's нетflix";
       isStartupWizardCompleted = true;
-      # Use Hardware Acceleration for trickplay image generation
       trickplayOptions = {
         enableHwAcceleration = true;
         enableHwEncoding = true;
@@ -89,7 +100,6 @@ in {
       enableVppTonemapping = true;
       hardwareAccelerationType = "qsv";
       hardwareDecodingCodecs = [
-        # enable the codecs your system supports
         "h264"
         "hevc"
         "av1"
@@ -134,15 +144,4 @@ in {
   };
 
   users.users.jellyfin.extraGroups = ["render" "smbUser" "video"];
-
-  environment.persistence."${config.modules.impermanenceExtra.defaultPath}" = {
-    directories = [
-      {
-        directory = "/var/lib/jellyfin";
-        mode = "0740";
-        user = "jellyfin";
-        group = "jellyfin";
-      }
-    ];
-  };
 }

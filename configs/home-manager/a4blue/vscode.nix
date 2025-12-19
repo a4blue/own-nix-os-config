@@ -9,17 +9,19 @@ lib.mkIf config.programs.vscode.enable {
     package = pkgs.vscodium;
     profiles.default = {
       extensions = with pkgs.vscode-marketplace; [
-        # Broken for now
         jnoortheen.nix-ide
         kamadorueda.alejandra
         sainnhe.everforest
+        mkhl.direnv
       ];
       userSettings = {
         "editor.fontLigatures" = true;
         "editor.fontFamily" = "FiraCode Nerd Font Mono";
+        "workbench.colorTheme" = "Everforest Dark";
       };
     };
   };
+  programs.direnv.enable = true;
   fonts.fontconfig.enable = true;
   home =
     (
@@ -40,6 +42,7 @@ lib.mkIf config.programs.vscode.enable {
         nil
         alejandra
         nerd-fonts.fira-code
+        devenv
       ];
     };
 }

@@ -122,16 +122,6 @@
     })
     // {
       nixosConfigurations = {
-        # nix build ./#nixosConfigurations.homelab.config.system.build.toplevel
-        #homelab = nixpkgs.lib.nixosSystem {
-        #  specialArgs = {inherit inputs outputs system;};
-        #  modules = [
-        #    {nixpkgs.hostPlatform = "x86_64-linux";}
-        #    ./systems/homelab/configuration.nix
-        #    ./overlays/previous.nix
-        #    inputs.declarative-jellyfin.nixosModules.default
-        #  ];
-        #};
         # nix build ./#nixosConfigurations.homelab-new.config.system.build.toplevel
         homelab-new = nixpkgs.lib.nixosSystem {
           specialArgs = {inherit inputs outputs system;};

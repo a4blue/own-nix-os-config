@@ -47,15 +47,17 @@ lib.mkIf config.hardware.bluetooth.enable {
       "bluetooth.autoswitch-to-headset-profile" = false;
     };
   };
-  hardware.bluetooth.powerOnBoot = true;
-  hardware.bluetooth.package = pkgs.bluez-experimental;
-  hardware.bluetooth.settings = {
-    General = {
-      Experimental = true;
-      JustWorksRepairing = "confirm";
-      FastConnectable = true;
-      Testing = true;
-      KernelExperimental = true;
+  hardware.bluetooth = {
+    powerOnBoot = true;
+    package = pkgs.bluez-experimental;
+    settings = {
+      General = {
+        Experimental = true;
+        JustWorksRepairing = "confirm";
+        FastConnectable = true;
+        Testing = true;
+        KernelExperimental = true;
+      };
     };
   };
 }

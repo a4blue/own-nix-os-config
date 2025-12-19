@@ -12,28 +12,32 @@
     (modulesPath + "/installer/scan/not-detected.nix")
   ];
 
-  boot.initrd.availableKernelModules = ["xhci_pci" "thunderbolt" "nvme" "usbhid" "usb_storage" "sd_mod" "igc"];
-  boot.initrd.kernelModules = [];
-  boot.kernelModules = ["kvm-intel"];
-  boot.extraModulePackages = [];
-
-  fileSystems."/" = {
-    device = "none";
-    fsType = "tmpfs";
-    options = ["defaults" "size=2048M" "mode=755"];
+  boot = {
+    initrd.availableKernelModules = ["xhci_pci" "thunderbolt" "nvme" "usbhid" "usb_storage" "sd_mod" "igc"];
+    initrd.kernelModules = [];
+    kernelModules = ["kvm-intel"];
+    extraModulePackages = [];
   };
 
-  fileSystems."/nix" = {
-    device = "/dev/disk/by-uuid/2f8d3293-769a-4c33-b57f-9194ccac77a7";
-    fsType = "bcachefs";
-    neededForBoot = true;
-    options = ["X-mount.mkdir"];
-  };
+  fileSystems = {
+    "/" = {
+      device = "none";
+      fsType = "tmpfs";
+      options = ["defaults" "size=2048M" "mode=755"];
+    };
 
-  fileSystems."/boot" = {
-    device = "/dev/disk/by-uuid/78CD-FBD8";
-    fsType = "vfat";
-    options = ["fmask=0022" "dmask=0022" "X-mount.mkdir"];
+    "/nix" = {
+      device = "/dev/disk/by-uuid/2f8d3293-769a-4c33-b57f-9194ccac77a7";
+      fsType = "bcachefs";
+      neededForBoot = true;
+      options = ["X-mount.mkdir"];
+    };
+
+    "/boot" = {
+      device = "/dev/disk/by-uuid/78CD-FBD8";
+      fsType = "vfat";
+      options = ["fmask=0022" "dmask=0022" "X-mount.mkdir"];
+    };
   };
 
   swapDevices = [

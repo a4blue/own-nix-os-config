@@ -66,28 +66,29 @@
   };
 
   systemd.services.nix-daemon.serviceConfig."LimitNOFILE" = lib.mkForce "65536:1048576";
-  #systemd.services."user@1000".serviceConfig.LimitNOFILE = "65536:1048576";
   services.orca.enable = false;
 
-  users.mutableUsers = false;
-  users.users.a4blue = {
-    isNormalUser = true;
-    description = "Alexander Ratajczak";
-    extraGroups = ["networkmanager" "wheel"];
-    openssh.authorizedKeys.keys = [
-      # Termux Pixel7Pro
-      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAYaqu6PwownHMqXluc61CdJLkJE3WOEtEOyKqKd+zXP"
-      # Nitrokey
-      "sk-ssh-ed25519@openssh.com AAAAGnNrLXNzaC1lZDI1NTE5QG9wZW5zc2guY29tAAAAIPFRV7ZJOgn9N5DBl4b+NwjTWNXJURDBd761JGB8ZZm+AAAABHNzaDo="
-      "sk-ssh-ed25519@openssh.com AAAAGnNrLXNzaC1lZDI1NTE5QG9wZW5zc2guY29tAAAAINQzo89EsYmlmVZSJrsPWUapwQofmpDbjYAMTE1E7N6AAAAAC3NzaDpIb21lTmV0 ssh:HomeNet"
-      # Nitrokey Backup
-      "sk-ssh-ed25519@openssh.com AAAAGnNrLXNzaC1lZDI1NTE5QG9wZW5zc2guY29tAAAAIFe4fmeT6W1f3+YBrRlR5DBjQ1Xo0WNi6j+ptstlXGO5AAAAD3NzaDpIb21lTmV0LUJhaw== ssh:HomeNet-Bak"
-    ];
-    hashedPasswordFile = config.sops.secrets.a4blue_easy_hashed_password.path;
-  };
-  users.users.root = {
-    name = "root";
-    isSystemUser = true;
-    hashedPasswordFile = config.sops.secrets.a4blue_easy_hashed_password.path;
+  users = {
+    mutableUsers = false;
+    users.a4blue = {
+      isNormalUser = true;
+      description = "Alexander Ratajczak";
+      extraGroups = ["networkmanager" "wheel"];
+      openssh.authorizedKeys.keys = [
+        # Termux Pixel7Pro
+        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAYaqu6PwownHMqXluc61CdJLkJE3WOEtEOyKqKd+zXP"
+        # Nitrokey
+        "sk-ssh-ed25519@openssh.com AAAAGnNrLXNzaC1lZDI1NTE5QG9wZW5zc2guY29tAAAAIPFRV7ZJOgn9N5DBl4b+NwjTWNXJURDBd761JGB8ZZm+AAAABHNzaDo="
+        "sk-ssh-ed25519@openssh.com AAAAGnNrLXNzaC1lZDI1NTE5QG9wZW5zc2guY29tAAAAINQzo89EsYmlmVZSJrsPWUapwQofmpDbjYAMTE1E7N6AAAAAC3NzaDpIb21lTmV0 ssh:HomeNet"
+        # Nitrokey Backup
+        "sk-ssh-ed25519@openssh.com AAAAGnNrLXNzaC1lZDI1NTE5QG9wZW5zc2guY29tAAAAIFe4fmeT6W1f3+YBrRlR5DBjQ1Xo0WNi6j+ptstlXGO5AAAAD3NzaDpIb21lTmV0LUJhaw== ssh:HomeNet-Bak"
+      ];
+      hashedPasswordFile = config.sops.secrets.a4blue_easy_hashed_password.path;
+    };
+    users.root = {
+      name = "root";
+      isSystemUser = true;
+      hashedPasswordFile = config.sops.secrets.a4blue_easy_hashed_password.path;
+    };
   };
 }

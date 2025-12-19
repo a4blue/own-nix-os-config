@@ -1,6 +1,7 @@
 {
   lib,
   config,
+  pkgs,
   ...
 }:
 lib.mkIf config.hardware.bluetooth.enable {
@@ -47,9 +48,14 @@ lib.mkIf config.hardware.bluetooth.enable {
     };
   };
   hardware.bluetooth.powerOnBoot = true;
-  #hardware.bluetooth.settings = {
-  #  General = {
-  #    Experimental = true;
-  #  };
-  #};
+  hardware.bluetooth.package = pkgs.bluez-experimental;
+  hardware.bluetooth.settings = {
+    General = {
+      Experimental = true;
+      JustWorksRepairing = "confirm";
+      FastConnectable = true;
+      Testing = true;
+      KernelExperimental = true;
+    };
+  };
 }

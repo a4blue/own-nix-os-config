@@ -223,4 +223,6 @@
   systemd.services.lactd.wantedBy = ["multi-user.target"];
 
   security.rtkit.enable = true;
+  services.earlyoom.enable = true;
+  services.earlyoom.enableNotifications = true;
 }

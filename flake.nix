@@ -58,7 +58,7 @@
     };
 
     lanzaboote = {
-      url = "github:nix-community/lanzaboote/v0.4.3";
+      url = "github:nix-community/lanzaboote/v1.0.0";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -122,12 +122,12 @@
     })
     // {
       nixosConfigurations = {
-        # nix build ./#nixosConfigurations.homelab-new.config.system.build.toplevel
-        homelab-new = nixpkgs.lib.nixosSystem {
+        # nix build ./#nixosConfigurations.homelab.config.system.build.toplevel
+        homelab = nixpkgs.lib.nixosSystem {
           specialArgs = {inherit inputs outputs system;};
           modules = [
             {nixpkgs.hostPlatform = "x86_64-linux";}
-            ./systems/homelab-new/configuration.nix
+            ./systems/homelab/configuration.nix
             ./overlays/previous.nix
             inputs.declarative-jellyfin.nixosModules.default
           ];

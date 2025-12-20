@@ -31,6 +31,7 @@
     ../../modules/nixos/borgbackup.nix
     ../../modules/nixos/jellyfin.nix
     ../../modules/nixos/forgejo.nix
+    ../../modules/nixos/sabnzbd.nix
     # other services
     ../../modules/nixos/samba.nix
     ../../modules/nixos/blocky.nix
@@ -45,13 +46,18 @@
   modules.impermanenceExtra.enabled = true;
   modules.impermanenceExtra.defaultPath = "/nix/persistent";
 
+  nixpkgs.config.allowUnfreePredicate = pkg:
+    builtins.elem (lib.getName pkg) [
+      "unrar"
+    ];
+
   sops = {
     age.sshKeyPaths = ["/nix/secret/initrd/sops_key"];
   };
 
   programs.fuse.userAllowOther = true;
   networking = {
-    hostName = "homelab-new";
+    hostName = "homelab";
     networkmanager.enable = true;
     # Network DNS Fallback
     #nameservers = ["127.0.0.1" "8.8.8.8"];

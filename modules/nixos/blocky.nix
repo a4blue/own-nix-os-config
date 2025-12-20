@@ -46,6 +46,7 @@
           "jellyfin.home.a4blue.me" = "192.168.178.65";
           "stash.home.a4blue.me" = "192.168.178.65";
           "forgejo.home.a4blue.me" = "192.168.178.65";
+          "sabnzbd.home.a4blue.me" = "192.168.178.65";
         };
       };
       blocking = {

@@ -21,12 +21,14 @@
       curl -k "https://ipv6.dynv6.com/api/update?token=''${token}&zone=jellyfin.''${rootZone}&ipv6prefix=auto"
       curl -k "https://ipv6.dynv6.com/api/update?token=''${token}&zone=stash.''${rootZone}&ipv6prefix=auto"
       curl -k "https://ipv6.dynv6.com/api/update?token=''${token}&zone=forgejo.''${rootZone}&ipv6prefix=auto"
+      curl -k "https://ipv6.dynv6.com/api/update?token=''${token}&zone=sabnzbd.''${rootZone}&ipv6prefix=auto"
 
       curl -k "https://ipv4.dynv6.com/api/update?token=''${token}&zone=nextcloud.''${rootZone}&ipv4=auto"
       curl -k "https://ipv4.dynv6.com/api/update?token=''${token}&zone=homelab.''${rootZone}&ipv4=auto"
       curl -k "https://ipv4.dynv6.com/api/update?token=''${token}&zone=jellyfin.''${rootZone}&ipv4=auto"
       curl -k "https://ipv4.dynv6.com/api/update?token=''${token}&zone=stash.''${rootZone}&ipv4=auto"
       curl -k "https://ipv4.dynv6.com/api/update?token=''${token}&zone=forgejo.''${rootZone}&ipv4=auto"
+      curl -k "https://ipv4.dynv6.com/api/update?token=''${token}&zone=sabnzbd.''${rootZone}&ipv4=auto"
 
     '';
     restartIfChanged = true;

@@ -4,6 +4,7 @@
   inputs = {
     # Nixpkgs
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable-small";
+    blocky-fix.url = "github:nixos/nixpkgs/da5cc354cf31d8514d763c39f5a685da3fe1eb3e";
 
     impermanence = {
       url = "github:nix-community/impermanence";

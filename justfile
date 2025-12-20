@@ -13,7 +13,7 @@ diff: _build-systems _copy-current-lock _build-systems-1 _diff-systems
   mkdir -p gen
   nom build .#nixosConfigurations.desktop.config.system.build.toplevel -o gen/dektop
   nom build .#nixosConfigurations.laptop-nix.config.system.build.toplevel -o gen/laptop
-  nom build .#nixosConfigurations.homelab-new.config.system.build.toplevel -o gen/homelab
+  nom build .#nixosConfigurations.homelab.config.system.build.toplevel -o gen/homelab
 @_update-and-build-systems-1: _update_systems _build-systems
 @_build-systems-1:
   nom build .#nixosConfigurations.desktop.config.system.build.toplevel -o gen/dektop1 --reference-lock-file gen/flake.lock

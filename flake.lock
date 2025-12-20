@@ -23,6 +23,22 @@
         "type": "github"
       }
     },
+    "blocky-fix": {
+      "locked": {
+        "lastModified": 1766035038,
+        "narHash": "sha256-tJ8RIG8JiMV9NGYWegYw1bEO/Ja09mH1y7RhuviEN78=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "da5cc354cf31d8514d763c39f5a685da3fe1eb3e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "da5cc354cf31d8514d763c39f5a685da3fe1eb3e",
+        "type": "github"
+      }
+    },
     "crane": {
       "locked": {
         "lastModified": 1751562746,
@@ -824,6 +840,7 @@
     "root": {
       "inputs": {
         "attic": "attic",
+        "blocky-fix": "blocky-fix",
         "declarative-jellyfin": "declarative-jellyfin",
         "firefox": "firefox",
         "flake-utils": "flake-utils_2",

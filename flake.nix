@@ -44,7 +44,8 @@
     };
 
     nix-vscode-extensions = {
-      url = "github:nix-community/nix-vscode-extensions/master";
+      #url = "github:nix-community/nix-vscode-extensions/master";
+      url = "github:nix-community/nix-vscode-extensions/909232203bc0bc4c1e3311f41be190322bb04a94";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 

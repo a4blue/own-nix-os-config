@@ -17,11 +17,11 @@ in {
       defaultApplications = {
         "video/x-matroska" = "vlc.desktop";
         "video/mp4" = "vlc.desktop";
-        "text/html" = "firefox.desktop";
-        "x-scheme-handler/http" = "firefox.desktop";
-        "x-scheme-handler/https" = "firefox.desktop";
-        "x-scheme-handler/about" = "firefox.desktop";
-        "x-scheme-handler/unknown" = "firefox.desktop";
+        "text/html" = "firefox-nightly.desktop";
+        "x-scheme-handler/http" = "firefox-nightly.desktop";
+        "x-scheme-handler/https" = "firefox-nightly.desktop";
+        "x-scheme-handler/about" = "firefox-nightly.desktop";
+        "x-scheme-handler/unknown" = "firefox-nightly.desktop";
       };
     };
   };
@@ -43,9 +43,7 @@ in {
       // {
         packages = with pkgs; [
           signal-desktop
-          fluffychat
           proton-pass
-          joplin-desktop
           libreoffice-qt6-fresh
           vlc
           mpv

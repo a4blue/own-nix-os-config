@@ -102,12 +102,12 @@
               showTitle = false;
               settings = {
                 Appearance = {updateRateLimit = 1000;};
-                #"org.kde.ksysguard.facegrid/General" = {faceId = "org.kde.ksysguard.horizontalbars";};
-                #"FaceGrid/Appearance" = {
-                #  chartFace = "org.kde.ksysguard.horizontalbars";
-                #  showTitle = false;
-                #  updateRateLimit = 1000;
-                #};
+                "org.kde.ksysguard.facegrid/General" = {faceId = "org.kde.ksysguard.horizontalbars";};
+                "FaceGrid/Appearance" = {
+                  chartFace = "org.kde.ksysguard.horizontalbars";
+                  showTitle = false;
+                  updateRateLimit = 1000;
+                };
               };
               sensors = [
                 {

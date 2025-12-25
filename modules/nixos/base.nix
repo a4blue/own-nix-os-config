@@ -2,6 +2,7 @@
   config,
   inputs,
   lib,
+  pkgs,
   ...
 }: {
   imports = [
@@ -13,6 +14,7 @@
   sops.secrets.github_pat = {mode = "0777";};
 
   nix = {
+    package = pkgs.nixVersions.latest;
     gc = {
       automatic = true;
       dates = "weekly";
@@ -22,10 +24,15 @@
       experimental-features = "nix-command flakes";
       auto-optimise-store = false;
       extra-substituters = [
-        #"http://ncps.homelab.internal:8501"
+        "http://ncps.homelab.internal:8501"
         "https://nix-community.cachix.org"
+        "https://devenv.cachix.org"
       ];
-      trusted-public-keys = ["ncps.homelab.internal:8j2IwS6XdP3mpY8JoLVl8TCClJv1bllrNfGQP4B2kyI=" "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="];
+      trusted-public-keys = [
+        "ncps.homelab.internal:8j2IwS6XdP3mpY8JoLVl8TCClJv1bllrNfGQP4B2kyI="
+        "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+        "devenv.cachix.org-1:w1cLUi8dv3hnoSPGAuibQv+f9TZLr6cv/Hm9XgU50cw="
+      ];
       connect-timeout = 30;
       download-attempts = 1;
       max-jobs = 2;

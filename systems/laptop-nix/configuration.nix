@@ -51,6 +51,7 @@
       "steam"
       "steam-unwrapped"
       "unrar"
+      "nrf-udev"
     ];
 
   programs = {
@@ -96,7 +97,7 @@
   ];
 
   services = {
-    udev.packages = [pkgs.nitrokey-udev-rules];
+    udev.packages = [pkgs.nitrokey-udev-rules pkgs.nrf-udev];
     desktopManager.plasma6.enable = true;
     displayManager = {
       defaultSession = "plasma";

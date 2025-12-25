@@ -13,6 +13,7 @@ lib.mkIf config.programs.vscode.enable {
         kamadorueda.alejandra
         sainnhe.everforest
         mkhl.direnv
+        rust-lang.rust-analyzer
       ];
       userSettings = {
         "editor.fontLigatures" = true;

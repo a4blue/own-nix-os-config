@@ -70,6 +70,7 @@
       "steam"
       "steam-unwrapped"
       "unrar"
+      "nrf-udev"
     ];
   nixpkgs.config.permittedInsecurePackages = [
   ];
@@ -130,7 +131,7 @@
   };
 
   services = {
-    udev.packages = [pkgs.nitrokey-udev-rules];
+    udev.packages = [pkgs.nitrokey-udev-rules pkgs.nrf-udev];
     flatpak.enable = true;
     desktopManager.plasma6.enable = true;
     displayManager = {

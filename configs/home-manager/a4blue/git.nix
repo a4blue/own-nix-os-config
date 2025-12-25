@@ -9,6 +9,7 @@ lib.mkIf config.programs.git.enable {
     settings = {
       user.name = "Alexander Ratajczak";
       user.email = "a4blue@hotmail.de";
+      init.defaultBranch = "main";
     };
     signing.format = "openpgp";
   };

@@ -6,7 +6,7 @@
   ...
 }: let
   nc4nix = import "${inputs.nc4nix}/default.nix" {
-    inherit (pkgs) lib recurseIntoAttrs fetchurl runCommand callPackage;
+    inherit (pkgs) lib fetchurl runCommand callPackage;
   };
 in {
   imports = [

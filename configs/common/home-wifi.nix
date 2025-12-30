@@ -8,12 +8,12 @@
     sops.secrets.home_wifi_psk = {};
     networking.wireless = lib.mkIf config.networking.wireless.enable {
       secretsFile = config.sops.secrets.home_wifi_psk.path;
-      networks."NoNameWLAN 5GHz" = {
-        pskRaw = "ext:HOME_WIFI_PSK";
-      };
-      networks."NoNameWLAN 2.4GHz" = {
-        pskRaw = "ext:HOME_WIFI_PSK";
-      };
+      #networks."NoNameWLAN 5GHz" = {
+      #  pskRaw = "ext:HOME_WIFI_PSK";
+      #};
+      #networks."NoNameWLAN 2.4GHz" = {
+      #  pskRaw = "ext:HOME_WIFI_PSK";
+      #};
     };
 
     networking.networkmanager = lib.mkIf config.networking.networkmanager.enable {

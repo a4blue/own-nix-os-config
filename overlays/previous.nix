@@ -23,6 +23,7 @@
       #    });
       #  };
       #};
+      mnamer2 = prev.callPackage ../mnamer2.nix {};
     })
   ];
 }

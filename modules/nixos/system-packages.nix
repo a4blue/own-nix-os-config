@@ -44,5 +44,6 @@
     inputs.attic.packages.${system}.attic
     eza
     fd
+    mnamer2
   ];
 }

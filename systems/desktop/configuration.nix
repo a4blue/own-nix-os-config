@@ -56,8 +56,8 @@
     podman-compose
     vulkan-tools
     nvtopPackages.amd
-    fd
     gnupg
+    libguestfs
   ];
   fonts = {
     packages = [pkgs.nerd-fonts.fira-code pkgs.nerd-fonts.terminess-ttf];
@@ -89,6 +89,10 @@
   networking = {
     hostName = "desktop-nix";
     networkmanager.enable = true;
+    networkmanager.plugins = with pkgs; [
+      networkmanager-openvpn
+      networkmanager-openconnect
+    ];
     firewall.allowedUDPPorts = [51820];
     wireguard = {
       # wireguard conf needs to be imperative for gui

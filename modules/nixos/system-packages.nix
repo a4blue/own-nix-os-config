@@ -42,5 +42,7 @@
     usbutils
     inetutils
     inputs.attic.packages.${system}.attic
+    eza
+    fd
   ];
 }

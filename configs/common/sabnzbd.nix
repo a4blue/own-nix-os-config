@@ -13,4 +13,7 @@ in {
   };
 
   config.environment = mkIf cfg.enable {systemPackages = with pkgs; [sabnzbd];};
+  config.users.groups.smbUser = {
+    members = ["sabnzbd"];
+  };
 }

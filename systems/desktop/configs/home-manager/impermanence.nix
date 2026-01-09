@@ -5,7 +5,6 @@
 }:
 lib.mkIf config.modules.impermanenceExtra.enabled {
   home.persistence."${config.modules.impermanenceExtra.defaultPath}" = {
-    allowOther = true;
     directories = [
       "Development"
       "Downloads"

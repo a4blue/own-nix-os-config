@@ -111,12 +111,11 @@
       imports = [
         ./../../configs/home-manager/a4blue
         ./../../modules/home-manager/persistence.nix
-        inputs.impermanence.nixosModules.home-manager.impermanence
       ];
       modules = {
         impermanenceExtra = {
           enabled = true;
-          defaultPath = "/nix/persistent/home/a4blue";
+          defaultPath = "/nix/persistent";
         };
       };
     };

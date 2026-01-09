@@ -4,7 +4,7 @@
   inputs = {
     # Nixpkgs
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable-small";
-    blocky-fix.url = "github:nixos/nixpkgs/da5cc354cf31d8514d763c39f5a685da3fe1eb3e";
+    #blocky-fix.url = "github:nixos/nixpkgs/da5cc354cf31d8514d763c39f5a685da3fe1eb3e";
 
     impermanence = {
       url = "github:nix-community/impermanence";
@@ -44,8 +44,8 @@
     };
 
     nix-vscode-extensions = {
-      #url = "github:nix-community/nix-vscode-extensions/master";
-      url = "github:nix-community/nix-vscode-extensions/909232203bc0bc4c1e3311f41be190322bb04a94";
+      url = "github:nix-community/nix-vscode-extensions/master";
+      #url = "github:nix-community/nix-vscode-extensions/909232203bc0bc4c1e3311f41be190322bb04a94";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -55,7 +55,7 @@
     };
 
     declarative-jellyfin = {
-      url = "github:a4blue/declarative-jellyfin/test-migration-fix";
+      url = "github:Sveske-Juice/declarative-jellyfin";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 

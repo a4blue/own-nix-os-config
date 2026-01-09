@@ -164,7 +164,6 @@
   home-manager.users = {
     a4blue = {
       imports = [
-        inputs.impermanence.nixosModules.home-manager.impermanence
         inputs.plasma-manager.homeModules.plasma-manager
         ../../configs/home-manager/a4blue
         ./configs/home-manager/impermanence.nix
@@ -181,7 +180,7 @@
       modules = {
         impermanenceExtra = {
           enabled = true;
-          defaultPath = "/nix/persistent/home/a4blue";
+          defaultPath = "/nix/persistent";
         };
         gaming.enable = true;
         graphicalApps.enable = true;

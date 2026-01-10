@@ -27,6 +27,9 @@ lib.mkIf config.modules.impermanenceExtra.enabled {
       ".local/share/xmr-btc-swap"
       # Podman
       ".local/share/containers"
+      # qBitTorrent (Considering auto Setup with Linux Distro Seed ?)
+      ".local/share/qBittorrent"
+      ".config/qBittorrent"
     ];
     files = [
       # KDE Display Settings

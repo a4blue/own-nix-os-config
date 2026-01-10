@@ -42,4 +42,5 @@
       User = "root";
     };
   };
+  users.groups.LargeMediaUsers.members = ["a4blue"];
 }

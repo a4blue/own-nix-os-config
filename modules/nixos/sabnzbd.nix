@@ -9,6 +9,8 @@ in {
   imports = [
     ./nginx.nix
   ];
+  users.users.sabnzbd.extraGroups = ["smbUser" "LargeMediaUsers"];
+  systemd.services.sabnzbd.after = ["LargeMedia.mount"];
   services.sabnzbd.enable = true;
   services.nginx.virtualHosts."${serviceDomain}" = {
     forceSSL = true;

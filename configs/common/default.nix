@@ -12,7 +12,6 @@ with config; {
     ./gnupg-agent.nix
     ./impermanence-extra.nix
     ./bluetooth.nix
-    ./sabnzbd.nix
     ./tmux.nix
     ./printing.nix
     ./containers.nix

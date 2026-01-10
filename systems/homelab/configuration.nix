@@ -32,6 +32,7 @@
     ../../modules/nixos/jellyfin.nix
     ../../modules/nixos/forgejo.nix
     ../../modules/nixos/sabnzbd.nix
+    ../../modules/nixos/stash.nix
     # other services
     ../../modules/nixos/samba.nix
     ../../modules/nixos/blocky.nix

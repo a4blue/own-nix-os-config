@@ -12,6 +12,7 @@ in {
   ];
 
   systemd.services.jellyfin.environment.LIBVA_DRIVER_NAME = "iHD";
+  systemd.services.jellyfin.after = ["LargeMedia.mount"];
   environment = {
     sessionVariables = {LIBVA_DRIVER_NAME = "iHD";};
     etc = {
@@ -143,5 +144,5 @@ in {
     };
   };
 
-  users.users.jellyfin.extraGroups = ["render" "smbUser" "video"];
+  users.users.jellyfin.extraGroups = ["render" "smbUser" "video" "LargeMediaUsers"];
 }

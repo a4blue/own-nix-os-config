@@ -56,7 +56,7 @@ in {
     };
   };
 
-  systemd.services."${config.virtualisation.oci-containers.containers."stash-container".serviceName}".requires = ["LargeMedia.mount"];
+  systemd.services."${config.virtualisation.oci-containers.containers."stash-container".serviceName}".after = ["LargeMedia.mount"];
 
   networking.firewall.allowedTCPPorts = [servicePort];
 }

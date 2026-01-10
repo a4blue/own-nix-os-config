@@ -29,3 +29,4 @@ diff: _build-systems _copy-current-lock _build-systems-1 _diff-systems
 @_copy-current-lock:
   mkdir -p gen
   cp flake.lock gen/flake.lock
+

@@ -27,7 +27,6 @@
   modules = {
     impermanenceExtra.enabled = true;
     impermanenceExtra.defaultPath = "/nix/persistent";
-    sabnzbd.enable = true;
     desktopAudio.enable = true;
   };
   environment.persistence."${config.modules.impermanenceExtra.defaultPath}" = {
@@ -171,12 +170,6 @@
         ./configs/home-manager/tor.nix
       ];
 
-      home.persistence."${config.home-manager.users.a4blue.modules.impermanenceExtra.defaultPath}" = {
-        directories = [
-          ".sabnzbd"
-        ];
-      };
-
       modules = {
         impermanenceExtra = {
           enabled = true;
@@ -189,6 +182,7 @@
       home.packages = with pkgs; [
         kdePackages.krdc
         kdePackages.konversation
+        qbittorrent
       ];
       services.gpg-agent.enable = true;
       # Enable GUI Programs

@@ -19,8 +19,8 @@
           browseable = "yes";
           "read only" = "no";
           "guest ok" = "no";
-          "create mask" = "2777";
-          "directory mask" = "2777";
+          "create mask" = "0777";
+          "directory mask" = "0777";
           "force user" = "a4blue";
           "force group" = "smbUser";
         };

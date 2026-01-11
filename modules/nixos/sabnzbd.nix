@@ -10,7 +10,10 @@ in {
     ./nginx.nix
   ];
   users.users.sabnzbd.extraGroups = ["smbUser" "LargeMediaUsers"];
-  systemd.services.sabnzbd.after = ["LargeMedia.mount"];
+  systemd.services.sabnzbd = {
+    after = ["LargeMedia.mount" "bcachefs-large-media-mount.service"];
+    serviceConfig = {RestartSec = 5;};
+  };
   services.sabnzbd.enable = true;
   services.nginx.virtualHosts."${serviceDomain}" = {
     forceSSL = true;

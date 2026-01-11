@@ -12,7 +12,10 @@ in {
   ];
 
   systemd.services.jellyfin.environment.LIBVA_DRIVER_NAME = "iHD";
-  systemd.services.jellyfin.after = ["LargeMedia.mount"];
+  systemd.services.jellyfin = {
+    after = ["LargeMedia.mount" "bcachefs-large-media-mount.service"];
+    serviceConfig = {RestartSec = 5;};
+  };
   environment = {
     sessionVariables = {LIBVA_DRIVER_NAME = "iHD";};
     etc = {
@@ -72,6 +75,13 @@ in {
           content = {
             Name = "Jellyfin Stable";
             Url = "https://repo.jellyfin.org/files/plugin/manifest.json";
+          };
+          tag = "RepositoryInfo";
+        }
+        {
+          content = {
+            Name = "Merge Plugin";
+            Url = "https://raw.githubusercontent.com/danieladov/JellyfinPluginManifest/master/manifest.json";
           };
           tag = "RepositoryInfo";
         }

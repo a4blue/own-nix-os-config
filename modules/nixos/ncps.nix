@@ -1,4 +1,8 @@
-{config, ...}: {
+{
+  config,
+  lib,
+  ...
+}: {
   services.ncps = {
     enable = true;
     cache.hostName = "ncps.homelab.internal";
@@ -16,6 +20,10 @@
       ];
     };
   };
+  # Fix migration missing error, folder moved in 0.6
+  systemd.services.ncps.preStart = lib.mkForce ''
+    ${lib.getExe config.services.ncps.dbmatePackage} --migrations-dir=${config.services.ncps.package}/share/ncps/db/migrations/sqlite --url=${config.services.ncps.cache.databaseURL} up
+  '';
   environment.persistence."${config.modules.impermanenceExtra.defaultPath}" = {
     directories = [
       "/var/lib/ncps"

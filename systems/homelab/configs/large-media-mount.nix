@@ -31,7 +31,7 @@
         mkdir $MOUNT_POINT
       fi
 
-      sleep 15
+      sleep 5
 
       # Mount the device
       ${pkgs.bcachefs-tools}/bin/bcachefs mount -f ${config.sops.secrets.large_media_password.path} "$DEVICE_PATH" "$MOUNT_POINT"

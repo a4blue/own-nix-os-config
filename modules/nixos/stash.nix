@@ -1,4 +1,9 @@
-{config, ...}: {
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}: {
   services.stash = {
     enable = true;
     dataDir = "/var/lib/stash-new";
@@ -13,9 +18,11 @@
       stash = [
         {
           path = "/LargeMedia/smb/Porn-New";
+          excludeimage = true;
         }
       ];
       port = 9998;
+      host = "0.0.0.0";
       notifications_enabled = false;
       scrapers_path = "${config.services.stash.dataDir}/scrapers";
       plugins_path = "${config.services.stash.dataDir}/plugins";
@@ -27,7 +34,189 @@
     #settings.sequential_scanning = true;
   };
   users.users.stash.extraGroups = ["smbUser" "LargeMediaUsers"];
-  systemd.services.stash.after = ["LargeMedia.mount"];
+  systemd.services.stash = {
+    after = ["LargeMedia.mount" "bcachefs-large-media-mount.service"];
+    serviceConfig = {RestartSec = 5;};
+    path = lib.mkForce (with pkgs; [
+      ffmpeg-full
+      (let
+        stashapi = pkgs.python313.pkgs.buildPythonPackage rec {
+          pname = "stashapi";
+
+          version = "0.1.3";
+
+          src = pkgs.fetchPypi {
+            inherit pname version;
+
+            hash = "sha256-VS7e8HgsPkkt+Nk6H4cQQppkvVuyu473KfX3gEtuG1c=";
+          };
+
+          doCheck = false;
+
+          pyproject = true;
+
+          build-system = with python313Packages; [
+            hatchling
+            hatch-vcs
+            wheel
+          ];
+          dependencies = with python313Packages; [
+            requests
+          ];
+        };
+        stashapp-tools = pkgs.python313.pkgs.buildPythonPackage rec {
+          pname = "stashapp-tools";
+
+          version = "0.2.59";
+
+          src = pkgs.fetchPypi {
+            inherit pname version;
+
+            hash = "sha256-Y52YueWHp8C2FsnJ01YMBkz4O2z4d7RBeCswWGr8SjY=";
+          };
+
+          doCheck = false;
+
+          pyproject = true;
+
+          build-system = with python313Packages; [
+            wheel
+            setuptools
+          ];
+          dependencies = with python313Packages; [
+            requests
+          ];
+        };
+      in
+        python313.withPackages
+        (
+          ps:
+            with ps; [
+              # Renamer Plugin Dep
+              #stashapi # seems to be included in stashapp-tools
+              # LocalVisage Plugin Dep
+              stashapp-tools
+              absl-py
+              aiofiles
+              annotated-types
+              anyio
+              astunparse
+              beautifulsoup4
+              blinker
+              certifi
+              charset-normalizer
+              click
+              contourpy
+              cycler
+              deepface
+              fastapi
+              ffmpy
+              filelock
+              fire
+              flask
+              flask-cors
+              flatbuffers
+              fonttools
+              fsspec
+              gast
+              gdown
+              google-pasta
+              gradio
+              gradio-client
+              groovy
+              grpcio
+              gunicorn
+              h11
+              h5py
+              httpcore
+              httpx
+              huggingface-hub
+              idna
+              itsdangerous
+              jinja2
+              joblib
+              keras
+              kiwisolver
+              libclang
+              lz4
+              markdown
+              markdown-it-py
+              markupsafe
+              matplotlib
+              mdurl
+              ml-dtypes
+              mpmath
+              mtcnn
+              namex
+              networkx
+              numpy
+              opencv-python
+              opt-einsum
+              optree
+              orjson
+              packaging
+              pandas
+              pillow
+              protobuf
+              psutil
+              py-cpuinfo
+              pycryptodomex
+              pydantic
+              pydantic-core
+              pydub
+              pygments
+              pyparsing
+              pysocks
+              python-dateutil
+              python-multipart
+              pytz
+              pyyaml
+              pyzipper
+              requests
+              retinaface
+              rich
+              ruff
+              safehttpx
+              scipy
+              seaborn
+              semantic-version
+              setuptools
+              shellingham
+              six
+              sniffio
+              soupsieve
+              starlette
+              sympy
+              tensorboard
+              tensorboard-data-server
+              tensorflow
+              termcolor
+              tf-keras
+              tomlkit
+              torch
+              torchvision
+              tqdm
+              typer
+              typing-extensions
+              typing-inspection
+              tzdata
+              ultralytics
+              ultralytics-thop
+              urllib3
+              uvicorn
+              websockets
+              werkzeug
+              wheel
+              wrapt
+              # StarIdentifier Plugin Deps
+              face-recognition
+              numpy
+              requests
+            ]
+        ))
+      ruby
+    ]);
+  };
 
   environment.persistence."${config.modules.impermanenceExtra.defaultPath}" = {
     directories = [

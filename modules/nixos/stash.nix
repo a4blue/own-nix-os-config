@@ -215,6 +215,8 @@
             ]
         ))
       ruby
+      coreutils-full
+      findutils
     ]);
   };
 

@@ -15,6 +15,7 @@ in {
     serviceConfig = {RestartSec = 5;};
   };
   services.sabnzbd.enable = true;
+  services.sabnzbd.allowConfigWrite = true;
   services.nginx.virtualHosts."${serviceDomain}" = {
     forceSSL = true;
     enableACME = true;

@@ -5,6 +5,7 @@
     # Nixpkgs
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable-small";
     #blocky-fix.url = "github:nixos/nixpkgs/da5cc354cf31d8514d763c39f5a685da3fe1eb3e";
+    stash-update.url = "github:a4blue/nixpkgs/stash-update-0.30.1";
 
     impermanence = {
       url = "github:nix-community/impermanence";

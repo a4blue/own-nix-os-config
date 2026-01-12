@@ -24,6 +24,7 @@
       #  };
       #};
       mnamer2 = prev.callPackage ../mnamer2.nix {};
+      stash = inputs.stash-update.legacyPackages.${prev.system}.stash;
     })
   ];
 }

@@ -36,7 +36,11 @@
   users.users.stash.extraGroups = ["smbUser" "LargeMediaUsers"];
   systemd.services.stash = {
     after = ["LargeMedia.mount" "bcachefs-large-media-mount.service"];
-    serviceConfig = {RestartSec = 5;};
+    serviceConfig = {
+      RestartSec = 5;
+      BindReadOnlyPaths = lib.mkForce [];
+      BindPaths = lib.mkIf (config.services.stash.settings != {}) (map (stash: "${stash.path}") config.services.stash.settings.stash);
+    };
     path = lib.mkForce (with pkgs; [
       ffmpeg-full
       (let

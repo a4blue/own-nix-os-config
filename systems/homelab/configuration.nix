@@ -60,8 +60,7 @@
   networking = {
     hostName = "homelab";
     networkmanager.enable = true;
-    # Network DNS Fallback
-    #nameservers = ["127.0.0.1" "8.8.8.8"];
+    #nameservers = ["127.0.0.1" "192.168.178.1"];
   };
 
   zramSwap.enable = true;
@@ -98,6 +97,7 @@
     openssh.enable = true;
     fstrim.enable = true;
     fwupd.enable = true;
+    resolved.settings.Resolve.FallbackDNS = ["8.8.8.8" "1.1.1.1" "1.0.0.1" "8.8.4.4" "9.9.9.9" "149.112.112.112"];
   };
 
   security = {

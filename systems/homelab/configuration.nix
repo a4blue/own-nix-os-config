@@ -47,10 +47,15 @@
   modules.impermanenceExtra.enabled = true;
   modules.impermanenceExtra.defaultPath = "/nix/persistent";
 
-  nixpkgs.config.allowUnfreePredicate = pkg:
-    builtins.elem (lib.getName pkg) [
-      "unrar"
+  nixpkgs.config = {
+    allowUnfreePredicate = pkg:
+      builtins.elem (lib.getName pkg) [
+        "unrar"
+      ];
+    allowUnfree = true;
+    permittedInsecurePackages = [
     ];
+  };
 
   sops = {
     age.sshKeyPaths = ["/nix/secret/initrd/sops_key"];
@@ -65,7 +70,6 @@
 
   zramSwap.enable = true;
 
-  nixpkgs.config.allowUnfree = true;
   hardware.enableAllFirmware = true;
   hardware.intel-gpu-tools.enable = true;
 
@@ -125,7 +129,5 @@
 
   environment.systemPackages = [
     pkgs.sbctl
-  ];
-  nixpkgs.config.permittedInsecurePackages = [
   ];
 }

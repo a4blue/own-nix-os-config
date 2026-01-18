@@ -8,9 +8,18 @@
   serviceDomain = "stash.home.a4blue.me";
 in {
   sops.secrets = {
-    stash_password = {};
-    stash_jwt_secret_key = {};
-    session_store_key = {};
+    stash_password = {
+      owner = "stash";
+      group = "stash";
+    };
+    stash_jwt_secret_key = {
+      owner = "stash";
+      group = "stash";
+    };
+    session_store_key = {
+      owner = "stash";
+      group = "stash";
+    };
   };
   services.stash = {
     enable = true;
@@ -21,7 +30,7 @@ in {
     sessionStoreKeyFile = "${config.sops.secrets.session_store_key.path}";
     mutablePlugins = true;
     mutableScrapers = true;
-    openFirewall = true;
+    openFirewall = false;
     settings = {
       stash = [
         {

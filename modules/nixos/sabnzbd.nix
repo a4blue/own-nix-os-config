@@ -14,20 +14,25 @@ in {
     after = ["LargeMedia.mount" "bcachefs-large-media-mount.service"];
     serviceConfig = {RestartSec = 5;};
   };
-  sops.secrets.sabnzbd_secret_file = {};
-  services.sabnzbd.enable = true;
-  services.sabnzbd.allowConfigWrite = true;
-  services.sabnzbd.secretFiles = ["${config.sops.secrets.sabnzbd_secret_file.path}"];
-  services.sabnzbd.settings = {
-    misc = {
-      port = servicePort;
-      bandwidth_max = "8M";
-      bandwidth_perc = 80;
-      check_new_rel = 0;
-      enable_https_verification = 1;
-      download_dir = "/LargeMedia/smb/Sabnzbd/incomplete";
-      complete_dir = "/LargeMedia/smb/Sabnzbd/complete";
-      host_whitelist = "sabnzbd.home.a4blue.me";
+  sops.secrets.sabnzbd_secret_file = {
+    owner = "sabnzbd";
+    group = "sabnzbd";
+  };
+  services.sabnzbd = {
+    enable = true;
+    allowConfigWrite = true;
+    secretFiles = ["${config.sops.secrets.sabnzbd_secret_file.path}"];
+    settings = {
+      misc = {
+        port = servicePort;
+        bandwidth_max = "8M";
+        bandwidth_perc = 80;
+        check_new_rel = 0;
+        enable_https_verification = 1;
+        download_dir = "/LargeMedia/smb/Sabnzbd/incomplete";
+        complete_dir = "/LargeMedia/smb/Sabnzbd/complete";
+        host_whitelist = "sabnzbd.home.a4blue.me";
+      };
     };
   };
   services.nginx.virtualHosts."${serviceDomain}" = {

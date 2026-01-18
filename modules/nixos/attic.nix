@@ -1,7 +1,7 @@
 {config, ...}: {
   services.atticd = {
     enable = true;
-    environmentFile = "/nix/secret/attic/environmentFile";
+    environmentFile = "${config.sops.secrets.attic_env_file.path}";
     settings = {
       listen = "192.168.178.65:8085";
       storage = {
@@ -18,6 +18,7 @@
       };
     };
   };
+  sops.secrets.attic_env_file = {};
   environment.persistence."${config.modules.impermanenceExtra.defaultPath}" = {
     directories = [
       "/var/lib/atticd-storage"

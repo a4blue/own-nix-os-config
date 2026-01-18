@@ -24,7 +24,7 @@
     ../../modules/nixos/hardening.nix
     ../../modules/nixos/home-manager-base.nix
     ../../modules/nixos/docker.nix
-    ../../modules/nixos/docker/stash.nix
+    #../../modules/nixos/docker/stash.nix
 
     # web services
     ../../modules/nixos/nextcloud.nix

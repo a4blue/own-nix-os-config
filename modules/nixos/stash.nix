@@ -3,14 +3,22 @@
   pkgs,
   lib,
   ...
-}: {
+}: let
+  servicePort = 9999;
+  serviceDomain = "stash.home.a4blue.me";
+in {
+  sops.secrets = {
+    stash_password = {};
+    stash_jwt_secret_key = {};
+    session_store_key = {};
+  };
   services.stash = {
     enable = true;
     dataDir = "/var/lib/stash-new";
     username = "a4blue";
-    passwordFile = "/nix/secret/stash_password";
-    jwtSecretKeyFile = "/nix/secret/stash_jwt_token";
-    sessionStoreKeyFile = "/nix/secret/stash_session_store_key";
+    passwordFile = "${config.sops.secrets.stash_password.path}";
+    jwtSecretKeyFile = "${config.sops.secrets.stash_jwt_secret_key.path}";
+    sessionStoreKeyFile = "${config.sops.secrets.session_store_key.path}";
     mutablePlugins = true;
     mutableScrapers = true;
     openFirewall = true;
@@ -21,8 +29,8 @@
           excludeimage = true;
         }
       ];
-      port = 9998;
-      host = "0.0.0.0";
+      port = servicePort;
+      host = "127.0.0.1";
       notifications_enabled = false;
       scrapers_path = "${config.services.stash.dataDir}/scrapers";
       plugins_path = "${config.services.stash.dataDir}/plugins";
@@ -233,5 +241,21 @@
         group = "stash";
       }
     ];
+  };
+
+  services.nginx.virtualHosts."${serviceDomain}" = {
+    forceSSL = true;
+    enableACME = true;
+    locations."/" = {
+      recommendedProxySettings = true;
+      proxyPass = "http://localhost:${builtins.toString servicePort}/";
+      extraConfig = ''
+        client_max_body_size 512M;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection "upgrade";
+        proxy_set_header X-Forwarded-Protocol $scheme;
+      '';
+    };
   };
 }

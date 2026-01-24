@@ -96,6 +96,7 @@
   nixpkgs.config.permittedInsecurePackages = [
   ];
 
+  environment.plasma6.excludePackages = [pkgs.kdePackages.kwin-x11];
   services = {
     udev.packages = [pkgs.nitrokey-udev-rules pkgs.nrf-udev];
     desktopManager.plasma6.enable = true;
@@ -104,7 +105,7 @@
       sddm.wayland.enable = true;
       sddm.enable = true;
     };
-    xserver.enable = true;
+    xserver.enable = false;
     printing.enable = true;
     openssh.enable = true;
     fstrim.enable = true;

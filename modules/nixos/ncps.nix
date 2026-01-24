@@ -7,8 +7,8 @@
     enable = true;
     cache.hostName = "ncps.homelab.internal";
     server.addr = "192.168.178.65:8501";
-    upstream = {
-      caches = [
+    cache.upstream = {
+      urls = [
         "https://cache.nixos.org"
         "https://nix-community.cachix.org"
         "https://devenv.cachix.org"

@@ -3,7 +3,7 @@
     enable = true;
     settings = {
       ports.dns = 53;
-      ports.tls = 83;
+      ports.tls = 853;
       certFile = "/nix/secret/blocky_cert/blocky.crt";
       keyFile = "/nix/secret/blocky_cert/blocky.key";
       log.level = "warn";
@@ -66,10 +66,8 @@
         cacheTimeNegative = "1m";
         minTime = "10m";
       };
-
-      #queryLog = {type = "console";};
     };
   };
-  networking.firewall.allowedTCPPorts = [53 83];
-  networking.firewall.allowedUDPPorts = [53 83];
+  networking.firewall.allowedTCPPorts = [config.services.blocky.settings.ports.dns config.services.blocky.settings.ports.tls];
+  networking.firewall.allowedUDPPorts = [config.services.blocky.settings.ports.dns config.services.blocky.settings.ports.tls];
 }

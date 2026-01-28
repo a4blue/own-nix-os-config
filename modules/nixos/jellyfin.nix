@@ -136,7 +136,7 @@ in {
     '';
     locations."/" = {
       recommendedProxySettings = true;
-      proxyPass = "http://localhost:${builtins.toString servicePort}";
+      proxyPass = "http://127.0.0.1:${builtins.toString servicePort}";
       extraConfig = ''
         proxy_set_header X-Forwarded-Protocol $scheme;
         proxy_buffering off;
@@ -144,7 +144,7 @@ in {
     };
     locations."/socket" = {
       recommendedProxySettings = true;
-      proxyPass = "http://localhost:${builtins.toString servicePort}";
+      proxyPass = "http://127.0.0.1:${builtins.toString servicePort}";
       extraConfig = ''
         proxy_http_version 1.1;
         proxy_set_header Upgrade $http_upgrade;

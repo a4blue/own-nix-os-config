@@ -22,8 +22,9 @@ in {
               ".local/share/Steam"
               ".local/share/lutris"
               ".local/share/bottles"
-              ".config/steamtinkerlaunch"
+              ".local/share/umu"
               ".local/share/comet"
+              ".config/steamtinkerlaunch"
               ".config/MangoHud/MangoHud.conf"
               ".paradoxlauncher"
               ".factorio"
@@ -39,6 +40,7 @@ in {
           winetricks
           bottles
           lutris
+          umu-launcher
           (heroic.override {
             extraPkgs = pkgs: [
               pkgs.gamescope
@@ -50,5 +52,9 @@ in {
           protonup-qt
           protontricks
         ];
+        file."${config.xdg.configHome}/steamtinkerlaunch/proton/custom/ProtonGE10-29" = {
+          recursive = true;
+          source = pkgs.proton-ge-10-29;
+        };
       });
 }

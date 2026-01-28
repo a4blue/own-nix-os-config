@@ -211,6 +211,7 @@
     amdgpu = {
       opencl.enable = true;
       overdrive.enable = true;
+      initrd.enable = true;
     };
     xpadneo.enable = true;
     bluetooth.enable = true;

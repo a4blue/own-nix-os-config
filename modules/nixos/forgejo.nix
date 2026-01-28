@@ -24,7 +24,7 @@ in {
     enableACME = true;
     locations."/" = {
       recommendedProxySettings = true;
-      proxyPass = "http://localhost:${builtins.toString servicePort}/";
+      proxyPass = "http://127.0.0.1:${builtins.toString servicePort}/";
       extraConfig = ''
         client_max_body_size 512M;
       '';

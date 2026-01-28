@@ -14,23 +14,23 @@ lib.mkIf config.services.clamav.daemon.enable {
   # TODO
   # This seems like a dirty solution
   environment =
-    if config.modules.impermanenceExtra.enabled
-    then {
-      persistence."${config.modules.impermanenceExtra.defaultPath}" = {
-        directories = [
-          {
-            directory = "/var/lib/clamav";
-            mode = "0740";
-            user = "clamav";
-            group = "clamav";
-          }
-        ];
-      };
-      systemPackages = with pkgs; [
-        clamav
-      ];
-    }
-    else {
+    (
+      if config.modules.impermanenceExtra.enabled
+      then {
+        persistence."${config.modules.impermanenceExtra.defaultPath}" = {
+          directories = [
+            {
+              directory = "/var/lib/clamav";
+              mode = "0740";
+              user = "clamav";
+              group = "clamav";
+            }
+          ];
+        };
+      }
+      else {}
+    )
+    // {
       systemPackages = with pkgs; [
         clamav
       ];

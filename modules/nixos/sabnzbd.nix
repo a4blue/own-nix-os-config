@@ -44,7 +44,7 @@ in {
     '';
     locations."/" = {
       recommendedProxySettings = true;
-      proxyPass = "http://localhost:${builtins.toString servicePort}";
+      proxyPass = "http://127.0.0.1:${builtins.toString servicePort}";
       extraConfig = ''
         proxy_set_header X-Forwarded-Protocol $scheme;
         proxy_buffering off;

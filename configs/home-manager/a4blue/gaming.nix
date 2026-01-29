@@ -52,9 +52,9 @@ in {
           protonup-qt
           protontricks
         ];
-        file."${config.xdg.configHome}/steamtinkerlaunch/proton/custom/ProtonGE10-29" = {
-          recursive = true;
-          source = pkgs.proton-ge-10-29;
-        };
       });
+  config.programs =
+    if cfg.enable
+    then {protonManager.GE-Proton10-29 = true;}
+    else {};
 }

@@ -180,6 +180,7 @@
         gaming.enable = true;
         graphicalApps.enable = true;
       };
+      protonManager.Proton-Manager-GE-Proton-Latest = true;
 
       home.packages = with pkgs; [
         kdePackages.krdc

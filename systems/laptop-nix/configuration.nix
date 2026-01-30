@@ -141,6 +141,7 @@
         gaming.enable = true;
         graphicalApps.enable = true;
       };
+      protonManager.Proton-Manager-GE-Proton-Latest = true;
       # Enable GUI Programs
       programs = {
         firefox.enable = true;

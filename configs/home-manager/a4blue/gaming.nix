@@ -1,7 +1,7 @@
 {
   lib,
-  config,
   pkgs,
+  config,
   ...
 }:
 with lib; let
@@ -53,8 +53,4 @@ in {
           protontricks
         ];
       });
-  config.programs =
-    if cfg.enable
-    then {protonManager.GE-Proton10-29 = true;}
-    else {};
 }

@@ -3,13 +3,34 @@
   servicePort = 9933;
 in {
   sops.secrets = {
-    authelia_jwtSecret = {};
-    authelia_storageEncryptionKey = {};
-    authelia_sessionSecret = {};
-    authelia_oidcHmacSecret = {};
-    authelia_authBackendLDAPPassword = {};
-    authelia_smtpPassword = {};
-    authelia_oidc_private_key = {};
+    authelia_jwtSecret = {
+      owner = "authelia-auth.home.a4blue.me";
+      group = "authelia-auth.home.a4blue.me";
+    };
+    authelia_storageEncryptionKey = {
+      owner = "authelia-auth.home.a4blue.me";
+      group = "authelia-auth.home.a4blue.me";
+    };
+    authelia_sessionSecret = {
+      owner = "authelia-auth.home.a4blue.me";
+      group = "authelia-auth.home.a4blue.me";
+    };
+    authelia_oidcHmacSecret = {
+      owner = "authelia-auth.home.a4blue.me";
+      group = "authelia-auth.home.a4blue.me";
+    };
+    authelia_authBackendLDAPPassword = {
+      owner = "authelia-auth.home.a4blue.me";
+      group = "authelia-auth.home.a4blue.me";
+    };
+    authelia_smtpPassword = {
+      owner = "authelia-auth.home.a4blue.me";
+      group = "authelia-auth.home.a4blue.me";
+    };
+    authelia_oidc_private_key = {
+      owner = "authelia-auth.home.a4blue.me";
+      group = "authelia-auth.home.a4blue.me";
+    };
   };
   services.authelia.instances.${serviceDomain} = {
     enable = true;

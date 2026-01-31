@@ -12,7 +12,7 @@
 
     token=$(cat ${config.sops.secrets.dynv6_token.path})
 
-    if [ mode == "present" ]
+    if [ mode == "present" ]; then
       curl -X POST https://dynv6.com/api/v2/zones/5211604/records \
       -H "Authorization: Bearer ''${token}" \
       -H "Accept: application/json" \
@@ -20,7 +20,7 @@
       -d '{"name":"''${name}","data":"''${data}","type":"TXT"}'
     fi
 
-    if [ mode == "cleanup" ]
+    if [ mode == "cleanup" ]; then
       ID="$(curl -s -X GET https://dynv6.com/api/v2/zones/5211604/records \
       -H "Authorization: Bearer ''${token}" \
       -H "Accept: application/json" | jq --args "map(select(.type == \"TXT\" and .data == \"''${data}\" and .name == \"''${name}\")).[0].id"
@@ -33,6 +33,10 @@
     EXEC_PATH=${acmeDnsScript}
   '';
 in {
+  sops.secrets.dynv6_token = {
+    owner = "acme";
+    group = "nginx";
+  };
   security.acme = {
     acceptTerms = true;
     defaults = {

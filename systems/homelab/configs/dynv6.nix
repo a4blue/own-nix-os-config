@@ -18,7 +18,6 @@
 
       curl -k "https://ipv6.dynv6.com/api/update?token=''${token}&zone=''${rootZone}&ipv6prefix=auto"
       curl -k "https://ipv4.dynv6.com/api/update?token=''${token}&zone=''${rootZone}&ipv4=auto"
-
     '';
     restartIfChanged = true;
     serviceConfig = {
@@ -37,8 +36,8 @@
     after = [];
     timerConfig = {
       Unit = "dynv6-ip-update.service";
-      OnBootSec = "10m";
-      OnUnitActiveSec = "10m";
+      OnBootSec = "5m";
+      OnUnitActiveSec = "5m";
     };
   };
 }

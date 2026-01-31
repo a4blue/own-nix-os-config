@@ -1,11 +1,4 @@
 {config, ...}: {
-  security.acme = {
-    acceptTerms = true;
-    defaults = {
-      email = "a4blue@hotmail.de";
-      dnsResolver = "1.1.1.1:53";
-    };
-  };
   services.nginx = {
     recommendedTlsSettings = true;
     recommendedOptimisation = true;

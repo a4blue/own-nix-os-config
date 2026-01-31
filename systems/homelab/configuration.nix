@@ -19,28 +19,28 @@
 
     # base stuff
     ../../modules/nixos/base.nix
-    ../../modules/nixos/remote-disk-unlocking.nix
     ../../modules/nixos/impermanence.nix
     ../../modules/nixos/hardening.nix
     ../../modules/nixos/home-manager-base.nix
-    ../../modules/nixos/docker.nix
-    #../../modules/nixos/docker/stash.nix
+    ./configs/remote-disk-unlocking.nix
+    ./configs/docker.nix
 
     # web services
-    ../../modules/nixos/nextcloud.nix
-    ../../modules/nixos/borgbackup.nix
-    ../../modules/nixos/jellyfin.nix
-    ../../modules/nixos/forgejo.nix
-    ../../modules/nixos/sabnzbd.nix
-    ../../modules/nixos/stash.nix
+    ./configs/nextcloud.nix
+    ./configs/borgbackup.nix
+    ./configs/jellyfin.nix
+    ./configs/forgejo.nix
+    ./configs/sabnzbd.nix
+    ./configs/stash.nix
     # other services
-    ../../modules/nixos/samba.nix
-    ../../modules/nixos/blocky.nix
-    ../../modules/nixos/fail2ban.nix
-    ../../modules/nixos/dynv6.nix
+    ./configs/samba.nix
+    ./configs/blocky.nix
+    ./configs/fail2ban.nix
+    ./configs/dynv6.nix
+    ./configs/acme.nix
 
-    ../../modules/nixos/attic.nix
-    ../../modules/nixos/ncps.nix
+    ./configs/attic.nix
+    ./configs/ncps.nix
 
     ../../configs/common
   ];

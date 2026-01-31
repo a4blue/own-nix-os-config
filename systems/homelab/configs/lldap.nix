@@ -19,4 +19,10 @@
       jwt_secret_file = "d34ffac7fa9af00f017a4f2e298aa4df766c2c8fa88bcfdc89bea676c8bfe56646b3fe0d9ae35fb5a367ffaf641f07500c50f1d81d5aab4106599dd35e6a5049";
     };
   };
+  users.users.lldap = {
+    name = "lldap";
+    group = "lldap";
+    isSystemUser = true;
+  };
+  users.groups.lldap = {};
 }

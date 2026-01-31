@@ -85,6 +85,13 @@ in {
           };
           tag = "RepositoryInfo";
         }
+        {
+          content = {
+            Name = "SSO Plugin";
+            Url = "https://raw.githubusercontent.com/9p4/jellyfin-plugin-sso/manifest-release/manifest.json";
+          };
+          tag = "RepositoryInfo";
+        }
       ];
     };
     libraries = {

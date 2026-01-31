@@ -41,6 +41,8 @@
 
     ./configs/attic.nix
     ./configs/ncps.nix
+    ./configs/lldap.nix
+    ./configs/authelia.nix
 
     ../../configs/common
   ];

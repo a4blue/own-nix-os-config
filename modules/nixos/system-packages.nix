@@ -45,5 +45,6 @@
     eza
     fd
     mnamer2
+    curlFull
   ];
 }

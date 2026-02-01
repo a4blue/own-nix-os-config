@@ -20,7 +20,7 @@
     sanitizedName=''${name%.$baseDomain}
 
     if [ $mode == "present" ]; then
-      ${pkgs.curlFull} -v -X POST https://dynv6.com/api/v2/zones/5211604/records \
+      ${pkgs.curlFull}/bin/curl -v -X POST https://dynv6.com/api/v2/zones/5211604/records \
       -H "Authorization: Bearer ''${token}" \
       -H "Accept: application/json" \
       -H "Content-Type: application/json" \
@@ -28,12 +28,12 @@
     fi
 
     if [ $mode == "cleanup" ]; then
-      ID="$(${pkgs.curlFull} -s -X GET https://dynv6.com/api/v2/zones/5211604/records \
+      ID="$(${pkgs.curlFull}/bin/curl -s -X GET https://dynv6.com/api/v2/zones/5211604/records \
       -H "Authorization: Bearer ''${token}" \
-      -H "Accept: application/json" | ${pkgs.jq} --args "map(select(.type == \"TXT\" and .data == \"''${data}\" and .name == \"''${sanitizedName}\")).[0].id"
+      -H "Accept: application/json" | ${pkgs.jq}/bin/jq --args "map(select(.type == \"TXT\" and .data == \"''${data}\" and .name == \"''${sanitizedName}\")).[0].id"
       )"
       echo "Deleting entry with ID ''${ID}"
-      ${pkgs.curlFull} -v -X DELETE https://dynv6.com/api/v2/zones/5211604/records/''${ID} \
+      ${pkgs.curlFull}/bin/curl -v -X DELETE https://dynv6.com/api/v2/zones/5211604/records/''${ID} \
       -H "Authorization: Bearer ''${token}"
     fi
   '';

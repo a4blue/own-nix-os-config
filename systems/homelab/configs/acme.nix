@@ -9,7 +9,9 @@
     mode=$1
     name=$2
     data=$3
-    baseDomain="home.a4blue.me"
+    # Lego passes the name with a dot at the end
+    baseDomain="home.a4blue.me."
+    sanitizedName=''${name%.$baseDomain}
 
     token=$(cat ${config.sops.secrets.dynv6TokenACME.path})
 
@@ -17,7 +19,7 @@
     echo "Mode: ''${mode}\n"
     echo "Name: ''${name}\n"
     echo "Data: ''${data}\n"
-    sanitizedName=''${name%.$baseDomain}
+    echo "SanitizedName: ''${sanitizedName}"
 
     if [ $mode == "present" ]; then
       ${pkgs.curlFull}/bin/curl -v -X POST https://dynv6.com/api/v2/zones/5211604/records \

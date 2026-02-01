@@ -9,6 +9,7 @@
     mode=$1
     name=$2
     data=$3
+    baseDomain="home.a4blue.me"
 
     token=$(cat ${config.sops.secrets.dynv6TokenACME.path})
 
@@ -16,22 +17,23 @@
     echo "Mode: ''${mode}\n"
     echo "Name: ''${name}\n"
     echo "Data: ''${data}\n"
+    sanitizedName=''${name%.$baseDomain}
 
     if [ $mode == "present" ]; then
-      curl -v -X POST https://dynv6.com/api/v2/zones/5211604/records \
+      ${pkgs.curlFull} -v -X POST https://dynv6.com/api/v2/zones/5211604/records \
       -H "Authorization: Bearer ''${token}" \
       -H "Accept: application/json" \
       -H "Content-Type: application/json" \
-      -d "{\"name\":\"''${name}\",\"data\":\"''${data}\",\"type\":\"TXT\"}"
+      -d "{\"name\":\"''${sanitizedName}\",\"data\":\"''${data}\",\"type\":\"TXT\"}"
     fi
 
     if [ $mode == "cleanup" ]; then
-      ID="$(curl -s -X GET https://dynv6.com/api/v2/zones/5211604/records \
+      ID="$(${pkgs.curlFull} -s -X GET https://dynv6.com/api/v2/zones/5211604/records \
       -H "Authorization: Bearer ''${token}" \
-      -H "Accept: application/json" | jq --args "map(select(.type == \"TXT\" and .data == \"''${data}\" and .name == \"''${name}\")).[0].id"
+      -H "Accept: application/json" | ${pkgs.jq} --args "map(select(.type == \"TXT\" and .data == \"''${data}\" and .name == \"''${sanitizedName}\")).[0].id"
       )"
       echo "Deleting entry with ID ''${ID}"
-      curl -v -X DELETE https://dynv6.com/api/v2/zones/5211604/records/''${ID} \
+      ${pkgs.curlFull} -v -X DELETE https://dynv6.com/api/v2/zones/5211604/records/''${ID} \
       -H "Authorization: Bearer ''${token}"
     fi
   '';

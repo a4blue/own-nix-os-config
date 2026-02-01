@@ -202,6 +202,16 @@ in {
     ];
   };
 
+  services.postgresql = {
+    ensureDatabases = [config.services.authelia.instances.${serviceDomain}.user];
+    ensureUsers = [
+      {
+        name = config.services.authelia.instances.${serviceDomain}.user;
+        ensureDBOwnership = true;
+      }
+    ];
+  };
+
   services.nginx.virtualHosts."${serviceDomain}" = {
     forceSSL = true;
     useACMEHost = "home.a4blue.me";

@@ -10,9 +10,9 @@ in {
     keycloak = {
       enable = true;
       settings = {
-        hostname = serviceDomain;
+        hostname = "https://${serviceDomain}";
         http-port = 38080;
-        proxy-headers = "forwarded";
+        proxy-headers = "xforwarded";
         http-enabled = true;
         http-host = "127.0.0.1";
       };

@@ -124,7 +124,7 @@ in {
 
     nginx.virtualHosts."${config.services.nextcloud.hostName}" = {
       forceSSL = true;
-      enableACME = true;
+      useACMEHost = "home.a4blue.me";
     };
     fail2ban = {
       jails = {

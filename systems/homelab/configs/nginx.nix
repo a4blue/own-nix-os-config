@@ -9,7 +9,7 @@
       # Public DynDNS
       "homelab.home.a4blue.me" = {
         forceSSL = true;
-        enableACME = true;
+        useACMEHost = "home.a4blue.me";
         locations."/" = {
           root = "/var/www";
         };

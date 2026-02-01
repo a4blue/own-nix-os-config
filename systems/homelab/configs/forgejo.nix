@@ -21,7 +21,7 @@ in {
   };
   services.nginx.virtualHosts."${serviceDomain}" = {
     forceSSL = true;
-    enableACME = true;
+    useACMEHost = "home.a4blue.me";
     locations."/" = {
       recommendedProxySettings = true;
       proxyPass = "http://127.0.0.1:${builtins.toString servicePort}/";

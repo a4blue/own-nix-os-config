@@ -29,35 +29,38 @@
     impermanenceExtra.defaultPath = "/nix/persistent";
     desktopAudio.enable = true;
   };
-  environment.persistence."${config.modules.impermanenceExtra.defaultPath}" = {
-    hideMounts = true;
+  environment = {
+    persistence."${config.modules.impermanenceExtra.defaultPath}" = {
+      hideMounts = true;
 
-    directories = [
-      "/var/lib"
-      # Persist non-declarative Network Connections
-      "/etc/NetworkManager/system-connections"
+      directories = [
+        "/var/lib"
+        # Persist non-declarative Network Connections
+        "/etc/NetworkManager/system-connections"
+      ];
+    };
+    systemPackages = with pkgs; [
+      gparted
+      uutils-coreutils
+      rsync
+      ncdu
+      qdirstat
+      pynitrokey
+      virtualgl
+      libva-utils
+      ffmpeg
+      lact
+      podman-compose
+      vulkan-tools
+      nvtopPackages.amd
+      gnupg
+      libguestfs
     ];
+    plasma6.excludePackages = [pkgs.kdePackages.kwin-x11];
   };
   sops = {
     age.sshKeyPaths = ["/nix/secret/initrd/sops_key"];
   };
-  environment.systemPackages = with pkgs; [
-    gparted
-    uutils-coreutils
-    rsync
-    ncdu
-    qdirstat
-    pynitrokey
-    virtualgl
-    libva-utils
-    ffmpeg
-    lact
-    podman-compose
-    vulkan-tools
-    nvtopPackages.amd
-    gnupg
-    libguestfs
-  ];
   fonts = {
     packages = [pkgs.nerd-fonts.fira-code pkgs.nerd-fonts.terminess-ttf];
     enableDefaultPackages = true;
@@ -133,7 +136,6 @@
     };
   };
 
-  environment.plasma6.excludePackages = [pkgs.kdePackages.kwin-x11];
   services = {
     udev.packages = [pkgs.nitrokey-udev-rules pkgs.nrf-udev];
     flatpak.enable = true;

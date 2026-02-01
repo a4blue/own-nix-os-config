@@ -1,4 +1,8 @@
-{config, ...}: let
+{
+  config,
+  pkgs,
+  ...
+}: let
   serviceDomain = "auth.home.a4blue.me";
   servicePort = 9933;
 in {
@@ -166,6 +170,11 @@ in {
           {
             client_id = "example_id";
             claims_policy = "default";
+            client_secret.source = pkgs.writeText "example.secret" "example_client_secret";
+            client_name = "Example Client to Start Authelia";
+            public = false;
+            authorization_policy = "one_factor";
+            redirect_uris = [];
           }
         ];
       };

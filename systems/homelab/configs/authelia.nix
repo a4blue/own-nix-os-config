@@ -56,7 +56,7 @@ in {
       X_AUTHELIA_CONFIG_FILTERS = "template";
     };
     settings = {
-      server.address = "tcp://127.0.0.1:${builtins.toString servicePort}";
+      server.address = "unix:///var/lib/authelia.sock";
 
       # First Factor / User Storage
       authentication_backend = {
@@ -211,7 +211,7 @@ in {
     '';
     locations."/" = {
       recommendedProxySettings = true;
-      proxyPass = "http://127.0.0.1:${builtins.toString servicePort}";
+      proxyPass = "unix:///var/lib/authelia.sock";
       extraConfig = ''
         add_header Strict-Transport-Security "max-age=31536000; includeSubDomains" always;
         add_header X-Content-Type-Options nosniff;
@@ -242,7 +242,7 @@ in {
     };
     locations."/api/verify" = {
       recommendedProxySettings = true;
-      proxyPass = "http://127.0.0.1:${builtins.toString servicePort}";
+      proxyPass = "unix:///var/lib/authelia.sock";
       extraConfig = ''
         add_header Strict-Transport-Security "max-age=31536000; includeSubDomains" always;
         add_header X-Content-Type-Options nosniff;

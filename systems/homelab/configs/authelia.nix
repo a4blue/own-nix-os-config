@@ -4,7 +4,7 @@
   ...
 }: let
   serviceDomain = "auth.home.a4blue.me";
-  servicePort = 9933;
+  servicePort = 9091;
 in {
   sops.secrets = {
     "authelia/jwtSecret" = {
@@ -56,7 +56,7 @@ in {
       X_AUTHELIA_CONFIG_FILTERS = "template";
     };
     settings = {
-      server.address = "unix:///var/lib/authelia.sock";
+      server.address = "tcp://127.0.0.1:${builtins.toString servicePort}/";
 
       # First Factor / User Storage
       authentication_backend = {
@@ -211,7 +211,7 @@ in {
     '';
     locations."/" = {
       recommendedProxySettings = true;
-      proxyPass = "unix:///var/lib/authelia.sock";
+      proxyPass = "http://127.0.0.1:${builtins.toString servicePort}";
       extraConfig = ''
         add_header Strict-Transport-Security "max-age=31536000; includeSubDomains" always;
         add_header X-Content-Type-Options nosniff;
@@ -242,7 +242,7 @@ in {
     };
     locations."/api/verify" = {
       recommendedProxySettings = true;
-      proxyPass = "unix:///var/lib/authelia.sock";
+      proxyPass = "http://127.0.0.1:${builtins.toString servicePort}";
       extraConfig = ''
         add_header Strict-Transport-Security "max-age=31536000; includeSubDomains" always;
         add_header X-Content-Type-Options nosniff;

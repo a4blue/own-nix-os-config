@@ -170,7 +170,7 @@ in {
           {
             client_id = "example_id";
             claims_policy = "default";
-            client_secret = "{{ secret \"${pkgs.writeText "example.secret" "example_client_secret"}\" }}";
+            client_secret = "{{secret \"${pkgs.writeText "example.secret" "example_client_secret"}\"}}";
             client_name = "Example Client to Start Authelia";
             public = false;
             authorization_policy = "one_factor";
@@ -213,8 +213,6 @@ in {
       recommendedProxySettings = true;
       proxyPass = "http://127.0.0.1:${builtins.toString servicePort}";
       extraConfig = ''
-        proxy_set_header X-Forwarded-Protocol $scheme;
-        proxy_buffering off;
         add_header Strict-Transport-Security "max-age=31536000; includeSubDomains" always;
         add_header X-Content-Type-Options nosniff;
         add_header X-Frame-Options "SAMEORIGIN";
@@ -222,14 +220,30 @@ in {
         add_header X-Robots-Tag "noindex, nofollow, nosnippet, noarchive";
         add_header X-Download-Options noopen;
         add_header X-Permitted-Cross-Domain-Policies none;
+
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_set_header X-Forwarded-Host $http_host;
+        proxy_set_header X-Forwarded-Uri $request_uri;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection "upgrade";
+        proxy_cache_bypass $http_upgrade;
+
+        proxy_intercept_errors on;
+        if ($request_method !~ ^(POST)$){
+            error_page 401 = /error/401;
+            error_page 403 = /error/403;
+            error_page 404 = /error/404;
+        }
       '';
     };
     locations."/api/verify" = {
       recommendedProxySettings = true;
       proxyPass = "http://127.0.0.1:${builtins.toString servicePort}";
       extraConfig = ''
-        proxy_set_header X-Forwarded-Protocol $scheme;
-        proxy_buffering off;
         add_header Strict-Transport-Security "max-age=31536000; includeSubDomains" always;
         add_header X-Content-Type-Options nosniff;
         add_header X-Frame-Options "SAMEORIGIN";
@@ -237,6 +251,8 @@ in {
         add_header X-Robots-Tag "noindex, nofollow, nosnippet, noarchive";
         add_header X-Download-Options noopen;
         add_header X-Permitted-Cross-Domain-Policies none;
+
+        proxy_set_header Host $http_x_forwarded_host;
       '';
     };
   };

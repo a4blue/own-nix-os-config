@@ -50,14 +50,15 @@ in {
     };
   };
 
-  environment.persistence."${config.modules.impermanenceExtra.defaultPath}" = {
-    directories = [
-      {
-        directory = "/var/lib/private/lldap";
-        mode = "0740";
-        user = "lldap";
-        group = "lldap";
-      }
-    ];
-  };
+  # TODO make it persistent
+  #environment.persistence."${config.modules.impermanenceExtra.defaultPath}" = {
+  #  directories = [
+  #    {
+  #      directory = "/var/lib/private/lldap";
+  #      mode = "0740";
+  #      user = "lldap";
+  #      group = "lldap";
+  #    }
+  #  ];
+  #};
 }

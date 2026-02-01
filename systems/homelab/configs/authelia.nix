@@ -57,7 +57,7 @@ in {
         oidcHmacSecretFile = config.sops.secrets."authelia/oidcHmacSecret".path;
       };
       environmentVariables = {
-        AUTHELIA_AUTHENTICATION_BACKEND_LDAP_PASSWORD_FILE = config.sops.secrets."authelia/lldap/jwtSecret".path;
+        AUTHELIA_AUTHENTICATION_BACKEND_LDAP_PASSWORD_FILE = config.sops.secrets."authelia/lldap/userPassword".path;
         AUTHELIA_NOTIFIER_SMTP_PASSWORD_FILE = config.sops.secrets."authelia/smtpPassword".path;
         X_AUTHELIA_CONFIG_FILTERS = "template";
       };
@@ -75,8 +75,7 @@ in {
             timeout = "5s";
             start_tls = "false";
             base_dn = "${config.services.lldap.settings.ldap_base_dn}";
-            user = "cn=${config.services.lldap.settings.ldap_user_dn},ou=people,${config.services.lldap.settings.ldap_base_dn}";
-            password = "{{secret \"${config.sops.secrets."authelia/lldap/userPassword".path}\"}}";
+            user = "uid=${config.services.lldap.settings.ldap_user_dn},ou=people,${config.services.lldap.settings.ldap_base_dn}";
           };
         };
         # Second Factor

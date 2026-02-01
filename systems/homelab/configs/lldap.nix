@@ -24,7 +24,9 @@ in {
       ldap_user_pass_file = config.sops.secrets."lldap/userPassword".path;
       force_ldap_user_pass_reset = "always";
       jwt_secret_file = config.sops.secrets."lldap/jwtSecret".path;
-      database_url = "sqlite:///var/lib/lldap/users.db?mode=rwc";
+    };
+    database = {
+      type = "postgresql";
     };
   };
   users.users.lldap = {
@@ -49,17 +51,5 @@ in {
         deny all;
       '';
     };
-  };
-
-  # TODO make it persistent
-  environment.persistence."${config.modules.impermanenceExtra.defaultPath}" = {
-    directories = [
-      {
-        directory = "/var/lib/lldap";
-        mode = "0740";
-        user = "lldap";
-        group = "lldap";
-      }
-    ];
   };
 }

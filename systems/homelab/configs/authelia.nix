@@ -3,31 +3,31 @@
   servicePort = 9933;
 in {
   sops.secrets = {
-    authelia_jwtSecret = {
+    "authelia/jwtSecret" = {
       owner = "authelia-auth.home.a4blue.me";
       group = "authelia-auth.home.a4blue.me";
     };
-    authelia_storageEncryptionKey = {
+    "authelia/storageEncryptionKey" = {
       owner = "authelia-auth.home.a4blue.me";
       group = "authelia-auth.home.a4blue.me";
     };
-    authelia_sessionSecret = {
+    "authelia/sessionSecret" = {
       owner = "authelia-auth.home.a4blue.me";
       group = "authelia-auth.home.a4blue.me";
     };
-    authelia_oidcHmacSecret = {
+    "authelia/oidcHmacSecret" = {
       owner = "authelia-auth.home.a4blue.me";
       group = "authelia-auth.home.a4blue.me";
     };
-    authelia_authBackendLDAPPassword = {
+    "authelia/authBackendLDAPPassword" = {
       owner = "authelia-auth.home.a4blue.me";
       group = "authelia-auth.home.a4blue.me";
     };
-    authelia_smtpPassword = {
+    "authelia/smtpPassword" = {
       owner = "authelia-auth.home.a4blue.me";
       group = "authelia-auth.home.a4blue.me";
     };
-    authelia_oidc_private_key = {
+    "authelia/oidcPrivateKey" = {
       owner = "authelia-auth.home.a4blue.me";
       group = "authelia-auth.home.a4blue.me";
     };
@@ -35,15 +35,15 @@ in {
   services.authelia.instances.${serviceDomain} = {
     enable = true;
     secrets = {
-      jwtSecretFile = config.sops.secrets.authelia_jwtSecret.path;
-      storageEncryptionKeyFile = config.sops.secrets.authelia_storageEncryptionKey.path;
-      sessionSecretFile = config.sops.secrets.authelia_sessionSecret.path;
-      oidcIssuerPrivateKeyFile = config.sops.secrets.authelia_oidc_private_key.path;
-      oidcHmacSecretFile = config.sops.secrets.authelia_oidcHmacSecret.path;
+      jwtSecretFile = config.sops.secrets."authelia/jwtSecret".path;
+      storageEncryptionKeyFile = config.sops.secrets."authelia/storageEncryptionKey".path;
+      sessionSecretFile = config.sops.secrets."authelia/sessionSecret".path;
+      oidcIssuerPrivateKeyFile = config.sops.secrets."authelia/oidcPrivateKey".path;
+      oidcHmacSecretFile = config.sops.secrets."authelia/oidcHmacSecret".path;
     };
     environmentVariables = {
-      AUTHELIA_AUTHENTICATION_BACKEND_LDAP_PASSWORD_FILE = config.sops.secrets.authelia_authBackendLDAPPassword.path;
-      AUTHELIA_NOTIFIER_SMTP_PASSWORD_FILE = config.sops.secrets.authelia_smtpPassword.path;
+      AUTHELIA_AUTHENTICATION_BACKEND_LDAP_PASSWORD_FILE = config.sops.secrets."lldap/jwtSecret".path;
+      AUTHELIA_NOTIFIER_SMTP_PASSWORD_FILE = config.sops.secrets."authelia/smtpPassword".path;
       X_AUTHELIA_CONFIG_FILTERS = "template";
     };
     settings = {

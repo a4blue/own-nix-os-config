@@ -162,6 +162,12 @@ in {
             "groups"
           ];
         };
+        clients = [
+          {
+            client_id = "example_id";
+            claims_policy = "default";
+          }
+        ];
       };
     };
   };

@@ -76,7 +76,7 @@ in {
             start_tls = "false";
             base_dn = "${config.services.lldap.settings.ldap_base_dn}";
             user = "cn=${config.services.lldap.settings.ldap_user_dn},ou=people,${config.services.lldap.settings.ldap_base_dn}";
-            password = "{{secret ${config.sops.secrets."authelia/lldap/userPassword".path}}}";
+            password = "{{secret \"${config.sops.secrets."authelia/lldap/userPassword".path}\"}}";
           };
         };
         # Second Factor

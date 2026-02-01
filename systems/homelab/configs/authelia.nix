@@ -31,6 +31,11 @@ in {
       owner = "authelia-auth.home.a4blue.me";
       group = "authelia-auth.home.a4blue.me";
     };
+    "authelia/lldap/jwtSecret" = {
+      owner = "authelia-auth.home.a4blue.me";
+      group = "authelia-auth.home.a4blue.me";
+      key = "lldap/jwtSecret";
+    };
   };
   services.authelia.instances.${serviceDomain} = {
     enable = true;
@@ -42,7 +47,7 @@ in {
       oidcHmacSecretFile = config.sops.secrets."authelia/oidcHmacSecret".path;
     };
     environmentVariables = {
-      AUTHELIA_AUTHENTICATION_BACKEND_LDAP_PASSWORD_FILE = config.sops.secrets."lldap/jwtSecret".path;
+      AUTHELIA_AUTHENTICATION_BACKEND_LDAP_PASSWORD_FILE = config.sops.secrets."authelia/lldap/jwtSecret".path;
       AUTHELIA_NOTIFIER_SMTP_PASSWORD_FILE = config.sops.secrets."authelia/smtpPassword".path;
       X_AUTHELIA_CONFIG_FILTERS = "template";
     };
@@ -145,6 +150,17 @@ in {
           sender = "a4blue Homeserver <homelab@a4blue.me>";
           subject = "[Authelia] {title}";
           startup_check_address = "test@authelia.com";
+        };
+      };
+      identity_providers.oidc = {
+        claims_policies = {
+          # Default needed for Startup
+          default.id_token = [
+            "email"
+            "preferred_username"
+            "name"
+            "groups"
+          ];
         };
       };
     };

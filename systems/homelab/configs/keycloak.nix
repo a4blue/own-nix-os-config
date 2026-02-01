@@ -17,8 +17,8 @@ in {
         http-host = "127.0.0.1";
       };
       plugins = [
-        pkgs.junixsocket-common
-        pkgs.junixsocket-native-common
+        pkgs.keycloak.plugins.junixsocket-common
+        pkgs.keycloak.plugins.junixsocket-native-common
       ];
       database = {
         type = "postgresql";

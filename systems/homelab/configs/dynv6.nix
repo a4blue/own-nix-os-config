@@ -6,14 +6,16 @@
   environment.systemPackages = with pkgs; [
     curlFull
   ];
-  sops.secrets.dynv6_token = {};
+  sops.secrets.dynv6TokenIPUpdate = {
+    key = "dynv6Token";
+  };
 
   systemd.services."dynv6-ip-update" = {
     enable = true;
     script = ''
       #!/bin/sh
 
-      token=$(cat ${config.sops.secrets.dynv6_token.path})
+      token=$(cat ${config.sops.secrets.dynv6TokenIPUpdate.path})
       rootZone=home.a4blue.me
 
       curl -k "https://ipv6.dynv6.com/api/update?token=''${token}&zone=''${rootZone}&ipv6prefix=auto"

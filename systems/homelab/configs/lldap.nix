@@ -31,13 +31,13 @@ in {
       type = "postgresql";
     };
     environment = {
-      LLDAP_KEY_FILE = "/var/lib/lldap/server_key";
+      LLDAP_KEY_FILE = "/var/lib/lldap-data/server_key";
     };
   };
   environment.persistence."${config.modules.impermanenceExtra.defaultPath}" = {
     directories = [
       {
-        directory = "/var/lib/lldap";
+        directory = "/var/lib/lldap-data";
         mode = "740";
         user = "lldap";
         group = "lldap";

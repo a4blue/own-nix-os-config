@@ -42,7 +42,7 @@
     ./configs/attic.nix
     ./configs/ncps.nix
     ./configs/lldap.nix
-    ./configs/authelia.nix
+    #./configs/authelia.nix
     ./configs/keycloak.nix
 
     ../../configs/common

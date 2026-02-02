@@ -25,7 +25,6 @@
       #};
       mnamer2 = prev.callPackage ../packages/mnamer-fork/mnamer2.nix {};
       stash = inputs.stash-update.legacyPackages.${prev.system}.stash;
-      proton-ge-10-29 = prev.callPackage ../packages/proton-ge/10-29.nix {};
     })
   ];
 }

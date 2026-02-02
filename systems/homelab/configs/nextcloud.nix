@@ -54,11 +54,24 @@ in {
     ];
   };
 
-  sops.secrets.nextcloud-admin-pass = {
+  sops.secrets."nextcloud/adminPass" = {
+    owner = "nextcloud";
+    group = "nextcloud";
+  };
+  sops.secrets."nextcloud/whiteboardSecret" = {
+    owner = "nextcloud";
+    group = "nextcloud";
+  };
+  sops.secrets."nextcloud/extraSecrets" = {
     owner = "nextcloud";
     group = "nextcloud";
   };
   services = {
+    nextcloud-whiteboard-server = {
+      enable = true;
+      settings.NEXTCLOUD_URL = "https://nextcloud.home.a4blue.me";
+      secrets = [config.sops.secrets."nextcloud/whiteboardSecret".path];
+    };
     nextcloud = {
       enable = true;
       https = true;
@@ -67,11 +80,14 @@ in {
       caching.redis = true;
       database.createLocally = true;
       package = pkgs.nextcloud31;
-      appstoreEnable = true;
+      appstoreEnable = false;
       phpOptions."opcache.interned_strings_buffer" = "32";
       maxUploadSize = "4G";
       autoUpdateApps.enable = false;
       extraAppsEnable = true;
+      phpExtraExtensions = all: [all.ldap];
+      extraOptions = {};
+      secretFile = config.sops.secrets."nextcloud/extraSecrets".path;
       extraApps =
         {
           inherit
@@ -90,9 +106,13 @@ in {
             maps
             memories
             notes
+            onlyoffice
             phonetrack
             previewgenerator
+            richdocuments
             tasks
+            user_oidc
+            user_saml
             whiteboard
             ;
         }
@@ -112,19 +132,46 @@ in {
 
       config = {
         dbtype = "pgsql";
-        adminpassFile = config.sops.secrets.nextcloud-admin-pass.path;
+        adminpassFile = config.sops.secrets."nextcloud/adminPass".path;
       };
       settings = {
         default_phone_region = "DE";
         maintenance_window_start = 3;
         log_type = "file";
         loglevel = 1;
+        mail_domain = "homelab@a4blue.me";
+        mail_smtpmode = "smtp";
+        mail_smtphost = "smtp.protonmail.ch";
+        mail_smtpauth = true;
+        mail_smtpport = 587;
+        mail_smtpsecure = "ssl";
+        enabledPreviewProviders = [
+          "OC\\Preview\\BMP"
+          "OC\\Preview\\GIF"
+          "OC\\Preview\\JPEG"
+          "OC\\Preview\\Krita"
+          "OC\\Preview\\MarkDown"
+          "OC\\Preview\\MP3"
+          "OC\\Preview\\OpenDocument"
+          "OC\\Preview\\PNG"
+          "OC\\Preview\\TXT"
+          "OC\\Preview\\XBitmap"
+          "OC\\Preview\\HEIC"
+          "OC\\Preview\\WebP"
+        ];
       };
     };
 
     nginx.virtualHosts."${config.services.nextcloud.hostName}" = {
       forceSSL = true;
       useACMEHost = "home.a4blue.me";
+      extraConfig = ''
+        add_header X-Content-Type-Options "nosniff";
+        add_header X-XSS-Protection "1; mode=block";
+        add_header X-Robots-Tag "noindex, nofollow";
+        add_header X-Frame-Options "SAMEORIGIN";
+        add_header Referrer-Policy "no-referrer";
+      '';
     };
     fail2ban = {
       jails = {

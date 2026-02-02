@@ -2,13 +2,15 @@
   serviceDomain = "ldap.home.a4blue.me";
   servicePort = 17170;
 in {
-  sops.secrets."lldap/userPassword" = {
-    owner = "lldap";
-    group = "lldap";
-  };
-  sops.secrets."lldap/jwtSecret" = {
-    owner = "lldap";
-    group = "lldap";
+  sops.secrets = {
+    "lldap/userPassword" = {
+      owner = "lldap";
+      group = "lldap";
+    };
+    "lldap/jwtSecret" = {
+      owner = "lldap";
+      group = "lldap";
+    };
   };
   services.lldap = {
     enable = true;
@@ -28,6 +30,19 @@ in {
     database = {
       type = "postgresql";
     };
+    environment = {
+      LLDAP_KEY_FILE = "/var/lib/lldap/server_key";
+    };
+  };
+  environment.persistence."${config.modules.impermanenceExtra.defaultPath}" = {
+    directories = [
+      {
+        directory = "/var/lib/lldap";
+        mode = "740";
+        user = "lldap";
+        group = "lldap";
+      }
+    ];
   };
   users.users.lldap = {
     name = "lldap";

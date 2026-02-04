@@ -44,6 +44,7 @@
     ./configs/lldap.nix
     ./configs/keycloak.nix
     ./configs/onlyoffice.nix
+    ./configs/openldap.nix
 
     ../../configs/common
   ];

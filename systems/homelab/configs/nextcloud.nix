@@ -139,7 +139,7 @@ in {
         maintenance_window_start = 3;
         log_type = "file";
         loglevel = 1;
-        mail_domain = "homelab@a4blue.me";
+        mail_domain = "a4blue.me";
         mail_smtpmode = "smtp";
         mail_smtphost = "smtp.protonmail.ch";
         mail_smtpauth = true;

@@ -9,6 +9,7 @@
   sops.secrets."onlyoffice/Nonce" = {
     owner = "onlyoffice";
     group = "onlyoffice";
+    mode = "440";
   };
   sops.secrets."onlyoffice/jwtSecretFile" = {
     owner = "onlyoffice";

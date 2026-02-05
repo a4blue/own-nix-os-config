@@ -41,10 +41,10 @@
 
     ./configs/attic.nix
     ./configs/ncps.nix
-    ./configs/lldap.nix
+    #./configs/lldap.nix
     ./configs/keycloak.nix
     ./configs/onlyoffice.nix
-    ./configs/openldap.nix
+    #./configs/openldap.nix
 
     ../../configs/common
   ];

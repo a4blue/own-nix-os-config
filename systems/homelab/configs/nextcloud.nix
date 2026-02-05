@@ -85,8 +85,7 @@ in {
       maxUploadSize = "4G";
       autoUpdateApps.enable = false;
       extraAppsEnable = true;
-      phpExtraExtensions = all: [all.ldap];
-      extraOptions = {};
+      #phpExtraExtensions = all: [all.ldap];
       secretFile = config.sops.secrets."nextcloud/extraSecrets".path;
       extraApps =
         {
@@ -112,7 +111,6 @@ in {
             richdocuments
             tasks
             user_oidc
-            user_saml
             whiteboard
             ;
         }
@@ -145,6 +143,7 @@ in {
         mail_smtpauth = true;
         mail_smtpport = 587;
         mail_smtpsecure = "ssl";
+        mail_smtpdebug = true;
         enabledPreviewProviders = [
           "OC\\Preview\\BMP"
           "OC\\Preview\\GIF"

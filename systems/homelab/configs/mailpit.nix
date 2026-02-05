@@ -2,7 +2,11 @@
   servicePort = 8025;
   serviceDomain = "mailpit.home.a4blue.me";
 in {
-  services.mailpit.instances."homelab" = {};
+  services.mailpit.instances."homelab" = {
+    database = "/var/lib/mailpit-homelab/mailpit.db";
+    # TODO change later if it works
+    smtp-relay-config = "/nix/persistent/mailpit-relay.yml";
+  };
   services.nginx.virtualHosts."${serviceDomain}" = {
     forceSSL = true;
     useACMEHost = "home.a4blue.me";
@@ -22,9 +26,24 @@ in {
       '';
     };
   };
-  #users.users.lldap = {
-  #  name = "lldap";
-  #  group = "lldap";
-  #  isSystemUser = true;
-  #};
+  systemd.services.mailpit-homelab.serviceConfig = {
+    User = "mailpit-homelab";
+    Group = "mailpit-homelab";
+  };
+  users.users.mailpit-homelab = {
+    name = "mailpit-homelab";
+    group = "mailpit-homelab";
+    isSystemUser = true;
+  };
+  users.groups.mailpit-homelab = {};
+  environment.persistence."${config.modules.impermanenceExtra.defaultPath}" = {
+    directories = [
+      {
+        directory = "/var/lib/mailpit-homelab";
+        mode = "0740";
+        user = "mailpit-homelab";
+        group = "mailpit-homelab";
+      }
+    ];
+  };
 }

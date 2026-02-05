@@ -86,7 +86,7 @@ in {
       autoUpdateApps.enable = false;
       extraAppsEnable = true;
       #phpExtraExtensions = all: [all.ldap];
-      secretFile = config.sops.secrets."nextcloud/extraSecrets".path;
+      #secretFile = config.sops.secrets."nextcloud/extraSecrets".path;
       extraApps =
         {
           inherit
@@ -137,12 +137,13 @@ in {
         maintenance_window_start = 3;
         log_type = "file";
         loglevel = 1;
-        mail_domain = "a4blue.me";
+        #mail_domain = "a4blue.me";
         mail_smtpmode = "smtp";
-        mail_smtphost = "smtp.protonmail.ch";
-        mail_smtpauth = true;
-        mail_smtpport = 587;
-        mail_smtpsecure = "ssl";
+        mail_smtphost = "127.0.0.1";
+        mail_smtpauth = false;
+        mail_smtpport = 1025;
+        mail_from_address = "homelab@a4blue.me";
+        mail_smtpsecure = "";
         mail_smtpdebug = true;
         enabledPreviewProviders = [
           "OC\\Preview\\BMP"

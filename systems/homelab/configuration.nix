@@ -43,7 +43,7 @@
     ./configs/ncps.nix
     ./configs/keycloak.nix
     ./configs/onlyoffice.nix
-    ./configs/mailpit.nix
+    ./configs/dashy.nix
 
     ../../configs/common
   ];

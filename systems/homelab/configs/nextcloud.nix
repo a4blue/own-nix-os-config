@@ -86,7 +86,7 @@ in {
       autoUpdateApps.enable = false;
       extraAppsEnable = true;
       #phpExtraExtensions = all: [all.ldap];
-      #secretFile = config.sops.secrets."nextcloud/extraSecrets".path;
+      secretFile = config.sops.secrets."nextcloud/extraSecrets".path;
       extraApps =
         {
           inherit
@@ -137,14 +137,25 @@ in {
         maintenance_window_start = 3;
         log_type = "file";
         loglevel = 1;
-        #mail_domain = "a4blue.me";
         mail_smtpmode = "smtp";
-        mail_smtphost = "127.0.0.1";
-        mail_smtpauth = false;
-        mail_smtpport = 1025;
-        mail_from_address = "homelab@a4blue.me";
+        mail_smtphost = "smtp.protonmail.ch";
+        mail_smtpauth = true;
+        mail_smtpauthtype = "LOGIN";
+        mail_smtpport = 25;
         mail_smtpsecure = "";
-        mail_smtpdebug = true;
+        mail_smtpdebug = false;
+        allow_local_remote_servers = true;
+        default_timezone = "Europe/Berlin";
+        knowledgebaseenabled = true;
+        allow_user_to_change_display_name = false;
+        hide_login_form = false;
+        config_is_read_only = true;
+        preview_ffmpeg_path = "${pkgs.ffmpeg}/bin/ffmpeg";
+        preview_ffprobe_path = "${pkgs.ffmpeg}/bin/ffprobe";
+        "sharing.enable_mail_link_password_expiration" = true;
+        "upgrade.disable-web" = true;
+        #'logo_url' => 'https://example.org',
+        updatechecker = false;
         enabledPreviewProviders = [
           "OC\\Preview\\BMP"
           "OC\\Preview\\GIF"
@@ -207,7 +218,8 @@ in {
   systemd.services.nextcloud-cron.path = [
     pkgs.exiftool
     pkgs.perl
-    pkgs.ffmpeg_7
-    pkgs.nodejs_22
+    pkgs.ffmpeg_8
+    pkgs.nodejs_24
+    #pkgs.libtensorflow
   ];
 }

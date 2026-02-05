@@ -16,8 +16,8 @@ in {
   environment = {
     systemPackages = with pkgs; [
       exiftool
-      nodejs_22
-      ffmpeg_7
+      nodejs_24
+      ffmpeg_8
       perl
     ];
     etc = {
@@ -144,12 +144,12 @@ in {
         mail_smtpport = 25;
         mail_smtpsecure = "";
         mail_smtpdebug = false;
+        mail_domain = "a4blue.me";
         allow_local_remote_servers = true;
         default_timezone = "Europe/Berlin";
         knowledgebaseenabled = true;
         allow_user_to_change_display_name = false;
         hide_login_form = false;
-        config_is_read_only = true;
         preview_ffmpeg_path = "${pkgs.ffmpeg}/bin/ffmpeg";
         preview_ffprobe_path = "${pkgs.ffmpeg}/bin/ffprobe";
         "sharing.enable_mail_link_password_expiration" = true;

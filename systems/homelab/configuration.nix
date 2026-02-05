@@ -44,6 +44,7 @@
     ./configs/keycloak.nix
     ./configs/onlyoffice.nix
     ./configs/dashy.nix
+    ./configs/ombi.nix
 
     ../../configs/common
   ];
@@ -68,7 +69,6 @@
   networking = {
     hostName = "homelab";
     networkmanager.enable = true;
-    #nameservers = ["127.0.0.1" "192.168.178.1"];
   };
 
   zramSwap.enable = true;

@@ -138,7 +138,7 @@ in {
     forceSSL = true;
     useACMEHost = "home.a4blue.me";
     extraConfig = ''
-      client_max_body_size 20M;
+      client_max_body_size 512M;
       add_header X-Content-Type-Options "nosniff";
     '';
     locations."/" = {

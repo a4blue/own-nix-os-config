@@ -172,6 +172,20 @@ in {
         add_header Referrer-Policy "no-referrer";
       '';
     };
+    nginx.virtualHosts."whiteboard-nextcloud.home.a4blue.me" = {
+      forceSSL = true;
+      useACMEHost = "home.a4blue.me";
+      locations."/" = {
+        recommendedProxySettings = true;
+        proxyPass = "http://127.0.0.1:3002";
+        extraConfig = ''
+          proxy_http_version 1.1;
+          proxy_set_header Upgrade $http_upgrade;
+          proxy_set_header Connection "upgrade";
+          proxy_set_header X-Forwarded-Protocol $scheme;
+        '';
+      };
+    };
     fail2ban = {
       jails = {
         nextcloud.settings = {

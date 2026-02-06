@@ -132,6 +132,25 @@ in {
       enableIPv6 = true;
       knownProxies = ["127.0.0.1" "::1"];
     };
+    branding = {
+      customCss = ''
+        a.raised.emby-button {
+          padding: 0.9em 1em;
+          color: inherit !important;
+        }
+
+        .disclaimerContainer {
+          display: block;
+        }
+      '';
+      loginDisclaimer = ''
+        <form action="https://jellyfin.home.a4blue.me/sso/OID/start/auth.home.a4blue.me">
+          <button class="raised block emby-button button-submit">
+            Sign in with SSO
+          </button>
+        </form>
+      '';
+    };
   };
 
   services.nginx.virtualHosts."${serviceDomain}" = {

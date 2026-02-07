@@ -10,7 +10,7 @@
           enableGuestAccess = false;
           enableKeycloak = true;
           keycloak = {
-            serverUrl = "auth.home.a4blue.me";
+            serverUrl = "https://auth.home.a4blue.me";
             realm = "main";
             clientId = "start.home.a4blue.me";
           };

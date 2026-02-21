@@ -5,8 +5,12 @@
 }: {
   services.ncps = {
     enable = true;
+    prometheus.enable = true;
     cache.hostName = "ncps.homelab.internal";
     server.addr = "192.168.178.65:8501";
+    cache.maxSize = "200G";
+    cache.lru.schedule = "0 2 * * *";
+    cache.lru.scheduleTimeZone = "Europe/Berlin";
     cache.upstream = {
       urls = [
         "https://cache.nixos.org"

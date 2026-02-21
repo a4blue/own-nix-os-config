@@ -45,6 +45,7 @@
     ./configs/onlyoffice.nix
     ./configs/dashy.nix
     ./configs/ombi.nix
+    ./configs/bazarr.nix
 
     ../../configs/common
   ];

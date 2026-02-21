@@ -8,12 +8,20 @@
         enableFontAwesome = true;
         auth = {
           enableGuestAccess = false;
-          enableKeycloak = true;
-          keycloak = {
-            serverUrl = "https://auth.home.a4blue.me";
-            realm = "main";
+          enableOidc = true;
+          oidc = {
             clientId = "start.home.a4blue.me";
+            endpoint = "https://auth.home.a4blue.me/realms/main/.well-known/openid-configuration";
+            scope = "basic";
+            adminGroup = "admin";
           };
+
+          #enableKeycloak = true;
+          #keycloak = {
+          #  serverUrl = "https://auth.home.a4blue.me";
+          #  realm = "main";
+          #  clientId = "start.home.a4blue.me";
+          #};
         };
         #disableConfigurationForNonAdmin = true;
       };

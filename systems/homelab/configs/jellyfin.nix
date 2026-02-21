@@ -61,6 +61,7 @@ in {
   services.declarative-jellyfin = {
     enable = true;
     openFirewall = false;
+    backupCount = 2;
     system = {
       serverName = "a4blue's нетflix";
       isStartupWizardCompleted = true;
@@ -89,6 +90,48 @@ in {
           content = {
             Name = "SSO Plugin";
             Url = "https://raw.githubusercontent.com/9p4/jellyfin-plugin-sso/manifest-release/manifest.json";
+          };
+          tag = "RepositoryInfo";
+        }
+        {
+          content = {
+            Name = "Intro Skipper Plugin";
+            Url = "https://intro-skipper.org/manifest.json";
+          };
+          tag = "RepositoryInfo";
+        }
+        {
+          content = {
+            Name = "File Transformation & Plugin Pages Plugins";
+            Url = "https://www.iamparadox.dev/jellyfin/plugins/manifest.json";
+          };
+          tag = "RepositoryInfo";
+        }
+        {
+          content = {
+            Name = "Editors Choice Plugin";
+            Url = "https://github.com/lachlandcp/jellyfin-editors-choice-plugin/raw/main/manifest.json";
+          };
+          tag = "RepositoryInfo";
+        }
+        {
+          content = {
+            Name = "Local Recommendation Plugin";
+            Url = "https://raw.githubusercontent.com/rdpharr/jellyfin-plugin-localrecs/main/manifest.json";
+          };
+          tag = "RepositoryInfo";
+        }
+        {
+          content = {
+            Name = "Jellyfin SmartLists Plugin";
+            Url = "https://raw.githubusercontent.com/jyourstone/jellyfin-plugin-manifest/main/manifest.json";
+          };
+          tag = "RepositoryInfo";
+        }
+        {
+          content = {
+            Name = "Bazarr Plugin";
+            Url = "https://raw.githubusercontent.com/enoch85/bazarr-jellyfin/main/manifest.json";
           };
           tag = "RepositoryInfo";
         }

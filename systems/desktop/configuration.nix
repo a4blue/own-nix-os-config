@@ -142,8 +142,9 @@
     desktopManager.plasma6.enable = true;
     displayManager = {
       defaultSession = "plasma";
-      sddm.wayland.enable = true;
-      sddm.enable = true;
+      plasma-login-manager.enable = true;
+      #sddm.wayland.enable = true;
+      #sddm.enable = true;
     };
     xserver.enable = false;
     printing.enable = true;

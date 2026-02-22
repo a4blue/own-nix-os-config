@@ -135,7 +135,15 @@ in {
           };
           tag = "RepositoryInfo";
         }
+        {
+          content = {
+            Name = "Jellyfin Language Tags Plugin";
+            Url = "https://raw.githubusercontent.com/TheXaman/jellyfin-plugin-languageTags/main/manifest.json";
+          };
+          tag = "RepositoryInfo";
+        }
       ];
+      enableMetrics = true;
     };
     libraries = {
       Movies = {
@@ -219,6 +227,11 @@ in {
         proxy_set_header Upgrade $http_upgrade;
         proxy_set_header Connection "upgrade";
         proxy_set_header X-Forwarded-Protocol $scheme;
+      '';
+    };
+    locations."/metrics" = {
+      extraConfig = ''
+        deny  all;
       '';
     };
   };

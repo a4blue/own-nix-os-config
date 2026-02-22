@@ -85,7 +85,7 @@
       efi.canTouchEfiVariables = true;
       timeout = 10;
     };
-    kernelPackages = pkgs.linuxPackages_6_18;
+    kernelPackages = pkgs.linuxPackages_6_19;
     supportedFilesystems = ["bcachefs"];
 
     initrd = {
@@ -102,8 +102,7 @@
     desktopManager.plasma6.enable = true;
     displayManager = {
       defaultSession = "plasma";
-      sddm.wayland.enable = true;
-      sddm.enable = true;
+      plasma-login-manager.enable = true;
     };
     xserver.enable = false;
     printing.enable = true;

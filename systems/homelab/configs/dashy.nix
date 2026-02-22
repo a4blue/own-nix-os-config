@@ -11,8 +11,8 @@
           enableOidc = true;
           oidc = {
             clientId = "start.home.a4blue.me";
-            endpoint = "https://auth.home.a4blue.me/realms/main/.well-known/openid-configuration";
-            scope = "basic";
+            endpoint = "https://auth.home.a4blue.me/realms/main";
+            scope = "openid email profile";
             adminGroup = "admin";
           };
 

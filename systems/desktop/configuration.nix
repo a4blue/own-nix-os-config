@@ -127,7 +127,7 @@
       "video=DP-3:1920x1080@60"
       "video=HDMI-A-1:1920x1080@60"
     ];
-    kernelPackages = pkgs.linuxPackages_6_18;
+    kernelPackages = pkgs.linuxPackages_6_19;
     supportedFilesystems = ["bcachefs"];
 
     initrd = {
@@ -143,8 +143,6 @@
     displayManager = {
       defaultSession = "plasma";
       plasma-login-manager.enable = true;
-      #sddm.wayland.enable = true;
-      #sddm.enable = true;
     };
     xserver.enable = false;
     printing.enable = true;

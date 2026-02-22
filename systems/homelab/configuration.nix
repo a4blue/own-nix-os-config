@@ -36,7 +36,7 @@
     ./configs/samba.nix
     ./configs/blocky.nix
     ./configs/fail2ban.nix
-    ./configs/dynv6.nix
+    ./configs/dynamic-dns.nix
     ./configs/acme.nix
 
     ./configs/attic.nix
@@ -92,7 +92,7 @@
     extraModprobeConfig = ''
       options usbcore autosuspend=-1
     '';
-    kernelPackages = pkgs.linuxPackages_6_18;
+    kernelPackages = pkgs.linuxPackages_6_19;
     supportedFilesystems = ["bcachefs"];
 
     initrd = {

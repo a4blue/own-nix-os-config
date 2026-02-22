@@ -33,7 +33,7 @@
         -H "X-API-Secret: ''${secret}" \
         -H "Accept: application/json" \
         -H "Content-Type: application/json" \
-        -d "{"force":true,"items":[{"type":"A","address":"''${ipv4}","name":"*.home","ttl":60},{"type":"AAAA","address":"''${ipv6}","name":"*.home","ttl":60}]}"
+        -d "{\"force\":true,\"items\":[{\"type\":\"A\",\"address\":\"''${ipv4}\",\"name\":\"*.home\",\"ttl\":60},{\"type\":\"AAAA\",\"address\":\"''${ipv6}\",\"name\":\"*.home\",\"ttl\":60}]}"
 
       echo $ipv6 > $file
     '';

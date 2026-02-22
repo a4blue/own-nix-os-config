@@ -15,6 +15,8 @@ in {
         proxy-headers = "xforwarded";
         http-enabled = true;
         http-host = "127.0.0.1";
+        http-management-health-enabled = true;
+        http-management-port = 9000;
       };
       plugins = [
         pkgs.keycloak.plugins.junixsocket-common
@@ -45,6 +47,13 @@ in {
       locations."/" = {
         recommendedProxySettings = true;
         proxyPass = "http://127.0.0.1:${builtins.toString servicePort}";
+        extraConfig = ''
+          proxy_set_header Host $host;
+        '';
+      };
+      locations."/health" = {
+        recommendedProxySettings = true;
+        proxyPass = "http://127.0.0.1:9000/health";
         extraConfig = ''
           proxy_set_header Host $host;
         '';

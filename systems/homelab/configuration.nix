@@ -23,7 +23,7 @@
     ../../modules/nixos/hardening.nix
     ../../modules/nixos/home-manager-base.nix
     ./configs/remote-disk-unlocking.nix
-    ./configs/docker.nix
+    ./configs/podman.nix
 
     # web services
     ./configs/nextcloud.nix

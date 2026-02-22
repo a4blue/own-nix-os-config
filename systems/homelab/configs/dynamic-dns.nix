@@ -25,7 +25,10 @@
 
       ipv4="$(${pkgs.curlFull}/bin/curl -s -X GET https://api.ipify.org)"
 
-      ${pkgs.curlFull}/bin/curl -v -X PUT https://spaceship.dev/api/v1/dns/records/a4blue.me \
+      echo "IPv4: ''${ipv4}\n"
+      echo "IPv6: ''${ipv6}\n"
+
+      ${pkgs.curlFull}/bin/curl -vvv -X PUT https://spaceship.dev/api/v1/dns/records/a4blue.me \
         -H "X-API-Key: ''${key}" \
         -H "X-API-Secret: ''${secret}" \
         -H "Accept: application/json" \

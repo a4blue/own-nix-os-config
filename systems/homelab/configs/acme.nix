@@ -37,7 +37,7 @@
         -H "X-API-Secret: ''${secret}" \
         -H "Accept: application/json" \
         -H "Content-Type: application/json" \
-        -d "{"force":true,"items":[{"type":"TXT","value":"''${data}","name":"''${sanitizedName}.home","ttl":60}"
+        -d "{"force":true,"items":[{"type":"TXT","value":"''${data}","name":"''${sanitizedName}.home","ttl":60}]}"
     fi
   '';
   acmeEnvironmentFile = pkgs.writeText "ACMEDynDnsEnvFile" ''

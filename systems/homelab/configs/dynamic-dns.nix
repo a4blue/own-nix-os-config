@@ -16,7 +16,7 @@
       file=/tmp/.dynamic-dns.addr6
       [ -e $file ] && old=`cat $file`
 
-      ipv6=$(ip -6 addr list scope global enp86s0 | ${pkgs.gnugrep}/bin/grep -v " fd" | ${pkgs.gnused}/bin/sed -n 's/.*inet6 \([0-9a-f:]\+\).*/\1/p' | ${pkgs.coreutils}/bin/head -n 1)
+      ipv6=$(${pkgs.iproute2}/bin/ip -6 addr list scope global enp86s0 | ${pkgs.gnugrep}/bin/grep -v " fd" | ${pkgs.gnused}/bin/sed -n 's/.*inet6 \([0-9a-f:]\+\).*/\1/p' | ${pkgs.coreutils}/bin/head -n 1)
 
       if [ "$old" = "$ipv6" ]; then
         echo "IPv6 address unchanged"

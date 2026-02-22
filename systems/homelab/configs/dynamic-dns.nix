@@ -26,10 +26,10 @@
       ipv4="$(${pkgs.curlFull}/bin/curl -s -X GET https://api.ipify.org)"
 
       ${pkgs.curlFull}/bin/curl -v -X PUT https://spaceship.dev/api/v1/dns/records/a4blue.me \
-        -H "X-API-Key: ''${key}"
-        -H "X-API-Secret: ''${secret}"
-        -H "Accept: application/json"
-        -H "Content-Type: application/json"
+        -H "X-API-Key: ''${key}" \
+        -H "X-API-Secret: ''${secret}" \
+        -H "Accept: application/json" \
+        -H "Content-Type: application/json" \
         -d "{"force":true,"items":[{"type":"A","address":"''${ipv4}","name":"*.home","ttl":60},{"type":"AAAA","address":"''${ipv6}","name":"*.home","ttl":60}]}"
 
       echo $ipv6 > $file

@@ -24,19 +24,19 @@
 
     if [ $mode == "present" ]; then
       ${pkgs.curlFull}/bin/curl -v -X PUT https://spaceship.dev/api/v1/dns/records/a4blue.me \
-        -H "X-API-Key: ''${key}"
-        -H "X-API-Secret: ''${secret}"
-        -H "Accept: application/json"
-        -H "Content-Type: application/json"
+        -H "X-API-Key: ''${key}" \
+        -H "X-API-Secret: ''${secret}" \
+        -H "Accept: application/json" \
+        -H "Content-Type: application/json" \
         -d "{"force":true,"items":[{"type":"TXT","value":"''${data}","name":"''${sanitizedName}.home","ttl":60}"
     fi
 
     if [ $mode == "cleanup" ]; then
       ${pkgs.curlFull}/bin/curl -v -X DELETE https://spaceship.dev/api/v1/dns/records/a4blue.me \
-        -H "X-API-Key: ''${key}"
-        -H "X-API-Secret: ''${secret}"
-        -H "Accept: application/json"
-        -H "Content-Type: application/json"
+        -H "X-API-Key: ''${key}" \
+        -H "X-API-Secret: ''${secret}" \
+        -H "Accept: application/json" \
+        -H "Content-Type: application/json" \
         -d "{"force":true,"items":[{"type":"TXT","value":"''${data}","name":"''${sanitizedName}.home","ttl":60}"
     fi
   '';

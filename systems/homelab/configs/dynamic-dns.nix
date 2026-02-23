@@ -2,11 +2,13 @@
   config,
   pkgs,
   ...
-}: {
+}: let
+  serviceName = "dynamic-dns-ip-update";
+in {
   sops.secrets.spaceshipApiSecret = {};
   sops.secrets.spaceshipApiKey = {};
 
-  systemd.services."dynamic-dns-ip-update" = {
+  systemd.services.${serviceName} = {
     enable = true;
     script = ''
       #!/bin/sh
@@ -18,17 +20,17 @@
 
       ipv6=$(${pkgs.iproute2}/bin/ip -6 addr list scope global enp86s0 | ${pkgs.gnugrep}/bin/grep -v " fd" | ${pkgs.gnused}/bin/sed -n 's/.*inet6 \([0-9a-f:]\+\).*/\1/p' | ${pkgs.coreutils}/bin/head -n 1)
 
-      if [ "$old" = "$ipv6" ]; then
-        echo "IPv6 address unchanged"
-        exit
-      fi
+      #if [ "$old" = "$ipv6" ]; then
+      #  echo "IPv6 address unchanged"
+      #  exit
+      #fi
 
       ipv4="$(${pkgs.curlFull}/bin/curl -s -X GET https://api.ipify.org)"
 
       echo "IPv4: ''${ipv4}\n"
       echo "IPv6: ''${ipv6}\n"
 
-      ${pkgs.curlFull}/bin/curl -vvv -X PUT https://spaceship.dev/api/v1/dns/records/a4blue.me \
+      ${pkgs.curlFull}/bin/curl -X PUT https://spaceship.dev/api/v1/dns/records/a4blue.me \
         -H "X-API-Key: ''${key}" \
         -H "X-API-Secret: ''${secret}" \
         -H "Accept: application/json" \
@@ -43,14 +45,14 @@
     };
   };
 
-  systemd.timers."dynv6-ip-update" = {
+  systemd.timers.${serviceName} = {
     enable = true;
     wantedBy = [
       "timers.target"
     ];
     after = [];
     timerConfig = {
-      Unit = "dynv6-ip-update.service";
+      Unit = "${serviceName}.service";
       OnBootSec = "5m";
       OnUnitActiveSec = "5m";
     };

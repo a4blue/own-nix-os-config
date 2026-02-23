@@ -79,7 +79,7 @@ in {
       configureRedis = true;
       caching.redis = true;
       database.createLocally = true;
-      package = pkgs.nextcloud31;
+      package = pkgs.nextcloud32;
       appstoreEnable = false;
       phpOptions."opcache.interned_strings_buffer" = "32";
       maxUploadSize = "4G";
@@ -93,7 +93,7 @@ in {
             (config.services.nextcloud.package.packages.apps)
             # List of apps we want to install and are already packaged in
             # https://github.com/NixOS/nixpkgs/blob/master/pkgs/servers/nextcloud/packages/nextcloud-apps.json
-            app_api
+            #app_api
             bookmarks
             calendar
             contacts
@@ -102,7 +102,7 @@ in {
             end_to_end_encryption
             forms
             mail
-            maps
+            #maps
             memories
             notes
             onlyoffice
@@ -116,11 +116,11 @@ in {
         }
         // {
           inherit
-            (nc4nix.nextcloud-31)
+            (nc4nix.nextcloud-32)
             announcementcenter
-            cfg_share_links
-            duplicatefinder
-            files_downloadactivity
+            #cfg_share_links
+            #duplicatefinder
+            #files_downloadactivity
             quota_warning
             recognize
             secrets

@@ -30,8 +30,6 @@ lib.mkIf config.modules.impermanenceExtra.enabled {
       # qBitTorrent (Considering auto Setup with Linux Distro Seed ?)
       ".local/share/qBittorrent"
       ".config/qBittorrent"
-      # Containers
-      ".local/share/containers"
     ];
     files = [
       # KDE Display Settings

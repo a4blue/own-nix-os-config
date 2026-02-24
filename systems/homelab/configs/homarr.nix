@@ -43,6 +43,16 @@ in {
       recommendedProxySettings = true;
       proxyPass = "http://127.0.0.1:${builtins.toString servicePort}/";
     };
+    locations."/websockets" = {
+      recommendedProxySettings = true;
+      proxyPass = "http://127.0.0.1:${builtins.toString servicePort}";
+      extraConfig = ''
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection "upgrade";
+        proxy_set_header X-Forwarded-Protocol $scheme;
+      '';
+    };
   };
   sops.secrets."homarrEnv" = {
     owner = "nobody";

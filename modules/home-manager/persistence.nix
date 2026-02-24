@@ -9,7 +9,6 @@ lib.mkIf (config.home
     directories = [
       ".ssh"
       "nixos-git"
-      ".local/share/containers"
     ];
   };
 }

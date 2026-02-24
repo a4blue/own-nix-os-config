@@ -1,6 +1,6 @@
 {config, ...}: let
   serviceDomain = "start.home.a4blue.me";
-  servicePort = 7575;
+  servicePort = 7577;
 in {
   virtualisation.oci-containers.containers = {
     homarr = {
@@ -16,6 +16,7 @@ in {
         AUTH_OIDC_CLIENT_NAME = "Keycloak";
         AUTH_OIDC_AUTO_LOGIN = "true";
         AUTH_OIDC_GROUPS_ATTRIBUTE = "roles";
+        AUTH_OIDC_SCOPE_OVERWRITE = "email";
       };
     };
   };
@@ -46,5 +47,6 @@ in {
   sops.secrets."homarrEnv" = {
     owner = "nobody";
     group = "nogroup";
+    mode = "0777";
   };
 }

@@ -88,7 +88,7 @@
                 "applications:steam.desktop"
                 "applications:${(builtins.elemAt pkgs.signal-desktop.out.desktopItems 0).name}"
                 "applications:proton-pass.desktop"
-                "applications:firefox.desktop"
+                "applications:firefox-nightly.desktop"
               ];
             };
           }

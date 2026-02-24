@@ -16,7 +16,7 @@ in {
         AUTH_OIDC_CLIENT_NAME = "Keycloak";
         AUTH_OIDC_AUTO_LOGIN = "true";
         AUTH_OIDC_GROUPS_ATTRIBUTE = "roles";
-        AUTH_OIDC_SCOPE_OVERWRITE = "email";
+        AUTH_OIDC_SCOPE_OVERWRITE = "openid";
       };
     };
   };

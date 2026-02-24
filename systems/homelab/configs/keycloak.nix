@@ -49,15 +49,18 @@ in {
         proxyPass = "http://127.0.0.1:${builtins.toString servicePort}";
         extraConfig = ''
           proxy_set_header Host $host;
+          proxy_buffer_size     128k;
+          proxy_buffers         4 256k;
+          proxy_busy_buffers_size 256k;
         '';
       };
-      locations."/health" = {
-        recommendedProxySettings = true;
-        proxyPass = "http://127.0.0.1:9000/health";
-        extraConfig = ''
-          proxy_set_header Host $host;
-        '';
-      };
+      #locations."/health" = {
+      #  recommendedProxySettings = true;
+      #  proxyPass = "http://127.0.0.1:9000/health";
+      #  extraConfig = ''
+      #    proxy_set_header Host $host;
+      #  '';
+      #};
     };
   };
 }

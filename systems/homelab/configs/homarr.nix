@@ -27,6 +27,12 @@ in {
         user = "nobody";
         group = "nogroup";
       }
+      {
+        directory = "/var/lib/containers";
+        mode = "0777";
+        user = "root";
+        group = "root";
+      }
     ];
   };
   services.nginx.virtualHosts."${serviceDomain}" = {

@@ -41,7 +41,6 @@
     keyutils
     usbutils
     inetutils
-    inputs.attic.packages.${system}.attic
     eza
     fd
     mnamer2

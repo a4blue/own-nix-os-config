@@ -142,8 +142,9 @@ in {
               gast
               gdown
               google-pasta
-              gradio
-              gradio-client
+              # TODO wait for fix
+              #gradio
+              #gradio-client
               groovy
               grpcio
               gunicorn

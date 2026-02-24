@@ -4,7 +4,7 @@
   inputs = {
     # Nixpkgs
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable-small";
-    #blocky-fix.url = "github:nixos/nixpkgs/da5cc354cf31d8514d763c39f5a685da3fe1eb3e";
+    ncps-downgrade.url = "github:nixos/nixpkgs/aaf43e7c58bb8093a6325ef1d7b4af616779abc5";
     stash-update.url = "github:a4blue/nixpkgs/stash-update-0.30.1";
 
     impermanence = {
@@ -63,11 +63,6 @@
     lanzaboote = {
       url = "github:nix-community/lanzaboote/v1.0.0";
       inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    attic = {
-      url = "github:zhaofengli/attic";
-      #inputs.nixpkgs.follows = "nixpkgs";
     };
 
     firefox = {

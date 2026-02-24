@@ -11,7 +11,6 @@
     inputs.sops-nix.nixosModules.sops
     inputs.home-manager.nixosModules.home-manager
     inputs.lanzaboote.nixosModules.lanzaboote
-    inputs.attic.nixosModules.atticd
 
     ./hardware-configuration.nix
 
@@ -39,11 +38,10 @@
     ./configs/dynamic-dns.nix
     ./configs/acme.nix
 
-    ./configs/attic.nix
     ./configs/ncps.nix
     ./configs/keycloak.nix
     ./configs/onlyoffice.nix
-    ./configs/dashy.nix
+    ./configs/homarr.nix
     ./configs/ombi.nix
     ./configs/bazarr.nix
 

@@ -1,0 +1,44 @@
+{config, ...}: let
+  serviceDomain = "start.home.a4blue.me";
+  servicePort = 7575;
+in {
+  virtualisation.oci-containers.containers = {
+    homarr = {
+      image = "ghcr.io/homarr-labs/homarr:latest";
+      autoStart = true;
+      ports = ["127.0.0.1:${builtins.toString servicePort}:7575"];
+      volumes = ["var/lib/homarr/appdata:/appdata"];
+      environmentFiles = [config.sops.secrets."homarrEnv".path];
+      environment = {
+        AUTH_PROVIDERS = "oidc";
+        AUTH_OIDC_ISSUER = "https://auth.home.a4blue.me/realms/main";
+        AUTH_OIDC_CLIENT_ID = "start.home.a4blue.me";
+        AUTH_OIDC_CLIENT_NAME = "Keycloak";
+        AUTH_OIDC_AUTO_LOGIN = "true";
+        AUTH_OIDC_GROUPS_ATTRIBUTE = "roles";
+      };
+    };
+  };
+  environment.persistence."${config.modules.impermanenceExtra.defaultPath}" = {
+    directories = [
+      {
+        directory = "/var/lib/homarr";
+        mode = "0777";
+        user = "nobody";
+        group = "nogroup";
+      }
+    ];
+  };
+  services.nginx.virtualHosts."${serviceDomain}" = {
+    forceSSL = true;
+    useACMEHost = "home.a4blue.me";
+    locations."/" = {
+      recommendedProxySettings = true;
+      proxyPass = "http://127.0.0.1:${builtins.toString servicePort}/";
+    };
+  };
+  sops.secrets."homarrEnv" = {
+    owner = "nobody";
+    group = "nogroup";
+  };
+}

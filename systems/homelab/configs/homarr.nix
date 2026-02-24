@@ -7,7 +7,7 @@ in {
       image = "ghcr.io/homarr-labs/homarr:latest";
       autoStart = true;
       ports = ["127.0.0.1:${builtins.toString servicePort}:7575"];
-      volumes = ["var/lib/homarr/appdata:/appdata"];
+      volumes = ["/var/lib/homarr/appdata:/appdata"];
       environmentFiles = [config.sops.secrets."homarrEnv".path];
       environment = {
         AUTH_PROVIDERS = "oidc";

@@ -10,11 +10,11 @@ in {
       volumes = ["/var/lib/homarr/appdata:/appdata"];
       environmentFiles = [config.sops.secrets."homarrEnv".path];
       environment = {
-        AUTH_PROVIDERS = "credentials,oidc";
+        AUTH_PROVIDERS = "oidc";
         AUTH_OIDC_ISSUER = "https://auth.home.a4blue.me/realms/main";
         AUTH_OIDC_CLIENT_ID = "start.home.a4blue.me";
         AUTH_OIDC_CLIENT_NAME = "Keycloak";
-        AUTH_OIDC_AUTO_LOGIN = "false";
+        AUTH_OIDC_AUTO_LOGIN = "true";
         AUTH_OIDC_GROUPS_ATTRIBUTE = "groups";
         AUTH_OIDC_SCOPE_OVERWRITE = "openid microprofile-jwt";
       };

@@ -16,7 +16,7 @@
       };
       # Default match
       "_" = {
-        globalRedirect = "homelab.home.a4blue.me";
+        globalRedirect = "start.home.a4blue.me";
         default = true;
       };
     };

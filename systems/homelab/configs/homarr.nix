@@ -15,8 +15,8 @@ in {
         AUTH_OIDC_CLIENT_ID = "start.home.a4blue.me";
         AUTH_OIDC_CLIENT_NAME = "Keycloak";
         AUTH_OIDC_AUTO_LOGIN = "false";
-        AUTH_OIDC_GROUPS_ATTRIBUTE = "roles";
-        AUTH_OIDC_SCOPE_OVERWRITE = "openid";
+        AUTH_OIDC_GROUPS_ATTRIBUTE = "groups";
+        AUTH_OIDC_SCOPE_OVERWRITE = "openid microprofile-jwt";
       };
     };
   };

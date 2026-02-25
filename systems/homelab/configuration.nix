@@ -44,6 +44,7 @@
     ./configs/homarr.nix
     ./configs/ombi.nix
     ./configs/bazarr.nix
+    ./configs/dashdot.nix
 
     ../../configs/common
   ];

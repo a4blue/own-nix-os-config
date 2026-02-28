@@ -4,7 +4,7 @@
   inputs = {
     # Nixpkgs
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable-small";
-    ncps-downgrade.url = "github:nixos/nixpkgs/aaf43e7c58bb8093a6325ef1d7b4af616779abc5";
+    #ncps-downgrade.url = "github:nixos/nixpkgs/aaf43e7c58bb8093a6325ef1d7b4af616779abc5";
     stash-update.url = "github:a4blue/nixpkgs/stash-update-0.30.1";
 
     impermanence = {

@@ -29,6 +29,7 @@ in {
               ".paradoxlauncher"
               ".factorio"
               ".local/share/7DaysToDie"
+              ".local/share/Paradox Interactive"
             ];
           };
         }

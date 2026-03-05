@@ -18,7 +18,7 @@
     gc = {
       automatic = true;
       dates = "weekly";
-      options = "--delete-older-than 30d";
+      options = "--delete-older-than 14d";
     };
     settings = {
       experimental-features = "nix-command flakes";
@@ -71,11 +71,6 @@
     }
   ];
 
-  systemd.settings.Manager = {
-    DefaultLimitNOFILE = "65536:1048576";
-  };
-
-  systemd.services.nix-daemon.serviceConfig."LimitNOFILE" = lib.mkForce "65536:1048576";
   services.orca.enable = false;
 
   users = {

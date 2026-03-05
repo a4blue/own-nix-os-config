@@ -15,20 +15,28 @@ in {
 
       secret=$(cat ${config.sops.secrets.spaceshipApiSecret.path})
       key=$(cat ${config.sops.secrets.spaceshipApiKey.path})
-      file=/tmp/.dynamic-dns.addr6
+      file=/tmp/.dynamic-dns.addr64
       [ -e $file ] && old=`cat $file`
 
+      # Get IP's
       ipv6=$(${pkgs.iproute2}/bin/ip -6 addr list scope global enp86s0 | ${pkgs.gnugrep}/bin/grep -v " fd" | ${pkgs.gnused}/bin/sed -n 's/.*inet6 \([0-9a-f:]\+\).*/\1/p' | ${pkgs.coreutils}/bin/head -n 1)
-
-      #if [ "$old" = "$ipv6" ]; then
-      #  echo "IPv6 address unchanged"
-      #  exit
-      #fi
-
       ipv4="$(${pkgs.curlFull}/bin/curl -s -X GET https://api.ipify.org)"
-
       echo "IPv4: ''${ipv4}\n"
       echo "IPv6: ''${ipv6}\n"
+      ${pkgs.ipcalc}/bin/ipcalc -4 -c $ipv4
+      [ $? -eq 0 ]  || exit 1
+      ${pkgs.ipcalc}/bin/ipcalc -6 -c $ipv6
+      [ $? -eq 0 ]  || exit 1
+
+      if [ "''${old}" = "''${ipv6}''${ipv4}" ]; then
+        echo "IP's addresses unchanged"
+        exit
+      fi
+
+      allEntries=$(${pkgs.curlFull}/bin/curl -X GET 'https://spaceship.dev/api/v1/dns/records/a4blue.me?take=500&skip=0'
+        -H "X-API-Key: ''${key}" \
+        -H "X-API-Secret: ''${secret}" \
+        -H "Accept: application/json")
 
       ${pkgs.curlFull}/bin/curl -X PUT https://spaceship.dev/api/v1/dns/records/a4blue.me \
         -H "X-API-Key: ''${key}" \
@@ -37,7 +45,30 @@ in {
         -H "Content-Type: application/json" \
         -d "{\"force\":true,\"items\":[{\"type\":\"A\",\"address\":\"''${ipv4}\",\"name\":\"*.home\",\"ttl\":60},{\"type\":\"AAAA\",\"address\":\"''${ipv6}\",\"name\":\"*.home\",\"ttl\":60}]}"
 
-      echo $ipv6 > $file
+      obsoleteIpv6Entries=$(echo $allEntries | ${pkgs.jq}/bin/jq -c --args '[.items[] | select(.name == "*.home") | select(.type == "AAAA") | select(.address != "''${ipv6}")]')
+      obsoleteIpv4Entries=$(echo $allEntries | ${pkgs.jq}/bin/jq -c --args '[.items[] | select(.name == "*.home") | select(.type == "A") | select(.address != "''${ipv4}")]')
+
+      echo "Deleting following entries: ''${obsoleteIpv6Entries}\n''${obsoleteIpv4Entries}\n"
+
+      if [ "''${obsoleteIpv6Entries}" != "[]" ]; then
+        ${pkgs.curlFull}/bin/curl -X DELETE https://spaceship.dev/api/v1/dns/records/a4blue.me \
+        -H "X-API-Key: ''${key}" \
+        -H "X-API-Secret: ''${secret}" \
+        -H "Accept: application/json" \
+        -H "Content-Type: application/json" \
+        -d "''${obsoleteIpv6Entries}"
+      fi
+
+      if [ "''${obsoleteIpv4Entries}" != "[]" ]; then
+        ${pkgs.curlFull}/bin/curl -X DELETE https://spaceship.dev/api/v1/dns/records/a4blue.me \
+        -H "X-API-Key: ''${key}" \
+        -H "X-API-Secret: ''${secret}" \
+        -H "Accept: application/json" \
+        -H "Content-Type: application/json" \
+        -d "''${obsoleteIpv4Entries}"
+      fi
+
+      echo "''${ipv6}''${ipv4}" > $file
     '';
     restartIfChanged = true;
     serviceConfig = {

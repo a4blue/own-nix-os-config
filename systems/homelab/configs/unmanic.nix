@@ -10,7 +10,7 @@ in {
       volumes = [
         "/var/lib/unmanic:/config"
         "/LargeMedia/smb:/library"
-        "/tmp/unmanic:/tmp/unmanic"
+        "/var/cache/unmanic:/tmp/unmanic"
         "/dev/dri:/dev/dri"
       ];
       environmentFiles = [config.sops.secrets."homarrEnv".path];
@@ -20,6 +20,7 @@ in {
       };
     };
   };
+  users.users.a4blue.extraGroups = ["render" "video"];
   environment.persistence."${config.modules.impermanenceExtra.defaultPath}" = {
     directories = [
       {
@@ -32,6 +33,11 @@ in {
   };
   systemd.services.${config.virtualisation.oci-containers.containers.unmanic.serviceName} = {
     after = ["LargeMedia.mount" "bcachefs-large-media-mount.service"];
+  };
+  systemd.tmpfiles.settings."unmanic-tmp"."/var/cache/unmanic"."d" = {
+    mode = "0777";
+    user = "a4blue";
+    group = "LargeMediaUsers";
   };
   services.nginx.virtualHosts."${serviceDomain}" = {
     forceSSL = true;

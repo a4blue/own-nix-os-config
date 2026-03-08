@@ -39,8 +39,13 @@ in {
     locations."/" = {
       recommendedProxySettings = true;
       proxyPass = "http://127.0.0.1:${builtins.toString servicePort}/";
+      extraConfig = ''
+        allow 192.168.178.0/24;
+        allow fd00:0:3ea6:2fff:0:0:0:0/64;
+        deny all;
+      '';
     };
-    locations."/websockets" = {
+    locations."/unmanic/websocket" = {
       recommendedProxySettings = true;
       proxyPass = "http://127.0.0.1:${builtins.toString servicePort}";
       extraConfig = ''
@@ -48,6 +53,10 @@ in {
         proxy_set_header Upgrade $http_upgrade;
         proxy_set_header Connection "upgrade";
         proxy_set_header X-Forwarded-Protocol $scheme;
+
+        allow 192.168.178.0/24;
+        allow fd00:0:3ea6:2fff:0:0:0:0/64;
+        deny all;
       '';
     };
   };

@@ -43,6 +43,7 @@
   networking.firewall.allowPing = true;
   users.groups.smbUser = {
     members = ["a4blue"];
+    gid = 985;
   };
 
   environment.persistence."${config.modules.impermanenceExtra.defaultPath}" = {

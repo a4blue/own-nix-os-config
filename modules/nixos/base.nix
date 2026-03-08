@@ -89,6 +89,7 @@
         "sk-ssh-ed25519@openssh.com AAAAGnNrLXNzaC1lZDI1NTE5QG9wZW5zc2guY29tAAAAIFe4fmeT6W1f3+YBrRlR5DBjQ1Xo0WNi6j+ptstlXGO5AAAAD3NzaDpIb21lTmV0LUJhaw== ssh:HomeNet-Bak"
       ];
       hashedPasswordFile = config.sops.secrets.a4blue_easy_hashed_password.path;
+      uid = 1000;
     };
     users.root = {
       name = "root";

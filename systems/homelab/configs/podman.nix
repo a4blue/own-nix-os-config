@@ -22,4 +22,14 @@
       "podman"
     ];
   };
+  environment.persistence."${config.modules.impermanenceExtra.defaultPath}" = {
+    directories = [
+      {
+        directory = "/var/lib/containers";
+        mode = "0777";
+        user = "root";
+        group = "root";
+      }
+    ];
+  };
 }

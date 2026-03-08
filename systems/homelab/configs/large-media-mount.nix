@@ -42,5 +42,8 @@
       User = "root";
     };
   };
-  users.groups.LargeMediaUsers.members = ["a4blue"];
+  users.groups.LargeMediaUsers = {
+    members = ["a4blue"];
+    gid = 982;
+  };
 }

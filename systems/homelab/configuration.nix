@@ -45,6 +45,7 @@
     ./configs/ombi.nix
     ./configs/bazarr.nix
     ./configs/dashdot.nix
+    ./configs/unmanic.nix
 
     ../../configs/common
   ];

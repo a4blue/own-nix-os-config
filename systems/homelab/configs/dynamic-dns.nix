@@ -33,7 +33,7 @@ in {
         exit
       fi
 
-      allEntries=$(${pkgs.curlFull}/bin/curl -X GET 'https://spaceship.dev/api/v1/dns/records/a4blue.me?take=500&skip=0'
+      allEntries=$(${pkgs.curlFull}/bin/curl -X GET 'https://spaceship.dev/api/v1/dns/records/a4blue.me?take=500&skip=0' \
         -H "X-API-Key: ''${key}" \
         -H "X-API-Secret: ''${secret}" \
         -H "Accept: application/json")
@@ -45,8 +45,8 @@ in {
         -H "Content-Type: application/json" \
         -d "{\"force\":true,\"items\":[{\"type\":\"A\",\"address\":\"''${ipv4}\",\"name\":\"*.home\",\"ttl\":60},{\"type\":\"AAAA\",\"address\":\"''${ipv6}\",\"name\":\"*.home\",\"ttl\":60}]}"
 
-      obsoleteIpv6Entries=$(echo $allEntries | ${pkgs.jq}/bin/jq -c --args '[.items[] | select(.name == "*.home") | select(.type == "AAAA") | select(.address != "''${ipv6}")]')
-      obsoleteIpv4Entries=$(echo $allEntries | ${pkgs.jq}/bin/jq -c --args '[.items[] | select(.name == "*.home") | select(.type == "A") | select(.address != "''${ipv4}")]')
+      obsoleteIpv6Entries=$(echo $allEntries | ${pkgs.jq}/bin/jq -c --args "[.items[] | select(.name == \"*.home\") | select(.type == \"AAAA\") | select(.address != \"''${ipv6}\")]")
+      obsoleteIpv4Entries=$(echo $allEntries | ${pkgs.jq}/bin/jq -c --args "[.items[] | select(.name == \"*.home\") | select(.type == \"A\") | select(.address != \"''${ipv4}\")]")
 
       echo "Deleting following entries: ''${obsoleteIpv6Entries}\n''${obsoleteIpv4Entries}\n"
 

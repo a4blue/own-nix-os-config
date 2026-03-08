@@ -1,34 +1,37 @@
 {config, ...}: let
-  serviceDomain = "start.home.a4blue.me";
-  servicePort = 7577;
+  serviceDomain = "unmanic.home.a4blue.me";
+  servicePort = 7578;
 in {
   virtualisation.oci-containers.containers = {
-    homarr = {
-      image = "ghcr.io/homarr-labs/homarr:latest";
+    unmanic = {
+      image = "docker.io/josh5/unmanic:latest";
       autoStart = true;
-      ports = ["127.0.0.1:${builtins.toString servicePort}:7575"];
-      volumes = ["/var/lib/homarr/appdata:/appdata"];
+      ports = ["127.0.0.1:${builtins.toString servicePort}:8888"];
+      volumes = [
+        "/var/lib/unmanic:/config"
+        "/LargeMedia/smb:/library"
+        "/tmp/unmanic:/tmp/unmanic"
+        "/dev/dri:/dev/dri"
+      ];
       environmentFiles = [config.sops.secrets."homarrEnv".path];
       environment = {
-        AUTH_PROVIDERS = "oidc";
-        AUTH_OIDC_ISSUER = "https://auth.home.a4blue.me/realms/main";
-        AUTH_OIDC_CLIENT_ID = "start.home.a4blue.me";
-        AUTH_OIDC_CLIENT_NAME = "Keycloak";
-        AUTH_OIDC_AUTO_LOGIN = "true";
-        AUTH_OIDC_GROUPS_ATTRIBUTE = "groups";
-        AUTH_OIDC_SCOPE_OVERWRITE = "openid microprofile-jwt";
+        PUID = "${builtins.toString config.users.users.a4blue.uid}";
+        PGID = "${builtins.toString config.users.groups.LargeMediaUsers.gid}";
       };
     };
   };
   environment.persistence."${config.modules.impermanenceExtra.defaultPath}" = {
     directories = [
       {
-        directory = "/var/lib/homarr";
+        directory = "/var/lib/unmanic";
         mode = "0777";
         user = "nobody";
         group = "nogroup";
       }
     ];
+  };
+  systemd.services.${config.virtualisation.oci-containers.containers.unmanic.serviceName} = {
+    after = ["LargeMedia.mount" "bcachefs-large-media-mount.service"];
   };
   services.nginx.virtualHosts."${serviceDomain}" = {
     forceSSL = true;
@@ -47,10 +50,5 @@ in {
         proxy_set_header X-Forwarded-Protocol $scheme;
       '';
     };
-  };
-  sops.secrets."homarrEnv" = {
-    owner = "nobody";
-    group = "nogroup";
-    mode = "0777";
   };
 }

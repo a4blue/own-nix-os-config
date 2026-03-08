@@ -13,11 +13,12 @@ in {
         "/var/cache/unmanic:/tmp/unmanic"
         "/dev/dri:/dev/dri"
       ];
-      environmentFiles = [config.sops.secrets."homarrEnv".path];
       environment = {
         PUID = "${builtins.toString config.users.users.a4blue.uid}";
         PGID = "${builtins.toString config.users.groups.LargeMediaUsers.gid}";
       };
+      podman.user = "a4blue";
+      extraOptions = ["--group-add keep-groups"];
     };
   };
   users.users.a4blue.extraGroups = ["render" "video"];

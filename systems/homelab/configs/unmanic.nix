@@ -17,8 +17,8 @@ in {
         PUID = "${builtins.toString config.users.users.a4blue.uid}";
         PGID = "${builtins.toString config.users.groups.LargeMediaUsers.gid}";
       };
-      podman.user = "a4blue";
-      extraOptions = ["--group-add keep-groups"];
+      # TODO find a better way to give permission to render and video group (maybe the user podman needs it ?)
+      privileged = true;
     };
   };
   users.users.a4blue.extraGroups = ["render" "video"];

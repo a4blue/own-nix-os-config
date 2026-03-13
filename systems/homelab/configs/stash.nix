@@ -50,7 +50,7 @@ in {
     };
     #settings.sequential_scanning = true;
   };
-  users.users.stash.extraGroups = ["smbUser" "LargeMediaUsers"];
+  users.users.stash.extraGroups = ["smbUser" "LargeMediaUsers" "render" "video"];
   systemd.services.stash = {
     after = ["LargeMedia.mount" "bcachefs-large-media-mount.service"];
     serviceConfig = {

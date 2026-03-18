@@ -26,12 +26,14 @@ in {
       misc = {
         port = servicePort;
         bandwidth_max = "8M";
-        bandwidth_perc = 80;
+        bandwidth_perc = 60;
         check_new_rel = 0;
         enable_https_verification = 1;
         download_dir = "/LargeMedia/smb/Sabnzbd/incomplete";
         complete_dir = "/LargeMedia/smb/Sabnzbd/complete";
         host_whitelist = "sabnzbd.home.a4blue.me";
+        cache_limit = "512M";
+        notified_new_skin = 1;
       };
     };
   };

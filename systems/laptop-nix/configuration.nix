@@ -94,6 +94,7 @@
     };
   };
   nixpkgs.config.permittedInsecurePackages = [
+    "electron-38.8.4"
   ];
 
   environment.plasma6.excludePackages = [pkgs.kdePackages.kwin-x11];

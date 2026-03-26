@@ -55,10 +55,22 @@
           ads = [
             "https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts"
             "https://perflyst.github.io/PiHoleBlocklist/SmartTV.txt"
+            "https://cdn.jsdelivr.net/gh/hagezi/dns-blocklists@latest/wildcard/pro.txt"
+            "https://cdn.jsdelivr.net/gh/hagezi/dns-blocklists@latest/wildcard/tif.txt"
+            "https://perflyst.github.io/PiHoleBlocklist/AmazonFireTV.txt"
+            "https://perflyst.github.io/PiHoleBlocklist/SessionReplay.txt"
+            "https://perflyst.github.io/PiHoleBlocklist/android-tracking.txt"
           ];
         };
         clientGroupsBlock = {
           default = ["ads"];
+        };
+        loading = {
+          maxErrorsPerSource = -1;
+          downloads = {
+            attempts = 10;
+            cooldown = "5m";
+          };
         };
       };
       caching = {

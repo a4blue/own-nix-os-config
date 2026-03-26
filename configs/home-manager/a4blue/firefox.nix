@@ -32,7 +32,12 @@ lib.mkIf config.programs.firefox.enable {
       Preferences = {
         "gfx.webrender.all" = {Value = true;};
         "media.ffmpeg.vaapi.enabled" = {Value = true;};
+        "media.ffmpeg.allow-openh264" = {Value = true;};
         "widget.use-xdg-desktop-portal.file-picker" = 1;
+        "image.jxl.enabled" = {Value = false;};
+        "browser.newtabpage.activity-stream.feeds.section.topstories" = {Value = false;};
+        "browser.newtabpage.activity-stream.feeds.topsites" = {Value = false;};
+        "browser.newtabpage.activity-stream.showWeather" = {Value = false;};
       };
     };
     languagePacks = ["en-US" "de"];

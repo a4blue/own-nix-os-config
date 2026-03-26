@@ -18,5 +18,6 @@ with config; {
     ./clamav.nix
     ./audio.nix
     ./fwupd.nix
+    ./tpm2.nix
   ];
 }

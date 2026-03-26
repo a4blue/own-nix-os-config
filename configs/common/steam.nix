@@ -42,4 +42,6 @@ lib.mkIf config.programs.steam.enable {
     java.enable = true;
   };
   boot.kernelModules = ["ntsync"];
+
+  users.users.a4blue.extraGroups = ["gamemode"];
 }

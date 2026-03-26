@@ -58,10 +58,20 @@
     fuse.userAllowOther = true;
     steam.enable = true;
     gnupg.agent.enable = true;
+    virt-manager.enable = true;
+    firejail.enable = true;
+    appimage = {
+      enable = true;
+      binfmt = true;
+    };
   };
   networking = {
     hostName = "laptop-nix";
     networkmanager.enable = true;
+    networkmanager.plugins = with pkgs; [
+      networkmanager-openvpn
+      networkmanager-openconnect
+    ];
     firewall.allowedUDPPorts = [51820];
     wireguard = {
       # wireguard conf needs to be imperative for gui
@@ -112,15 +122,9 @@
     wg-netmanager.enable = true;
   };
 
-  security = {
-    tpm2 = {
-      enable = true;
-      pkcs11.enable = true;
-      tctiEnvironment.enable = true;
-    };
-  };
+  security.tpm2.enable = true;
 
-  users.users.a4blue.extraGroups = ["dialout" "podman"];
+  users.users.a4blue.extraGroups = ["dialout"];
 
   home-manager.users = {
     a4blue = {

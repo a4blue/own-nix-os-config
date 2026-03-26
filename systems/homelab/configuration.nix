@@ -108,13 +108,7 @@
     resolved.settings.Resolve.FallbackDNS = ["8.8.8.8" "1.1.1.1" "1.0.0.1" "8.8.4.4" "9.9.9.9" "149.112.112.112"];
   };
 
-  security = {
-    tpm2 = {
-      enable = true;
-      pkcs11.enable = true;
-      tctiEnvironment.enable = true;
-    };
-  };
+  security.tpm2.enable = true;
   home-manager.users = {
     a4blue = {
       imports = [

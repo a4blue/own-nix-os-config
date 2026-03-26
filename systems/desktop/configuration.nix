@@ -152,15 +152,9 @@
     wg-netmanager.enable = true;
   };
 
-  security = {
-    tpm2 = {
-      enable = true;
-      pkcs11.enable = true;
-      tctiEnvironment.enable = true;
-    };
-  };
+  security.tpm2.enable = true;
 
-  users.users.a4blue.extraGroups = ["dialout" "podman" "gamemode" "libvirtd"];
+  users.users.a4blue.extraGroups = ["dialout" "libvirtd"];
 
   home-manager.users = {
     a4blue = {

@@ -11,6 +11,7 @@
     cache.maxSize = "200G";
     cache.lru.schedule = "0 2 * * *";
     cache.lru.scheduleTimeZone = "Europe/Berlin";
+    cache.allowPutVerb = true;
     cache.upstream = {
       urls = [
         "https://cache.nixos.org"

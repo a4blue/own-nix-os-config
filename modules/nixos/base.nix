@@ -89,6 +89,8 @@
         "sk-ssh-ed25519@openssh.com AAAAGnNrLXNzaC1lZDI1NTE5QG9wZW5zc2guY29tAAAAIFe4fmeT6W1f3+YBrRlR5DBjQ1Xo0WNi6j+ptstlXGO5AAAAD3NzaDpIb21lTmV0LUJhaw== ssh:HomeNet-Bak"
         # TPM Laptop
         "ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBBhNZQ98YEqc0WbcTsXyy8hjysL5T4vAfqOx5aidPPIzkpHj9iuAWjjIkUXuI08szM5VMpEN7TcjVy+b7ULyoik="
+        # TPM Desktop
+        "ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBLvA3EpJmiAhmGggV7xJPnw/cnsUa9wY1BX9qmyUNfjIoQgoFIeRFNvAYgodIz0+UnHt/nPKpkzHKQjvrkhdLBQ="
       ];
       hashedPasswordFile = config.sops.secrets.a4blue_easy_hashed_password.path;
       uid = 1000;

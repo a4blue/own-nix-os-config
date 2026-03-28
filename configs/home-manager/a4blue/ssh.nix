@@ -8,7 +8,7 @@ lib.mkIf config.programs.ssh.enable {
   programs.ssh = {
     enableDefaultConfig = false;
     matchBlocks = {
-      "homelab" = {
+      "homelab-nk" = {
         hostname = "192.168.178.65";
         user = "a4blue";
         extraOptions = {
@@ -16,7 +16,7 @@ lib.mkIf config.programs.ssh.enable {
           "IdentityFile" = "~/.ssh/id_ed25519_sk_rk_9bff4ca58ab54a4c9973715e8c409e737b0df72132906345c58b885107431f4d";
         };
       };
-      "homelab-unlock" = {
+      "homelab-unlock-nk" = {
         hostname = "192.168.178.65";
         user = "root";
         extraOptions = {

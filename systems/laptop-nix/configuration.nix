@@ -156,6 +156,24 @@
 
         ssh = {
           enable = true;
+          matchBlocks = {
+            "homelab" = {
+              hostname = "192.168.178.65";
+              user = "a4blue";
+              extraOptions = {
+                "UserKnownHostsFile" = "~/.ssh/homelab_known_hosts";
+                "PKCS11Provider" = "/run/current-system/sw/lib/libtpm2_pkcs11.so";
+              };
+            };
+            "homelab-unlock" = {
+              hostname = "192.168.178.65";
+              user = "root";
+              extraOptions = {
+                "UserKnownHostsFile" = "~/.ssh/homelab-unlock_known_hosts";
+                "PKCS11Provider" = "/run/current-system/sw/lib/libtpm2_pkcs11.so";
+              };
+            };
+          };
         };
       };
     };

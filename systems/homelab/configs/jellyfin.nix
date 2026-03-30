@@ -62,6 +62,7 @@ in {
     enable = true;
     openFirewall = false;
     backupCount = 2;
+    backups = false;
     system = {
       serverName = "a4blue's нетflix";
       isStartupWizardCompleted = true;
@@ -150,11 +151,15 @@ in {
         enabled = true;
         contentType = "movies";
         pathInfos = ["/LargeMedia/smb/Movies Sorted"];
+        subtitleDownloadLanguages = ["eng" "deu" "pol"];
+        subtitleFetcherOrder = ["Bazarr" "Open Subtitles"];
       };
       Shows = {
         enabled = true;
         contentType = "tvshows";
         pathInfos = ["/LargeMedia/smb/Series Sorted"];
+        subtitleDownloadLanguages = ["eng" "deu" "pol"];
+        subtitleFetcherOrder = ["Bazarr" "Open Subtitles"];
       };
     };
     encoding = {

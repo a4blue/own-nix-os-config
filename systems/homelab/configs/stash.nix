@@ -34,10 +34,6 @@ in {
     settings = {
       stash = [
         {
-          path = "/LargeMedia/smb/Porn-New";
-          excludeimage = true;
-        }
-        {
           path = "/LargeMedia/smb/Porn";
           excludeimage = true;
         }

@@ -46,6 +46,7 @@
     ./configs/bazarr.nix
     ./configs/dashdot.nix
     ./configs/unmanic.nix
+    ./configs/seerr.nix
 
     ../../configs/common
   ];

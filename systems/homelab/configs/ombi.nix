@@ -2,10 +2,16 @@
   serviceDomain = "ombi.home.a4blue.me";
   dataDir = "/var/lib/ombi";
 in {
+  ####
+  # Main Config
+  ####
   services.ombi = {
     enable = true;
-    dataDir = dataDir;
+    inherit dataDir;
   };
+  ####
+  # Nginx
+  ####
   services.nginx.virtualHosts."${serviceDomain}" = {
     forceSSL = true;
     useACMEHost = "home.a4blue.me";
@@ -22,6 +28,9 @@ in {
       '';
     };
   };
+  ####
+  # Impermanence
+  ####
   environment.persistence."${config.modules.impermanenceExtra.defaultPath}" = {
     directories = [
       {

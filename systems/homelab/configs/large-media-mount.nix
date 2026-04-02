@@ -5,10 +5,16 @@
   inputs,
   ...
 }: {
+  ####
+  # Secrets
+  ####
   sops.secrets.large_media_password = {
     owner = "root";
     group = "root";
   };
+  ####
+  # Main Service
+  ####
   systemd.services."bcachefs-large-media-mount" = {
     after = ["local-fs.target"];
     wantedBy = ["multi-user.target"];
@@ -42,6 +48,9 @@
       User = "root";
     };
   };
+  ####
+  # Group for Large Media
+  ####
   users.groups.LargeMediaUsers = {
     members = ["a4blue"];
     gid = 982;

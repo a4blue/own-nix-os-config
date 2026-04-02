@@ -3,14 +3,13 @@
   pkgs,
   ...
 }: {
-  environment.systemPackages = with pkgs; [
-    borgbackup
-  ];
-
-  systemd.packages = [pkgs.bcachefs-tools];
-
+  ####
+  # Secrets
+  ####
   sops.secrets.borgbackup_passphrase = {};
-
+  ####
+  # Main Config
+  ####
   services.borgbackup = {
     jobs = {
       persistent = {
@@ -36,7 +35,15 @@
       };
     };
   };
-
+  ####
+  # Global Package
+  ####
+  environment.systemPackages = with pkgs; [
+    borgbackup
+  ];
+  ####
+  # Impermanence
+  ####
   environment.persistence."${config.modules.impermanenceExtra.defaultPath}" = {
     files = [
       "/root/.ssh/known_hosts"

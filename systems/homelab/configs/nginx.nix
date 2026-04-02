@@ -3,6 +3,9 @@
   pkgs,
   ...
 }: {
+  ####
+  # Main Config
+  ####
   services.nginx = {
     package = pkgs.nginxMainline;
     recommendedTlsSettings = true;
@@ -27,15 +30,50 @@
       };
     };
   };
-  services.prometheus.exporters.nginx.enable = true;
+  ####
+  # Prometheus
+  ####
+  services.prometheus = {
+    scrapeConfigs = [
+      {
+        job_name = "nginx";
+        static_configs = [
+          {
+            targets = [
+              "localhost:${toString config.services.prometheus.exporters.nginx.port}/${config.services.prometheus.exporters.nginx.metricsEndpoint}"
+            ];
+          }
+        ];
+      }
+      {
+        job_name = "nginxlog";
+        static_configs = [
+          {
+            targets = [
+              "localhost:${toString config.services.prometheus.exporters.nginxlog.port}/${config.services.prometheus.exporters.nginxlog.metricsEndpoint}"
+            ];
+          }
+        ];
+      }
+    ];
+    exporters.nginx.enable = true;
+    exporters.nginxlog.enable = true;
+  };
+  ####
+  # Permissions
+  ####
   users.users.nginx.extraGroups = ["acme"];
   users.users.acme.extraGroups = ["nginx"];
-
+  ####
+  # Firewall
+  ####
   networking.firewall.allowedTCPPorts = [
     80
     443
   ];
-
+  ####
+  # Impermanence
+  ####
   environment.persistence."${config.modules.impermanenceExtra.defaultPath}" = {
     directories = [
       {

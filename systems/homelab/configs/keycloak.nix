@@ -6,6 +6,9 @@
   serviceDomain = "auth.home.a4blue.me";
 in {
   services = {
+    ####
+    # Main Config
+    ####
     keycloak = {
       enable = true;
       settings = {
@@ -15,6 +18,8 @@ in {
         http-host = "127.0.0.1";
         http-management-health-enabled = true;
         http-management-port = 9000;
+        cache-metrics-histograms-enabled = true;
+        metrics-enabled = true;
       };
       plugins = [
         pkgs.keycloak.plugins.junixsocket-common
@@ -26,6 +31,9 @@ in {
         host = "/run/postgresql";
       };
     };
+    ####
+    # Postgres
+    ####
     postgresql = {
       ensureDatabases = ["keycloak"];
       ensureUsers = [
@@ -35,6 +43,9 @@ in {
         }
       ];
     };
+    ####
+    # Nginx
+    ####
     nginx.virtualHosts."${serviceDomain}" = {
       forceSSL = true;
       useACMEHost = "home.a4blue.me";
@@ -52,13 +63,21 @@ in {
           proxy_busy_buffers_size 256k;
         '';
       };
-      #locations."/health" = {
-      #  recommendedProxySettings = true;
-      #  proxyPass = "http://127.0.0.1:9000/health";
-      #  extraConfig = ''
-      #    proxy_set_header Host $host;
-      #  '';
-      #};
     };
+    ####
+    # Prometheus
+    ####
+    prometheus.scrapeConfigs = [
+      {
+        job_name = "jellyfin";
+        static_configs = [
+          {
+            targets = [
+              "localhost:${toString config.services.keycloak.settings.http-management-port}/metrics"
+            ];
+          }
+        ];
+      }
+    ];
   };
 }

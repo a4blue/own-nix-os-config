@@ -2,10 +2,9 @@
   serviceDomain = "forgejo.home.a4blue.me";
   dataDir = "/var/lib/forgejo";
 in {
-  imports = [
-    ./nginx.nix
-    ./postgresql.nix
-  ];
+  ####
+  # Main Config
+  ####
   services.forgejo = {
     enable = true;
     database.type = "postgres";
@@ -19,6 +18,9 @@ in {
       service.DISABLE_REGISTRATION = true;
     };
   };
+  ####
+  # Nginx
+  ####
   services.nginx.virtualHosts."${serviceDomain}" = {
     forceSSL = true;
     useACMEHost = "home.a4blue.me";
@@ -30,7 +32,9 @@ in {
       '';
     };
   };
-
+  ####
+  # Impermanence
+  ####
   environment.persistence."${config.modules.impermanenceExtra.defaultPath}" = {
     directories = [
       {

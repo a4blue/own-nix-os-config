@@ -6,6 +6,9 @@
 }: let
   serviceDomain = "stash.home.a4blue.me";
 in {
+  ####
+  # Secrets
+  ####
   sops.secrets = {
     stash_password = {
       owner = "stash";
@@ -20,6 +23,9 @@ in {
       group = "stash";
     };
   };
+  ####
+  # Main Config
+  ####
   services.stash = {
     enable = true;
     dataDir = "/var/lib/stash-new";
@@ -48,7 +54,13 @@ in {
     };
     #settings.sequential_scanning = true;
   };
+  ####
+  # Permissions
+  ####
   users.users.stash.extraGroups = ["smbUser" "LargeMediaUsers" "render" "video"];
+  ####
+  # Systemd with added Plugin Dependencies
+  ####
   systemd.services.stash = {
     after = ["LargeMedia.mount" "bcachefs-large-media-mount.service"];
     serviceConfig = {
@@ -238,7 +250,9 @@ in {
       findutils
     ]);
   };
-
+  ####
+  # Impermanence
+  ####
   environment.persistence."${config.modules.impermanenceExtra.defaultPath}" = {
     directories = [
       {
@@ -249,7 +263,9 @@ in {
       }
     ];
   };
-
+  ####
+  # Nginx
+  ####
   services.nginx.virtualHosts."${serviceDomain}" = {
     forceSSL = true;
     useACMEHost = "home.a4blue.me";

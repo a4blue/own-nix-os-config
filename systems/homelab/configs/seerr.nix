@@ -2,9 +2,15 @@
   serviceDomain = "seerr.home.a4blue.me";
   dataDir = "/var/lib/seerr";
 in {
+  ####
+  # Main Config
+  ####
   services.seerr = {
     enable = true;
   };
+  ####
+  # Nginx
+  ####
   services.nginx.virtualHosts."${serviceDomain}" = {
     forceSSL = true;
     useACMEHost = "home.a4blue.me";
@@ -24,6 +30,9 @@ in {
       '';
     };
   };
+  ####
+  # Impermanence
+  ####
   environment.persistence."${config.modules.impermanenceExtra.defaultPath}" = {
     directories = [
       {

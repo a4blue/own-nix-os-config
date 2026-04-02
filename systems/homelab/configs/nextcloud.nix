@@ -9,10 +9,6 @@
     inherit (pkgs) lib fetchurl runCommand callPackage;
   };
 in {
-  imports = [
-    ./nginx.nix
-    ./fail2ban.nix
-  ];
   environment = {
     systemPackages = with pkgs; [
       exiftool
@@ -211,14 +207,16 @@ in {
         };
       };
     };
-    prometheus.exporters.php-fpm.enable = true;
-    #prometheus.exporters.nextcloud = {
-    #  enable = true;
-    #  passwordFile = "";
-    #  tokenFile = "";
-    #  url = "";
-    #  username = "";
-    #};
+    prometheus = {
+      exporters.php-fpm.enable = false;
+      exporters.nextcloud = {
+        enable = false;
+        #passwordFile = "";
+        #tokenFile = "";
+        #url = "";
+        #username = "";
+      };
+    };
   };
 
   systemd.services.nextcloud-cron.path = [
@@ -227,5 +225,9 @@ in {
     pkgs.ffmpeg_8
     pkgs.nodejs_24
     #pkgs.libtensorflow
+  ];
+  imports = [
+    ./nginx.nix
+    ./fail2ban.nix
   ];
 }

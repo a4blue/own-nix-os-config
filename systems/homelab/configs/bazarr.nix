@@ -2,10 +2,16 @@
   serviceDomain = "bazarr.home.a4blue.me";
   dataDir = "/var/lib/bazarr";
 in {
+  ####
+  # Main Config
+  ####
   services.bazarr = {
     enable = true;
-    dataDir = dataDir;
+    inherit dataDir;
   };
+  ####
+  # Nginx
+  ####
   services.nginx.virtualHosts."${serviceDomain}" = {
     forceSSL = true;
     useACMEHost = "home.a4blue.me";
@@ -17,6 +23,9 @@ in {
       '';
     };
   };
+  ####
+  # Impermanence
+  ####
   environment.persistence."${config.modules.impermanenceExtra.defaultPath}" = {
     directories = [
       {

@@ -44,6 +44,9 @@
     EXEC_PATH=${acmeDnsScript}
   '';
 in {
+  ####
+  # Secrets
+  ####
   sops.secrets.spaceshipApiSecretACME = {
     owner = "acme";
     group = "nginx";
@@ -54,7 +57,9 @@ in {
     group = "nginx";
     key = "spaceshipApiKey";
   };
-
+  ####
+  # Main Config
+  ####
   security.acme = {
     acceptTerms = true;
     defaults = {

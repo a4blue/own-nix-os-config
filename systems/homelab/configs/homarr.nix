@@ -2,7 +2,21 @@
   serviceDomain = "start.home.a4blue.me";
   dataDir = "/var/lib/homarr";
 in {
+  ####
+  # Secrets
+  ####
+  sops.secrets."homarrEnv" = {
+    owner = "nobody";
+    group = "nogroup";
+    mode = "0777";
+  };
+  ####
+  # Main Config
+  ####
   modules.homarr.enable = true;
+  ####
+  # Impermanence
+  ####
   environment.persistence."${config.modules.impermanenceExtra.defaultPath}" = {
     directories = [
       {
@@ -13,6 +27,9 @@ in {
       }
     ];
   };
+  ####
+  # Nginx
+  ####
   services.nginx.virtualHosts."${serviceDomain}" = {
     forceSSL = true;
     useACMEHost = "home.a4blue.me";
@@ -28,10 +45,5 @@ in {
         proxy_set_header X-Forwarded-Protocol $scheme;
       '';
     };
-  };
-  sops.secrets."homarrEnv" = {
-    owner = "nobody";
-    group = "nogroup";
-    mode = "0777";
   };
 }

@@ -5,9 +5,14 @@
 }: let
   serviceName = "dynamic-dns-ip-update";
 in {
+  ####
+  # Secrets
+  ####
   sops.secrets.spaceshipApiSecret = {};
   sops.secrets.spaceshipApiKey = {};
-
+  ####
+  # Main Service
+  ####
   systemd.services.${serviceName} = {
     enable = true;
     script = ''
@@ -75,7 +80,9 @@ in {
       Type = "oneshot";
     };
   };
-
+  ####
+  # Service Timer
+  ####
   systemd.timers.${serviceName} = {
     enable = true;
     wantedBy = [

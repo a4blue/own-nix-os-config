@@ -1,7 +1,13 @@
 {config, ...}: let
   serviceDomain = "koillection.home.a4blue.me";
 in {
+  ####
+  # Main Config
+  ####
   module.koillection.enable = false;
+  ####
+  # Nginx
+  ####
   services.nginx.virtualHosts."${serviceDomain}" = {
     forceSSL = true;
     useACMEHost = "home.a4blue.me";

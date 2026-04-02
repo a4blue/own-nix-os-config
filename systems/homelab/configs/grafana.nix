@@ -2,10 +2,13 @@
   serviceDomain = "grafana.home.a4blue.me";
   dataDir = "/var/lib/grafana";
 in {
+  ####
+  # Main Config
+  ####
   services.grafana = {
     enable = true;
     security.secretKey = "SW2YcwTIb9zpOOhoPsMm";
-    dataDir = dataDir;
+    inherit dataDir;
     settings = {
       server = {
         http_addr = "127.0.0.1";
@@ -17,6 +20,9 @@ in {
       analytics.reporting_enabled = false;
     };
   };
+  ####
+  # Main Config
+  ####
   services.nginx.virtualHosts."${serviceDomain}" = {
     forceSSL = true;
     useACMEHost = "home.a4blue.me";
@@ -37,6 +43,9 @@ in {
       '';
     };
   };
+  ####
+  # Impermanence
+  ####
   environment.persistence."${config.modules.impermanenceExtra.defaultPath}" = {
     directories = [
       {

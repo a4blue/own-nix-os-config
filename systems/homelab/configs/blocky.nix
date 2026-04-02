@@ -1,9 +1,16 @@
 {config, ...}: {
+  ####
+  # Main Config
+  ####
   services.blocky = {
     enable = true;
+    enableConfigCheck = true;
     settings = {
+      prometheus.enable = true;
+      prometheus.path = "/metrics";
       ports.dns = 53;
       ports.tls = 853;
+      ports.http = 4000;
       certFile = "/nix/secret/blocky_cert/blocky.crt";
       keyFile = "/nix/secret/blocky_cert/blocky.key";
       log.level = "warn";
@@ -42,12 +49,6 @@
           "fritz.box" = "192.168.178.1";
           "homelab.internal" = "192.168.178.65";
           "home.a4blue.me" = "192.168.178.65";
-          #"nextcloud.home.a4blue.me" = "192.168.178.65";
-          #"homelab.home.a4blue.me" = "192.168.178.65";
-          #"jellyfin.home.a4blue.me" = "192.168.178.65";
-          #"stash.home.a4blue.me" = "192.168.178.65";
-          #"forgejo.home.a4blue.me" = "192.168.178.65";
-          #"sabnzbd.home.a4blue.me" = "192.168.178.65";
         };
       };
       blocking = {
@@ -81,6 +82,24 @@
       };
     };
   };
+  ####
+  # Firewall
+  ####
   networking.firewall.allowedTCPPorts = [config.services.blocky.settings.ports.dns config.services.blocky.settings.ports.tls];
   networking.firewall.allowedUDPPorts = [config.services.blocky.settings.ports.dns config.services.blocky.settings.ports.tls];
+  ####
+  # Prometheus
+  ####
+  services.prometheus.scrapeConfigs = [
+    {
+      job_name = "blocky";
+      static_configs = [
+        {
+          targets = [
+            "localhost:${toString config.services.blocky.settings.ports.http}${config.services.blocky.settings.prometheus.path}"
+          ];
+        }
+      ];
+    }
+  ];
 }

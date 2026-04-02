@@ -1,8 +1,17 @@
 {config, ...}: let
   serviceDomain = "unmanic.home.a4blue.me";
 in {
+  ####
+  # Main Config
+  ####
   modules.unmanic.enable = true;
+  ####
+  # Permissions
+  ####
   users.users.a4blue.extraGroups = ["render" "video"];
+  ####
+  # Impermanence
+  ####
   environment.persistence."${config.modules.impermanenceExtra.defaultPath}" = {
     directories = [
       {
@@ -13,14 +22,23 @@ in {
       }
     ];
   };
+  ####
+  # Systemd Service start after mount
+  ####
   systemd.services.${config.virtualisation.oci-containers.containers.unmanic.serviceName} = {
     after = ["LargeMedia.mount" "bcachefs-large-media-mount.service"];
   };
+  ####
+  # Tmpfiles
+  ####
   systemd.tmpfiles.settings."unmanic-tmp"."/var/cache/unmanic"."d" = {
     mode = "0777";
     user = "a4blue";
     group = "LargeMediaUsers";
   };
+  ####
+  # Nginx
+  ####
   services.nginx.virtualHosts."${serviceDomain}" = {
     forceSSL = true;
     useACMEHost = "home.a4blue.me";

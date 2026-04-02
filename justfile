@@ -29,4 +29,11 @@ diff: _build-systems _copy-current-lock _build-systems-1 _diff-systems
 @_copy-current-lock:
   mkdir -p gen
   cp flake.lock gen/flake.lock
-
+setup-sops:
+  mkdir -p ~/.config/sops/age
+  sudo cp /nix/secret/initrd/sops_key ~/.ssh/sops_key
+  sudo chmod 777 ~/.ssh/sops_key
+  nix-shell -p ssh-to-age --run "ssh-to-age -private-key -i ~/.ssh/sops_key > ~/.config/sops/age/keys.txt"
+  rm ~/.ssh/sops_key
+clean-sops:
+  rm ~/.config/sops/age/keys.txt

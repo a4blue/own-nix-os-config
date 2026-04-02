@@ -1,5 +1,8 @@
 {config, ...}: {
   services = {
+    ####
+    # Main Config
+    ####
     samba = {
       enable = true;
       openFirewall = true;
@@ -26,12 +29,16 @@
         };
       };
     };
-
+    ####
+    #
+    ####
     samba-wsdd = {
       enable = true;
       openFirewall = true;
     };
-
+    ####
+    #
+    ####
     avahi = {
       publish.enable = true;
       publish.userServices = true;
@@ -40,12 +47,20 @@
       openFirewall = true;
     };
   };
+  ####
+  # Firewall
+  ####
   networking.firewall.allowPing = true;
+  ####
+  # Permissions
+  ####
   users.groups.smbUser = {
     members = ["a4blue"];
     gid = 985;
   };
-
+  ####
+  # Impermanence
+  ####
   environment.persistence."${config.modules.impermanenceExtra.defaultPath}" = {
     directories = [
       {

@@ -40,6 +40,8 @@
     ./configs/fail2ban.nix
     ./configs/dynamic-dns.nix
     ./configs/acme.nix
+    ./configs/postgresql.nix
+    ./configs/nginx.nix
 
     ./configs/ncps.nix
     ./configs/keycloak.nix

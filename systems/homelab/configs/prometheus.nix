@@ -1,4 +1,7 @@
 {config, ...}: {
+  ####
+  # Main Config
+  ####
   services.prometheus = {
     enable = true;
     globalConfig.scrape_interval = "1m";
@@ -31,6 +34,9 @@
       };
     };
   };
+  ####
+  # Impermanence
+  ####
   environment.persistence."${config.modules.impermanenceExtra.defaultPath}" = {
     directories = [
       {

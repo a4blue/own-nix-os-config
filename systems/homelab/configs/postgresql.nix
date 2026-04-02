@@ -4,16 +4,37 @@
   lib,
   ...
 }: {
+  ####
+  # Main Config
+  ####
   services.postgresql = {
     enable = true;
     package = pkgs.postgresql_17;
   };
-
-  services.prometheus.exporters.postgres = {
-    enable = true;
-    runAsLocalSuperUser = true;
+  ####
+  # Prometheus
+  ####
+  services.prometheus = {
+    exporters.postgres = {
+      enable = true;
+      runAsLocalSuperUser = true;
+    };
+    scrapeConfigs = [
+      {
+        job_name = "nginx";
+        static_configs = [
+          {
+            targets = [
+              "localhost:${toString config.services.prometheus.exporters.postgres.port}/${config.services.prometheus.exporters.postgres.metricsEndpoint}"
+            ];
+          }
+        ];
+      }
+    ];
   };
-
+  ####
+  # Postgresql Upgrade Script https://wiki.nixos.org/wiki/PostgreSQL#Major_upgrades
+  ####
   environment.systemPackages = [
     (let
       newPostgres =
@@ -42,7 +63,9 @@
           "$@"
       '')
   ];
-
+  ####
+  # Impermanence
+  ####
   environment.persistence."${config.modules.impermanenceExtra.defaultPath}" = {
     directories = [
       {

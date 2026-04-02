@@ -1,10 +1,10 @@
 {config, ...}: let
-  servicePort = 5000;
   serviceDomain = "ombi.home.a4blue.me";
+  dataDir = "/var/lib/ombi";
 in {
   services.ombi = {
     enable = true;
-    port = servicePort;
+    dataDir = dataDir;
   };
   services.nginx.virtualHosts."${serviceDomain}" = {
     forceSSL = true;
@@ -15,7 +15,7 @@ in {
     '';
     locations."/" = {
       recommendedProxySettings = true;
-      proxyPass = "http://127.0.0.1:${builtins.toString servicePort}";
+      proxyPass = "http://127.0.0.1:${builtins.toString config.services.ombi.port}";
       extraConfig = ''
         proxy_set_header X-Forwarded-Protocol $scheme;
         proxy_buffering off;
@@ -25,7 +25,7 @@ in {
   environment.persistence."${config.modules.impermanenceExtra.defaultPath}" = {
     directories = [
       {
-        directory = "/var/lib/ombi";
+        directory = config.services.ombi.dataDir;
         mode = "0740";
         user = "ombi";
         group = "ombi";

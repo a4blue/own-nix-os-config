@@ -54,8 +54,8 @@
       flake = false;
     };
 
-    declarative-jellyfin = {
-      url = "github:Sveske-Juice/declarative-jellyfin";
+    jellarr = {
+      url = "github:venkyr77/jellarr";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -132,7 +132,6 @@
             {nixpkgs.hostPlatform = "x86_64-linux";}
             ./systems/homelab/configuration.nix
             ./overlays/previous.nix
-            inputs.declarative-jellyfin.nixosModules.default
           ];
         };
         # nix build ./#nixosConfigurations.desktop.config.system.build.toplevel

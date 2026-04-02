@@ -4,14 +4,12 @@
   ...
 }: let
   serviceDomain = "auth.home.a4blue.me";
-  servicePort = 38080;
 in {
   services = {
     keycloak = {
       enable = true;
       settings = {
         hostname = "https://${serviceDomain}";
-        http-port = 38080;
         proxy-headers = "xforwarded";
         http-enabled = true;
         http-host = "127.0.0.1";
@@ -46,7 +44,7 @@ in {
       '';
       locations."/" = {
         recommendedProxySettings = true;
-        proxyPass = "http://127.0.0.1:${builtins.toString servicePort}";
+        proxyPass = "http://127.0.0.1:${builtins.toString config.services.keycloak.settings.http-port}";
         extraConfig = ''
           proxy_set_header Host $host;
           proxy_buffer_size     128k;

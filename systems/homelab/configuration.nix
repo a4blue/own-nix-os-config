@@ -14,13 +14,16 @@
 
     ./hardware-configuration.nix
 
-    ./configs
-
     # base stuff
     ../../modules/nixos/base.nix
     ../../modules/nixos/impermanence.nix
     ../../modules/nixos/hardening.nix
     ../../modules/nixos/home-manager-base.nix
+    ../../modules/nixos/dashdot.nix
+    ../../modules/nixos/homarr.nix
+    ../../modules/nixos/koillection.nix
+    ../../modules/nixos/unmanic.nix
+
     ./configs/remote-disk-unlocking.nix
     ./configs/podman.nix
 
@@ -47,6 +50,12 @@
     ./configs/dashdot.nix
     ./configs/unmanic.nix
     ./configs/seerr.nix
+    ./configs/large-media-mount.nix
+    ./configs/lanzaboote.nix
+    ./configs/internal-port-mapping.nix
+    # TODO finalize Prometheus + Grafana
+    #./configs/prometheus.nix
+    #./configs/grafana.nix
 
     ../../configs/common
   ];

@@ -3,28 +3,16 @@
   pkgs,
   ...
 }: let
-  servicePort = 38050;
   serviceDomain = "sabnzbd.home.a4blue.me";
+  stateDir = "sabnzbd";
 in {
-  imports = [
-    ./nginx.nix
-  ];
-  users.users.sabnzbd.extraGroups = ["smbUser" "LargeMediaUsers"];
-  systemd.services.sabnzbd = {
-    after = ["LargeMedia.mount" "bcachefs-large-media-mount.service"];
-    serviceConfig = {RestartSec = 5;};
-  };
-  sops.secrets.sabnzbd_secret_file = {
-    owner = "sabnzbd";
-    group = "sabnzbd";
-  };
   services.sabnzbd = {
     enable = true;
+    stateDir = stateDir;
     allowConfigWrite = true;
     secretFiles = ["${config.sops.secrets.sabnzbd_secret_file.path}"];
     settings = {
       misc = {
-        port = servicePort;
         bandwidth_max = "8M";
         bandwidth_perc = 60;
         check_new_rel = 0;
@@ -37,6 +25,24 @@ in {
       };
     };
   };
+  users.users.sabnzbd.extraGroups = ["smbUser" "LargeMediaUsers"];
+  systemd.services.sabnzbd = {
+    after = ["LargeMedia.mount" "bcachefs-large-media-mount.service"];
+    serviceConfig = {RestartSec = 5;};
+  };
+  sops.secrets.sabnzbd_secret_file = {
+    owner = "sabnzbd";
+    group = "sabnzbd";
+  };
+  services.prometheus.exporters.sabnzbd = {
+    enable = true;
+    servers = [
+      {
+        baseUrl = "";
+        apiKeyFile = "";
+      }
+    ];
+  };
   services.nginx.virtualHosts."${serviceDomain}" = {
     forceSSL = true;
     useACMEHost = "home.a4blue.me";
@@ -46,7 +52,7 @@ in {
     '';
     locations."/" = {
       recommendedProxySettings = true;
-      proxyPass = "http://127.0.0.1:${builtins.toString servicePort}";
+      proxyPass = "http://127.0.0.1:${builtins.toString config.services.sabnzbd.settings.misc.port}";
       extraConfig = ''
         proxy_set_header X-Forwarded-Protocol $scheme;
         proxy_buffering off;
@@ -56,7 +62,7 @@ in {
   environment.persistence."${config.modules.impermanenceExtra.defaultPath}" = {
     directories = [
       {
-        directory = "/var/lib/sabnzbd";
+        directory = "/var/lib/${stateDir}";
         mode = "0740";
         user = "sabnzbd";
         group = "sabnzbd";

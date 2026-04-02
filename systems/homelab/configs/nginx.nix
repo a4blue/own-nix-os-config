@@ -9,6 +9,7 @@
     recommendedOptimisation = true;
     recommendedGzipSettings = true;
     recommendedProxySettings = true;
+    statusPage = true;
     enable = true;
     virtualHosts = {
       # Public DynDNS
@@ -26,6 +27,7 @@
       };
     };
   };
+  services.prometheus.exporters.nginx.enable = true;
   users.users.nginx.extraGroups = ["acme"];
   users.users.acme.extraGroups = ["nginx"];
 

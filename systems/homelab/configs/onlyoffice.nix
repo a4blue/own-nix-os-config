@@ -1,5 +1,4 @@
 {config, ...}: let
-  servicePort = 8000;
   serviceDomain = "onlyoffice.home.a4blue.me";
 in {
   services.onlyoffice = {
@@ -21,5 +20,13 @@ in {
   services.nginx.virtualHosts."${serviceDomain}" = {
     forceSSL = true;
     useACMEHost = "home.a4blue.me";
+    locations."/" = {
+      recommendedProxySettings = true;
+      proxyPass = "http://127.0.0.1:${builtins.toString config.services.onlyoffice.port}";
+      extraConfig = ''
+        proxy_set_header X-Forwarded-Protocol $scheme;
+        proxy_buffering off;
+      '';
+    };
   };
 }

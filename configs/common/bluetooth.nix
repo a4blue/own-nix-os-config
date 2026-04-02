@@ -53,10 +53,14 @@ lib.mkIf config.hardware.bluetooth.enable {
     settings = {
       General = {
         Experimental = true;
-        JustWorksRepairing = "confirm";
+        JustWorksRepairing = "always";
         FastConnectable = true;
         Testing = true;
         KernelExperimental = true;
+        Privacy = "device";
+      };
+      Policy = {
+        AutoEnable = true;
       };
     };
   };

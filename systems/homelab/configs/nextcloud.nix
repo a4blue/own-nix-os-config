@@ -190,10 +190,8 @@ in {
       locations."/" = {
         recommendedProxySettings = true;
         proxyPass = "http://127.0.0.1:3002";
+        proxyWebsockets = true;
         extraConfig = ''
-          proxy_http_version 1.1;
-          proxy_set_header Upgrade $http_upgrade;
-          proxy_set_header Connection "upgrade";
           proxy_set_header X-Forwarded-Protocol $scheme;
         '';
       };
@@ -213,6 +211,14 @@ in {
         };
       };
     };
+    prometheus.exporters.php-fpm.enable = true;
+    #prometheus.exporters.nextcloud = {
+    #  enable = true;
+    #  passwordFile = "";
+    #  tokenFile = "";
+    #  url = "";
+    #  username = "";
+    #};
   };
 
   systemd.services.nextcloud-cron.path = [

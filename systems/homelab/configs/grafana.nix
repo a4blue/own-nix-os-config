@@ -1,9 +1,21 @@
 {config, ...}: let
-  serviceDomain = "seerr.home.a4blue.me";
-  dataDir = "/var/lib/seerr";
+  serviceDomain = "grafana.home.a4blue.me";
+  dataDir = "/var/lib/grafana";
 in {
-  services.seerr = {
+  services.grafana = {
     enable = true;
+    security.secretKey = "SW2YcwTIb9zpOOhoPsMm";
+    dataDir = dataDir;
+    settings = {
+      server = {
+        http_addr = "127.0.0.1";
+        enforce_domain = true;
+        enable_gzip = true;
+        domain = serviceDomain;
+      };
+
+      analytics.reporting_enabled = false;
+    };
   };
   services.nginx.virtualHosts."${serviceDomain}" = {
     forceSSL = true;
@@ -14,7 +26,8 @@ in {
     '';
     locations."/" = {
       recommendedProxySettings = true;
-      proxyPass = "http://127.0.0.1:${builtins.toString config.services.seerr.port}";
+      proxyPass = "http://127.0.0.1:${builtins.toString config.services.grafana.settings.server.http_port}";
+      proxyWebsockets = true;
       extraConfig = ''
         proxy_set_header X-Forwarded-Protocol $scheme;
         proxy_buffering off;
@@ -27,10 +40,10 @@ in {
   environment.persistence."${config.modules.impermanenceExtra.defaultPath}" = {
     directories = [
       {
-        directory = config.services.seerr.configDir;
-        mode = "0777";
-        user = "nobody";
-        group = "nogroup";
+        directory = config.services.grafana.dataDir;
+        mode = "0740";
+        user = "grafana";
+        group = "grafana";
       }
     ];
   };

@@ -1,26 +1,7 @@
 {config, ...}: let
   serviceDomain = "unmanic.home.a4blue.me";
-  servicePort = 7578;
 in {
-  virtualisation.oci-containers.containers = {
-    unmanic = {
-      image = "docker.io/josh5/unmanic:latest";
-      autoStart = true;
-      ports = ["127.0.0.1:${builtins.toString servicePort}:8888"];
-      volumes = [
-        "/var/lib/unmanic:/config"
-        "/LargeMedia/smb:/library"
-        "/var/cache/unmanic:/tmp/unmanic"
-        "/dev/dri:/dev/dri"
-      ];
-      environment = {
-        PUID = "${builtins.toString config.users.users.a4blue.uid}";
-        PGID = "${builtins.toString config.users.groups.LargeMediaUsers.gid}";
-      };
-      # TODO find a better way to give permission to render and video group (maybe the user podman needs it ?)
-      privileged = true;
-    };
-  };
+  modules.unmanic.enable = true;
   users.users.a4blue.extraGroups = ["render" "video"];
   environment.persistence."${config.modules.impermanenceExtra.defaultPath}" = {
     directories = [
@@ -45,7 +26,7 @@ in {
     useACMEHost = "home.a4blue.me";
     locations."/" = {
       recommendedProxySettings = true;
-      proxyPass = "http://127.0.0.1:${builtins.toString servicePort}/";
+      proxyPass = "http://127.0.0.1:${builtins.toString config.modules.unmanic.port}/";
       extraConfig = ''
         allow 192.168.178.0/24;
         allow fd00:0:3ea6:2fff:0:0:0:0/64;
@@ -54,11 +35,9 @@ in {
     };
     locations."/unmanic/websocket" = {
       recommendedProxySettings = true;
-      proxyPass = "http://127.0.0.1:${builtins.toString servicePort}";
+      proxyPass = "http://127.0.0.1:${builtins.toString config.modules.unmanic.port}";
+      proxyWebsockets = true;
       extraConfig = ''
-        proxy_http_version 1.1;
-        proxy_set_header Upgrade $http_upgrade;
-        proxy_set_header Connection "upgrade";
         proxy_set_header X-Forwarded-Protocol $scheme;
 
         allow 192.168.178.0/24;

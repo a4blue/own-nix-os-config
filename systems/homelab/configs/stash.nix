@@ -4,7 +4,6 @@
   lib,
   ...
 }: let
-  servicePort = 9999;
   serviceDomain = "stash.home.a4blue.me";
 in {
   sops.secrets = {
@@ -38,7 +37,6 @@ in {
           excludeimage = true;
         }
       ];
-      port = servicePort;
       host = "127.0.0.1";
       notifications_enabled = false;
       scrapers_path = "${config.services.stash.dataDir}/scrapers";
@@ -142,7 +140,6 @@ in {
               gast
               gdown
               google-pasta
-              # TODO wait for fix
               gradio
               gradio-client
               groovy
@@ -258,12 +255,10 @@ in {
     useACMEHost = "home.a4blue.me";
     locations."/" = {
       recommendedProxySettings = true;
-      proxyPass = "http://127.0.0.1:${builtins.toString servicePort}/";
+      proxyPass = "http://127.0.0.1:${builtins.toString config.services.stash.settings.port}/";
+      proxyWebsockets = true;
       extraConfig = ''
         client_max_body_size 512M;
-        proxy_http_version 1.1;
-        proxy_set_header Upgrade $http_upgrade;
-        proxy_set_header Connection "upgrade";
         proxy_set_header X-Forwarded-Protocol $scheme;
       '';
     };

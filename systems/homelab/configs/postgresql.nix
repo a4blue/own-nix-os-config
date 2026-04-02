@@ -9,10 +9,15 @@
     package = pkgs.postgresql_17;
   };
 
+  services.prometheus.exporters.postgres = {
+    enable = true;
+    runAsLocalSuperUser = true;
+  };
+
   environment.systemPackages = [
     (let
       newPostgres =
-        pkgs.postgresql_17.withPackages (pp: [
+        pkgs.postgresql_18.withPackages (pp: [
         ]);
       cfg = config.services.postgresql;
     in

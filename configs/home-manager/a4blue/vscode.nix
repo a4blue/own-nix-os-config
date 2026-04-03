@@ -43,7 +43,8 @@ lib.mkIf config.programs.vscode.enable {
         nil
         alejandra
         nerd-fonts.fira-code
-        devenv
+        # TODO re-enable after update
+        #devenv
       ];
     };
 }

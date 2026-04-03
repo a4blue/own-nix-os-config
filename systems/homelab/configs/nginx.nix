@@ -40,7 +40,7 @@
         static_configs = [
           {
             targets = [
-              "localhost:${toString config.services.prometheus.exporters.nginx.port}/${config.services.prometheus.exporters.nginx.metricsEndpoint}"
+              "localhost:${toString config.services.prometheus.exporters.nginx.port}"
             ];
           }
         ];
@@ -50,7 +50,7 @@
         static_configs = [
           {
             targets = [
-              "localhost:${toString config.services.prometheus.exporters.nginxlog.port}/${config.services.prometheus.exporters.nginxlog.metricsEndpoint}"
+              "localhost:${toString config.services.prometheus.exporters.nginxlog.port}"
             ];
           }
         ];

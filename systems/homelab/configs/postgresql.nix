@@ -21,11 +21,11 @@
     };
     scrapeConfigs = [
       {
-        job_name = "nginx";
+        job_name = "postgresql";
         static_configs = [
           {
             targets = [
-              "localhost:${toString config.services.prometheus.exporters.postgres.port}/${config.services.prometheus.exporters.postgres.metricsEndpoint}"
+              "localhost:${toString config.services.prometheus.exporters.postgres.port}"
             ];
           }
         ];

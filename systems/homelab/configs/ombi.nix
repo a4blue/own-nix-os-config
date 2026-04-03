@@ -21,11 +21,8 @@ in {
     '';
     locations."/" = {
       recommendedProxySettings = true;
+      proxyWebsockets = true;
       proxyPass = "http://127.0.0.1:${builtins.toString config.services.ombi.port}";
-      extraConfig = ''
-        proxy_set_header X-Forwarded-Protocol $scheme;
-        proxy_buffering off;
-      '';
     };
   };
   ####

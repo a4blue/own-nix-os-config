@@ -84,16 +84,6 @@
   } @ inputs: let
     inherit (self) outputs;
     system = "x86_64-linux";
-
-    # Function to create Neovim packages with unique names
-    mkNeovimPackages = pkgs: neovimPkgs: let
-      mkNeovimAlias = name: pkg:
-        pkgs.runCommand "neovim-${name}" {} ''
-          mkdir -p $out/bin
-          ln -s ${pkg}/bin/nvim $out/bin/nvim-${name}
-        '';
-    in
-      builtins.mapAttrs mkNeovimAlias neovimPkgs;
   in
     flake-utils.lib.eachDefaultSystem (system: let
       pkgs = import nixpkgs {inherit system;};
@@ -115,7 +105,7 @@
             statix
             nh
             nix-du
-            inputs.own-nixvim.packages.${system}.default
+            inputs.own-nixvim.packages.${pkgs.stdenv.hostPlatform.system}.default
           ];
           shellHook = ''
             export PS1="\n[\u@nix-shell:\w\]$:\n"
@@ -130,6 +120,10 @@
           specialArgs = {inherit inputs outputs system;};
           modules = [
             {nixpkgs.hostPlatform = "x86_64-linux";}
+            inputs.sops-nix.nixosModules.sops
+            inputs.home-manager.nixosModules.home-manager
+            inputs.impermanence.nixosModules.impermanence
+            inputs.lanzaboote.nixosModules.lanzaboote
             ./systems/homelab/configuration.nix
             ./overlays/previous.nix
           ];
@@ -138,6 +132,10 @@
         desktop = nixpkgs.lib.nixosSystem {
           specialArgs = {inherit inputs outputs system;};
           modules = [
+            inputs.sops-nix.nixosModules.sops
+            inputs.home-manager.nixosModules.home-manager
+            inputs.impermanence.nixosModules.impermanence
+            inputs.lanzaboote.nixosModules.lanzaboote
             ./systems/desktop/configuration.nix
             ./overlays/previous.nix
           ];
@@ -146,6 +144,10 @@
         laptop-nix = nixpkgs.lib.nixosSystem {
           specialArgs = {inherit inputs outputs system;};
           modules = [
+            inputs.sops-nix.nixosModules.sops
+            inputs.home-manager.nixosModules.home-manager
+            inputs.impermanence.nixosModules.impermanence
+            inputs.lanzaboote.nixosModules.lanzaboote
             ./systems/laptop-nix/configuration.nix
             ./overlays/previous.nix
           ];

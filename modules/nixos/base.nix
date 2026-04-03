@@ -11,7 +11,7 @@
   hardware.enableRedistributableFirmware = true;
 
   system.stateVersion = "26.05";
-  sops.secrets.github_pat = {mode = "0777";};
+  sops.secrets.githubPat = {mode = "0777";};
 
   nix = {
     package = pkgs.nixVersions.latest;
@@ -39,7 +39,7 @@
       download-buffer-size = 524288000;
     };
     extraOptions = ''
-      !include ${config.sops.secrets.github_pat.path}
+      !include ${config.sops.secrets.githubPat.path}
     '';
     nixPath = ["nixpkgs=${inputs.nixpkgs}"];
   };
@@ -47,7 +47,7 @@
   sops = {
     defaultSopsFile = ./../../secrets/secrets.yaml;
     age.sshKeyPaths = ["/nix/secret/initrd/ssh_host_ed25519_key"];
-    secrets.a4blue_easy_hashed_password.neededForUsers = true;
+    secrets.a4blueEasyHashedPassword.neededForUsers = true;
   };
 
   security.pam.loginLimits = [
@@ -92,13 +92,13 @@
         # TPM Desktop
         "ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBLvA3EpJmiAhmGggV7xJPnw/cnsUa9wY1BX9qmyUNfjIoQgoFIeRFNvAYgodIz0+UnHt/nPKpkzHKQjvrkhdLBQ="
       ];
-      hashedPasswordFile = config.sops.secrets.a4blue_easy_hashed_password.path;
+      hashedPasswordFile = config.sops.secrets.a4blueEasyHashedPassword.path;
       uid = 1000;
     };
     users.root = {
       name = "root";
       isSystemUser = true;
-      hashedPasswordFile = config.sops.secrets.a4blue_easy_hashed_password.path;
+      hashedPasswordFile = config.sops.secrets.a4blueEasyHashedPassword.path;
     };
   };
 }

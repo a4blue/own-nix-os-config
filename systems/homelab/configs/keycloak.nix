@@ -55,6 +55,7 @@ in {
       '';
       locations."/" = {
         recommendedProxySettings = true;
+        proxyWebsockets = true;
         proxyPass = "http://127.0.0.1:${builtins.toString config.services.keycloak.settings.http-port}";
         extraConfig = ''
           proxy_set_header Host $host;
@@ -69,11 +70,11 @@ in {
     ####
     prometheus.scrapeConfigs = [
       {
-        job_name = "jellyfin";
+        job_name = "keycloak";
         static_configs = [
           {
             targets = [
-              "localhost:${toString config.services.keycloak.settings.http-management-port}/metrics"
+              "localhost:${toString config.services.keycloak.settings.http-management-port}"
             ];
           }
         ];

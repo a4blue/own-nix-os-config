@@ -96,7 +96,7 @@
       static_configs = [
         {
           targets = [
-            "localhost:${toString config.services.blocky.settings.ports.http}${config.services.blocky.settings.prometheus.path}"
+            "localhost:${toString config.services.blocky.settings.ports.http}"
           ];
         }
       ];

@@ -7,11 +7,6 @@
   ...
 }: {
   imports = [
-    inputs.impermanence.nixosModules.impermanence
-    inputs.sops-nix.nixosModules.sops
-    inputs.home-manager.nixosModules.home-manager
-    inputs.lanzaboote.nixosModules.lanzaboote
-
     ./hardware-configuration.nix
 
     # base stuff
@@ -55,9 +50,8 @@
     ./configs/large-media-mount.nix
     ./configs/lanzaboote.nix
     ./configs/internal-port-mapping.nix
-    # TODO finalize Prometheus + Grafana
-    #./configs/prometheus.nix
-    #./configs/grafana.nix
+    ./configs/prometheus.nix
+    ./configs/grafana.nix
 
     ../../configs/common
   ];

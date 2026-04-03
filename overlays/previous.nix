@@ -23,7 +23,7 @@
       #  };
       #};
       mnamer2 = prev.callPackage ../packages/mnamer-fork/mnamer2.nix {};
-      inherit (inputs.stash-update.legacyPackages.${prev.system}) stash;
+      inherit (inputs.stash-update.legacyPackages.${prev.stdenv.hostPlatform.system}) stash;
     })
   ];
 }

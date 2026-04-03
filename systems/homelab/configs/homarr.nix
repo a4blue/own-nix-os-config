@@ -35,15 +35,8 @@ in {
     useACMEHost = "home.a4blue.me";
     locations."/" = {
       recommendedProxySettings = true;
-      proxyPass = "http://127.0.0.1:${builtins.toString config.modules.homarr.port}/";
-    };
-    locations."/websockets" = {
-      recommendedProxySettings = true;
-      proxyPass = "http://127.0.0.1:${builtins.toString config.modules.homarr.port}";
       proxyWebsockets = true;
-      extraConfig = ''
-        proxy_set_header X-Forwarded-Protocol $scheme;
-      '';
+      proxyPass = "http://127.0.0.1:${builtins.toString config.modules.homarr.port}";
     };
   };
 }

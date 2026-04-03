@@ -44,20 +44,9 @@ in {
     useACMEHost = "home.a4blue.me";
     locations."/" = {
       recommendedProxySettings = true;
+      proxyWebsockets = true;
       proxyPass = "http://127.0.0.1:${builtins.toString config.modules.unmanic.port}/";
       extraConfig = ''
-        allow 192.168.178.0/24;
-        allow fd00:0:3ea6:2fff:0:0:0:0/64;
-        deny all;
-      '';
-    };
-    locations."/unmanic/websocket" = {
-      recommendedProxySettings = true;
-      proxyPass = "http://127.0.0.1:${builtins.toString config.modules.unmanic.port}";
-      proxyWebsockets = true;
-      extraConfig = ''
-        proxy_set_header X-Forwarded-Protocol $scheme;
-
         allow 192.168.178.0/24;
         allow fd00:0:3ea6:2fff:0:0:0:0/64;
         deny all;

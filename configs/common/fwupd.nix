@@ -6,13 +6,12 @@
 }:
 lib.mkIf config.services.fwupd.enable {
   environment =
-    if config.modules.impermanenceExtra.enabled
-    then {
+    lib.mkIf config.modules.impermanenceExtra.enabled
+    {
       persistence."${config.modules.impermanenceExtra.defaultPath}" = {
         directories = [
           "/var/lib/fwupd"
         ];
       };
-    }
-    else {};
+    };
 }

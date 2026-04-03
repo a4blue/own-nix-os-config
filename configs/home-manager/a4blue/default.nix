@@ -35,7 +35,7 @@ with config; {
       home-manager
       sops
       just
-      inputs.own-nixvim.packages.${system}.default
+      inputs.own-nixvim.packages.${pkgs.stdenv.hostPlatform.system}.default
       nvd
       wireguard-tools
     ];

@@ -9,6 +9,13 @@
   serviceDomain = "jellyfin.home.a4blue.me";
   dataDir = "/var/lib/jellyfin";
 in {
+  ####
+  # Secrets
+  ####
+  sops.secrets.jellarrApiKey = {
+    owner = "jellyfin";
+    group = "jellyfin";
+  };
   services = {
     ####
     # Main Config
@@ -55,11 +62,10 @@ in {
     # Jellarr Config for "declarative" Jellyfin
     ####
     jellarr = {
-      # TODO enable jellar after providing secrets
-      enable = false;
+      enable = true;
       user = "jellyfin";
       group = "jellyfin";
-      #environmentFile = config.sops.templates.jellarr-env.path;
+      environmentFile = config.sops.secrets.jellarrApiKey.path;
       config = {
         version = 1;
         base_url = "https://${serviceDomain}";
@@ -156,19 +162,8 @@ in {
       locations = {
         "/" = {
           recommendedProxySettings = true;
-          proxyPass = "http://127.0.0.1:${builtins.toString servicePort}";
-          extraConfig = ''
-            proxy_set_header X-Forwarded-Protocol $scheme;
-            proxy_buffering off;
-          '';
-        };
-        "/socket" = {
-          recommendedProxySettings = true;
-          proxyPass = "http://127.0.0.1:${builtins.toString servicePort}";
           proxyWebsockets = true;
-          extraConfig = ''
-            proxy_set_header X-Forwarded-Protocol $scheme;
-          '';
+          proxyPass = "http://127.0.0.1:${builtins.toString servicePort}";
         };
         "/metrics" = {
           extraConfig = ''
@@ -186,7 +181,7 @@ in {
         static_configs = [
           {
             targets = [
-              "localhost:${toString servicePort}/metrics"
+              "localhost:${toString servicePort}"
             ];
           }
         ];

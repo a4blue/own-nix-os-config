@@ -12,6 +12,11 @@ in {
       default = 3001;
       description = "";
     };
+    widgetList = lib.mkOption {
+      description = "DASHDOT_WIDGET_LIST";
+      type = lib.types.str;
+      default = "cpu,storage,ram,network,gpu";
+    };
   };
   config = lib.mkIf cfg.enable {
     virtualisation.oci-containers.containers = {
@@ -22,7 +27,7 @@ in {
         ports = ["127.0.0.1:${builtins.toString cfg.port}:3001"];
         volumes = ["/:/mnt/host:ro"];
         environment = {
-          DASHDOT_WIDGET_LIST = "cpu,storage,ram,network,gpu";
+          DASHDOT_WIDGET_LIST = cfg.widgetList;
           DASHDOT_ENABLE_CPU_TEMPS = "true";
         };
       };

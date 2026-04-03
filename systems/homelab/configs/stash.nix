@@ -10,15 +10,15 @@ in {
   # Secrets
   ####
   sops.secrets = {
-    stash_password = {
+    "stash/password" = {
       owner = "stash";
       group = "stash";
     };
-    stash_jwt_secret_key = {
+    "stash/jwtSecretKey" = {
       owner = "stash";
       group = "stash";
     };
-    session_store_key = {
+    "stash/sessionStoreKey" = {
       owner = "stash";
       group = "stash";
     };
@@ -30,9 +30,9 @@ in {
     enable = true;
     dataDir = "/var/lib/stash-new";
     username = "a4blue";
-    passwordFile = "${config.sops.secrets.stash_password.path}";
-    jwtSecretKeyFile = "${config.sops.secrets.stash_jwt_secret_key.path}";
-    sessionStoreKeyFile = "${config.sops.secrets.session_store_key.path}";
+    passwordFile = "${config.sops.secrets."stash/password".path}";
+    jwtSecretKeyFile = "${config.sops.secrets."stash/jwtSecretKey".path}";
+    sessionStoreKeyFile = "${config.sops.secrets."stash/sessionStoreKey".path}";
     mutablePlugins = true;
     mutableScrapers = true;
     openFirewall = false;
@@ -271,12 +271,8 @@ in {
     useACMEHost = "home.a4blue.me";
     locations."/" = {
       recommendedProxySettings = true;
-      proxyPass = "http://127.0.0.1:${builtins.toString config.services.stash.settings.port}/";
       proxyWebsockets = true;
-      extraConfig = ''
-        client_max_body_size 512M;
-        proxy_set_header X-Forwarded-Protocol $scheme;
-      '';
+      proxyPass = "http://127.0.0.1:${builtins.toString config.services.stash.settings.port}";
     };
   };
 }

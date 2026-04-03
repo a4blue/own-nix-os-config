@@ -185,8 +185,8 @@ in {
       useACMEHost = "home.a4blue.me";
       locations."/" = {
         recommendedProxySettings = true;
-        proxyPass = "http://127.0.0.1:3002";
         proxyWebsockets = true;
+        proxyPass = "http://127.0.0.1:3002";
         extraConfig = ''
           proxy_set_header X-Forwarded-Protocol $scheme;
         '';

@@ -14,7 +14,7 @@ in {
       enable = true;
       inherit stateDir;
       allowConfigWrite = true;
-      secretFiles = ["${config.sops.secrets.sabnzbd_secret_file.path}"];
+      secretFiles = ["${config.sops.secrets.sabnzbdSecretFile.path}"];
       settings = {
         misc = {
           bandwidth_max = "8M";
@@ -53,11 +53,8 @@ in {
       '';
       locations."/" = {
         recommendedProxySettings = true;
+        proxyWebsockets = true;
         proxyPass = "http://127.0.0.1:${builtins.toString config.services.sabnzbd.settings.misc.port}";
-        extraConfig = ''
-          proxy_set_header X-Forwarded-Protocol $scheme;
-          proxy_buffering off;
-        '';
       };
     };
   };
@@ -75,7 +72,7 @@ in {
   ####
   # Secrets
   ####
-  sops.secrets.sabnzbd_secret_file = {
+  sops.secrets.sabnzbdSecretFile = {
     owner = "sabnzbd";
     group = "sabnzbd";
   };

@@ -17,7 +17,8 @@ in {
     useACMEHost = "home.a4blue.me";
     locations."/" = {
       recommendedProxySettings = true;
-      proxyPass = "http://127.0.0.1:${builtins.toString config.modules.dashdot.port}/";
+      proxyWebsockets = true;
+      proxyPass = "http://127.0.0.1:${builtins.toString config.modules.dashdot.port}";
     };
   };
 }

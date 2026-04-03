@@ -8,7 +8,7 @@
   ####
   # Secrets
   ####
-  sops.secrets.large_media_password = {
+  sops.secrets.largeMediaPassword = {
     owner = "root";
     group = "root";
   };
@@ -40,7 +40,7 @@
       sleep 5
 
       # Mount the device
-      ${pkgs.bcachefs-tools}/bin/bcachefs mount -f ${config.sops.secrets.large_media_password.path} "$DEVICE_PATH" "$MOUNT_POINT"
+      ${pkgs.bcachefs-tools}/bin/bcachefs mount -f ${config.sops.secrets.largeMediaPassword.path} "$DEVICE_PATH" "$MOUNT_POINT"
       sleep 5
     '';
     serviceConfig = {

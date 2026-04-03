@@ -6,7 +6,7 @@
   ####
   # Secrets
   ####
-  sops.secrets.borgbackup_passphrase = {};
+  sops.secrets.borgbackupPassphrase = {};
   ####
   # Main Config
   ####
@@ -18,7 +18,7 @@
         repo = "u401095@u401095.your-storagebox.de:/home/backups/homelab";
         encryption = {
           mode = "repokey";
-          passCommand = "cat ${config.sops.secrets.borgbackup_passphrase.path}";
+          passCommand = "cat ${config.sops.secrets.borgbackupPassphrase.path}";
         };
         environment = {BORG_RSH = "ssh -p23 -i /nix/secret/hetzner_storage_box/ssh_hetzner_storage_box_ed25519_key";};
         compression = "zstd,16";

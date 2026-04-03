@@ -14,8 +14,7 @@
   environment.persistence."${config.modules.impermanenceExtra.defaultPath}" = {
     directories = [
       {
-        # TODO maybe services.fail2ban.daemonSettings.Definition.dbfile is only needed ?
-        directory = "/var/lib/fail2ban";
+        directory = config.services.fail2ban.daemonSettings.Definition.dbfile;
         mode = "0700";
         user = "root";
         group = "root";

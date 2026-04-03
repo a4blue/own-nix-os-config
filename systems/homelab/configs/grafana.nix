@@ -7,9 +7,22 @@ in {
   ####
   services.grafana = {
     enable = true;
-    security.secretKey = "SW2YcwTIb9zpOOhoPsMm";
+    #declarativePlugins = with pkgs.grafanaPlugins; [ ... ];
+    provision = {
+      enable = true;
+      datasources.settings.datasources = [
+        {
+          name = "Prometheus";
+          type = "prometheus";
+          url = "http://${config.services.prometheus.listenAddress}:${toString config.services.prometheus.port}";
+          isDefault = true;
+          editable = false;
+        }
+      ];
+    };
     inherit dataDir;
     settings = {
+      security.secret_key = "$__file{${config.sops.secrets.grafanaSecretKey.path}}";
       server = {
         http_addr = "127.0.0.1";
         enforce_domain = true;
@@ -21,7 +34,14 @@ in {
     };
   };
   ####
-  # Main Config
+  # Secrets
+  ####
+  sops.secrets.grafanaSecretKey = {
+    owner = "grafana";
+    group = "grafana";
+  };
+  ####
+  # Nginx
   ####
   services.nginx.virtualHosts."${serviceDomain}" = {
     forceSSL = true;
@@ -32,11 +52,9 @@ in {
     '';
     locations."/" = {
       recommendedProxySettings = true;
-      proxyPass = "http://127.0.0.1:${builtins.toString config.services.grafana.settings.server.http_port}";
       proxyWebsockets = true;
+      proxyPass = "http://127.0.0.1:${builtins.toString config.services.grafana.settings.server.http_port}";
       extraConfig = ''
-        proxy_set_header X-Forwarded-Protocol $scheme;
-        proxy_buffering off;
         allow 192.168.178.0/24;
         allow fd00:0:3ea6:2fff:0:0:0:0/64;
         deny all;

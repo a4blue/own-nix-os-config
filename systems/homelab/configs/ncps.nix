@@ -36,7 +36,7 @@
       static_configs = [
         {
           targets = [
-            "localhost:8501/metrics"
+            "localhost:8501"
           ];
         }
       ];

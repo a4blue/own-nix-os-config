@@ -17,10 +17,8 @@ in {
     useACMEHost = "home.a4blue.me";
     locations."/" = {
       recommendedProxySettings = true;
-      proxyPass = "http://127.0.0.1:${builtins.toString config.services.bazarr.listenPort}/";
-      extraConfig = ''
-        client_max_body_size 512M;
-      '';
+      proxyWebsockets = true;
+      proxyPass = "http://127.0.0.1:${builtins.toString config.services.bazarr.listenPort}";
     };
   };
   ####

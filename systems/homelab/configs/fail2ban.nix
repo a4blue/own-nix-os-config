@@ -12,9 +12,9 @@
   # Impermanence
   ####
   environment.persistence."${config.modules.impermanenceExtra.defaultPath}" = {
-    directories = [
+    files = [
       {
-        directory = config.services.fail2ban.daemonSettings.Definition.dbfile;
+        file = config.services.fail2ban.daemonSettings.Definition.dbfile;
         mode = "0700";
         user = "root";
         group = "root";

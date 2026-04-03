@@ -45,8 +45,8 @@ in {
   environment.persistence."${config.modules.impermanenceExtra.defaultPath}" = {
     directories = [
       {
-        directory = config.services.seerr.configDir;
-        mode = "0777";
+        directory = "/var/lib/private/seerr";
+        mode = "0755";
         user = "nobody";
         group = "nogroup";
       }

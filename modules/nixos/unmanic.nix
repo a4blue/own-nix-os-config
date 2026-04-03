@@ -16,6 +16,7 @@ in {
   config = lib.mkIf cfg.enable {
     virtualisation.oci-containers.containers = {
       unmanic = {
+        podman.user = "a4blue";
         image = "docker.io/josh5/unmanic:latest";
         autoStart = true;
         ports = ["127.0.0.1:${builtins.toString cfg.port}:8888"];
@@ -32,7 +33,7 @@ in {
         # TODO find a better way to give permission to render and video group (maybe the user podman needs it ?)
         privileged = false;
 
-        extraOptions = ["--group-add" "keep-groups"];
+        extraOptions = ["--group-add" "keep-groups" "--userns" "keep-id"];
         user = "a4blue:LargeMediaUsers";
       };
     };

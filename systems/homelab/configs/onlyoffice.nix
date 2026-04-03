@@ -34,7 +34,6 @@ in {
     locations."/" = {
       recommendedProxySettings = true;
       proxyWebsockets = true;
-      proxyPass = "http://127.0.0.1:${builtins.toString config.services.onlyoffice.port}";
     };
   };
 }

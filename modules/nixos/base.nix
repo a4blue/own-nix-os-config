@@ -94,6 +94,19 @@
       ];
       hashedPasswordFile = config.sops.secrets.a4blueEasyHashedPassword.path;
       uid = 1000;
+      linger = false;
+      subUidRanges = [
+        {
+          startUid = 100000;
+          count = 65536;
+        }
+      ];
+      subGidRanges = [
+        {
+          startGid = 100000;
+          count = 65536;
+        }
+      ];
     };
     users.root = {
       name = "root";

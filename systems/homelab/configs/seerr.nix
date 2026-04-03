@@ -1,4 +1,8 @@
-{config, ...}: let
+{
+  config,
+  lib,
+  ...
+}: let
   serviceDomain = "seerr.home.a4blue.me";
   dataDir = "/var/lib/seerr";
 in {
@@ -7,6 +11,12 @@ in {
   ####
   services.seerr = {
     enable = true;
+    configDir = dataDir;
+  };
+  systemd.services.seerr = {
+    serviceConfig = {
+      PrivateMounts = lib.mkForce false;
+    };
   };
   ####
   # Nginx

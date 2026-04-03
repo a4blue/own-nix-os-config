@@ -31,7 +31,7 @@ in {
         #  PGID = "${builtins.toString config.users.groups.LargeMediaUsers.gid}";
         #};
         # TODO find a better way to give permission to render and video group (maybe the user podman needs it ?)
-        privileged = false;
+        privileged = true;
 
         extraOptions = ["--group-add" "keep-groups" "--userns" "keep-id"];
         user = "a4blue:LargeMediaUsers";

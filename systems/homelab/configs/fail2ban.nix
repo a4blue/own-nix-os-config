@@ -15,9 +15,6 @@
     files = [
       {
         file = config.services.fail2ban.daemonSettings.Definition.dbfile;
-        mode = "0700";
-        user = "root";
-        group = "root";
       }
     ];
   };

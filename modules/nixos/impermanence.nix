@@ -11,6 +11,10 @@
       "/var/cache"
       "/var/lib/systemd"
       "/var/lib/NetworkManager"
+      {
+        directory = "/var/lib/private";
+        mode = "700";
+      }
     ];
 
     files = [
@@ -21,4 +25,7 @@
       "/etc/ssh/ssh_host_rsa_key"
     ];
   };
+  systemd.tmpfiles.rules = [
+    "d ${config.modules.impermanenceExtra.defaultPath}/var/lib/private 0700 root root -"
+  ];
 }

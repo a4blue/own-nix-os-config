@@ -6,8 +6,6 @@
 - (Copyparty with SSO)[https://github.com/9001/copyparty/blob/hovudstraum/docs/examples/docker/idp/copyparty.conf]
 - Implement (ROMM)[https://romm.app/]
 - (Streamystats)[https://github.com/fredrikburmester/streamystats]
-- (Grafana)[https://wiki.nixos.org/wiki/Grafana]
-- (Prometheus)[https://wiki.nixos.org/wiki/Prometheus]
 - (Grafana Loki)[https://wiki.nixos.org/wiki/Grafana_Loki]
 - Services without OIDC should be behind (OAuth2-Proxy)[https://oauth2-proxy.github.io/oauth2-proxy/]
     - Sabnzbd

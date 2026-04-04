@@ -10,6 +10,7 @@
   services.postgresql = {
     enable = true;
     package = pkgs.postgresql_17;
+    enableJIT = true;
   };
   ####
   # Prometheus

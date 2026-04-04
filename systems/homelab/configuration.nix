@@ -42,7 +42,6 @@
     ./configs/keycloak.nix
     ./configs/onlyoffice.nix
     ./configs/homarr.nix
-    ./configs/ombi.nix
     ./configs/bazarr.nix
     ./configs/dashdot.nix
     ./configs/unmanic.nix
@@ -52,6 +51,7 @@
     ./configs/internal-port-mapping.nix
     ./configs/prometheus.nix
     ./configs/grafana.nix
+    ./configs/koillection.nix
 
     ../../configs/common
   ];

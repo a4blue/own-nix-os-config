@@ -24,7 +24,7 @@ in {
       [ -e $file ] && old=`cat $file`
 
       # Get IP's
-      ipv6=$(${pkgs.iproute2}/bin/ip -6 addr list scope global enp86s0 | ${pkgs.gnugrep}/bin/grep -v " fd" | ${pkgs.gnused}/bin/sed -n 's/.*inet6 \([0-9a-f:]\+\).*/\1/p' | ${pkgs.coreutils}/bin/head -n 1)
+      ipv6=$(${pkgs.iproute2}/bin/ip -6 addr list scope global enp87s0 | ${pkgs.gnugrep}/bin/grep -v " fd" | ${pkgs.gnused}/bin/sed -n 's/.*inet6 \([0-9a-f:]\+\).*/\1/p' | ${pkgs.coreutils}/bin/head -n 1)
       ipv4="$(${pkgs.curlFull}/bin/curl -s -X GET https://api.ipify.org)"
       echo "IPv4: ''${ipv4}\n"
       echo "IPv6: ''${ipv6}\n"

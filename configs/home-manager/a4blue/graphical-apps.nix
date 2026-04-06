@@ -15,8 +15,8 @@ in {
     mimeApps = {
       enable = true;
       defaultApplications = {
-        "video/x-matroska" = "vlc.desktop";
-        "video/mp4" = "vlc.desktop";
+        #"video/x-matroska" = "vlc.desktop";
+        #"video/mp4" = "vlc.desktop";
         "text/html" = "firefox-nightly.desktop";
         "x-scheme-handler/http" = "firefox-nightly.desktop";
         "x-scheme-handler/https" = "firefox-nightly.desktop";
@@ -45,7 +45,8 @@ in {
           signal-desktop
           proton-pass
           libreoffice-qt6-fresh
-          vlc
+          haruna
+          #vlc
           mpv
           podman-desktop
         ];

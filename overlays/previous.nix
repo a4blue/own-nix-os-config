@@ -7,8 +7,6 @@
   nixpkgs.overlays = [
     inputs.nix-vscode-extensions.overlays.default
     (final: prev: {
-      #blocky = inputs.blocky-fix.legacyPackages.${prev.system}.blocky;
-      #libreoffice-qt6-fresh = inputs.nixpkgs-prev-unstable-small.legacyPackages.${prev.system}.libreoffice-qt6-fresh;
       #python313 = prev.python313.override {
       #  packageOverrides = pyfinal: pyprev: {
       #    pyrate-limiter = pyprev.pyrate-limiter.overridePythonAttrs (old: {

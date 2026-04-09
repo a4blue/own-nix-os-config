@@ -19,5 +19,6 @@ with config; {
     ./audio.nix
     ./fwupd.nix
     ./tpm2.nix
+    ./yggdrasil.nix
   ];
 }

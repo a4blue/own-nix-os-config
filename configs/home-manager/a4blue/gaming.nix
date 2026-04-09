@@ -30,6 +30,7 @@ in {
               ".factorio"
               ".local/share/7DaysToDie"
               ".local/share/Paradox Interactive"
+              ".local/share/Larian Studios"
             ];
           };
         }

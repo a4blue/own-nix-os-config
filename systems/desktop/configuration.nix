@@ -146,6 +146,7 @@
     fstrim.enable = true;
     fwupd.enable = true;
     wg-netmanager.enable = true;
+    yggdrasil.enable = true;
   };
 
   security.tpm2.enable = true;

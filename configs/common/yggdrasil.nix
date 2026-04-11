@@ -18,6 +18,11 @@ lib.mkIf config.services.yggdrasil.enable {
       ];
     };
   };
+  systemd.services.yggdrasil = {
+    serviceConfig = {
+      PrivateMounts = lib.mkForce false;
+    };
+  };
   environment =
     if config.modules.impermanenceExtra.enabled
     then {
@@ -25,7 +30,7 @@ lib.mkIf config.services.yggdrasil.enable {
         directories = [
           {
             directory = "/var/lib/private/yggdrasil";
-            mode = "0750";
+            mode = "0755";
             user = "nobody";
             group = "nogroup";
           }

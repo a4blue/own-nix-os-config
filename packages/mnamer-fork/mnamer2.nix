@@ -38,6 +38,8 @@ pkgs.python3Packages.buildPythonApplication rec {
   patches = [
     # https://github.com/jkwill87/mnamer/pull/291
     ./cached_session_error.patch
+    # https://github.com/jkwill87/mnamer/pull/333
+    ./fix_request_cache_version.patch
   ];
 
   nativeCheckInputs = [pkgs.python3Packages.pytestCheckHook];

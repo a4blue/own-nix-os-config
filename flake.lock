@@ -65,11 +65,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1775687844,
-        "narHash": "sha256-T2WJrbw5BGCSbXbvC2SnEiXv7b9cGTro1wZy36js9sQ=",
+        "lastModified": 1775906962,
+        "narHash": "sha256-m2Z+z9LDKDD5qm2XIhNUsEM3cwJNesQA0IJ1el1qw7I=",
         "owner": "nix-community",
         "repo": "flake-firefox-nightly",
-        "rev": "0bfb5d5940d63db673596300fd9c64c7a07c5fef",
+        "rev": "9dc6f6b24a7d75ce9a565d07b2ab38a6e605f15d",
         "type": "github"
       },
       "original": {
@@ -151,11 +151,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1769996383,
-        "narHash": "sha256-AnYjnFWgS49RlqX7LrC4uA+sCCDBj0Ry/WOJ5XWAsa0=",
+        "lastModified": 1772408722,
+        "narHash": "sha256-rHuJtdcOjK7rAHpHphUb1iCvgkU3GpfvicLMwwnfMT0=",
         "owner": "hercules-ci",
         "repo": "flake-parts",
-        "rev": "57928607ea566b5db3ad13af0e57e921e6b12381",
+        "rev": "f20dc5d9b8027381c474144ecabc9034d6a839a3",
         "type": "github"
       },
       "original": {
@@ -270,11 +270,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1775683737,
-        "narHash": "sha256-oBYyowo6yfgb95Z78s3uTnAd9KkpJpwzjJbfnpLaM2Y=",
+        "lastModified": 1775900011,
+        "narHash": "sha256-QUGu6CJYFQ5AWVV0n3/FsJyV+1/gj7HSDx68/SX9pwM=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "7ba4ee4228ed36123c7cb75d50524b43514ef992",
+        "rev": "b0569dc6ec1e6e7fefd8f6897184e4c191cd768e",
         "type": "github"
       },
       "original": {
@@ -409,11 +409,11 @@
     "nc4nix": {
       "flake": false,
       "locked": {
-        "lastModified": 1775720060,
-        "narHash": "sha256-R8tagfH51mUyhhM+hxZOBZfVicZ7xqWLOYnLHEoC8ZI=",
+        "lastModified": 1775840653,
+        "narHash": "sha256-vkdzYIiKmwQSOJxp8B/qcCejQooEaoGnn27G+NZicA4=",
         "owner": "helsinki-systems",
         "repo": "nc4nix",
-        "rev": "c2f83536135a0f0b5b6ed63c0bc1b5d4a6c25268",
+        "rev": "e270eca19921821d925e7dd286f6d198ac6c22d5",
         "type": "github"
       },
       "original": {
@@ -478,11 +478,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1775703285,
-        "narHash": "sha256-Dck/lX920n3ClC6U2m3fWaXgoGrtJpnqfGCdiOb8Gf4=",
+        "lastModified": 1775875897,
+        "narHash": "sha256-/6yiKV+yW1b1bvM5QxfAovW5nu7JHMfW+1HTCBchrlk=",
         "owner": "nix-community",
         "repo": "nix-vscode-extensions",
-        "rev": "c2281bf25d05ecb8155319456340afd34bea28ec",
+        "rev": "517e9639fc0830315bb88af02d5dcacfb96aa342",
         "type": "github"
       },
       "original": {
@@ -555,11 +555,11 @@
     },
     "nixpkgs_2": {
       "locked": {
-        "lastModified": 1775728626,
-        "narHash": "sha256-EhIPCT/tFqqPt4DMQZAUJj953GOZMjlBZq91zj/XWsk=",
+        "lastModified": 1775903243,
+        "narHash": "sha256-T+a2qaFJw6/qOj/iB9l4p0E+qB04JTgyCJF1IIPJ8/w=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "0c33d38e5790d4bbf65f0a7f1ac7fe58d2e361f4",
+        "rev": "3a9ff420afd6a6c19316093f014aa4eda7eb4f42",
         "type": "github"
       },
       "original": {
@@ -578,11 +578,11 @@
         "systems": "systems_4"
       },
       "locked": {
-        "lastModified": 1775307257,
-        "narHash": "sha256-y9hEecHH4ennFwIcw1n480YCGh73DkEmizmQnyXuvgg=",
+        "lastModified": 1775837497,
+        "narHash": "sha256-L17VI03w/wVXvc1SK7EI1muLqHxD3+esYPPzgQvvdOE=",
         "owner": "nix-community",
         "repo": "nixvim",
-        "rev": "2e008bb941f72379d5b935d5bfe70ed8b7c793ff",
+        "rev": "a587a96a48c705609bfd2ad23f9ae5961eb0d373",
         "type": "github"
       },
       "original": {
@@ -689,11 +689,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1774915545,
-        "narHash": "sha256-COT4l/+ZddGBvrDVfPf7MEOJxV8EDKame6/aRnNIKcY=",
+        "lastModified": 1775856943,
+        "narHash": "sha256-b7Mp7P+q2Md5AGt4rjHfMcBykzMumFTen10ST++AuTU=",
         "owner": "nix-community",
         "repo": "plasma-manager",
-        "rev": "f3177b3c69fb3f03201098d7fe8ab6422cce7fc1",
+        "rev": "a524a6160e6df89f7673ba293cf7d78b559eb1a5",
         "type": "github"
       },
       "original": {

@@ -27,14 +27,14 @@ lib.mkIf config.services.yggdrasil.enable {
     if config.modules.impermanenceExtra.enabled
     then {
       persistence."${config.modules.impermanenceExtra.defaultPath}" = {
-        directories = [
-          {
-            directory = "/var/lib/private/yggdrasil";
-            mode = "0755";
-            user = "nobody";
-            group = "nogroup";
-          }
-        ];
+        #directories = [
+        #{
+        #  directory = "/var/lib/private/yggdrasil";
+        #  mode = "0755";
+        #  user = "nobody";
+        #  group = "nogroup";
+        #}
+        #];
       };
     }
     else {};

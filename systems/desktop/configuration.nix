@@ -30,7 +30,6 @@
       hideMounts = true;
 
       directories = [
-        "/var/lib"
         # Persist non-declarative Network Connections
         "/etc/NetworkManager/system-connections"
       ];

@@ -18,7 +18,6 @@
 - Fix SSH TPM for Impermanence
 - Investigate slow Login and Game Save on Desktop
 - Transition Laptop to Impermanence
-- After Seerr Setup, remove Ombi
 - fix permission for unmanic
 - fix permission for dashdot
 ## Misc

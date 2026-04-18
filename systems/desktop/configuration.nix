@@ -82,6 +82,10 @@
       enable = true;
       binfmt = true;
     };
+    ausweisapp = {
+      enable = true;
+      openFirewall = true;
+    };
   };
   networking = {
     hostName = "desktop-nix";

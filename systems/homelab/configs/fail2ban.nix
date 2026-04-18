@@ -11,11 +11,11 @@
   ####
   # Impermanence
   ####
-  environment.persistence."${config.modules.impermanenceExtra.defaultPath}" = {
-    files = [
-      {
-        file = config.services.fail2ban.daemonSettings.Definition.dbfile;
-      }
-    ];
-  };
+  #environment.persistence."${config.modules.impermanenceExtra.defaultPath}" = {
+  #  files = [
+  #    {
+  #      file = config.services.fail2ban.daemonSettings.Definition.dbfile;
+  #    }
+  #  ];
+  #};
 }

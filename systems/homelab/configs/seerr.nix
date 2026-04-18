@@ -42,14 +42,14 @@ in {
   ####
   # Impermanence
   ####
-  environment.persistence."${config.modules.impermanenceExtra.defaultPath}" = {
-    directories = [
-      {
-        directory = "/var/lib/private/seerr";
-        mode = "0755";
-        user = "nobody";
-        group = "nogroup";
-      }
-    ];
-  };
+  #environment.persistence."${config.modules.impermanenceExtra.defaultPath}" = {
+  #  directories = [
+  #    {
+  #      directory = "/var/lib/private/seerr";
+  #      mode = "0755";
+  #      user = "nobody";
+  #      group = "nogroup";
+  #    }
+  #  ];
+  #};
 }

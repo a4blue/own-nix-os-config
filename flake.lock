@@ -409,11 +409,11 @@
     "nc4nix": {
       "flake": false,
       "locked": {
-        "lastModified": 1776445455,
-        "narHash": "sha256-zCdTEX3itHJebh5sug+s1qP1l0AtecTx5U3uf87RZ9w=",
+        "lastModified": 1776531851,
+        "narHash": "sha256-4DOZpvZRRQ9qcn2TczvwaoCsPdi0aFt5Om1hWun4B9A=",
         "owner": "helsinki-systems",
         "repo": "nc4nix",
-        "rev": "dd1fcb505b57649d4b6ebc7beeabe0e40baa6a7b",
+        "rev": "915cffb68e8736a07e74089749bb599d84999da6",
         "type": "github"
       },
       "original": {

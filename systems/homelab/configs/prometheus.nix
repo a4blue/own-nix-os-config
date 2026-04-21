@@ -3,7 +3,7 @@
   # Main Config
   ####
   services.prometheus = {
-    enable = true;
+    enable = false;
     globalConfig.scrape_interval = "1m";
     scrapeConfigs = [
       {

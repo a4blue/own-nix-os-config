@@ -42,6 +42,12 @@ in {
         type = "-";
         value = "99999";
       }
+      {
+        domain = "@audio";
+        item = "nice";
+        type = "-";
+        value = "-11";
+      }
     ];
     services.udev.extraRules = ''
       KERNEL=="rtc0", GROUP="audio"

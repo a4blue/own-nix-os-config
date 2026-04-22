@@ -44,7 +44,7 @@ in {
         packages = with pkgs; [
           signal-desktop
           proton-pass
-          #libreoffice-qt6-fresh
+          libreoffice-qt6-fresh
           haruna
           mpv
           podman-desktop

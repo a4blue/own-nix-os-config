@@ -3,7 +3,8 @@
 
   inputs = {
     # Nixpkgs
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable-small";
+    #nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable-small";
+    nixpkgs.url = "github:nixos/nixpkgs/8d1daef70dcad2dc6b5e52426caf744489cea4db";
     #ncps-downgrade.url = "github:nixos/nixpkgs/aaf43e7c58bb8093a6325ef1d7b4af616779abc5";
     stash-update.url = "github:a4blue/nixpkgs/stash-update-0.31.1";
 

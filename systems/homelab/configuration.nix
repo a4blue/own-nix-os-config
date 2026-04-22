@@ -51,7 +51,7 @@
     ./configs/internal-port-mapping.nix
     ./configs/prometheus.nix
     ./configs/grafana.nix
-    ./configs/koillection.nix
+    #./configs/koillection.nix
 
     ../../configs/common
   ];
@@ -98,7 +98,7 @@
     extraModprobeConfig = ''
       options usbcore autosuspend=-1
     '';
-    kernelPackages = pkgs.linuxPackages_6_19;
+    kernelPackages = pkgs.linuxPackages_7_0;
     supportedFilesystems = ["bcachefs"];
 
     initrd = {

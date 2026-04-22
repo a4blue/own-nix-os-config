@@ -14,11 +14,16 @@ lib.mkIf config.modules.impermanenceExtra.enabled {
       "Videos"
       "Persistence"
       ".pki"
+      ".local/share/tpm2-pkcs11"
+      ".local/share/tpm2-tss"
       # Sound settings
       ".local/state/wireplumber"
       # KDE Stuff
       ".local/share/baloo"
       ".local/share/klipper"
+      ".local/share/krdc"
+      ".local/share/kwalletd"
+      ".local/share/dolphin"
       # Will need cleanup
       ".cache"
       ".local/share/Haveno-reto"
@@ -32,8 +37,11 @@ lib.mkIf config.modules.impermanenceExtra.enabled {
       ".config/qBittorrent"
     ];
     files = [
-      # KDE Display Settings
+      # KDE Stuff
       ".config/kwinoutputconfig.json"
+      ".config/krdcrc"
+      ".config/kwalletrc"
+      ".config/dolphinrc"
     ];
   };
   # https://b.tuxes.uk/three-years-of-ephemeral-nixos.html

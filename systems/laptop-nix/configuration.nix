@@ -92,7 +92,7 @@
       efi.canTouchEfiVariables = true;
       timeout = 10;
     };
-    kernelPackages = pkgs.linuxPackages_6_19;
+    kernelPackages = pkgs.linuxPackages_7_0;
     supportedFilesystems = ["bcachefs"];
 
     initrd = {

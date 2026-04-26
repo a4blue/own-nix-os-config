@@ -6,7 +6,7 @@ in {
   # Main Config
   ####
   services.grafana = {
-    enable = false;
+    enable = true;
     #declarativePlugins = with pkgs.grafanaPlugins; [ ... ];
     provision = {
       enable = true;

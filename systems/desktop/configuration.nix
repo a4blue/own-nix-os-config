@@ -186,7 +186,7 @@
       # Enable GUI Programs
       programs = {
         firefox.enable = true;
-        vscode.enable = true;
+        vscodium.enable = true;
         alacritty.enable = true;
         wezterm.enable = true;
         joshuto.enable = true;

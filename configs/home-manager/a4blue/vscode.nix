@@ -4,8 +4,8 @@
   config,
   ...
 }:
-lib.mkIf config.programs.vscode.enable {
-  programs.vscode = {
+lib.mkIf config.programs.vscodium.enable {
+  programs.vscodium = {
     package = pkgs.vscodium;
     profiles.default = {
       extensions = with pkgs.vscode-marketplace; [

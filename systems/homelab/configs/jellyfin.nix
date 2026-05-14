@@ -62,7 +62,8 @@ in {
     # Jellarr Config for "declarative" Jellyfin
     ####
     jellarr = {
-      enable = true;
+      # TODO fix after checksum issue is resolved
+      enable = false;
       user = "jellyfin";
       group = "jellyfin";
       environmentFile = config.sops.secrets.jellarrApiKey.path;

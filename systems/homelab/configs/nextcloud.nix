@@ -75,7 +75,7 @@ in {
       configureRedis = true;
       caching.redis = true;
       database.createLocally = true;
-      package = pkgs.nextcloud32;
+      package = pkgs.nextcloud33;
       appstoreEnable = false;
       phpOptions."opcache.interned_strings_buffer" = "32";
       maxUploadSize = "4G";
@@ -112,7 +112,7 @@ in {
         }
         // {
           inherit
-            (nc4nix.nextcloud-32)
+            (nc4nix.nextcloud-33)
             announcementcenter
             #cfg_share_links
             #duplicatefinder

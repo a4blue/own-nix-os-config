@@ -39,16 +39,16 @@ in {
       // {
         packages = with pkgs; [
           winetricks
-          bottles
-          lutris
+          #bottles
+          #lutris
           umu-launcher
-          (heroic.override {
-            extraPkgs = pkgs: [
-              pkgs.gamescope
-              pkgs.gamemode
-              pkgs.mangohud
-            ];
-          })
+          #(heroic.override {
+          #  extraPkgs = pkgs: [
+          #    pkgs.gamescope
+          #    pkgs.gamemode
+          #    pkgs.mangohud
+          #  ];
+          #})
           mangohud
           protonup-qt
           protontricks

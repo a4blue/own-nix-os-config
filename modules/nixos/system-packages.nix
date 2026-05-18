@@ -24,7 +24,6 @@
     rsync
     just
     zellij
-    joshuto
     fzf
     zoxide
     wl-clipboard

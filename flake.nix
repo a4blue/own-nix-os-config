@@ -4,9 +4,7 @@
   inputs = {
     # Nixpkgs
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable-small";
-    #nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    #nixpkgs.url = "github:nixos/nixpkgs/8d1daef70dcad2dc6b5e52426caf744489cea4db";
-    #ncps-downgrade.url = "github:nixos/nixpkgs/aaf43e7c58bb8093a6325ef1d7b4af616779abc5";
+    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-unstable";
     stash-update.url = "github:a4blue/nixpkgs/stash-update-0.31.1";
 
     impermanence = {
@@ -81,11 +79,13 @@
   outputs = {
     self,
     nixpkgs,
+    nixpkgs-stable,
     flake-utils,
     ...
   } @ inputs: let
     inherit (self) outputs;
     system = "x86_64-linux";
+    pkgs-stable = import nixpkgs-stable {inherit system;};
   in
     flake-utils.lib.eachDefaultSystem (system: let
       pkgs = import nixpkgs {inherit system;};
@@ -119,7 +119,7 @@
       nixosConfigurations = {
         # nix build ./#nixosConfigurations.homelab.config.system.build.toplevel
         homelab = nixpkgs.lib.nixosSystem {
-          specialArgs = {inherit inputs outputs system;};
+          specialArgs = {inherit inputs outputs system pkgs-stable;};
           modules = [
             {nixpkgs.hostPlatform = "x86_64-linux";}
             inputs.sops-nix.nixosModules.sops
@@ -132,7 +132,7 @@
         };
         # nix build ./#nixosConfigurations.desktop.config.system.build.toplevel
         desktop = nixpkgs.lib.nixosSystem {
-          specialArgs = {inherit inputs outputs system;};
+          specialArgs = {inherit inputs outputs system pkgs-stable;};
           modules = [
             inputs.sops-nix.nixosModules.sops
             inputs.home-manager.nixosModules.home-manager
@@ -144,7 +144,7 @@
         };
         # nix build ./#nixosConfigurations.laptop-nix.config.system.build.toplevel
         laptop-nix = nixpkgs.lib.nixosSystem {
-          specialArgs = {inherit inputs outputs system;};
+          specialArgs = {inherit inputs outputs system pkgs-stable;};
           modules = [
             inputs.sops-nix.nixosModules.sops
             inputs.home-manager.nixosModules.home-manager

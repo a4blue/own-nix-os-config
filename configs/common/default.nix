@@ -20,5 +20,6 @@ with config; {
     ./fwupd.nix
     ./tpm2.nix
     ./yggdrasil.nix
+    ./yazi.nix
   ];
 }

@@ -4,6 +4,7 @@
 {
   config,
   pkgs,
+  pkgs-stable,
   inputs,
   outputs,
   lib,
@@ -86,6 +87,7 @@
       enable = true;
       openFirewall = true;
     };
+    yazi.enable = true;
   };
   networking = {
     hostName = "desktop-nix";
@@ -189,8 +191,8 @@
         vscodium.enable = true;
         alacritty.enable = true;
         wezterm.enable = true;
-        joshuto.enable = true;
         ghostty.enable = true;
+        zed-editor.enable = true;
 
         ssh = {
           enable = true;

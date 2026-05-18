@@ -2,6 +2,7 @@
   pkgs,
   config,
   inputs,
+  pkgs-stable,
   ...
 }:
 with config; {
@@ -15,12 +16,13 @@ with config; {
     ./navi.nix
     ./zellij.nix
     ./bottom.nix
-    ./joshuto.nix
     ./ssh.nix
     ./gaming.nix
     ./graphical-apps.nix
     ./gnupg-agent.nix
     ./pipewire.nix
+    ./zed.nix
+    ./ghostty.nix
     ../common
   ];
 

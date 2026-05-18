@@ -39,3 +39,6 @@ home-manager remove-generations <ID>
 
 # If on tmpfs root this will show the usage
 dust / -x
+
+# Terminal File Manager
+yazi

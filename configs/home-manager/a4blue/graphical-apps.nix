@@ -2,6 +2,7 @@
   lib,
   config,
   pkgs,
+  pkgs-stable,
   ...
 }:
 with lib; let
@@ -41,13 +42,15 @@ in {
         else {}
       )
       // {
-        packages = with pkgs; [
+        packages = with pkgs-stable; [
           signal-desktop
           proton-pass
-          #libreoffice-qt6-fresh
+          libreoffice-qt6-fresh
           haruna
           mpv
           podman-desktop
+          kdePackages.kcalc
+          filezilla
         ];
       });
 }

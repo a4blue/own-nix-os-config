@@ -73,6 +73,7 @@
   };
 
   programs.fuse.userAllowOther = true;
+  programs.yazi.enable = true;
   networking = {
     hostName = "homelab";
     networkmanager.enable = true;

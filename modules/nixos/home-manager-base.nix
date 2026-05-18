@@ -2,10 +2,11 @@
   config,
   inputs,
   outputs,
+  pkgs-stable,
   ...
 }: {
   home-manager = {
-    extraSpecialArgs = {inherit inputs outputs;};
+    extraSpecialArgs = {inherit inputs outputs pkgs-stable;};
     useGlobalPkgs = true;
     useUserPackages = true;
     sharedModules = [

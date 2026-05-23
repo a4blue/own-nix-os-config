@@ -23,7 +23,6 @@
     perl
     rsync
     just
-    zellij
     fzf
     zoxide
     wl-clipboard
@@ -31,7 +30,6 @@
     nix-tree
     pciutils
     nix-inspect
-    bottom
     dust
     unrar-free
     ntfs3g
@@ -44,5 +42,6 @@
     fd
     mnamer2
     curlFull
+    bat
   ];
 }

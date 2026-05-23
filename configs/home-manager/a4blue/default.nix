@@ -14,7 +14,6 @@ with config; {
     ./fontconfig.nix
     ./wezterm.nix
     ./navi.nix
-    ./zellij.nix
     ./bottom.nix
     ./ssh.nix
     ./gaming.nix
@@ -47,7 +46,6 @@ with config; {
     home-manager.enable = true;
     git.enable = true;
     navi.enable = true;
-    zellij.enable = true;
     bottom.enable = true;
   };
 

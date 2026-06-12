@@ -6,7 +6,7 @@ in {
   # Main Config
   ####
   services.grafana = {
-    enable = false;
+    enable = true;
     #declarativePlugins = with pkgs.grafanaPlugins; [ ... ];
     provision = {
       enable = true;
@@ -36,10 +36,10 @@ in {
   ####
   # Secrets
   ####
-  #sops.secrets.grafanaSecretKey = {
-  #  owner = "grafana";
-  #  group = "grafana";
-  #};
+  sops.secrets.grafanaSecretKey = {
+    owner = "grafana";
+    group = "grafana";
+  };
   ####
   # Nginx
   ####
@@ -64,14 +64,14 @@ in {
   ####
   # Impermanence
   ####
-  #environment.persistence."${config.modules.impermanenceExtra.defaultPath}" = {
-  #  directories = [
-  #    {
-  #      directory = config.services.grafana.dataDir;
-  #      mode = "0740";
-  #      user = "grafana";
-  #      group = "grafana";
-  #    }
-  #  ];
-  #};
+  environment.persistence."${config.modules.impermanenceExtra.defaultPath}" = {
+    directories = [
+      {
+        directory = config.services.grafana.dataDir;
+        mode = "0740";
+        user = "grafana";
+        group = "grafana";
+      }
+    ];
+  };
 }

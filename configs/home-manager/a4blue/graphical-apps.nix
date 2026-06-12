@@ -47,9 +47,16 @@ in {
           proton-pass
           libreoffice-qt6-fresh
           haruna
-          mpv
           podman-desktop
           kdePackages.kcalc
+          kronometer
+          kdePackages.kgpg
+          kdePackages.kleopatra
+          kdePackages.ktimer
+          kdePackages.ktrip
+          krita
+          kdePackages.kolourpaint
+          kdePackages.konversation
           filezilla
         ];
       });

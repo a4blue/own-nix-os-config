@@ -90,7 +90,7 @@
         # TPM Laptop
         "ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBBhNZQ98YEqc0WbcTsXyy8hjysL5T4vAfqOx5aidPPIzkpHj9iuAWjjIkUXuI08szM5VMpEN7TcjVy+b7ULyoik="
         # TPM Desktop
-        "ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBLvA3EpJmiAhmGggV7xJPnw/cnsUa9wY1BX9qmyUNfjIoQgoFIeRFNvAYgodIz0+UnHt/nPKpkzHKQjvrkhdLBQ="
+        "ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBOMhC46YdctMSYzjGOfyMXLGkBPW3JD6TnddF5vkNy2eVu1PO0v7l2UhDHmb/W71kGmLIbQcXH9sDUK/GhsPArQ="
       ];
       hashedPasswordFile = config.sops.secrets.a4blueEasyHashedPassword.path;
       uid = 1000;

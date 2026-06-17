@@ -7,7 +7,7 @@
 }:
 lib.mkIf config.programs.firefox.enable {
   programs.firefox = {
-    package = inputs.firefox.packages.${pkgs.stdenv.hostPlatform.system}.firefox-nightly-bin;
+    package = inputs.firefox.packages.${pkgs.stdenv.hostPlatform.system}.firefox-beta-bin;
     policies = {
       AppAutoUpdate = false;
       BackgroundAppUpdate = false;
@@ -30,30 +30,48 @@ lib.mkIf config.programs.firefox.enable {
       DisableSetDesktopBackground = true;
       HttpsOnlyMode = "enabled";
       Preferences = {
-        "gfx.webrender.all" = {Value = true;};
-        "media.ffmpeg.vaapi.enabled" = {Value = true;};
-        "media.ffmpeg.allow-openh264" = {Value = true;};
+        "gfx.webrender.all" = {
+          Value = true;
+        };
+        "media.ffmpeg.vaapi.enabled" = {
+          Value = true;
+        };
+        "media.ffmpeg.allow-openh264" = {
+          Value = true;
+        };
         "widget.use-xdg-desktop-portal.file-picker" = 1;
-        "image.jxl.enabled" = {Value = false;};
-        "browser.newtabpage.activity-stream.feeds.section.topstories" = {Value = false;};
-        "browser.newtabpage.activity-stream.feeds.topsites" = {Value = false;};
-        "browser.newtabpage.activity-stream.showWeather" = {Value = false;};
+        "image.jxl.enabled" = {
+          Value = false;
+        };
+        "browser.newtabpage.activity-stream.feeds.section.topstories" = {
+          Value = false;
+        };
+        "browser.newtabpage.activity-stream.feeds.topsites" = {
+          Value = false;
+        };
+        "browser.newtabpage.activity-stream.showWeather" = {
+          Value = false;
+        };
       };
     };
-    languagePacks = ["en-US" "de"];
-    nativeMessagingHosts = [pkgs.kdePackages.plasma-browser-integration];
+    languagePacks = [
+      "en-US"
+      "de"
+    ];
+    nativeMessagingHosts = [ pkgs.kdePackages.plasma-browser-integration ];
   };
   home =
     (
-      if config.modules.impermanenceExtra.enabled
-      then {
-        persistence."${config.modules.impermanenceExtra.defaultPath}" = {
-          directories = [
-            ".mozilla"
-          ];
-        };
-      }
-      else {}
+      if config.modules.impermanenceExtra.enabled then
+        {
+          persistence."${config.modules.impermanenceExtra.defaultPath}" = {
+            directories = [
+              ".mozilla"
+            ];
+          };
+        }
+      else
+        { }
     )
     // {
       packages = with pkgs; [

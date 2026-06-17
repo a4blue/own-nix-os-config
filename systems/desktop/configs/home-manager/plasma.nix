@@ -1,4 +1,4 @@
-{pkgs, ...}: {
+{ pkgs, ... }: {
   home.file.".local/share/color-schemes/EverforestHard.colors".source = ./EverforestHard.colors;
   programs.plasma = {
     enable = true;
@@ -88,7 +88,7 @@
                 "applications:steam.desktop"
                 "applications:${(builtins.elemAt pkgs.signal-desktop.out.desktopItems 0).name}"
                 "applications:proton-pass.desktop"
-                "applications:firefox-nightly.desktop"
+                "applications:firefox-beta.desktop"
               ];
             };
           }
@@ -101,8 +101,12 @@
               displayStyle = "org.kde.ksysguard.horizontalbars";
               showTitle = false;
               settings = {
-                Appearance = {updateRateLimit = 1000;};
-                "org.kde.ksysguard.facegrid/General" = {faceId = "org.kde.ksysguard.horizontalbars";};
+                Appearance = {
+                  updateRateLimit = 1000;
+                };
+                "org.kde.ksysguard.facegrid/General" = {
+                  faceId = "org.kde.ksysguard.horizontalbars";
+                };
                 "FaceGrid/Appearance" = {
                   chartFace = "org.kde.ksysguard.horizontalbars";
                   showTitle = false;

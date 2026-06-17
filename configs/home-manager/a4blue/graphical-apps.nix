@@ -5,9 +5,11 @@
   pkgs-stable,
   ...
 }:
-with lib; let
+with lib;
+let
   cfg = config.modules.graphicalApps;
-in {
+in
+{
   options.modules.graphicalApps = {
     enable = lib.mkEnableOption "Enable Graphical Apps";
   };
@@ -18,19 +20,18 @@ in {
       defaultApplications = {
         #"video/x-matroska" = "vlc.desktop";
         #"video/mp4" = "vlc.desktop";
-        "text/html" = "firefox-nightly.desktop";
-        "x-scheme-handler/http" = "firefox-nightly.desktop";
-        "x-scheme-handler/https" = "firefox-nightly.desktop";
-        "x-scheme-handler/about" = "firefox-nightly.desktop";
-        "x-scheme-handler/unknown" = "firefox-nightly.desktop";
+        "text/html" = "firefox-beta.desktop";
+        "x-scheme-handler/http" = "firefox-beta.desktop";
+        "x-scheme-handler/https" = "firefox-beta.desktop";
+        "x-scheme-handler/about" = "firefox-beta.desktop";
+        "x-scheme-handler/unknown" = "firefox-beta.desktop";
       };
     };
   };
-  config.home =
-    mkIf cfg.enable
-    ((
-        if config.modules.impermanenceExtra.enabled
-        then {
+  config.home = mkIf cfg.enable (
+    (
+      if config.modules.impermanenceExtra.enabled then
+        {
           persistence."${config.modules.impermanenceExtra.defaultPath}" = {
             directories = [
               ".config/Proton Pass"
@@ -39,25 +40,26 @@ in {
             ];
           };
         }
-        else {}
-      )
-      // {
-        packages = with pkgs-stable; [
-          signal-desktop
-          proton-pass
-          libreoffice-qt6-fresh
-          haruna
-          podman-desktop
-          kdePackages.kcalc
-          kronometer
-          kdePackages.kgpg
-          kdePackages.kleopatra
-          kdePackages.ktimer
-          kdePackages.ktrip
-          krita
-          kdePackages.kolourpaint
-          kdePackages.konversation
-          filezilla
-        ];
-      });
+      else
+        { }
+    )
+    // {
+      packages = with pkgs-stable; [
+        signal-desktop
+        proton-pass
+        libreoffice-qt6-fresh
+        haruna
+        podman-desktop
+        kdePackages.kcalc
+        kronometer
+        kdePackages.kgpg
+        kdePackages.kleopatra
+        kdePackages.ktimer
+        kdePackages.ktrip
+        krita
+        kdePackages.kolourpaint
+        filezilla
+      ];
+    }
+  );
 }

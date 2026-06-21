@@ -8,7 +8,8 @@
   outputs,
   lib,
   ...
-}: {
+}:
+{
   imports = [
     ./hardware-configuration.nix
 
@@ -37,13 +38,17 @@
     gnupg
   ];
   fonts = {
-    packages = [pkgs.nerd-fonts.fira-code pkgs.nerd-fonts.terminess-ttf];
+    packages = [
+      pkgs.nerd-fonts.fira-code
+      pkgs.nerd-fonts.terminess-ttf
+    ];
     enableDefaultPackages = true;
     enableGhostscriptFonts = true;
   };
   modules.desktopAudio.enable = true;
 
-  nixpkgs.config.allowUnfreePredicate = pkg:
+  nixpkgs.config.allowUnfreePredicate =
+    pkg:
     builtins.elem (lib.getName pkg) [
       "steam"
       "steam-unwrapped"
@@ -70,7 +75,7 @@
       networkmanager-openvpn
       networkmanager-openconnect
     ];
-    firewall.allowedUDPPorts = [51820];
+    firewall.allowedUDPPorts = [ 51820 ];
     wireguard = {
       # wireguard conf needs to be imperative for gui
       # due to deactivating the connection once its gone
@@ -94,7 +99,7 @@
       timeout = 10;
     };
     kernelPackages = pkgs.linuxPackages_7_0;
-    supportedFilesystems = ["bcachefs"];
+    supportedFilesystems = [ "bcachefs" ];
 
     initrd = {
       systemd.enable = true;
@@ -104,9 +109,12 @@
   nixpkgs.config.permittedInsecurePackages = [
   ];
 
-  environment.plasma6.excludePackages = [pkgs.kdePackages.kwin-x11];
+  environment.plasma6.excludePackages = [ pkgs.kdePackages.kwin-x11 ];
   services = {
-    udev.packages = [pkgs.nitrokey-udev-rules pkgs.nrf-udev];
+    udev.packages = [
+      pkgs.nitrokey-udev-rules
+      pkgs.nrf-udev
+    ];
     desktopManager.plasma6.enable = true;
     displayManager = {
       defaultSession = "plasma";
@@ -123,7 +131,7 @@
 
   security.tpm2.enable = true;
 
-  users.users.a4blue.extraGroups = ["dialout"];
+  users.users.a4blue.extraGroups = [ "dialout" ];
 
   home-manager.users = {
     a4blue = {
@@ -147,7 +155,6 @@
       # Enable GUI Programs
       programs = {
         firefox.enable = true;
-        vscodium.enable = true;
         alacritty.enable = true;
         wezterm.enable = true;
         ghostty.enable = true;
@@ -173,8 +180,8 @@
     sane.enable = true;
   };
 
-  systemd.packages = with pkgs; [lact];
-  systemd.services.lactd.wantedBy = ["multi-user.target"];
+  systemd.packages = with pkgs; [ lact ];
+  systemd.services.lactd.wantedBy = [ "multi-user.target" ];
 
   security.rtkit.enable = true;
   services.earlyoom.enable = true;

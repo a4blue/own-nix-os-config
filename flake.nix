@@ -44,11 +44,6 @@
       inputs.home-manager.follows = "home-manager";
     };
 
-    nix-vscode-extensions = {
-      url = "github:nix-community/nix-vscode-extensions/master";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     nc4nix = {
       url = "github:helsinki-systems/nc4nix";
       flake = false;
@@ -76,52 +71,65 @@
     };
   };
 
-  outputs = {
-    self,
-    nixpkgs,
-    nixpkgs-stable,
-    flake-utils,
-    ...
-  } @ inputs: let
-    inherit (self) outputs;
-    system = "x86_64-linux";
-    pkgs-stable = import nixpkgs-stable {inherit system;};
-  in
-    flake-utils.lib.eachDefaultSystem (system: let
-      pkgs = import nixpkgs {inherit system;};
-    in {
-      formatter = pkgs.alejandra;
-      devShells = {
-        default = pkgs.mkShell {
-          NIX_CONFIG = "experimental-features = nix-command flakes";
-          packages = with pkgs; [
-            gnupg
-            sops
-            nix
-            git
-            nvd
-            age
-            just
-            nix-tree
-            nix-output-monitor
-            statix
-            nh
-            nix-du
-            inputs.own-nixvim.packages.${pkgs.stdenv.hostPlatform.system}.default
-          ];
-          shellHook = ''
-            export PS1="\n[\u@nix-shell:\w\]$:\n"
-          '';
+  outputs =
+    {
+      self,
+      nixpkgs,
+      nixpkgs-stable,
+      flake-utils,
+      ...
+    }@inputs:
+    let
+      inherit (self) outputs;
+      system = "x86_64-linux";
+      pkgs-stable = import nixpkgs-stable { inherit system; };
+    in
+    flake-utils.lib.eachDefaultSystem (
+      system:
+      let
+        pkgs = import nixpkgs { inherit system; };
+      in
+      {
+        formatter = pkgs.alejandra;
+        devShells = {
+          default = pkgs.mkShell {
+            NIX_CONFIG = "experimental-features = nix-command flakes";
+            packages = with pkgs; [
+              gnupg
+              sops
+              nix
+              git
+              nvd
+              age
+              just
+              nix-tree
+              nix-output-monitor
+              statix
+              nh
+              nix-du
+              inputs.own-nixvim.packages.${pkgs.stdenv.hostPlatform.system}.default
+            ];
+            shellHook = ''
+              export PS1="\n[\u@nix-shell:\w\]$:\n"
+            '';
+          };
         };
-      };
-    })
+      }
+    )
     // {
       nixosConfigurations = {
         # nix build ./#nixosConfigurations.homelab.config.system.build.toplevel
         homelab = nixpkgs.lib.nixosSystem {
-          specialArgs = {inherit inputs outputs system pkgs-stable;};
+          specialArgs = {
+            inherit
+              inputs
+              outputs
+              system
+              pkgs-stable
+              ;
+          };
           modules = [
-            {nixpkgs.hostPlatform = "x86_64-linux";}
+            { nixpkgs.hostPlatform = "x86_64-linux"; }
             inputs.sops-nix.nixosModules.sops
             inputs.home-manager.nixosModules.home-manager
             inputs.impermanence.nixosModules.impermanence
@@ -132,7 +140,14 @@
         };
         # nix build ./#nixosConfigurations.desktop.config.system.build.toplevel
         desktop = nixpkgs.lib.nixosSystem {
-          specialArgs = {inherit inputs outputs system pkgs-stable;};
+          specialArgs = {
+            inherit
+              inputs
+              outputs
+              system
+              pkgs-stable
+              ;
+          };
           modules = [
             inputs.sops-nix.nixosModules.sops
             inputs.home-manager.nixosModules.home-manager
@@ -144,7 +159,14 @@
         };
         # nix build ./#nixosConfigurations.laptop-nix.config.system.build.toplevel
         laptop-nix = nixpkgs.lib.nixosSystem {
-          specialArgs = {inherit inputs outputs system pkgs-stable;};
+          specialArgs = {
+            inherit
+              inputs
+              outputs
+              system
+              pkgs-stable
+              ;
+          };
           modules = [
             inputs.sops-nix.nixosModules.sops
             inputs.home-manager.nixosModules.home-manager
@@ -156,18 +178,18 @@
         };
         # nix build .#nixosConfigurations.iso.config.system.build.isoImage
         iso = nixpkgs.lib.nixosSystem {
-          specialArgs = {inherit inputs outputs system;};
+          specialArgs = { inherit inputs outputs system; };
           modules = [
-            {nixpkgs.hostPlatform = "x86_64-linux";}
+            { nixpkgs.hostPlatform = "x86_64-linux"; }
             (nixpkgs + "/nixos/modules/installer/cd-dvd/installation-cd-minimal-new-kernel-no-zfs.nix")
             ./systems/iso/configuration.nix
           ];
         };
         # nix build .#nixosConfigurations.gui-iso.config.system.build.isoImage
         gui-iso = nixpkgs.lib.nixosSystem {
-          specialArgs = {inherit inputs outputs system;};
+          specialArgs = { inherit inputs outputs system; };
           modules = [
-            {nixpkgs.hostPlatform = "x86_64-linux";}
+            { nixpkgs.hostPlatform = "x86_64-linux"; }
             (nixpkgs + "/nixos/modules/installer/cd-dvd/installation-cd-graphical-calamares-plasma6.nix")
             ./systems/iso/configuration.nix
           ];

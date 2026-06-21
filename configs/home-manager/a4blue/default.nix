@@ -5,9 +5,9 @@
   pkgs-stable,
   ...
 }:
-with config; {
+with config;
+{
   imports = [
-    ./vscode.nix
     ./firefox.nix
     ./git.nix
     ./alacritty.nix

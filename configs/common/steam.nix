@@ -8,6 +8,7 @@
 lib.mkIf config.programs.steam.enable {
   environment.systemPackages = with pkgs; [
     steamtinkerlaunch
+    freetype
   ];
 
   services.udev.extraRules = ''
@@ -30,17 +31,33 @@ lib.mkIf config.programs.steam.enable {
 
   programs = {
     steam = {
+      package = pkgs.steam.override {
+        #extraEnv = {
+        #  MANGOHUD = true;
+        #  OBS_VKCAPTURE = true;
+        #  RADV_TEX_ANISO = 16;
+        #};
+        extraLibraries = p:
+          with p; [
+            freetype
+          ];
+      };
+
       remotePlay.openFirewall = true;
       dedicatedServer.openFirewall = true;
       localNetworkGameTransfers.openFirewall = true;
       gamescopeSession.enable = true;
       protontricks.enable = true;
       extraCompatPackages = with pkgs; [proton-ge-bin steamtinkerlaunch];
+      extraPackages = with pkgs; [freetype];
       extest.enable = true;
     };
     gamemode.enable = true;
     nix-ld = {
       enable = true;
+      libraries = with pkgs; [
+        freetype
+      ];
     };
     java.enable = true;
   };

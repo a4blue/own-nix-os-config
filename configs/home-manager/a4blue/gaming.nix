@@ -4,39 +4,36 @@
   config,
   ...
 }:
-with lib;
-let
+with lib; let
   cfg = config.modules.gaming;
-in
-{
+in {
   options.modules.gaming = {
     enable = lib.mkEnableOption "Enable Gaming Apps";
   };
 
   config.home = mkIf cfg.enable (
     (
-      if config.modules.impermanenceExtra.enabled then
-        {
-          persistence."${config.modules.impermanenceExtra.defaultPath}" = {
-            directories = [
-              ".config/heroic"
-              ".local/share/Steam"
-              ".local/share/lutris"
-              ".local/share/bottles"
-              ".local/share/umu"
-              ".local/share/comet"
-              ".config/steamtinkerlaunch"
-              ".config/MangoHud/MangoHud.conf"
-              ".paradoxlauncher"
-              ".factorio"
-              ".local/share/7DaysToDie"
-              ".local/share/Paradox Interactive"
-              ".local/share/Larian Studios"
-            ];
-          };
-        }
-      else
-        { }
+      if config.modules.impermanenceExtra.enabled
+      then {
+        persistence."${config.modules.impermanenceExtra.defaultPath}" = {
+          directories = [
+            ".config/heroic"
+            ".local/share/Steam"
+            ".local/share/lutris"
+            ".local/share/bottles"
+            ".local/share/umu"
+            ".local/share/comet"
+            ".config/steamtinkerlaunch"
+            ".config/MangoHud/MangoHud.conf"
+            ".paradoxlauncher"
+            ".factorio"
+            ".local/share/7DaysToDie"
+            ".local/share/Paradox Interactive"
+            ".local/share/Larian Studios"
+          ];
+        };
+      }
+      else {}
     )
     // {
       packages = with pkgs; [
@@ -46,14 +43,15 @@ in
         umu-launcher
         (heroic.override {
           extraPkgs = pkgs: [
-            pkgs.gamescope
-            pkgs.gamemode
-            pkgs.mangohud
+            gamescope
+            gamemode
+            mangohud
+            freetype
           ];
+          extraLibraries = pkgs: [freetype];
         })
         mangohud
         protonup-qt
-        protontricks
       ];
     }
   );

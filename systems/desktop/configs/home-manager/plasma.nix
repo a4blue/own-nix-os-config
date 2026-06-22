@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{pkgs, ...}: {
   home.file.".local/share/color-schemes/EverforestHard.colors".source = ./EverforestHard.colors;
   programs.plasma = {
     enable = true;

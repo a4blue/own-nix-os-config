@@ -22,6 +22,8 @@
     LC_TIME = "de_DE.UTF-8";
   };
 
+  i18n.extraLocales = ["all"];
+
   # Configure keymap in X11
   services.xserver = {
     xkb.layout = "de";

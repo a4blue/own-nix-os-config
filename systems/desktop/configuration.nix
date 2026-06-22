@@ -9,8 +9,7 @@
   outputs,
   lib,
   ...
-}:
-{
+}: {
   imports = [
     ./hardware-configuration.nix
 
@@ -53,10 +52,10 @@
       gnupg
       libguestfs
     ];
-    plasma6.excludePackages = [ pkgs.kdePackages.kwin-x11 ];
+    plasma6.excludePackages = [pkgs.kdePackages.kwin-x11];
   };
   sops = {
-    age.sshKeyPaths = [ "/nix/secret/initrd/sops_key" ];
+    age.sshKeyPaths = ["/nix/secret/initrd/sops_key"];
   };
   fonts = {
     packages = [
@@ -67,8 +66,7 @@
     enableGhostscriptFonts = true;
   };
 
-  nixpkgs.config.allowUnfreePredicate =
-    pkg:
+  nixpkgs.config.allowUnfreePredicate = pkg:
     builtins.elem (lib.getName pkg) [
       "steam"
       "steam-unwrapped"
@@ -101,7 +99,7 @@
       networkmanager-openvpn
       networkmanager-openconnect
     ];
-    firewall.allowedUDPPorts = [ 51820 ];
+    firewall.allowedUDPPorts = [51820];
     wireguard = {
       # wireguard conf needs to be imperative for gui
       # due to deactivating the connection once its gone
@@ -134,7 +132,7 @@
       "video=HDMI-A-1:1920x1080@60"
     ];
     kernelPackages = pkgs.linuxPackages_7_0;
-    supportedFilesystems = [ "bcachefs" ];
+    supportedFilesystems = ["bcachefs"];
 
     initrd = {
       systemd.enable = true;
@@ -227,8 +225,8 @@
     sane.enable = true;
   };
 
-  systemd.packages = with pkgs; [ lact ];
-  systemd.services.lactd.wantedBy = [ "multi-user.target" ];
+  systemd.packages = with pkgs; [lact];
+  systemd.services.lactd.wantedBy = ["multi-user.target"];
 
   security.rtkit.enable = true;
   services.earlyoom.enable = true;

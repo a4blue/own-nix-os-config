@@ -5,8 +5,7 @@
   pkgs-stable,
   ...
 }:
-with config;
-{
+with config; {
   imports = [
     ./firefox.nix
     ./git.nix

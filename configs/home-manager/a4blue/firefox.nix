@@ -58,20 +58,19 @@ lib.mkIf config.programs.firefox.enable {
       "en-US"
       "de"
     ];
-    nativeMessagingHosts = [ pkgs.kdePackages.plasma-browser-integration ];
+    nativeMessagingHosts = [pkgs.kdePackages.plasma-browser-integration];
   };
   home =
     (
-      if config.modules.impermanenceExtra.enabled then
-        {
-          persistence."${config.modules.impermanenceExtra.defaultPath}" = {
-            directories = [
-              ".mozilla"
-            ];
-          };
-        }
-      else
-        { }
+      if config.modules.impermanenceExtra.enabled
+      then {
+        persistence."${config.modules.impermanenceExtra.defaultPath}" = {
+          directories = [
+            ".mozilla"
+          ];
+        };
+      }
+      else {}
     )
     // {
       packages = with pkgs; [

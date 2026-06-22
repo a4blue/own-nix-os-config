@@ -5,11 +5,9 @@
   pkgs-stable,
   ...
 }:
-with lib;
-let
+with lib; let
   cfg = config.modules.graphicalApps;
-in
-{
+in {
   options.modules.graphicalApps = {
     enable = lib.mkEnableOption "Enable Graphical Apps";
   };
@@ -30,18 +28,17 @@ in
   };
   config.home = mkIf cfg.enable (
     (
-      if config.modules.impermanenceExtra.enabled then
-        {
-          persistence."${config.modules.impermanenceExtra.defaultPath}" = {
-            directories = [
-              ".config/Proton Pass"
-              ".config/Signal"
-              ".local/share/chat.fluffy.fluffychat"
-            ];
-          };
-        }
-      else
-        { }
+      if config.modules.impermanenceExtra.enabled
+      then {
+        persistence."${config.modules.impermanenceExtra.defaultPath}" = {
+          directories = [
+            ".config/Proton Pass"
+            ".config/Signal"
+            ".local/share/chat.fluffy.fluffychat"
+          ];
+        };
+      }
+      else {}
     )
     // {
       packages = with pkgs-stable; [

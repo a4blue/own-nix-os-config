@@ -55,7 +55,7 @@
     };
 
     lanzaboote = {
-      url = "github:nix-community/lanzaboote/0403b4b7e8b2612657f0053a4c315e6c43eee9e6";
+      url = "github:nix-community/lanzaboote/v1.1.0";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -71,25 +71,21 @@
     };
   };
 
-  outputs =
-    {
-      self,
-      nixpkgs,
-      nixpkgs-stable,
-      flake-utils,
-      ...
-    }@inputs:
-    let
-      inherit (self) outputs;
-      system = "x86_64-linux";
-      pkgs-stable = import nixpkgs-stable { inherit system; };
-    in
+  outputs = {
+    self,
+    nixpkgs,
+    nixpkgs-stable,
+    flake-utils,
+    ...
+  } @ inputs: let
+    inherit (self) outputs;
+    system = "x86_64-linux";
+    pkgs-stable = import nixpkgs-stable {inherit system;};
+  in
     flake-utils.lib.eachDefaultSystem (
-      system:
-      let
-        pkgs = import nixpkgs { inherit system; };
-      in
-      {
+      system: let
+        pkgs = import nixpkgs {inherit system;};
+      in {
         formatter = pkgs.alejandra;
         devShells = {
           default = pkgs.mkShell {
@@ -129,7 +125,7 @@
               ;
           };
           modules = [
-            { nixpkgs.hostPlatform = "x86_64-linux"; }
+            {nixpkgs.hostPlatform = "x86_64-linux";}
             inputs.sops-nix.nixosModules.sops
             inputs.home-manager.nixosModules.home-manager
             inputs.impermanence.nixosModules.impermanence
@@ -178,18 +174,18 @@
         };
         # nix build .#nixosConfigurations.iso.config.system.build.isoImage
         iso = nixpkgs.lib.nixosSystem {
-          specialArgs = { inherit inputs outputs system; };
+          specialArgs = {inherit inputs outputs system;};
           modules = [
-            { nixpkgs.hostPlatform = "x86_64-linux"; }
+            {nixpkgs.hostPlatform = "x86_64-linux";}
             (nixpkgs + "/nixos/modules/installer/cd-dvd/installation-cd-minimal-new-kernel-no-zfs.nix")
             ./systems/iso/configuration.nix
           ];
         };
         # nix build .#nixosConfigurations.gui-iso.config.system.build.isoImage
         gui-iso = nixpkgs.lib.nixosSystem {
-          specialArgs = { inherit inputs outputs system; };
+          specialArgs = {inherit inputs outputs system;};
           modules = [
-            { nixpkgs.hostPlatform = "x86_64-linux"; }
+            {nixpkgs.hostPlatform = "x86_64-linux";}
             (nixpkgs + "/nixos/modules/installer/cd-dvd/installation-cd-graphical-calamares-plasma6.nix")
             ./systems/iso/configuration.nix
           ];

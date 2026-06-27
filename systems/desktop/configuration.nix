@@ -197,8 +197,6 @@
       # Enable GUI Programs
       programs = {
         firefox.enable = true;
-        alacritty.enable = true;
-        wezterm.enable = true;
         ghostty.enable = true;
         zed-editor.enable = true;
 

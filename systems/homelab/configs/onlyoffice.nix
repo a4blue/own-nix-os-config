@@ -5,7 +5,8 @@ in {
   # Main Config
   ####
   services.onlyoffice = {
-    enable = true;
+    # TODO build error
+    enable = false;
     wopi = true;
     hostname = serviceDomain;
     securityNonceFile = config.sops.secrets."onlyoffice/Nonce".path;

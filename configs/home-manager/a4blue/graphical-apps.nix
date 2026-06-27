@@ -32,9 +32,9 @@ in {
       then {
         persistence."${config.modules.impermanenceExtra.defaultPath}" = {
           directories = [
-            ".config/Proton Pass"
-            ".config/Signal"
-            ".local/share/chat.fluffy.fluffychat"
+            "${config.xdg.configHome}/Proton Pass"
+            "${config.xdg.configHome}/Signal"
+            "${config.xdg.dataHome}/chat.fluffy.fluffychat"
           ];
         };
       }
@@ -56,6 +56,7 @@ in {
         krita
         kdePackages.kolourpaint
         filezilla
+        fluffychat
       ];
     }
   );

@@ -84,11 +84,11 @@
               launchers = [
                 "applications:org.kde.plasma.settings.open.desktop"
                 "applications:org.kde.dolphin.desktop"
-                "applications:Alacritty.desktop"
                 "applications:steam.desktop"
                 "applications:${(builtins.elemAt pkgs.signal-desktop.out.desktopItems 0).name}"
                 "applications:proton-pass.desktop"
                 "applications:firefox-beta.desktop"
+                "applications:com.mitchellh.ghostty.desktop"
               ];
             };
           }

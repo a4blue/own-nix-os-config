@@ -85,8 +85,10 @@
     flake-utils.lib.eachDefaultSystem (
       system: let
         pkgs = import nixpkgs {inherit system;};
+        pkgs-stable = import nixpkgs-stable {inherit system;};
       in {
         formatter = pkgs.alejandra;
+        #packages.amethyst-mod-manager = pkgs-stable.callPackage ./packages/amethyst-mod-manager/amethyst-mod-manager.nix {};
         devShells = {
           default = pkgs.mkShell {
             NIX_CONFIG = "experimental-features = nix-command flakes";

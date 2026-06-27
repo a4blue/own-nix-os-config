@@ -9,9 +9,7 @@ with config; {
   imports = [
     ./firefox.nix
     ./git.nix
-    ./alacritty.nix
     ./fontconfig.nix
-    ./wezterm.nix
     ./navi.nix
     ./bottom.nix
     ./ssh.nix

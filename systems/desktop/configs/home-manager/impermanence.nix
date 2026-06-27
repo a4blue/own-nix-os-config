@@ -14,34 +14,36 @@ lib.mkIf config.modules.impermanenceExtra.enabled {
       "Videos"
       "Persistence"
       ".pki"
-      ".local/share/tpm2-pkcs11"
-      ".local/share/tpm2-tss"
+      "${config.xdg.dataHome}/tpm2-pkcs11"
+      "${config.xdg.dataHome}/tpm2-tss"
       # Sound settings
       ".local/state/wireplumber"
       # KDE Stuff
-      ".local/share/baloo"
-      ".local/share/klipper"
-      ".local/share/krdc"
-      ".local/share/kwalletd"
-      ".local/share/dolphin"
+      "${config.xdg.dataHome}/baloo"
+      "${config.xdg.dataHome}/klipper"
+      "${config.xdg.dataHome}/krdc"
+      "${config.xdg.dataHome}/kwalletd"
+      "${config.xdg.dataHome}/dolphin"
       # Will need cleanup
       ".cache"
-      ".local/share/Haveno-reto"
+      "${config.xdg.dataHome}/Haveno-reto"
       # Flatpack shared Data
-      ".local/share/FlatPackData"
-      ".local/share/xmr-btc-swap"
+      "${config.xdg.dataHome}/FlatPackData"
+      "${config.xdg.dataHome}/xmr-btc-swap"
       # Podman
-      ".local/share/containers"
+      "${config.xdg.dataHome}/containers"
       # qBitTorrent (Considering auto Setup with Linux Distro Seed ?)
-      ".local/share/qBittorrent"
-      ".config/qBittorrent"
+      "${config.xdg.dataHome}/qBittorrent"
+      "${config.xdg.configHome}/qBittorrent"
+      "${config.xdg.configHome}/zed"
+      "${config.xdg.dataHome}/zed"
     ];
     files = [
       # KDE Stuff
-      ".config/kwinoutputconfig.json"
-      ".config/krdcrc"
-      ".config/kwalletrc"
-      ".config/dolphinrc"
+      "${config.xdg.configHome}/kwinoutputconfig.json"
+      "${config.xdg.configHome}/krdcrc"
+      "${config.xdg.configHome}/kwalletrc"
+      "${config.xdg.configHome}/dolphinrc"
     ];
   };
   # https://b.tuxes.uk/three-years-of-ephemeral-nixos.html

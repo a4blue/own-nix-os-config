@@ -32,9 +32,9 @@ in {
       then {
         persistence."${config.modules.impermanenceExtra.defaultPath}" = {
           directories = [
-            "${config.xdg.configHome}/Proton Pass"
-            "${config.xdg.configHome}/Signal"
-            "${config.xdg.dataHome}/chat.fluffy.fluffychat"
+            ".config/Proton Pass"
+            ".config/Signal"
+            ".local/share/chat.fluffy.fluffychat"
           ];
         };
       }

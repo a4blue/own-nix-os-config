@@ -17,19 +17,19 @@ in {
       then {
         persistence."${config.modules.impermanenceExtra.defaultPath}" = {
           directories = [
-            "${config.xdg.configHome}/heroic"
-            "${config.xdg.dataHome}/Steam"
-            "${config.xdg.dataHome}/lutris"
-            "${config.xdg.dataHome}/bottles"
-            "${config.xdg.dataHome}/umu"
-            "${config.xdg.dataHome}/comet"
-            "${config.xdg.configHome}/steamtinkerlaunch"
-            "${config.xdg.configHome}/MangoHud/MangoHud.conf"
+            ".config/heroic"
+            ".local/share/Steam"
+            ".local/share/lutris"
+            ".local/share/bottles"
+            ".local/share/umu"
+            ".local/share/comet"
+            ".config/steamtinkerlaunch"
+            ".config/MangoHud/MangoHud.conf"
             ".paradoxlauncher"
             ".factorio"
-            "${config.xdg.dataHome}/7DaysToDie"
-            "${config.xdg.dataHome}/Paradox Interactive"
-            "${config.xdg.dataHome}/Larian Studios"
+            ".local/share/7DaysToDie"
+            ".local/share/Paradox Interactive"
+            ".local/share/Larian Studios"
           ];
         };
       }

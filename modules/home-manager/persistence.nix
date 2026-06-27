@@ -9,7 +9,7 @@ lib.mkIf (config.home
     directories = [
       ".ssh"
       "nixos-git"
-      "${config.xdg.dataHome}/containers"
+      ".local/share/containers"
     ];
   };
 }

@@ -9,23 +9,23 @@ in {
     enable = false;
     wopi = true;
     hostname = serviceDomain;
-    securityNonceFile = config.sops.secrets."onlyoffice/Nonce".path;
-    jwtSecretFile = config.sops.secrets."onlyoffice/jwtSecretFile".path;
+    #securityNonceFile = config.sops.secrets."onlyoffice/Nonce".path;
+    #jwtSecretFile = config.sops.secrets."onlyoffice/jwtSecretFile".path;
   };
   ####
   # Secrets
   ####
-  sops.secrets = {
-    "onlyoffice/Nonce" = {
-      owner = "onlyoffice";
-      group = "onlyoffice";
-      mode = "440";
-    };
-    "onlyoffice/jwtSecretFile" = {
-      owner = "onlyoffice";
-      group = "onlyoffice";
-    };
-  };
+  #sops.secrets = {
+  #  "onlyoffice/Nonce" = {
+  #    owner = "onlyoffice";
+  #    group = "onlyoffice";
+  #    mode = "440";
+  #  };
+  #  "onlyoffice/jwtSecretFile" = {
+  #    owner = "onlyoffice";
+  #    group = "onlyoffice";
+  #  };
+  #};
   ####
   # Nginx
   ####

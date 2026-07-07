@@ -99,7 +99,7 @@
     extraModprobeConfig = ''
       options usbcore autosuspend=-1
     '';
-    kernelPackages = pkgs.linuxPackages_7_0;
+    kernelPackages = pkgs.linuxPackages_7_1;
     supportedFilesystems = ["bcachefs"];
 
     initrd = {

@@ -29,7 +29,7 @@
     virtualgl
     libva-utils
     ffmpeg
-    lact
+    #lact
     podman-compose
     vulkan-tools
     nvtopPackages.amd
@@ -176,8 +176,8 @@
     sane.enable = true;
   };
 
-  systemd.packages = with pkgs; [lact];
-  systemd.services.lactd.wantedBy = ["multi-user.target"];
+  #systemd.packages = with pkgs; [lact];
+  #systemd.services.lactd.wantedBy = ["multi-user.target"];
 
   security.rtkit.enable = true;
   services.earlyoom.enable = true;

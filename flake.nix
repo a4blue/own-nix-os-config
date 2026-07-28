@@ -80,7 +80,7 @@
   } @ inputs: let
     inherit (self) outputs;
     system = "x86_64-linux";
-    pkgs-stable = import nixpkgs-stable {inherit system;};
+    pkgs-stable = import nixpkgs-stable {inherit system; config.allowUnfree = true;};
   in
     flake-utils.lib.eachDefaultSystem (
       system: let

@@ -2,6 +2,7 @@
   lib,
   pkgs,
   config,
+  pkgs-stable,
   ...
 }:
 with lib; let
@@ -37,7 +38,7 @@ in {
       else {}
     )
     // {
-      packages = with pkgs; [
+      packages = with pkgs-stable; [
         winetricks
         #bottles
         lutris

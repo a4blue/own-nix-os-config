@@ -21,5 +21,6 @@ with config; {
     ./tpm2.nix
     ./yggdrasil.nix
     ./yazi.nix
+    ./starship.nix
   ];
 }

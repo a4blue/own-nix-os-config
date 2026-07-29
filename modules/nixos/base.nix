@@ -13,6 +13,11 @@
   system.stateVersion = "26.05";
   sops.secrets.githubPat = {mode = "0777";};
 
+  programs = {
+    starship.enable = true;
+    direnv.enable =true;
+  };
+
   nix = {
     package = pkgs.nixVersions.latest;
     gc = {

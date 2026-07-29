@@ -43,5 +43,6 @@
     mnamer2
     curlFull
     bat
+    devenv
   ];
 }

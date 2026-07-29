@@ -19,6 +19,7 @@ with config; {
     ./pipewire.nix
     ./zed.nix
     ./ghostty.nix
+    ./eza.nix
     ../common
   ];
 

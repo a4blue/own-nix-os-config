@@ -24,6 +24,7 @@
 
     # web services
     ./configs/nextcloud.nix
+    # TODO wait for fix
     ./configs/borgbackup.nix
     ./configs/jellyfin.nix
     ./configs/forgejo.nix

@@ -55,6 +55,7 @@
     ];
 
   programs = {
+    fuse.enable=true;
     fuse.userAllowOther = true;
     steam.enable = true;
     gnupg.agent.enable = true;

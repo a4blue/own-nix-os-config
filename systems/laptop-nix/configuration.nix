@@ -35,6 +35,7 @@
     nvtopPackages.amd
     fd
     gnupg
+    sbctl
   ];
   fonts = {
     packages = [
@@ -89,11 +90,14 @@
   zramSwap.enable = true;
 
   boot = {
+    tmp.cleanOnBoot = true;
+    lanzaboote = {
+      enable = true;
+      pkiBundle = "/var/lib/sbctl";
+    };
     loader = {
-      systemd-boot = {
-        enable = true;
-        configurationLimit = 5;
-      };
+      systemd-boot.enable = lib.mkForce false;
+      systemd-boot.configurationLimit = 5;
       efi.canTouchEfiVariables = true;
       timeout = 10;
     };

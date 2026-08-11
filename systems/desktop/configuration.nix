@@ -51,6 +51,7 @@
       nvtopPackages.amd
       gnupg
       libguestfs
+      makemkv
     ];
     plasma6.excludePackages = [pkgs.kdePackages.kwin-x11];
   };
@@ -72,6 +73,7 @@
       "steam-unwrapped"
       "unrar"
       "nrf-udev"
+      "makemkv"
     ];
   nixpkgs.config.permittedInsecurePackages = [
   ];

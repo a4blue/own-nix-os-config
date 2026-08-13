@@ -51,7 +51,8 @@
       nvtopPackages.amd
       gnupg
       libguestfs
-      makemkv
+      # TODO fix
+      #makemkv
     ];
     plasma6.excludePackages = [pkgs.kdePackages.kwin-x11];
   };
@@ -94,6 +95,33 @@
       openFirewall = true;
     };
     yazi.enable = true;
+    obs-studio = {
+        enable = true;
+        enableVirtualCamera = true;
+
+        plugins = with pkgs.obs-studio-plugins; [
+          wlrobs
+          pixel-art
+          obs-noise
+          input-overlay
+          obs-backgroundremoval
+          obs-pipewire-audio-capture
+          obs-vaapi
+          obs-gstreamer
+          obs-vkcapture
+          obs-multi-rtmp
+          obs-3d-effect
+          obs-mute-filter
+          obs-shaderfilter
+          obs-advanced-masks
+          obs-source-switcher
+          obs-vertical-canvas
+          obs-move-transition
+          obs-plugin-countdown
+          advanced-scene-switcher
+          obs-scene-as-transition
+        ];
+      };
   };
   networking = {
     hostName = "desktop-nix";

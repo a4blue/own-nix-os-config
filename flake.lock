@@ -922,11 +922,11 @@
     },
     "stash-update": {
       "locked": {
-        "lastModified": 1785944192,
-        "narHash": "sha256-GzbaqrjgnrO/eh2BAkK3Ztpzb7eValrUUtfMFqx0aEo=",
+        "lastModified": 1786653236,
+        "narHash": "sha256-lVQkFz/XmJJwm4I+GhL2m5YnjPZQXkvjacLN22dqu7Q=",
         "owner": "a4blue",
         "repo": "nixpkgs",
-        "rev": "dd4fc27cf5e4571e25c39c0a5f5abaf46a3a84ac",
+        "rev": "3f7fbd1a0cdc5d6e4415cdeaa0e51c77d5cc0f58",
         "type": "github"
       },
       "original": {

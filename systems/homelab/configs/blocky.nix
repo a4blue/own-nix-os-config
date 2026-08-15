@@ -8,9 +8,11 @@
     settings = {
       prometheus.enable = true;
       prometheus.path = "/metrics";
-      ports.dns = 53;
-      ports.tls = 853;
-      ports.http = 4000;
+      ports = {
+        dns = 53;
+        tls = 853;
+        http = 4000;
+      };
       certFile = "/nix/secret/blocky_cert/blocky.crt";
       keyFile = "/nix/secret/blocky_cert/blocky.key";
       log.level = "warn";

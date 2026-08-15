@@ -15,7 +15,7 @@
 
   programs = {
     starship.enable = true;
-    direnv.enable =true;
+    direnv.enable = true;
   };
 
   nix = {
@@ -76,7 +76,15 @@
     }
   ];
 
-  services.orca.enable = false;
+  services = {
+    orca.enable = false;
+    envfs = {
+      enable = true;
+      extraFallbackPathCommands = ''
+        ln -s ${pkgs.bash}/bin/bash $out/bash
+      '';
+    };
+  };
 
   users = {
     mutableUsers = false;

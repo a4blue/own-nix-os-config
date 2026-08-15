@@ -50,17 +50,19 @@ in {
     ];
   };
 
-  sops.secrets."nextcloud/adminPass" = {
-    owner = "nextcloud";
-    group = "nextcloud";
-  };
-  sops.secrets."nextcloud/whiteboardSecret" = {
-    owner = "nextcloud";
-    group = "nextcloud";
-  };
-  sops.secrets."nextcloud/extraSecrets" = {
-    owner = "nextcloud";
-    group = "nextcloud";
+  sops.secrets = {
+    "nextcloud/adminPass" = {
+      owner = "nextcloud";
+      group = "nextcloud";
+    };
+    "nextcloud/whiteboardSecret" = {
+      owner = "nextcloud";
+      group = "nextcloud";
+    };
+    "nextcloud/extraSecrets" = {
+      owner = "nextcloud";
+      group = "nextcloud";
+    };
   };
   services = {
     nextcloud-whiteboard-server = {

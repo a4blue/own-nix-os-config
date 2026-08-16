@@ -15,6 +15,7 @@ lib.mkIf config.programs.zed-editor.enable {
         "dark" = "Everforest Dark Hard";
       };
     };
+    extraPackages = with pkgs; [nil nixd php84 phpactor];
   };
   home.packages = [pkgs.nerd-fonts.fira-code];
 

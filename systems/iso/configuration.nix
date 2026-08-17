@@ -24,7 +24,7 @@
   };
 
   boot = {
-    initrd.availableKernelModules = ["nvme" "xhci_pci" "ahci" "usb_storage" "usbhid" "sd_mod" "thunderbolt" "usbhid" "uas"];
+    initrd.availableKernelModules = ["nvme" "xhci_pci" "ahci" "usb_storage" "usbhid" "sd_mod" "thunderbolt" "usbhid" "uas" "xhci_hcd"];
     supportedFilesystems.bcachefs = true;
     boot.supportedFilesystems.zfs = lib.mkForce false;
 

@@ -44,7 +44,7 @@ in {
       packages = with pkgs-stable; [
         signal-desktop
         proton-pass
-        libreoffice-qt6-fresh
+        libreoffice-qt-stable
         haruna
         podman-desktop
         kdePackages.kcalc

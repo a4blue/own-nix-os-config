@@ -51,8 +51,7 @@
       nvtopPackages.amd
       gnupg
       libguestfs
-      # TODO fix
-      #makemkv
+      makemkv
     ];
     plasma6.excludePackages = [pkgs.kdePackages.kwin-x11];
   };
@@ -112,11 +111,12 @@
         obs-multi-rtmp
         obs-3d-effect
         obs-mute-filter
-        obs-shaderfilter
+        # TODO
+        #obs-shaderfilter
         obs-advanced-masks
-        obs-source-switcher
+        #obs-source-switcher
         obs-vertical-canvas
-        obs-move-transition
+        #obs-move-transition
         obs-plugin-countdown
         advanced-scene-switcher
         obs-scene-as-transition
@@ -162,7 +162,7 @@
       "video=DP-3:1920x1080@60"
       "video=HDMI-A-1:1920x1080@60"
     ];
-    kernelPackages = pkgs.linuxPackages_7_1;
+    kernelPackages = pkgs.linuxPackages_7_2;
     supportedFilesystems = ["bcachefs"];
 
     initrd = {

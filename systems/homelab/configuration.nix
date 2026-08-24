@@ -24,7 +24,6 @@
 
     # web services
     ./configs/nextcloud.nix
-    # TODO wait for fix
     ./configs/borgbackup.nix
     ./configs/jellyfin.nix
     ./configs/forgejo.nix
@@ -100,7 +99,7 @@
     extraModprobeConfig = ''
       options usbcore autosuspend=-1
     '';
-    kernelPackages = pkgs.linuxPackages_7_1;
+    kernelPackages = pkgs.linuxPackages_7_2;
     supportedFilesystems = ["bcachefs"];
 
     initrd = {

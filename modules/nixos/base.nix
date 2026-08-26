@@ -94,14 +94,14 @@
       extraGroups = ["networkmanager" "wheel"];
       openssh.authorizedKeys.keys = [
         # Termux Pixel7Pro
-        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAYaqu6PwownHMqXluc61CdJLkJE3WOEtEOyKqKd+zXP"
+        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIPMp9XziaH6mX61Ns1PH7/LrO0Xtl60IuHpuHn5R/o+ a4blue@conduit"
         # Nitrokey
         "sk-ssh-ed25519@openssh.com AAAAGnNrLXNzaC1lZDI1NTE5QG9wZW5zc2guY29tAAAAIPFRV7ZJOgn9N5DBl4b+NwjTWNXJURDBd761JGB8ZZm+AAAABHNzaDo="
         "sk-ssh-ed25519@openssh.com AAAAGnNrLXNzaC1lZDI1NTE5QG9wZW5zc2guY29tAAAAINQzo89EsYmlmVZSJrsPWUapwQofmpDbjYAMTE1E7N6AAAAAC3NzaDpIb21lTmV0 ssh:HomeNet"
         # Nitrokey Backup
         "sk-ssh-ed25519@openssh.com AAAAGnNrLXNzaC1lZDI1NTE5QG9wZW5zc2guY29tAAAAIFe4fmeT6W1f3+YBrRlR5DBjQ1Xo0WNi6j+ptstlXGO5AAAAD3NzaDpIb21lTmV0LUJhaw== ssh:HomeNet-Bak"
         # TPM Laptop
-        "ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBBhNZQ98YEqc0WbcTsXyy8hjysL5T4vAfqOx5aidPPIzkpHj9iuAWjjIkUXuI08szM5VMpEN7TcjVy+b7ULyoik="
+        "ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBN7uLNzzZkEZp5jWncbdzIebQ6AtiD8dCnmXDChHj20beBMYAw/ZGdxYWelYoiyerRNntj2URr+9cKSBTRwRH0k="
         # TPM Desktop
         "ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBOMhC46YdctMSYzjGOfyMXLGkBPW3JD6TnddF5vkNy2eVu1PO0v7l2UhDHmb/W71kGmLIbQcXH9sDUK/GhsPArQ="
       ];

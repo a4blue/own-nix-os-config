@@ -9,6 +9,7 @@
     sabnzbd.settings.misc.port = 65535 - 6;
     seerr.port = 65535 - 7;
     stash.settings.port = 65535 - 8;
+    mealie.port = 65535 - 13;
   };
   modules = {
     dashdot.port = 65535 - 9;

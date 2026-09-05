@@ -12,6 +12,7 @@
     recommendedOptimisation = true;
     recommendedGzipSettings = true;
     recommendedProxySettings = true;
+    recommendedBrotliSettings = true;
     statusPage = true;
     enable = true;
     virtualHosts = {
@@ -25,7 +26,7 @@
       };
       # Default match
       "_" = {
-        globalRedirect = "start.home.a4blue.me";
+        globalRedirect = "homelab.home.a4blue.me";
         default = true;
       };
     };

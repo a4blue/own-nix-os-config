@@ -165,6 +165,10 @@ in {
           recommendedProxySettings = true;
           proxyWebsockets = true;
           proxyPass = "http://127.0.0.1:${builtins.toString servicePort}";
+          extraConfig = ''
+            proxy_set_header Range $http_range;
+            proxy_set_header If-Range $http_if_range;
+          '';
         };
         "/metrics" = {
           extraConfig = ''

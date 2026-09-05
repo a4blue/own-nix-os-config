@@ -52,6 +52,8 @@
     ./configs/prometheus.nix
     ./configs/grafana.nix
     #./configs/koillection.nix
+    ./configs/mealie.nix
+    ./configs/ollama.nix
 
     ../../configs/common
   ];

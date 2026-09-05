@@ -26,7 +26,7 @@
       options = "--delete-older-than 14d";
     };
     settings = {
-      experimental-features = "nix-command flakes";
+      experimental-features = ["nix-command" "flakes"];
       auto-optimise-store = false;
       extra-substituters = [
         "http://ncps.homelab.internal:8501"

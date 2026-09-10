@@ -10,6 +10,7 @@
     seerr.port = 65535 - 7;
     stash.settings.port = 65535 - 8;
     mealie.port = 65535 - 13;
+    open-webui.port = 65535 - 14;
   };
   modules = {
     dashdot.port = 65535 - 9;

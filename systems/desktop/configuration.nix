@@ -52,6 +52,7 @@
       gnupg
       libguestfs
       makemkv
+      ckb-next
     ];
     plasma6.excludePackages = [pkgs.kdePackages.kwin-x11];
   };
@@ -252,6 +253,7 @@
     xpadneo.enable = true;
     bluetooth.enable = true;
     sane.enable = true;
+    ckb-next.enable = true;
   };
 
   #systemd.packages = with pkgs; [lact];

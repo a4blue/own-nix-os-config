@@ -54,6 +54,7 @@
     #./configs/koillection.nix
     ./configs/mealie.nix
     ./configs/ollama.nix
+    ./configs/open-webui.nix
 
     ../../configs/common
   ];

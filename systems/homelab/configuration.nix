@@ -41,9 +41,6 @@
     ./configs/ncps.nix
     ./configs/keycloak.nix
     ./configs/onlyoffice.nix
-    ./configs/homarr.nix
-    ./configs/bazarr.nix
-    ./configs/dashdot.nix
     ./configs/unmanic.nix
     ./configs/seerr.nix
     ./configs/large-media-mount.nix

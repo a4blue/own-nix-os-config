@@ -6,8 +6,6 @@
 }: {
   nixpkgs.overlays = [
     (final: prev: {
-      # TODO remove after nix-SOPS Update
-      buildGo125Module = prev.buildGoModule;
       #python313 = prev.python313.override {
       #  packageOverrides = pyfinal: pyprev: {
       #    pyrate-limiter = pyprev.pyrate-limiter.overridePythonAttrs (old: {

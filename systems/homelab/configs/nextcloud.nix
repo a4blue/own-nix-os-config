@@ -103,7 +103,7 @@ in {
             #maps
             memories
             notes
-            onlyoffice
+            #onlyoffice
             phonetrack
             previewgenerator
             richdocuments

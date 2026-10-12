@@ -76,6 +76,10 @@
     }
   ];
 
+  systemd.settings.Manager = {
+    DefaultLimitNOFILE = 524288;
+  };
+
   services = {
     orca.enable = false;
     envfs = {

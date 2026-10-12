@@ -1,6 +1,6 @@
 {config, ...}: {
   services = {
-    bazarr.listenPort = 65535;
+    bazarr.settings.general.port = 65535;
     forgejo.settings.server.HTTP_PORT = 65535 - 1;
     grafana.settings.server.http_port = 65535 - 2;
     keycloak.settings.http-port = 65535 - 3;

@@ -54,7 +54,6 @@
       makemkv
       ckb-next
     ];
-    plasma6.excludePackages = [pkgs.kdePackages.kwin-x11];
   };
   sops = {
     age.sshKeyPaths = ["/nix/secret/initrd/sops_key"];

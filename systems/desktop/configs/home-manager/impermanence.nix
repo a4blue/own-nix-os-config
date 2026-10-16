@@ -24,6 +24,7 @@ lib.mkIf config.modules.impermanenceExtra.enabled {
       ".local/share/krdc"
       ".local/share/kwalletd"
       ".local/share/dolphin"
+      ".local/share/akonadi"
       # Will need cleanup
       ".cache"
       ".local/share/Haveno-reto"
@@ -37,6 +38,10 @@ lib.mkIf config.modules.impermanenceExtra.enabled {
       ".config/qBittorrent"
       ".config/zed"
       ".local/share/zed"
+      # Gaming
+      ".var/app/info.beyondallreason.bar"
+      ".local/share/freebirdgames"
+      ".config/unity3d"
     ];
     files = [
       # KDE Stuff

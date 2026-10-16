@@ -112,7 +112,6 @@
   nixpkgs.config.permittedInsecurePackages = [
   ];
 
-  environment.plasma6.excludePackages = [pkgs.kdePackages.kwin-x11];
   services = {
     udev.packages = [
       pkgs.nitrokey-udev-rules

@@ -128,7 +128,6 @@ in {
 
       config = {
         dbtype = "pgsql";
-        adminpassFile = config.sops.secrets."nextcloud/adminPass".path;
       };
       settings = {
         default_phone_region = "DE";

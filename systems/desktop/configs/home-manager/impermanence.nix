@@ -25,6 +25,7 @@ lib.mkIf config.modules.impermanenceExtra.enabled {
       ".local/share/kwalletd"
       ".local/share/dolphin"
       ".local/share/akonadi"
+      ".local/share/kactivitymanagerd"
       # Will need cleanup
       ".cache"
       ".local/share/Haveno-reto"
@@ -41,6 +42,9 @@ lib.mkIf config.modules.impermanenceExtra.enabled {
       # Gaming
       ".var/app/info.beyondallreason.bar"
       ".local/share/freebirdgames"
+      ".local/share/godot/app_userdata"
+      ".local/share/FEEDTHEQUEEN"
+      ".config/Mountain_Eaters"
       ".config/unity3d"
     ];
     files = [

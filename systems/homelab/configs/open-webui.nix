@@ -10,7 +10,8 @@ in {
     # Main Config
     ####
     open-webui = {
-      enable = true;
+      # TODO enable after fix
+      enable = false;
     };
 
     ####

@@ -65,11 +65,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1792435275,
-        "narHash": "sha256-J+6YDc4VNGevVanhlWVXbjF5TVagz2PiAR69RDPPgW4=",
+        "lastModified": 1792545299,
+        "narHash": "sha256-/5iWHHMbB6Ud4nFrVzUDp3GVCNQ6o343/pKiuTraQBM=",
         "owner": "nix-community",
         "repo": "flake-firefox-nightly",
-        "rev": "3a27a15a9bf45b36a39303954e5e6be382a5eac2",
+        "rev": "5701e6789463647bc521593f0f3bbe8484118f76",
         "type": "github"
       },
       "original": {
@@ -248,11 +248,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1792438393,
-        "narHash": "sha256-C9hsBAUY/K7W7+CBSRdrT7XaX/ulVm3RuRBJNjmEM/A=",
+        "lastModified": 1792495086,
+        "narHash": "sha256-TyoYH983Nsc++1scw0SoOEKshPSJWJDxK7tTmuZ974M=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "b74e23e34d3172802fdd60d4a1a01978f95e1898",
+        "rev": "ec80131710bffcdf3b8498cf41f3a0579833b023",
         "type": "github"
       },
       "original": {
@@ -289,11 +289,11 @@
         "nixpkgs": "nixpkgs"
       },
       "locked": {
-        "lastModified": 1769548169,
-        "narHash": "sha256-03+JxvzmfwRu+5JafM0DLbxgHttOQZkUtDWBmeUkN8Y=",
+        "lastModified": 1792503832,
+        "narHash": "sha256-WsqPR04nPS1bi5bYva04cJJcJyHw7x/rbaJmoXMzF04=",
         "owner": "nix-community",
         "repo": "impermanence",
-        "rev": "7b1d382faf603b6d264f58627330f9faa5cba149",
+        "rev": "936ced36ecd25fcbd9b4789184b88aa2e4c2a901",
         "type": "github"
       },
       "original": {
@@ -388,11 +388,11 @@
     "nc4nix": {
       "flake": false,
       "locked": {
-        "lastModified": 1792429521,
-        "narHash": "sha256-21rbc81vY6nO5dIzDhpbgxhoMwX7BKeEeLCnkkT/hGw=",
+        "lastModified": 1792515961,
+        "narHash": "sha256-JB8Rp0TCDnG0wjFMLlPmtRslYPSFaxKzRP+z+9rDxKk=",
         "owner": "helsinki-systems",
         "repo": "nc4nix",
-        "rev": "f7e83299f2d8a20ac964f85871df02df038ed72e",
+        "rev": "63f8bbcd1d42ea0615e5a9a9e489483578353c7e",
         "type": "github"
       },
       "original": {
@@ -513,11 +513,11 @@
     },
     "nixpkgs-stable": {
       "locked": {
-        "lastModified": 1792094642,
-        "narHash": "sha256-zp8ToDMnqZcu4o4IH9pdwXFXGp7yLm/M0dEnNWnyd7I=",
+        "lastModified": 1792502884,
+        "narHash": "sha256-IoNisKcGbUjdd45qCqywGMCYmZ5EnkxezvLII0FWwNA=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "fe13242281a67641c0102cdb1087f0ebe586c7df",
+        "rev": "02c087f3fe673c9e317f206a627cb6b910336dbe",
         "type": "github"
       },
       "original": {
@@ -529,11 +529,11 @@
     },
     "nixpkgs_2": {
       "locked": {
-        "lastModified": 1792430821,
-        "narHash": "sha256-ccvCOsDJzyPAT+uGJGaNHYCqT/KeVtM2pgoXm5QUflA=",
+        "lastModified": 1792502884,
+        "narHash": "sha256-IoNisKcGbUjdd45qCqywGMCYmZ5EnkxezvLII0FWwNA=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "07b58be58c16d91ee16ad6bb648bc2ad969edac1",
+        "rev": "02c087f3fe673c9e317f206a627cb6b910336dbe",
         "type": "github"
       },
       "original": {
@@ -680,6 +680,22 @@
         "type": "github"
       }
     },
+    "php-sec-fix": {
+      "locked": {
+        "lastModified": 1792594136,
+        "narHash": "sha256-UVMKNe7NK7C9ESawQ1GkVo+ibK7VKwxURKgVyWr9Yxo=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "c53532a938651ed45ebef072c8da6e74256e7072",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "c53532a938651ed45ebef072c8da6e74256e7072",
+        "type": "github"
+      }
+    },
     "plasma-manager": {
       "inputs": {
         "home-manager": [
@@ -804,6 +820,7 @@
         "nixpkgs-stable": "nixpkgs-stable",
         "nixvim": "nixvim",
         "own-nixvim": "own-nixvim",
+        "php-sec-fix": "php-sec-fix",
         "plasma-manager": "plasma-manager",
         "proton-manager": "proton-manager",
         "sops-nix": "sops-nix",

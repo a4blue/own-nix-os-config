@@ -7,6 +7,7 @@
     #nixpkgs.url = "github:nixos/nixpkgs/8e72e9888e67ce593df16546cd31e0d75544ad0d";
     nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-unstable";
     stash-update.url = "github:a4blue/nixpkgs/stash-update-0.31.1";
+    php-sec-fix.url = "github:nixos/nixpkgs/c53532a938651ed45ebef072c8da6e74256e7072";
 
     impermanence = {
       url = "github:nix-community/impermanence";

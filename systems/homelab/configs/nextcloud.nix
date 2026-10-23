@@ -3,7 +3,6 @@
   pkgs,
   lib,
   inputs,
-  php-sec-fix,
   ...
 }: let
   nc4nix = import "${inputs.nc4nix}/default.nix" {
@@ -79,7 +78,7 @@ in {
       caching.redis = true;
       database.createLocally = true;
       package = pkgs.nextcloud34;
-      phpPackage = inputs.php-sec-fix.legacyPackages."x86_64-linux".php84;
+      #phpPackage = inputs.php-sec-fix.legacyPackages."x86_64-linux".php84;
       appstoreEnable = false;
       phpOptions."opcache.interned_strings_buffer" = "32";
       maxUploadSize = "4G";

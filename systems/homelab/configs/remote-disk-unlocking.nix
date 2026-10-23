@@ -2,7 +2,6 @@
   boot = {
     kernelParams = ["ip=dhcp"];
     initrd = {
-      systemd.enable = true;
       network = {
         enable = true;
         ssh = {

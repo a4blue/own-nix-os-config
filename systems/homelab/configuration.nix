@@ -103,7 +103,6 @@
     supportedFilesystems = ["bcachefs"];
 
     initrd = {
-      systemd.enable = true;
       systemd.emergencyAccess = true;
     };
   };

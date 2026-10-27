@@ -50,7 +50,7 @@
       vulkan-tools
       nvtopPackages.amd
       gnupg
-      libguestfs
+      #libguestfs
       makemkv
       ckb-next
     ];

@@ -187,6 +187,14 @@
     fwupd.enable = true;
     wg-netmanager.enable = true;
     yggdrasil.enable = false;
+    ollama = {
+      enable = true;
+      loadModels = ["qwen3.5:9b"];
+      package = pkgs.ollama-vulkan;
+      environmentVariables = {
+        OLLAMA_NO_CLOUD = "1";
+      };
+    };
   };
 
   security.tpm2.enable = true;

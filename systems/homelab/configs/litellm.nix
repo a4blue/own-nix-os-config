@@ -18,8 +18,28 @@ in {
     litellm = {
       enable = true;
       environmentFile = config.sops.secrets."litellm/env".path;
+      environment = {
+        ANONYMIZED_TELEMETRY = "False";
+        DO_NOT_TRACK = "True";
+        SCARF_NO_ANALYTICS = "True";
+        DATABASE_URL = "postgresql://litellm:dummy-litellm@localhost:${builtins.toString config.services.postgresql.settings.port}/litellm";
+      };
     };
-
+    ####
+    # Postgres
+    ####
+    postgresql = {
+      ensureDatabases = ["litellm"];
+      authentication = ''
+        host litellm litellm password dummy-litellm
+      '';
+      ensureUsers = [
+        {
+          name = "litellm";
+          ensureDBOwnership = true;
+        }
+      ];
+    };
     ####
     # Nginx
     ####

@@ -7,7 +7,6 @@
   # Main Config
   ####
   services.nginx = {
-    package = pkgs.openresty;
     additionalModules = [pkgs.nginxModules.develkit];
     lua.enable = true;
     recommendedTlsSettings = true;

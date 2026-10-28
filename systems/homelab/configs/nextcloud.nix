@@ -185,6 +185,9 @@ in {
     nginx.virtualHosts."whiteboard-nextcloud.home.a4blue.me" = {
       forceSSL = true;
       useACMEHost = "home.a4blue.me";
+      http2 = true;
+      http3 = true;
+      quic = true;
       locations."/" = {
         recommendedProxySettings = true;
         proxyWebsockets = true;

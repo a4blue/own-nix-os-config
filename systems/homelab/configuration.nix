@@ -40,7 +40,6 @@
 
     ./configs/ncps.nix
     ./configs/keycloak.nix
-    ./configs/onlyoffice.nix
     ./configs/unmanic.nix
     ./configs/seerr.nix
     ./configs/large-media-mount.nix
@@ -48,10 +47,11 @@
     ./configs/internal-port-mapping.nix
     ./configs/prometheus.nix
     ./configs/grafana.nix
-    #./configs/koillection.nix
     ./configs/mealie.nix
     ./configs/ollama.nix
     ./configs/open-webui.nix
+    ./configs/litellm.nix
+    ./configs/librechat.nix
 
     ../../configs/common
   ];

@@ -24,6 +24,9 @@ in {
     nginx.virtualHosts."${serviceDomain}" = {
       forceSSL = true;
       useACMEHost = "home.a4blue.me";
+      http2 = true;
+      http3 = true;
+      quic = true;
       extraConfig = ''
         client_max_body_size 512M;
         add_header X-Content-Type-Options "nosniff";

@@ -9,17 +9,28 @@
   services.nginx = {
     additionalModules = [pkgs.nginxModules.develkit];
     lua.enable = true;
-    recommendedTlsSettings = true;
+    # Own TLS 1.3 only Config below
+    recommendedTlsSettings = false;
     recommendedOptimisation = true;
     recommendedGzipSettings = true;
     recommendedProxySettings = true;
     recommendedBrotliSettings = true;
     statusPage = true;
     enable = true;
+    commonHttpConfig = ''
+      # https://configurator.tlsref.org/#server=nginx&version=1.31.3&config=modern&openssl=3.5.9&hsts&guideline=6.0
+      # modern configuration
+      ssl_protocols TLSv1.3;
+      ssl_ecdh_curve X25519MLKEM768:X25519:prime256v1:secp384r1;
+      ssl_prefer_server_ciphers off;
+    '';
     virtualHosts = {
       # Public DynDNS
       "homelab.home.a4blue.me" = {
         forceSSL = true;
+        http2 = true;
+        http3 = true;
+        quic = true;
         useACMEHost = "home.a4blue.me";
         locations."/" = {
           root = "/var/www";
@@ -29,6 +40,9 @@
       "_" = {
         globalRedirect = "homelab.home.a4blue.me";
         default = true;
+        http2 = true;
+        http3 = true;
+        quic = true;
       };
     };
   };

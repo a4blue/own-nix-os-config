@@ -269,6 +269,9 @@ in {
   services.nginx.virtualHosts."${serviceDomain}" = {
     forceSSL = true;
     useACMEHost = "home.a4blue.me";
+    http2 = true;
+    http3 = true;
+    quic = true;
     locations."/" = {
       recommendedProxySettings = true;
       proxyWebsockets = true;

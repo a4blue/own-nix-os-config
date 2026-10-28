@@ -20,6 +20,9 @@ in {
     nginx.virtualHosts."${serviceDomain}" = {
       forceSSL = true;
       useACMEHost = "home.a4blue.me";
+      http2 = true;
+      http3 = true;
+      quic = true;
       extraConfig = ''
         client_max_body_size 512M;
         add_header X-Content-Type-Options "nosniff";
@@ -30,18 +33,5 @@ in {
         proxyPass = "http://127.0.0.1:${builtins.toString config.services.open-webui.port}";
       };
     };
-  };
-  ####
-  # Impermanence
-  ####
-  environment.persistence."${config.modules.impermanenceExtra.defaultPath}" = {
-    directories = [
-      {
-        directory = "/var/lib/${config.services.open-webui.stateDir}";
-        mode = "0740";
-        user = "sabnzbd";
-        group = "sabnzbd";
-      }
-    ];
   };
 }

@@ -9,13 +9,6 @@
   serviceDomain = "jellyfin.home.a4blue.me";
   dataDir = "/var/lib/jellyfin";
 in {
-  ####
-  # Secrets
-  ####
-  sops.secrets.jellarrApiKey = {
-    owner = "jellyfin";
-    group = "jellyfin";
-  };
   services = {
     ####
     # Main Config
@@ -59,103 +52,14 @@ in {
       };
     };
     ####
-    # Jellarr Config for "declarative" Jellyfin
-    ####
-    jellarr = {
-      # TODO fix after checksum issue is resolved
-      enable = false;
-      user = "jellyfin";
-      group = "jellyfin";
-      environmentFile = config.sops.secrets.jellarrApiKey.path;
-      config = {
-        version = 1;
-        base_url = "https://${serviceDomain}";
-        system = {
-          enableMetrics = true;
-          trickplayOptions = {
-            enableHwAcceleration = true;
-            enableHwEncoding = true;
-          };
-          pluginRepositories = [
-            {
-              name = "Jellyfin Stable";
-              url = "https://repo.jellyfin.org/files/plugin/manifest.json";
-              enabled = true;
-            }
-            {
-              name = "Merge Plugin";
-              url = "https://raw.githubusercontent.com/danieladov/JellyfinPluginManifest/master/manifest.json";
-              enabled = true;
-            }
-            {
-              name = "SSO Plugin";
-              url = "https://raw.githubusercontent.com/9p4/jellyfin-plugin-sso/manifest-release/manifest.json";
-              enabled = true;
-            }
-            {
-              name = "Intro Skipper Plugin";
-              url = "https://intro-skipper.org/manifest.json";
-              enabled = true;
-            }
-            {
-              name = "File Transformation & Plugin Pages Plugins";
-              url = "https://www.iamparadox.dev/jellyfin/plugins/manifest.json";
-              enabled = true;
-            }
-            {
-              name = "Editors Choice Plugin";
-              url = "https://github.com/lachlandcp/jellyfin-editors-choice-plugin/raw/main/manifest.json";
-              enabled = true;
-            }
-            {
-              name = "Local Recommendation Plugin";
-              url = "https://raw.githubusercontent.com/rdpharr/jellyfin-plugin-localrecs/main/manifest.json";
-              enabled = true;
-            }
-            {
-              name = "Jellyfin SmartLists Plugin";
-              url = "https://raw.githubusercontent.com/jyourstone/jellyfin-plugin-manifest/main/manifest.json";
-              enabled = true;
-            }
-            {
-              name = "Bazarr Plugin";
-              url = "https://raw.githubusercontent.com/enoch85/bazarr-jellyfin/main/manifest.json";
-              enabled = true;
-            }
-            {
-              name = "Jellyfin Language Tags Plugin";
-              url = "https://raw.githubusercontent.com/TheXaman/jellyfin-plugin-languageTags/main/manifest.json";
-              enabled = true;
-            }
-          ];
-        };
-        branding = {
-          customCss = ''
-            a.raised.emby-button {
-              padding: 0.9em 1em;
-              color: inherit !important;
-            }
-
-            .disclaimerContainer {
-              display: block;
-            }
-          '';
-          loginDisclaimer = ''
-            <form action="https://jellyfin.home.a4blue.me/sso/OID/start/auth.home.a4blue.me">
-              <button class="raised block emby-button button-submit">
-                Sign in with SSO
-              </button>
-            </form>
-          '';
-        };
-      };
-    };
-    ####
     # Nginx
     ####
     nginx.virtualHosts."${serviceDomain}" = {
       forceSSL = true;
       useACMEHost = "home.a4blue.me";
+      http2 = true;
+      http3 = true;
+      quic = true;
       extraConfig = ''
         client_max_body_size 512M;
         add_header X-Content-Type-Options "nosniff";

@@ -75,11 +75,9 @@ in {
                   type = "ladspa";
                   name = "deepfilternet";
                   plugin = "${pkgs.deepfilternet}/lib/ladspa/libdeep_filter_ladspa.so";
-                  label = "noise_suppressor_mono";
+                  label = "deep_filter_mono";
                   control = {
-                    "VAD Threshold (%)" = 80.0;
-                    "VAD Grace Period (ms)" = 200;
-                    "Retroactive VAD Grace (ms)" = 0;
+                    "Attenuation Limit (dB)" = 100;
                   };
                 }
               ];

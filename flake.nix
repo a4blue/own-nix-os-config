@@ -9,6 +9,8 @@
     stash-update.url = "github:a4blue/nixpkgs/stash-update-0.31.1";
     #php-sec-fix.url = "github:nixos/nixpkgs/c53532a938651ed45ebef072c8da6e74256e7072";
 
+    llm-pkgs.url = "git+https://codeberg.org/anish/llm-pkgs";
+
     impermanence = {
       url = "github:nix-community/impermanence";
     };
@@ -135,6 +137,7 @@
             inputs.home-manager.nixosModules.home-manager
             inputs.impermanence.nixosModules.impermanence
             inputs.lanzaboote.nixosModules.lanzaboote
+            inputs.llm-pkgs.nixosModules.litellm
             ./systems/homelab/configuration.nix
             ./overlays/previous.nix
           ];
@@ -154,6 +157,7 @@
             inputs.home-manager.nixosModules.home-manager
             inputs.impermanence.nixosModules.impermanence
             inputs.lanzaboote.nixosModules.lanzaboote
+            #inputs.llm-pkgs.nixosModules.litellm
             ./systems/desktop/configuration.nix
             ./overlays/previous.nix
           ];
@@ -173,6 +177,7 @@
             inputs.home-manager.nixosModules.home-manager
             inputs.impermanence.nixosModules.impermanence
             inputs.lanzaboote.nixosModules.lanzaboote
+            #inputs.llm-pkgs.nixosModules.litellm
             ./systems/laptop-nix/configuration.nix
             ./overlays/previous.nix
           ];

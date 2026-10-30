@@ -30,9 +30,6 @@ in {
     ####
     postgresql = {
       ensureDatabases = ["litellm"];
-      authentication = ''
-        host litellm litellm password dummy-litellm
-      '';
       ensureUsers = [
         {
           name = "litellm";

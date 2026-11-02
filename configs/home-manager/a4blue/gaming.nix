@@ -40,7 +40,7 @@ in {
     // {
       packages = with pkgs-stable; [
         winetricks
-        #bottles
+        bottles
         lutris
         umu-launcher
         (heroic.override {

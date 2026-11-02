@@ -86,12 +86,15 @@
     pkgs-stable = import nixpkgs-stable {
       inherit system;
       config.allowUnfree = true;
+      config.problems.handlers = {
+        # gtk2 is being used by lutris
+        "gtk+".broken = "warn";
+      };
     };
   in
     flake-utils.lib.eachDefaultSystem (
       system: let
         pkgs = import nixpkgs {inherit system;};
-        pkgs-stable = import nixpkgs-stable {inherit system;};
       in {
         formatter = pkgs.alejandra;
         devShells = {

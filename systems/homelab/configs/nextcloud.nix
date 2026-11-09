@@ -77,7 +77,7 @@ in {
       configureRedis = true;
       caching.redis = true;
       database.createLocally = true;
-      package = pkgs.nextcloud34;
+      package = pkgs.nextcloud35;
       #phpPackage = inputs.php-sec-fix.legacyPackages."x86_64-linux".php84;
       appstoreEnable = false;
       phpOptions."opcache.interned_strings_buffer" = "32";
@@ -115,7 +115,7 @@ in {
         }
         // {
           inherit
-            (nc4nix.nextcloud-34)
+            (nc4nix.nextcloud-35)
             announcementcenter
             #cfg_share_links
             #duplicatefinder

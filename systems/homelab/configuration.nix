@@ -51,7 +51,7 @@
     ./configs/ollama.nix
     ./configs/open-webui.nix
     ./configs/litellm.nix
-    ./configs/librechat.nix
+    #./configs/librechat.nix
 
     ../../configs/common
   ];

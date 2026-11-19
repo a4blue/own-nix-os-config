@@ -6,7 +6,8 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable-small";
     #nixpkgs.url = "github:nixos/nixpkgs/8e72e9888e67ce593df16546cd31e0d75544ad0d";
     nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-unstable";
-    #php-sec-fix.url = "github:nixos/nixpkgs/c53532a938651ed45ebef072c8da6e74256e7072";
+    # php and nginx fix
+    various-sec-fix.url = "github:nixos/nixpkgs/b8a59ac94c4c495610130c08e5b4c99c2758b571";
 
     llm-pkgs.url = "git+https://codeberg.org/anish/llm-pkgs";
 
